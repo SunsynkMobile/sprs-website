@@ -127,7 +127,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offse
 .score-val{font-size:.76rem;font-weight:800;min-width:26px;text-align:right;color:var(--c,var(--slate-800))}
 
 /* VALUE STRIP */
-.strip{background:var(--white);padding:2.5rem 0;border-bottom:1px solid var(--slate-100)}
+.strip{background:var(--slate-50);padding:2.5rem 0;border-top:1px solid var(--slate-100);border-bottom:1px solid var(--slate-100)}
 .strip-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.5rem}
 .strip-card{text-align:center;padding:0}
 .strip-icon{width:52px;height:52px;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;transition:transform var(--t2) ease,box-shadow var(--t2) ease}
@@ -395,6 +395,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offse
   .strip-grid{grid-template-columns:repeat(3,1fr);gap:1.2rem}
   .strip-card{padding:0}
   .strip-icon{width:48px;height:48px;margin:0 auto .9rem}
+  .strip-icon svg{width:22px;height:22px}
   .strip-card h3{font-size:.88rem}
   .strip-card p{font-size:.75rem}
   .bench-stats li{padding:.75rem}
@@ -494,6 +495,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offse
   .strip-grid{grid-template-columns:repeat(2,1fr);gap:1rem}
   .strip-card{padding:0}
   .strip-icon{width:44px;height:44px;margin:0 auto .7rem}
+  .strip-icon svg{width:20px;height:20px}
   .strip-card h3{font-size:.82rem}
   .strip-card p{font-size:.72rem}
 }
@@ -575,6 +577,12 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offse
   .audience-card > p{font-size:.78rem;margin-bottom:.7rem}
   .audience-card li{font-size:.75rem;padding-left:.9rem}
   .audience-card li::before{width:3px;height:3px;top:.35rem}
+  .strip-grid{grid-template-columns:1fr;gap:.8rem;padding:0 .25rem}
+  .strip-card{padding:0}
+  .strip-icon{width:40px;height:40px;margin:0 auto .6rem;flex-shrink:0}
+  .strip-icon svg{width:18px;height:18px}
+  .strip-card h3{font-size:.8rem;margin-bottom:.3rem}
+  .strip-card p{font-size:.7rem}
 }
 
 @media(prefers-reduced-motion:reduce){
