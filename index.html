@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Sunsynk Report Platform turns one month of system data into a clear performance report with scores, benchmarks, and recommended actions." />
-  <title>Sunsynk Report Platform | Decision-Ready Energy Intelligence</title>
-  <link rel="icon" type="image/png" href="assets/favicon.ico" />
-  <link rel="shortcut icon" type="image/png" href="assets/favicon.png" />
+  <meta name="description" content="Sunsynk Report Platform: one month of solar and battery data analysed into a clear performance report with scores, benchmarks, and recommended actions." />
+  <title>Sunsynk Report Platform | Performance Intelligence</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="shortcut icon" href="assets/favicon.png" />
   <link rel="apple-touch-icon" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,282 +14,305 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="top" aria-hidden="true" style="position:absolute;top:0;height:0;overflow:hidden;"></div>
-  <div class="scroll-progress" aria-hidden="true"></div>
+  <div class="scroll-bar" aria-hidden="true"></div>
+  <div id="top" aria-hidden="true" style="position:absolute;top:0;height:0;pointer-events:none;"></div>
 
-  <header class="site-header">
-    <div class="container nav-shell">
-      <a class="brand" href="#top" aria-label="Sunsynk Report Platform home">
-        <img src="assets/sunsynk-logo.png" class="brand-logo" alt="Sunsynk" />
-        <span class="brand-text">Report Platform</span>
+  <header class="nav" id="nav">
+    <div class="nav-inner container">
+      <a class="nav-brand" href="#top" aria-label="Sunsynk Report Platform">
+        <img src="assets/sunsynk-logo.png" alt="Sunsynk" class="nav-logo" />
+        <span>Report Platform</span>
       </a>
-
-      <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span></span><span></span><span></span>
       </button>
-
-      <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
-        <a href="#product">Platform</a>
+      <nav id="nav-menu" class="nav-menu" aria-label="Main navigation">
+        <a href="#platform">Platform</a>
         <a href="#features">Features</a>
-        <a href="#benchmark">Benchmarking</a>
+        <a href="#benchmark">Benchmark</a>
         <a href="#pricing">Pricing</a>
-        <a href="#audiences">Solutions</a>
         <a href="#how-it-works">How it works</a>
       </nav>
-
-      <a class="btn btn-small" href="#final-cta">Generate My Report</a>
+      <a class="btn btn-gold btn-sm nav-cta" href="#pricing">Get My Report</a>
     </div>
   </header>
 
-  <main id="main-content">
-    <section class="hero section" id="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy reveal-up">
-          <p class="eyebrow">Energy Independence Starts Here</p>
-          <h1>One month of Sunsynk data. One clear performance report.</h1>
-          <p class="hero-subtext">
-            See where energy is being lost, where the battery is underused, and where grid import can be cut.
-            Get clear findings and actions you can apply now.
-          </p>
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-grid-overlay"></div>
+      </div>
+      <div class="container hero-layout">
+        <div class="hero-text fade-in">
+          <p class="eyebrow-light">Energy Independence Starts Here</p>
+          <h1>Know exactly where your solar system is winning — and where it is not.</h1>
+          <p class="hero-sub">One month of Sunsynk data. Six performance checks. Scores, benchmarks, and a clear action list.</p>
           <div class="hero-actions">
-            <a class="btn" href="#final-cta">Generate My Report</a>
-            <a class="btn btn-secondary" href="#sample-insights">View Sample Report</a>
-            <a class="text-link" href="#audiences">Explore Installer Demo</a>
+            <a class="btn btn-gold" href="#pricing">Get My Report</a>
+            <a class="btn btn-outline" href="#sample-insights">See a Sample</a>
           </div>
-          <ul class="hero-points" aria-label="Core outcomes">
-            <li>One-month analysis</li>
-            <li>Installer-ready PDF</li>
-            <li>Clear next actions</li>
-          </ul>
+          <div class="hero-stats">
+            <div class="hstat"><strong class="countup" data-target="38918">0</strong><span>Data points per report</span></div>
+            <div class="hstat-div" aria-hidden="true"></div>
+            <div class="hstat"><strong class="countup" data-target="6">0</strong><span>Performance checks</span></div>
+            <div class="hstat-div" aria-hidden="true"></div>
+            <div class="hstat"><strong class="countup" data-target="31">0</strong><span>Days of telemetry</span></div>
+          </div>
         </div>
-
-        <div class="hero-visual reveal-up" data-reveal-delay="120">
-          <article class="dashboard">
-            <header class="dash-head">
-              <p>One-Month Performance Summary</p>
-              <span>May 2026</span>
-            </header>
-
-            <div class="dash-kpis">
-              <div class="kpi-card">
-                <p>Self-Sufficiency</p>
-                <strong>71.8%</strong>
-                <span class="trend-positive">+4.2 pts vs last month</span>
+        <div class="hero-card fade-in" data-delay="180">
+          <div class="score-card">
+            <div class="score-card-top">
+              <div>
+                <p class="score-label">System Performance Score</p>
+                <p class="score-device">Device 2212044417 &nbsp;·&nbsp; May–Jun 2026</p>
               </div>
-              <div class="kpi-card">
-                <p>Battery Throughput</p>
-                <strong>412 kWh</strong>
-                <span>Cycle efficiency: 92.6%</span>
-              </div>
-              <div class="kpi-card">
-                <p>Grid Import at Night</p>
-                <strong>29.4%</strong>
-                <span class="trend-negative">Above target by 6.1 pts</span>
-              </div>
+              <span class="badge badge-warn">Needs Attention</span>
             </div>
-
-            <div class="dash-main">
-              <section class="panel benchmark-panel" aria-label="Benchmark distribution preview">
-                <div class="panel-title-row">
-                  <h3>Peer Benchmark Distribution</h3>
-                  <small>Self-sufficiency percentile</small>
-                </div>
-                <div class="distribution-chart" role="img" aria-label="Distribution chart showing your score, median and upper quartile target">
-                  <div class="bars" aria-hidden="true">
-                    <span style="height: 22%"></span>
-                    <span style="height: 36%"></span>
-                    <span style="height: 54%"></span>
-                    <span style="height: 72%"></span>
-                    <span style="height: 88%"></span>
-                    <span style="height: 72%"></span>
-                    <span style="height: 44%"></span>
-                    <span style="height: 26%"></span>
-                  </div>
-                  <div class="chart-markers" aria-hidden="true">
-                    <div class="marker marker-median">Median 68.2%</div>
-                    <div class="marker marker-you">You 64th percentile</div>
-                    <div class="marker marker-target">Target 79.5%</div>
-                  </div>
-                </div>
-              </section>
-
-              <section class="panel battery-panel" aria-label="Battery status preview">
-                <div class="panel-title-row">
-                  <h3>Battery Health Index</h3>
-                  <small>Year to date</small>
-                </div>
-                <div class="battery-gauge" role="img" aria-label="Battery health indicator at 87 percent">
-                  <div class="battery-track">
-                    <div class="battery-fill" style="width: 87%"></div>
-                  </div>
-                  <p>87% expected capacity retained</p>
-                </div>
-                <ul class="signal-list">
-                  <li>26 days above 60% cycle depth</li>
-                  <li>Decline trend detected in indicator</li>
-                  <li>Action: adjust discharge schedule</li>
-                </ul>
-              </section>
+            <div class="ring-wrap">
+              <svg class="ring" viewBox="0 0 180 180" role="img" aria-label="Score 52 out of 100">
+                <defs>
+                  <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#1e5eff"/>
+                    <stop offset="100%" stop-color="#ffb800"/>
+                  </linearGradient>
+                  <linearGradient id="miniGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#1e5eff"/>
+                    <stop offset="100%" stop-color="#ffb800"/>
+                  </linearGradient>
+                </defs>
+                <circle class="ring-track" cx="90" cy="90" r="74"/>
+                <circle class="ring-progress" cx="90" cy="90" r="74"
+                  stroke="url(#ringGrad)"
+                  stroke-dasharray="465"
+                  stroke-dashoffset="465"
+                  data-target-offset="223"/>
+                <text class="ring-num" x="90" y="83" text-anchor="middle">52</text>
+                <text class="ring-denom" x="90" y="103" text-anchor="middle">/ 100</text>
+              </svg>
             </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="value-strip" aria-label="Trust indicators">
-      <div class="container trust-points">
-        <p>One month of analysis</p>
-        <p>Clear scoring model</p>
-        <p>Battery and solar checks</p>
-        <p>Benchmark vs nearby systems</p>
-        <p>Installer-ready PDF report</p>
-      </div>
-    </section>
-
-    <section class="section" id="product">
-      <div class="container product-grid">
-        <div class="product-copy reveal-up">
-          <p class="eyebrow">From telemetry to intelligence</p>
-          <h2>See what your dashboard does not explain</h2>
-          <p>
-            We turn inverter, battery, and grid data into one clear report. You see what changed, what caused it,
-            and what to fix first.
-          </p>
-          <p>
-            Every report includes scores, benchmark gaps, evidence, and actions.
-          </p>
-        </div>
-
-        <div class="product-visual reveal-up" data-reveal-delay="140" aria-label="Product interface mockup">
-          <div class="mock-window">
-            <div class="mock-topbar">
-              <span></span><span></span><span></span>
-            </div>
-            <div class="mock-body">
-              <aside>
-                <p>Report modules</p>
-                <ul>
-                  <li class="active">Performance overview</li>
-                  <li>Battery analysis</li>
-                  <li>Grid dependency</li>
-                  <li>Benchmark model</li>
-                  <li>Recommendations</li>
-                </ul>
-              </aside>
-              <div class="mock-panels">
-                <div class="mini-panel">
-                  <h4>Solar Utilisation</h4>
-                  <p>83.1%</p>
-                  <small>Potential recovery: 41 kWh/month</small>
-                </div>
-                <div class="mini-panel">
-                  <h4>Clipping Events</h4>
-                  <p>6 high-output intervals</p>
-                  <small>Observed during midday peaks</small>
-                </div>
-                <div class="mini-panel full">
-                  <h4>Narrative Insight</h4>
-                  <p>
-                    Overproduction happened on 93.5% of days while self-sufficiency stayed low. Potential recovery: 345 kWh
-                    of unused storage opportunity.
-                  </p>
-                </div>
-              </div>
+            <div class="score-list">
+              <div class="score-row"><span class="score-name">Overproducing Plants</span><div class="score-bar"><div class="score-fill" data-val="0" style="--c:#ef4444"></div></div><span class="score-val" style="color:#ef4444">0</span></div>
+              <div class="score-row"><span class="score-name">Self-Sufficiency</span><div class="score-bar"><div class="score-fill" data-val="23" style="--c:#f97316"></div></div><span class="score-val" style="color:#f97316">23</span></div>
+              <div class="score-row"><span class="score-name">Battery Health</span><div class="score-bar"><div class="score-fill" data-val="86" style="--c:#17ba6b"></div></div><span class="score-val" style="color:#17ba6b">86</span></div>
+              <div class="score-row"><span class="score-name">Evening Grid</span><div class="score-bar"><div class="score-fill" data-val="82" style="--c:#17ba6b"></div></div><span class="score-val" style="color:#17ba6b">82</span></div>
+              <div class="score-row"><span class="score-name">Inverter Clipping</span><div class="score-bar"><div class="score-fill" data-val="19" style="--c:#ef4444"></div></div><span class="score-val" style="color:#ef4444">19</span></div>
+              <div class="score-row"><span class="score-name">System Accuracy</span><div class="score-bar"><div class="score-fill" data-val="100" style="--c:#17ba6b"></div></div><span class="score-val" style="color:#17ba6b">100</span></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-alt" id="features">
+    <!-- STRIP -->
+    <div class="strip">
+      <div class="container strip-inner">
+        <span class="strip-item"><span class="strip-dot"></span>One month of analysis</span>
+        <span class="strip-item"><span class="strip-dot"></span>Clear scoring model</span>
+        <span class="strip-item"><span class="strip-dot"></span>Battery and solar checks</span>
+        <span class="strip-item"><span class="strip-dot"></span>Benchmark vs nearby systems</span>
+        <span class="strip-item"><span class="strip-dot"></span>Installer-ready PDF report</span>
+      </div>
+    </div>
+
+    <!-- ENERGY FLOW -->
+    <section class="section section-dark" id="platform">
       <div class="container">
-        <div class="section-head reveal-up">
-          <p class="eyebrow">Platform capabilities</p>
-          <h2>Six checks that show exactly where performance is slipping</h2>
+        <div class="section-header center reveal">
+          <p class="eyebrow-light">From your inverter to your inbox</p>
+          <h2 class="h-light">See exactly where energy moves each month</h2>
+          <p class="section-sub s-muted">Real numbers from a real Sunsynk system. One month, one complete picture.</p>
         </div>
-        <div class="feature-grid">
-          <article class="feature-card reveal-up">
-            <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3zm0 2.2L6 8.4v6.2l6 3.4 6-3.4V8.4L12 5.2z"/></svg>
+        <div class="flow-diagram reveal" data-delay="100">
+          <div class="flow-node">
+            <div class="flow-icon-wrap c-gold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
             </div>
-            <h3>Energy Independence Benchmark</h3>
-            <p>Compare your score with nearby systems and see your gap to median and target.</p>
-          </article>
-          <article class="feature-card reveal-up" data-reveal-delay="60">
-            <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false"><path d="M7 3h10v2H7V3zm2 4h6l2 6a5 5 0 11-10 0l2-6zm3 3l-1.8 5h3.6L12 10z"/></svg>
+            <strong>Solar PV</strong><span>725 kWh generated</span>
+          </div>
+          <div class="flow-connector"><div class="flow-pulse"></div></div>
+          <div class="flow-node">
+            <div class="flow-icon-wrap c-blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             </div>
-            <h3>Battery Health Analysis</h3>
-            <p>Track cycle depth, underuse, and decline trends before capacity loss worsens.</p>
-          </article>
-          <article class="feature-card reveal-up" data-reveal-delay="120">
-            <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false"><path d="M4 6h16v2H4V6zm0 5h10v2H4v-2zm0 5h16v2H4v-2zm12-5l4-3v6l-4-3z"/></svg>
+            <strong>Inverter</strong><span>5.2 kWp rated</span>
+          </div>
+          <div class="flow-connector"><div class="flow-pulse" style="--pd:0.2s"></div></div>
+          <div class="flow-outputs-group">
+            <div class="flow-node">
+              <div class="flow-icon-wrap c-green">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="16" height="11" rx="2"/><path d="M22 11v3"/></svg>
+              </div>
+              <strong>Battery</strong><span>157 kWh stored</span>
             </div>
-            <h3>Night-time Grid Dependency Insight</h3>
-            <p>Find when evening demand shifts to grid and why battery support dropped.</p>
-          </article>
-          <article class="feature-card reveal-up">
-            <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false"><path d="M12 2l3 5 5 .7-3.6 3.8.9 5.5L12 15l-5.3 3 1-5.5L4 7.7 9 7l3-5z"/></svg>
+            <div class="flow-node">
+              <div class="flow-icon-wrap c-blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <strong>Home</strong><span>697 kWh used</span>
             </div>
-            <h3>Solar Utilisation Review</h3>
-            <p>Measure overproduction days and unused storage opportunity in kWh.</p>
-          </article>
-          <article class="feature-card reveal-up" data-reveal-delay="60">
-            <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false"><path d="M3 19h18v2H3v-2zM6 17V7h3v10H6zm5 0V3h3v14h-3zm5 0v-8h3v8h-3z"/></svg>
+            <div class="flow-node">
+              <div class="flow-icon-wrap c-muted">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+              </div>
+              <strong>Grid</strong><span>430 kWh exported</span>
             </div>
-            <h3>Inverter Clipping Detection</h3>
-            <p>See clipped intervals, affected days, and total clipped hours at inverter limit.</p>
-          </article>
-          <article class="feature-card reveal-up" data-reveal-delay="120">
-            <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false"><path d="M6 2h9l5 5v15H6V2zm2 2v16h10V8h-4V4H8zm2 8h6v2h-6v-2zm0 4h6v2h-6v-2z"/></svg>
-            </div>
-            <h3>Professional Report Export</h3>
-            <p>Export a clear PDF report with findings, evidence, and actions.</p>
-          </article>
+          </div>
+        </div>
+        <div class="flow-cta reveal" data-delay="260">
+          <p>The report shows how these flows broke down across 31 days — and where self-sufficiency was lost.</p>
+          <a class="btn btn-gold-outline" href="#sample-insights">See a sample finding</a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="benchmark">
-      <div class="container benchmark-grid">
-        <div class="benchmark-copy reveal-up">
-          <p class="eyebrow">Context that drives better decisions</p>
-          <h2>Know where you stand, not just your rank</h2>
-          <p>
-            We show percentile, median gap, and a realistic target with estimated monthly grid impact.
-          </p>
-          <ul>
-            <li>Percentile score within your local peer distribution</li>
-            <li>Median gap to show immediate opportunity</li>
-            <li>Reachable target benchmark for practical optimisation</li>
-          </ul>
+    <!-- FEATURES -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="eyebrow">Six checks in every report</p>
+          <h2>See exactly where performance is slipping</h2>
         </div>
-        <div class="benchmark-visual reveal-up" data-reveal-delay="120" aria-label="Benchmark story visual">
-          <div class="benchmark-shell">
-            <div class="curve-chart" role="img" aria-label="Benchmark curve with percentile markers">
-              <div class="curve"></div>
-              <div class="curve-label you">You: 64th percentile</div>
-              <div class="curve-label median">Median</div>
-              <div class="curve-label target">Upper quartile target</div>
+        <div class="features-grid">
+
+          <article class="feat-card reveal">
+            <div class="feat-visual">
+              <div class="mini-ring-wrap">
+                <svg viewBox="0 0 80 80" class="mini-ring-svg">
+                  <circle class="mrt" cx="40" cy="40" r="30"/>
+                  <circle class="mrf" cx="40" cy="40" r="30" stroke="#ffb800" stroke-dasharray="188" stroke-dashoffset="170"/>
+                  <text x="40" y="45" text-anchor="middle" class="mrt-text">10th</text>
+                </svg>
+              </div>
+              <div class="feat-label">Percentile</div>
             </div>
-            <div class="benchmark-metrics">
-              <div>
-                <p>Median gap</p>
-                <strong>+3.6 pts</strong>
+            <div class="feat-body">
+              <h3>Energy Independence Benchmark</h3>
+              <p>Compare your score with nearby systems. See your gap to median and target.</p>
+            </div>
+          </article>
+
+          <article class="feat-card reveal" data-delay="60">
+            <div class="feat-visual">
+              <div class="batt-wrap">
+                <div class="batt-outer"><div class="batt-inner" style="width:86%"></div></div>
+                <div class="batt-cap"></div>
               </div>
-              <div>
-                <p>Target gap</p>
-                <strong>+7.7 pts</strong>
+              <div class="feat-label" style="color:#17ba6b">86 / 100</div>
+            </div>
+            <div class="feat-body">
+              <h3>Battery Health Analysis</h3>
+              <p>Track cycle depth, underuse, and decline trends before capacity loss worsens.</p>
+            </div>
+          </article>
+
+          <article class="feat-card reveal" data-delay="120">
+            <div class="feat-visual">
+              <div class="tl-wrap">
+                <div class="tl-bar">
+                  <div style="width:55%;background:#17ba6b"></div>
+                  <div style="width:20%;background:#f97316"></div>
+                  <div style="width:25%;background:#ef4444"></div>
+                </div>
+                <div class="tl-times"><span>16:00</span><span>18:00</span><span>20:00</span></div>
               </div>
-              <div>
-                <p>Estimated import reduction</p>
-                <strong>180 kWh/month</strong>
+            </div>
+            <div class="feat-body">
+              <h3>Evening Grid Dependency</h3>
+              <p>Find when evening demand shifts to grid and why battery support dropped.</p>
+            </div>
+          </article>
+
+          <article class="feat-card reveal">
+            <div class="feat-visual">
+              <div class="util-wrap">
+                <div class="util-pct" style="color:#f97316">93.5%</div>
+                <div class="util-sub">overproduction days</div>
+                <div class="util-track"><div class="util-fill" style="width:93.5%;background:#f97316"></div></div>
+              </div>
+            </div>
+            <div class="feat-body">
+              <h3>Solar Utilisation Review</h3>
+              <p>Measure overproduction days and unused storage opportunity in kWh.</p>
+            </div>
+          </article>
+
+          <article class="feat-card reveal" data-delay="60">
+            <div class="feat-visual feat-clip">
+              <div class="clip-chart">
+                <div class="clip-bars">
+                  <div style="height:38%"></div><div style="height:62%"></div>
+                  <div style="height:100%"></div><div style="height:100%"></div>
+                  <div style="height:96%"></div><div style="height:78%"></div>
+                  <div style="height:55%"></div>
+                </div>
+                <div class="clip-threshold"></div>
+                <span class="clip-th-label">Inverter ceiling</span>
+              </div>
+            </div>
+            <div class="feat-body">
+              <h3>Inverter Clipping Detection</h3>
+              <p>See clipped intervals, affected days, and total clipped hours at inverter limit.</p>
+            </div>
+          </article>
+
+          <article class="feat-card reveal" data-delay="120">
+            <div class="feat-visual">
+              <div class="pdf-preview">
+                <div class="pdf-pg">
+                  <div class="pdf-top-bar"></div>
+                  <div class="pdf-l long"></div><div class="pdf-l short"></div>
+                  <div class="pdf-block"></div>
+                  <div class="pdf-l"></div><div class="pdf-l short"></div>
+                </div>
+              </div>
+            </div>
+            <div class="feat-body">
+              <h3>Professional Report Export</h3>
+              <p>Export a clear PDF with findings, evidence, and actions for any stakeholder.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- BENCHMARK -->
+    <section class="section section-slate" id="benchmark">
+      <div class="container">
+        <div class="bench-layout">
+          <div class="bench-text reveal">
+            <p class="eyebrow">Peer benchmarking</p>
+            <h2>Know where you stand, not just your rank</h2>
+            <p>We show percentile, median gap, and a realistic target with estimated monthly grid impact.</p>
+            <ul class="bench-stats">
+              <li><div class="bs-num">10th</div><div class="bs-label">percentile among nearby Sunsynk systems</div></li>
+              <li><div class="bs-num">65.1 pts</div><div class="bs-label">below local median self-sufficiency</div></li>
+              <li><div class="bs-num">439 kWh</div><div class="bs-label">estimated monthly grid saving at median</div></li>
+            </ul>
+          </div>
+          <div class="bench-chart-wrap reveal" data-delay="150">
+            <div class="bench-chart-card">
+              <p class="bcc-title">Local Peer Distribution — Self-Sufficiency</p>
+              <p class="bcc-sub">Comparable nearby Sunsynk systems, current period</p>
+              <div class="dist-chart">
+                <div class="dist-bars-row">
+                  <div class="db" data-h="12"><span>0–20%</span></div>
+                  <div class="db your-db" data-h="28"><span>20–40%</span></div>
+                  <div class="db" data-h="52"><span>40–55%</span></div>
+                  <div class="db median-db" data-h="90"><span>55–70%</span></div>
+                  <div class="db" data-h="95"><span>70–80%</span></div>
+                  <div class="db target-db" data-h="74"><span>80–90%</span></div>
+                  <div class="db" data-h="38"><span>90%+</span></div>
+                </div>
+              </div>
+              <div class="dist-legend">
+                <span><i class="leg-dot" style="background:#ffb800"></i>You (23.5%)</span>
+                <span><i class="leg-line" style="background:#1a3560"></i>Median (88.6%)</span>
+                <span><i class="leg-dash"></i>Target (91.1%)</span>
               </div>
             </div>
           </div>
@@ -297,247 +320,200 @@
       </div>
     </section>
 
-    <section class="section section-alt" id="pricing">
+    <!-- PRICING -->
+    <section class="section" id="pricing">
       <div class="container">
-        <div class="section-head reveal-up">
+        <div class="section-header reveal">
           <p class="eyebrow">Choose a bundle</p>
           <h2>Start with one report, or track change over time</h2>
-          <p>Credits never expire. Use them when you need a fresh review.</p>
+          <p class="section-sub">Credits never expire. Use them when you need a fresh review.</p>
         </div>
         <div class="pricing-grid">
-          <article class="pricing-card reveal-up">
-            <h3>Starter</h3>
-            <p class="price">&pound;8.99</p>
-            <p class="price-sub">&pound;8.99 per credit</p>
-            <p class="credit">1 report credit</p>
-            <ul>
-              <li>1 full performance report</li>
-              <li>Credits never expire</li>
-              <li>Secure checkout via Stripe</li>
-            </ul>
-            <a class="btn btn-secondary" href="#final-cta">Buy Now</a>
+          <article class="price-card reveal">
+            <div class="pci">
+              <h3>Starter</h3>
+              <div class="price-row"><span class="pc">&pound;</span><span class="pm">8.99</span></div>
+              <p class="pp">&pound;8.99 per credit</p>
+              <p class="pcr">1 report credit</p>
+              <ul class="pul"><li>1 full performance report</li><li>Credits never expire</li><li>Secure checkout via Stripe</li></ul>
+              <a class="btn btn-outline-dark w-full" href="#top">Buy Now</a>
+            </div>
           </article>
-
-          <article class="pricing-card featured reveal-up" data-reveal-delay="60">
-            <span class="badge">Most Popular</span>
-            <h3>Classic</h3>
-            <p class="price">&pound;18.99</p>
-            <p class="price-sub">&pound;6.33 per credit</p>
-            <p class="credit">3 report credits</p>
-            <ul>
-              <li>3 full performance reports</li>
-              <li>Track month-on-month movement</li>
-              <li>Best option for tuning and retesting</li>
-            </ul>
-            <a class="btn" href="#final-cta">Buy Now</a>
+          <article class="price-card price-featured reveal" data-delay="70">
+            <div class="price-badge">Most Popular</div>
+            <div class="pci">
+              <h3>Classic</h3>
+              <div class="price-row"><span class="pc">&pound;</span><span class="pm">18.99</span></div>
+              <p class="pp">&pound;6.33 per credit</p>
+              <p class="pcr">3 report credits</p>
+              <ul class="pul"><li>3 full performance reports</li><li>Track month-on-month movement</li><li>Best option for tuning and retesting</li></ul>
+              <a class="btn btn-gold w-full" href="#top">Buy Now</a>
+            </div>
           </article>
-
-          <article class="pricing-card reveal-up" data-reveal-delay="120">
-            <span class="badge badge-alt">Best Value</span>
-            <h3>Pro</h3>
-            <p class="price">&pound;28.99</p>
-            <p class="price-sub">&pound;5.80 per credit</p>
-            <p class="credit">5 report credits</p>
-            <ul>
-              <li>5 full performance reports</li>
-              <li>Ideal for installer reviews</li>
-              <li>Track intervention impact across multiple cycles</li>
-            </ul>
-            <a class="btn btn-secondary" href="#final-cta">Buy Now</a>
+          <article class="price-card reveal" data-delay="140">
+            <div class="price-badge-alt">Best Value</div>
+            <div class="pci">
+              <h3>Pro</h3>
+              <div class="price-row"><span class="pc">&pound;</span><span class="pm">28.99</span></div>
+              <p class="pp">&pound;5.80 per credit</p>
+              <p class="pcr">5 report credits</p>
+              <ul class="pul"><li>5 full performance reports</li><li>Ideal for installer reviews</li><li>Track intervention impact across cycles</li></ul>
+              <a class="btn btn-outline-dark w-full" href="#top">Buy Now</a>
+            </div>
           </article>
         </div>
-        <p class="pricing-note">Secured by Stripe. No card data stored on platform servers.</p>
+        <p class="pricing-note reveal">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Secured by Stripe. No card data stored on our servers.
+        </p>
       </div>
     </section>
 
-    <section class="section section-alt" id="why-matters">
+    <!-- WHY IT MATTERS -->
+    <section class="section section-dark" id="why">
       <div class="container">
-        <div class="section-head reveal-up">
-          <p class="eyebrow">Operational value</p>
-          <h2>Why this changes real outcomes</h2>
+        <div class="section-header center reveal">
+          <p class="eyebrow-light">Real outcomes</p>
+          <h2 class="h-light">Why this changes what you do next</h2>
         </div>
-        <div class="impact-grid">
-          <article class="impact-card reveal-up">
-            <h3>Lower grid reliance</h3>
-            <p>Cut avoidable import by fixing hours where battery handoff fails.</p>
-          </article>
-          <article class="impact-card reveal-up" data-reveal-delay="40">
-            <h3>Stronger battery utilisation</h3>
-            <p>Align cycle depth and dispatch windows to reduce stress and improve coverage.</p>
-          </article>
-          <article class="impact-card reveal-up" data-reveal-delay="80">
-            <h3>Improved solar self-consumption</h3>
-            <p>Capture generation that is currently exported or clipped in peak windows.</p>
-          </article>
-          <article class="impact-card reveal-up" data-reveal-delay="120">
-            <h3>Smarter upgrade decisions</h3>
-            <p>Size storage and inverter changes with measured gap data, not guesswork.</p>
-          </article>
-          <article class="impact-card reveal-up" data-reveal-delay="160">
-            <h3>Credible client reporting</h3>
-            <p>Share findings and recommendations in a format clients trust.</p>
-          </article>
+        <div class="outcomes-grid">
+          <div class="outcome reveal"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div><h3>Lower grid import</h3><p>Cut avoidable import by fixing hours where battery handoff fails.</p></div>
+          <div class="outcome reveal" data-delay="60"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="16" height="11" rx="2"/><path d="M22 11v3"/></svg></div><h3>Stronger battery use</h3><p>Align cycle depth and dispatch windows to reduce stress and improve coverage.</p></div>
+          <div class="outcome reveal" data-delay="120"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></div><h3>More solar on site</h3><p>Capture generation that is currently exported or clipped in peak windows.</p></div>
+          <div class="outcome reveal" data-delay="180"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><h3>Smarter upgrades</h3><p>Size storage and inverter changes with measured gap data, not guesswork.</p></div>
+          <div class="outcome reveal" data-delay="240"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><h3>Credible client reports</h3><p>Share findings and recommendations in a format any client trusts.</p></div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="audiences">
+    <!-- AUDIENCES -->
+    <section class="section" id="solutions">
       <div class="container">
-        <div class="section-head reveal-up">
-          <p class="eyebrow">Tailored outcomes</p>
-          <h2>Built for owners and installers</h2>
+        <div class="section-header reveal">
+          <p class="eyebrow">Built for owners and installers</p>
+          <h2>Different needs. Same clear answers.</h2>
         </div>
         <div class="audience-grid">
-          <article class="audience-card reveal-up">
-            <h3>For homeowners</h3>
+          <article class="audience-card reveal">
+            <span class="aud-tag">For homeowners</span>
+            <h3>Is your system as good as your neighbour's?</h3>
+            <p>Find out where your kWh are going and what to fix first.</p>
             <ul>
-              <li>Know where your imported kWh is really coming from.</li>
-              <li>See what changed this month and what did not.</li>
-              <li>Get a short action list with expected impact.</li>
-              <li>Track progress with consistent scoring.</li>
+              <li>Know where your imported kWh is coming from</li>
+              <li>See what changed this month and what did not</li>
+              <li>Get a short action list with expected impact</li>
+              <li>Track progress with consistent scoring</li>
             </ul>
           </article>
-          <article class="audience-card reveal-up" data-reveal-delay="90">
-            <h3>For installers</h3>
+          <article class="audience-card reveal" data-delay="100">
+            <span class="aud-tag aud-installer">For installers</span>
+            <h3>Turn every site visit into a data-backed review.</h3>
+            <p>Consistent, credible reports that save time and support your recommendations.</p>
             <ul>
-              <li>Deliver consistent technical reports across sites.</li>
-              <li>Support recommendations with benchmark and threshold evidence.</li>
-              <li>Prove intervention impact with before/after metrics.</li>
-              <li>Run scheduled client performance reviews.</li>
+              <li>Deliver consistent technical reports across sites</li>
+              <li>Support recommendations with benchmark evidence</li>
+              <li>Prove intervention impact with before/after metrics</li>
+              <li>Run scheduled client performance reviews</li>
             </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section section-alt" id="sample-insights">
+    <!-- SAMPLE INSIGHTS -->
+    <section class="section section-slate" id="sample-insights">
       <div class="container">
-        <div class="section-head reveal-up">
+        <div class="section-header reveal">
           <p class="eyebrow">Sample report highlights</p>
           <h2>Three findings from one month of data</h2>
+          <p class="section-sub">From a real Sunsynk system. Device 2212044417. May–June 2026.</p>
         </div>
-        <div class="insight-grid">
-          <article class="insight-card reveal-up">
-            <h3>Battery discharge trend</h3>
-            <p>Evening depletion is arriving earlier. Grid import now starts before expected handoff.</p>
-            <small>Observed shift: +47 minutes earlier vs baseline.</small>
+        <div class="insights-grid">
+          <article class="insight reveal">
+            <span class="ins-tag t-warn">Battery</span>
+            <h3>Battery is emptying 47 minutes earlier than baseline</h3>
+            <p>Evening depletion is arriving earlier. Grid import now starts before the expected battery handoff.</p>
+            <div class="ins-stat"><strong>+47 min</strong><span>Earlier average depletion vs baseline</span></div>
           </article>
-          <article class="insight-card reveal-up" data-reveal-delay="50">
-            <h3>Peer benchmark position</h3>
-            <p>System trails local median by 12.4 percentage points in evening autonomy.</p>
-            <small>Sizing issue, schedule issue, or both? You can test and confirm.</small>
+          <article class="insight reveal" data-delay="80">
+            <span class="ins-tag t-danger">Benchmark</span>
+            <h3>System sits at the 10th percentile for self-sufficiency</h3>
+            <p>Trails the local median by 65.1 percentage points. Sizing issue, schedule issue, or both?</p>
+            <div class="ins-stat"><strong>65.1 pts</strong><span>Below local median</span></div>
           </article>
-          <article class="insight-card reveal-up" data-reveal-delay="100">
-            <h3>Improvement forecast</h3>
-            <p>Upper-quartile performance could reduce grid import by 180 kWh per month.</p>
-            <small>Modelled from your telemetry profile and local peer distribution.</small>
+          <article class="insight reveal" data-delay="160">
+            <span class="ins-tag t-blue">Opportunity</span>
+            <h3>Matching median performance saves 439 kWh per month</h3>
+            <p>Modelled from your telemetry and local peer distribution. Upper-quartile saves 456 kWh.</p>
+            <div class="ins-stat"><strong>439 kWh</strong><span>Estimated monthly grid saving</span></div>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- HOW IT WORKS -->
     <section class="section" id="how-it-works">
       <div class="container">
-        <div class="section-head reveal-up">
+        <div class="section-header reveal">
           <p class="eyebrow">How it works</p>
           <h2>One month of data, one clear report</h2>
         </div>
-        <ol class="process-grid" aria-label="Platform workflow">
-          <li class="process-step reveal-up">
-            <span>01</span>
-            <h3>Connect report input</h3>
-            <p>Enter your device ID and select the one-month analysis window.</p>
-          </li>
-          <li class="process-step reveal-up" data-reveal-delay="50">
-            <span>02</span>
-            <h3>Analyse performance history</h3>
-            <p>We compute six checks across your full month of system data.</p>
-          </li>
-          <li class="process-step reveal-up" data-reveal-delay="100">
-            <span>03</span>
-            <h3>Benchmark and interpret</h3>
-            <p>Score each check, map to local peers, and flag what to act on first.</p>
-          </li>
-          <li class="process-step reveal-up" data-reveal-delay="150">
-            <span>04</span>
-            <h3>Deliver decision-ready report</h3>
-            <p>Download your report. Share it with your installer or keep it for reference.</p>
-          </li>
-        </ol>
+        <div class="steps-wrap">
+          <div class="steps-line-track" aria-hidden="true"><div class="steps-line-fill"></div></div>
+          <div class="steps-grid">
+            <div class="step reveal"><div class="step-n">01</div><h3>Enter your device ID</h3><p>Select your Sunsynk device and the one-month analysis window.</p></div>
+            <div class="step reveal" data-delay="80"><div class="step-n">02</div><h3>We analyse performance</h3><p>Six checks run across your full month of system data.</p></div>
+            <div class="step reveal" data-delay="160"><div class="step-n">03</div><h3>Benchmark and score</h3><p>Results are scored and mapped against local peer systems.</p></div>
+            <div class="step reveal" data-delay="240"><div class="step-n">04</div><h3>Download your report</h3><p>Share it with your installer or keep it for reference.</p></div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section section-alt" id="testimonials">
+    <!-- TESTIMONIALS -->
+    <section class="section" id="testimonials">
       <div class="container">
-        <div class="section-head reveal-up">
-          <p class="eyebrow">Trusted in practice</p>
-          <h2>Used in real system reviews</h2>
+        <div class="section-header reveal">
+          <p class="eyebrow">Used in real system reviews</p>
+          <h2>What people found in their first report</h2>
         </div>
-        <div class="testimonial-grid">
-          <blockquote class="testimonial reveal-up">
-            <p>
-              "We thought the battery was carrying evenings. The report proved it was not. That changed our settings in one session."
-            </p>
-            <cite>Homeowner, Gauteng</cite>
-          </blockquote>
-          <blockquote class="testimonial reveal-up" data-reveal-delay="60">
-            <p>
-              "Clients ask fewer vague questions now. The benchmark page makes the performance gap obvious."
-            </p>
-            <cite>Senior Installer, Commercial Solar Integrator</cite>
-          </blockquote>
-          <blockquote class="testimonial reveal-up" data-reveal-delay="120">
-            <p>
-              "The clipping and cycle-depth checks gave us the exact root cause. We fixed the right issue first."
-            </p>
-            <cite>Energy Performance Consultant</cite>
-          </blockquote>
+        <div class="tquotes-grid">
+          <blockquote class="tq reveal"><div class="tq-mark" aria-hidden="true">"</div><p>We thought the battery was carrying evenings. The report proved it was not. That changed our settings in one session.</p><cite><strong>Homeowner</strong><span>Gauteng, South Africa</span></cite></blockquote>
+          <blockquote class="tq reveal" data-delay="80"><div class="tq-mark" aria-hidden="true">"</div><p>Clients ask fewer vague questions now. The benchmark page makes the performance gap obvious.</p><cite><strong>Senior Installer</strong><span>Commercial Solar Integrator</span></cite></blockquote>
+          <blockquote class="tq reveal" data-delay="160"><div class="tq-mark" aria-hidden="true">"</div><p>The clipping and cycle-depth checks gave us the exact root cause. We fixed the right issue first.</p><cite><strong>Energy Performance Consultant</strong><span>UK Installer Network</span></cite></blockquote>
         </div>
       </div>
     </section>
 
-    <section class="section final-cta" id="final-cta">
-      <div class="container final-cta-shell reveal-up">
-        <p class="eyebrow">Ready for your next one-month review?</p>
-        <h2>Generate your Sunsynk report and see what to fix first.</h2>
-        <div class="hero-actions">
-          <a class="btn" href="#top">Generate My Report</a>
-          <a class="text-link" href="#hero">Request Installer Demo</a>
+    <!-- FINAL CTA -->
+    <section class="section section-cta" id="final-cta">
+      <div class="cta-orb" aria-hidden="true"></div>
+      <div class="container cta-body reveal">
+        <p class="eyebrow-light">Ready for your one-month review?</p>
+        <h2 class="h-light">Generate your Sunsynk report and see what to fix first.</h2>
+        <div class="cta-actions">
+          <a class="btn btn-gold" href="#top">Get My Report</a>
+          <a class="btn btn-outline" href="#top">Request Installer Demo</a>
         </div>
       </div>
     </section>
+
   </main>
 
-  <footer class="site-footer">
+  <footer class="footer">
     <div class="container footer-grid">
-      <div>
-        <a class="brand" href="#top">
-          <img src="assets/sunsynk-logo.png" class="brand-logo" alt="Sunsynk" />
-          <span class="brand-text">Report Platform</span>
+      <div class="footer-brand">
+        <a class="nav-brand" href="#top">
+          <img src="assets/sunsynk-logo.png" alt="Sunsynk" class="nav-logo footer-logo" />
+          <span>Report Platform</span>
         </a>
         <p>Clear reporting for solar, battery, and grid performance.</p>
       </div>
-      <nav aria-label="Footer navigation">
-        <p>Platform</p>
-        <a href="#product">Overview</a>
-        <a href="#features">Features</a>
-        <a href="#benchmark">Benchmarking</a>
-        <a href="#pricing">Pricing</a>
-      </nav>
-      <nav aria-label="Resources">
-        <p>Resources</p>
-        <a href="#sample-insights">Sample report</a>
-        <a href="#how-it-works">How it works</a>
-        <a href="#testimonials">Case evidence</a>
-      </nav>
-      <nav aria-label="Company">
-        <p>Company</p>
-        <a href="#final-cta">Request demo</a>
-        <a href="#">Privacy policy</a>
-        <a href="#">Terms of use</a>
-      </nav>
+      <nav aria-label="Platform"><p>Platform</p><a href="#platform">Overview</a><a href="#features">Features</a><a href="#benchmark">Benchmark</a><a href="#pricing">Pricing</a></nav>
+      <nav aria-label="Resources"><p>Resources</p><a href="#sample-insights">Sample report</a><a href="#how-it-works">How it works</a><a href="#testimonials">Reviews</a></nav>
+      <nav aria-label="Company"><p>Company</p><a href="#final-cta">Request demo</a><a href="#">Privacy policy</a><a href="#">Terms of use</a></nav>
     </div>
-    <div class="container footer-bottom">
+    <div class="container footer-base">
       <p>&copy; 2026 Sunsynk Report Platform. Precision first. Guesswork out.</p>
     </div>
   </footer>
