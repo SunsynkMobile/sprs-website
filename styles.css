@@ -58,16 +58,17 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offse
 .h-light{color:var(--slate-900)}
 
 /* BUTTONS */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;font-family:var(--font);font-weight:700;font-size:.95rem;border-radius:var(--r-f);padding:.85rem 1.6rem;border:none;cursor:pointer;transition:transform var(--t1) var(--ease),box-shadow var(--t1) var(--ease),filter var(--t1) ease;white-space:nowrap;position:relative;overflow:hidden;text-decoration:none}
-.btn:hover{transform:translateY(-2px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;font-family:var(--font);font-weight:700;font-size:.95rem;border-radius:var(--r-f);padding:.85rem 1.6rem;border:none;cursor:pointer;transition:transform var(--t1) var(--ease),box-shadow var(--t1) var(--ease),filter var(--t1) ease,background var(--t1) ease;white-space:nowrap;position:relative;overflow:hidden;text-decoration:none}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.15)}
+.btn:active{transform:translateY(-1px)}
 .btn-gold{background:linear-gradient(135deg,#ffb800,#ff7800);color:#1a1000;box-shadow:var(--sh-gold)}
-.btn-gold:hover{box-shadow:0 12px 40px rgba(255,184,0,.32);filter:brightness(1.08)}
-.btn-gold-outline{display:inline-flex;align-items:center;font-weight:700;font-size:.88rem;color:var(--gold);gap:.4rem;background:transparent;border:1.5px solid var(--gold);border-radius:var(--r-f);padding:.55rem 1.1rem;transition:background var(--t1) ease,color var(--t1) ease;text-decoration:none}
-.btn-gold-outline:hover{background:rgba(255,184,0,.08);color:var(--gold-dark)}
-.btn-outline{background:transparent;color:var(--blue);border:1.5px solid var(--blue);box-shadow:none}
-.btn-outline:hover{border-color:var(--blue-dark);background:rgba(30,94,255,.06)}
-.btn-outline-dark{background:transparent;color:var(--slate-800);border:1.5px solid var(--slate-200)}
-.btn-outline-dark:hover{border-color:var(--slate-400);background:var(--slate-50)}
+.btn-gold:hover{box-shadow:0 16px 48px rgba(255,184,0,.35);filter:brightness(1.1)}
+.btn-gold-outline{display:inline-flex;align-items:center;font-weight:700;font-size:.88rem;color:var(--gold);gap:.4rem;background:transparent;border:2px solid var(--gold);border-radius:var(--r-f);padding:.55rem 1.1rem;transition:background var(--t1) ease,color var(--t1) ease,border-color var(--t1) ease,box-shadow var(--t1) ease;text-decoration:none}
+.btn-gold-outline:hover{background:rgba(255,184,0,.08);color:var(--gold-dark);border-color:var(--gold-dark);box-shadow:0 8px 24px rgba(255,184,0,.2)}
+.btn-outline{background:transparent;color:var(--blue);border:2px solid var(--blue);box-shadow:0 2px 8px rgba(30,94,255,.08);transition:background var(--t1) ease,color var(--t1) ease,border-color var(--t1) ease,box-shadow var(--t1) ease}
+.btn-outline:hover{border-color:var(--blue-dark);background:rgba(30,94,255,.08);box-shadow:0 8px 24px rgba(30,94,255,.2)}
+.btn-outline-dark{background:transparent;color:var(--slate-800);border:2px solid var(--slate-300);transition:background var(--t1) ease,border-color var(--t1) ease,box-shadow var(--t1) ease}
+.btn-outline-dark:hover{border-color:var(--slate-600);background:var(--white);box-shadow:0 8px 24px rgba(13,28,46,.1)}
 .btn-sm{font-size:.86rem;padding:.65rem 1.2rem}
 .w-full{width:100%;justify-content:center}
 
@@ -419,8 +420,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offse
   .hero-layout{gap:1.2rem}
   .hero-text h1{font-size:clamp(1.3rem,4.8vw,1.9rem);margin-bottom:.65rem;line-height:1.2}
   .hero-sub{font-size:.93rem;max-width:100%;line-height:1.55}
-  .hero-actions{gap:.5rem;flex-direction:column;margin-top:1.5rem}
-  .hero-actions .btn{width:100%}
+  .hero-actions{gap:.6rem;flex-direction:column;margin-top:1.5rem}
+  .hero-actions .btn{width:100%;padding:.65rem 1rem;font-size:.86rem;font-weight:500;letter-spacing:0;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
   .btn{padding:.65rem 1.2rem;font-size:.88rem}
   .btn-gold-outline,.btn-outline,.btn-outline-dark{padding:.48rem .95rem;font-size:.8rem}
   .hero-stats{flex-direction:column;gap:.7rem;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--slate-100)}
@@ -509,9 +510,12 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offse
   .section-header{margin-bottom:1rem}
   .hero-text h1{font-size:clamp(1.15rem,4.5vw,1.7rem);margin-bottom:.5rem}
   .hero-sub{font-size:.88rem;margin-bottom:1rem}
-  .hero-actions{margin-top:1.2rem;gap:.4rem}
-  .btn{padding:.6rem 1.1rem;font-size:.85rem;gap:.3rem}
-  .btn-gold-outline,.btn-outline,.btn-outline-dark{padding:.42rem .85rem;font-size:.76rem}
+  .hero-actions{margin-top:1rem;gap:.5rem}
+  .hero-actions .btn{width:100%;padding:.58rem .95rem;font-size:.84rem;font-weight:500;border-radius:7px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .hero-actions .btn-gold{background:linear-gradient(135deg,#ffb800,#ff7800)}
+  .hero-actions .btn-outline{border:1.5px solid var(--blue)}
+  .btn{padding:.7rem 1.2rem;font-size:.88rem;gap:.3rem;font-weight:700;border-radius:12px}
+  .btn-gold-outline,.btn-outline,.btn-outline-dark{padding:.5rem .95rem;font-size:.78rem}
   .hero-stats{gap:.6rem;margin-top:1rem;padding-top:1rem}
   .hstat strong{font-size:1.05rem}
   .hstat span{font-size:.6rem}
