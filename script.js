@@ -4,6 +4,21 @@
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+/* ── Page Loader ── */
+const pageLoader = document.getElementById('pageLoader');
+const hidePageLoader = () => {
+  if (pageLoader) {
+    pageLoader.classList.add('hidden');
+    setTimeout(() => pageLoader.remove(), 500);
+  }
+};
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', hidePageLoader);
+} else {
+  hidePageLoader();
+}
+window.addEventListener('load', hidePageLoader);
+
 /* ── Scroll progress ── */
 const scrollBar = document.querySelector('.scroll-bar');
 const updateScrollBar = () => {

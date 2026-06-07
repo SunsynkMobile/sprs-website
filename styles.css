@@ -43,6 +43,15 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offse
 /* SCROLL BAR */
 .scroll-bar{position:fixed;top:0;left:0;width:0;height:3px;z-index:500;background:linear-gradient(90deg,var(--blue),var(--gold));box-shadow:0 0 8px rgba(30,94,255,.3);transition:width .05s linear}
 
+/* PAGE LOADER */
+.page-loader{position:fixed;inset:0;background:linear-gradient(135deg,#ffffff 0%,#f0f6ff 50%,#faf9ff 100%);display:flex;align-items:center;justify-content:center;z-index:9999;opacity:1;transition:opacity .5s ease,visibility .5s ease;visibility:visible}
+.page-loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-content{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+.loader-ring{width:52px;height:52px;border:3px solid rgba(30,94,255,.1);border-top:3px solid var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+.loader-text{font-size:.95rem;font-weight:600;color:var(--slate-600);letter-spacing:.05em;text-transform:uppercase;animation:pulse 1.5s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
+
 /* TYPOGRAPHY */
 .eyebrow{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.9rem}
 .eyebrow-light{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.9rem}
