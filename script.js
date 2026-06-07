@@ -152,6 +152,14 @@ if (!shouldReduceMotion && supportsHover) {
   });
 }
 
+document.querySelectorAll('[href="#top"]').forEach((el) => {
+  el.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: shouldReduceMotion ? 'auto' : 'smooth' });
+    history.replaceState(null, '', location.pathname + location.search);
+  });
+});
+
 document.querySelectorAll('.btn, .text-link').forEach((el) => {
   el.addEventListener('click', () => {
     const label = el.textContent ? el.textContent.trim() : 'cta';
