@@ -64,13 +64,19 @@ if (navToggle && navMenu) {
   navToggle.addEventListener('click', () => {
     const open = navMenu.classList.toggle('open');
     navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   });
   navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     navMenu.classList.remove('open');
     navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Open menu');
   }));
   document.addEventListener('click', e => {
-    if (!nav.contains(e.target)) { navMenu.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }
+    if (!nav.contains(e.target)) {
+      navMenu.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open menu');
+    }
   });
 }
 
