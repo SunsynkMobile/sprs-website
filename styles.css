@@ -33,6 +33,54 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offse
 .skip-link{position:absolute;left:-9999px;top:0;z-index:10000;background:var(--blue);color:var(--white);padding:.7rem 1rem;border-radius:0 0 var(--r-sm) var(--r-sm);font-weight:700}
 .skip-link:focus{left:1rem;top:0.5rem}
 
+.cookie-banner{position:fixed;left:1rem;right:1rem;bottom:1rem;z-index:10001;background:rgba(13,28,46,.96);color:var(--white);border:1px solid rgba(255,255,255,.14);border-radius:14px;box-shadow:0 16px 48px rgba(0,0,0,.35);padding:1rem 1rem .9rem;max-width:980px;margin:0 auto}
+.cookie-banner[hidden]{display:none!important}
+.cookie-banner__inner{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.cookie-banner__text{flex:1 1 360px;font-size:.92rem;line-height:1.5;color:rgba(255,255,255,.95)}
+.cookie-banner__text a{color:var(--gold-light);text-decoration:underline;text-underline-offset:2px}
+.cookie-banner__actions{display:flex;gap:.6rem;flex-wrap:wrap}
+.cookie-btn{border:1px solid rgba(255,255,255,.24);background:transparent;color:var(--white);font-weight:700;font-size:.86rem;border-radius:999px;padding:.55rem 1rem;cursor:pointer}
+.cookie-btn:hover{background:rgba(255,255,255,.08)}
+.cookie-btn.primary{background:linear-gradient(135deg,#ffb800,#ff7800);color:#1a1000;border:none}
+
+.cookie-modal-open{overflow:hidden}
+.cookie-modal{position:fixed;inset:0;z-index:10002;display:grid;place-items:center;padding:1rem}
+.cookie-modal[hidden]{display:none!important}
+.cookie-modal__backdrop{position:absolute;inset:0;background:rgba(13,28,46,.62)}
+.cookie-modal__panel{position:relative;background:var(--white);width:min(640px,100%);border-radius:18px;box-shadow:0 26px 70px rgba(13,28,46,.28);padding:1.4rem 1.2rem 1.1rem;border:1px solid var(--slate-200)}
+.cookie-modal__close{position:absolute;top:.7rem;right:.7rem;width:34px;height:34px;border-radius:50%;border:1px solid var(--slate-300);background:var(--white);color:var(--slate-700);font-size:1.2rem;line-height:1}
+.cookie-modal__title{font-size:1.25rem;font-weight:800;color:var(--slate-900);margin-bottom:.45rem}
+.cookie-modal__intro{font-size:.9rem;color:var(--slate-600);line-height:1.6;margin-bottom:1rem}
+.cookie-pref-list{display:grid;gap:.75rem}
+.cookie-pref-item{display:flex;align-items:flex-start;justify-content:space-between;gap:.9rem;padding:.9rem;border:1px solid var(--slate-200);border-radius:12px;background:var(--slate-50)}
+.cookie-pref-item h3{font-size:.92rem;color:var(--slate-900);margin-bottom:.2rem}
+.cookie-pref-item p{font-size:.82rem;color:var(--slate-600);line-height:1.5}
+.cookie-switch{position:relative;display:inline-block;width:48px;height:28px;flex:0 0 auto}
+.cookie-switch input{opacity:0;width:0;height:0}
+.cookie-switch span{position:absolute;inset:0;background:var(--slate-300);border-radius:999px;transition:background var(--t1) ease}
+.cookie-switch span::before{content:'';position:absolute;width:20px;height:20px;left:4px;top:4px;background:var(--white);border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.2);transition:transform var(--t1) ease}
+.cookie-switch input:checked + span{background:var(--blue)}
+.cookie-switch input:checked + span::before{transform:translateX(20px)}
+.cookie-switch input:disabled + span{background:var(--slate-400)}
+.cookie-modal__actions{display:flex;justify-content:flex-end;gap:.55rem;flex-wrap:wrap;margin-top:1rem}
+.cookie-modal__actions .cookie-btn{color:var(--slate-800);border-color:var(--slate-300)}
+.cookie-modal__actions .cookie-btn:hover{background:var(--slate-100)}
+.cookie-modal__actions .cookie-btn.primary{color:#1a1000;border:none}
+
+.cookie-manage-link{font-size:.86rem;font-weight:600;color:var(--blue);background:none;border:none;padding:0;text-align:left;cursor:pointer}
+.cookie-manage-link:hover{text-decoration:underline}
+
+@media(max-width:640px){
+  .cookie-banner{left:.75rem;right:.75rem;bottom:.75rem;padding:.9rem .9rem .85rem}
+  .cookie-banner__actions{width:100%}
+  .cookie-btn{flex:1 1 calc(50% - .3rem);text-align:center}
+  .cookie-modal{padding:.75rem}
+  .cookie-modal__panel{padding:1.2rem .85rem .9rem}
+  .cookie-pref-item{padding:.75rem}
+  .cookie-modal__actions{justify-content:stretch}
+  .cookie-modal__actions .cookie-btn{flex:1 1 100%;text-align:center}
+}
+
 /* LAYOUT */
 .container{width:min(var(--max-w),100% - 2.5rem);margin-inline:auto}
 .section{padding:clamp(4rem,7vw,7rem) 0;background:var(--white)}
