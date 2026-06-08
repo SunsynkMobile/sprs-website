@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Use | Sunsynk Report Platform</title>
+  <meta name="description" content="Legal terms governing the use of the Sunsynk Report Platform for solar and battery system analysis." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%231e5eff'/><circle cx='50' cy='30' r='8' fill='%23ffb800'/><path d='M50 15 L55 25 L50 28 L45 25 Z' fill='%23ffb800'/><path d='M70 40 L75 50 L68 52 L65 45 Z' fill='%23ffb800'/><path d='M30 40 L35 45 L28 52 L25 50 Z' fill='%23ffb800'/><path d='M50 72 L50 90 M40 80 L60 80' stroke='%23ffb800' stroke-width='3' fill='none' stroke-linecap='round'/></svg>" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-500: #64748b;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+      --blue: #1e5eff;
+      --blue-dark: #1a3a80;
+      --gold: #ffb800;
+      --white: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, var(--slate-50) 0%, #f0f9ff 100%);
+      color: var(--slate-700);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .legal-header-wrap {
+      background: linear-gradient(135deg, var(--blue) 0%, #1a3a80 100%);
+      color: var(--white);
+      padding: 5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .legal-header-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.1)"/></svg>') no-repeat bottom;
+      background-size: cover;
+      pointer-events: none;
+    }
+
+    .legal-header-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .legal-header-content h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    .legal-header-content p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 500;
+    }
+
+    /* Navigation Bar */
+    .legal-nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--slate-200);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .legal-nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .legal-nav-brand {
+      font-weight: 700;
+      color: var(--blue);
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .legal-nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .legal-nav-links a {
+      color: var(--slate-600);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+
+    .legal-nav-links a:hover {
+      color: var(--blue);
+    }
+
+    /* Main Container */
+    .legal-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .legal-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 3rem;
+    }
+
+    /* Sidebar TOC */
+    .legal-toc {
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      border: 1px solid var(--slate-200);
+    }
+
+    .legal-toc h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--slate-900);
+      margin-bottom: 1.25rem;
+    }
+
+    .legal-toc ul {
+      list-style: none;
+    }
+
+    .legal-toc li {
+      margin-bottom: 0.75rem;
+    }
+
+    .legal-toc a {
+      color: var(--slate-600);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      display: block;
+      padding: 0.4rem 0;
+      border-left: 2px solid transparent;
+      padding-left: 0.75rem;
+    }
+
+    .legal-toc a:hover {
+      color: var(--blue);
+      border-left-color: var(--blue);
+    }
+
+    /* Content */
+    .legal-content h2 {
+      font-size: 1.8rem;
+      color: var(--slate-900);
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .legal-content h2::before {
+      content: '';
+      width: 4px;
+      height: 28px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--gold) 100%);
+      border-radius: 2px;
+    }
+
+    .legal-section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 150px;
+    }
+
+    .legal-section h3 {
+      font-size: 1.1rem;
+      color: var(--slate-800);
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    .legal-section p {
+      font-size: 0.95rem;
+      color: var(--slate-700);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .legal-section ul {
+      margin-left: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .legal-section li {
+      font-size: 0.95rem;
+      color: var(--slate-700);
+      margin-bottom: 0.65rem;
+      line-height: 1.8;
+    }
+
+    .legal-section li::marker {
+      color: var(--blue);
+    }
+
+    /* Callout Boxes */
+    .legal-callout {
+      background: linear-gradient(135deg, rgba(30, 94, 255, 0.08) 0%, rgba(255, 184, 0, 0.08) 100%);
+      border-left: 4px solid var(--blue);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .legal-callout p {
+      margin: 0;
+      font-weight: 500;
+      color: var(--slate-800);
+    }
+
+    /* Footer */
+    .legal-footer {
+      background: linear-gradient(135deg, var(--slate-900) 0%, #1a3a80 100%);
+      color: var(--white);
+      padding: 4rem 2rem;
+      margin-top: 5rem;
+      text-align: center;
+    }
+
+    .legal-footer-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .legal-footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+    }
+
+    .legal-footer-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .legal-footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .legal-footer p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 48px;
+      height: 48px;
+      background: var(--blue);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(30, 94, 255, 0.3);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .back-to-top:hover {
+      background: var(--blue-dark);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(30, 94, 255, 0.4);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .legal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .legal-toc {
+        display: none;
+      }
+
+      .legal-header-content h1 {
+        font-size: 2rem;
+      }
+
+      .legal-content h2 {
+        font-size: 1.5rem;
+      }
+
+      .legal-nav-links {
+        gap: 1rem;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <div class="legal-nav">
+    <div class="legal-nav-content">
+      <a href="index.html" class="legal-nav-brand">← Sunsynk Report Platform</a>
+      <div class="legal-nav-links">
+        <a href="#terms">Terms</a>
+        <a href="privacy-policy.html">Privacy</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <div class="legal-header-wrap">
+    <div class="legal-header-content">
+      <h1>Terms of Use</h1>
+      <p>Last updated: 8 June 2026</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="legal-wrapper">
+    <div class="legal-grid">
+      <!-- Table of Contents -->
+      <aside class="legal-toc">
+        <h3>Contents</h3>
+        <ul>
+          <li><a href="#agreement">Agreement</a></li>
+          <li><a href="#service">Service</a></li>
+          <li><a href="#eligibility">Eligibility</a></li>
+          <li><a href="#payment">Payment</a></li>
+          <li><a href="#data">System Data</a></li>
+          <li><a href="#responsibilities">Responsibilities</a></li>
+          <li><a href="#intellectual">IP Rights</a></li>
+          <li><a href="#disclaimers">Disclaimers</a></li>
+          <li><a href="#indemnification">Indemnification</a></li>
+          <li><a href="#modifications">Modifications</a></li>
+          <li><a href="#termination">Termination</a></li>
+          <li><a href="#governing">Governing Law</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </aside>
+
+      <!-- Content -->
+      <main class="legal-content">
+        <div id="terms">
+
+          <div id="agreement" class="legal-section">
+            <h2>Agreement to Terms</h2>
+            <p>By accessing and using the Sunsynk Report Platform ("Service"), you agree to be bound by these Terms of Use. If you do not agree to these terms, do not use the Service.</p>
+            <p>The Sunsynk Report Platform is provided by SunsynkMobile and its affiliates ("we," "us," "our," "Company").</p>
+          </div>
+
+          <div id="service" class="legal-section">
+            <h2>Description of Service</h2>
+            <p>The Sunsynk Report Platform provides performance analysis reports for Sunsynk solar and battery systems. The Service includes:</p>
+            <ul>
+              <li>Analysis of system readings and performance metrics</li>
+              <li>Performance scoring based on six key reviews</li>
+              <li>Benchmarking against similar installations</li>
+              <li>PDF reports available for download and sharing</li>
+            </ul>
+            <p>Reports are based on data submitted by the user and analysed according to our methodology.</p>
+          </div>
+
+          <div id="eligibility" class="legal-section">
+            <h2>User Eligibility and Accounts</h2>
+            <p>You must be at least 18 years of age to use this Service. By using the Service, you represent and warrant that you are of legal age to form a binding contract.</p>
+            <p>You are responsible for maintaining the confidentiality of any account information and passwords. You agree to accept responsibility for all activities that occur under your account.</p>
+          </div>
+
+          <div id="payment" class="legal-section">
+            <h2>Payment and Pricing</h2>
+            <p>The Service is provided on a one-time payment basis. Prices are displayed in British pounds (£) and include applicable taxes where required.</p>
+            <div class="legal-callout">
+              <p>💳 Payment is processed securely through Stripe. By completing a purchase, you authorise us to charge your payment method. No card data is stored on our servers.</p>
+            </div>
+            <p>All sales are final. No refunds are provided after report generation, except where required by law.</p>
+          </div>
+
+          <div id="data" class="legal-section">
+            <h2>System Data and Analysis</h2>
+            <h3>Data Accuracy</h3>
+            <p>You are responsible for the accuracy of system data you submit. We analyse this data according to our documented methodology, but cannot guarantee the accuracy of underlying readings from your Sunsynk device.</p>
+            <h3>Report Limitations</h3>
+            <p>Reports are analytical summaries only. They do not constitute professional engineering advice, energy audits, or system warranties. Results should be reviewed alongside professional consultation with qualified installers or energy consultants.</p>
+            <h3>Not a Guarantee</h3>
+            <p>Performance recommendations and projections are estimates based on historical data and comparable systems. Actual results may vary depending on weather, usage patterns, system configuration, and other factors beyond our control.</p>
+          </div>
+
+          <div id="responsibilities" class="legal-section">
+            <h2>User Responsibilities</h2>
+            <p>You agree to use the Service lawfully and in accordance with these Terms. You agree not to:</p>
+            <ul>
+              <li>Access the Service using false or misleading information</li>
+              <li>Attempt to gain unauthorised access to the Service or its systems</li>
+              <li>Transmit viruses, malware, or any code of destructive nature</li>
+              <li>Use the Service in any way that could damage, disable, or harm the Service or its infrastructure</li>
+              <li>Reverse engineer, decompile, or attempt to discover the source code or methodology</li>
+              <li>Reproduce, duplicate, or copy reports for commercial purposes without permission</li>
+            </ul>
+          </div>
+
+          <div id="intellectual" class="legal-section">
+            <h2>Intellectual Property Rights</h2>
+            <p>All content, methodology, design, and materials within the Sunsynk Report Platform are owned by or licensed to the Company. This includes analysis methodologies, scoring algorithms, and benchmark data.</p>
+            <p>You may download and print your personal report for your own use only. You may not republish, redistribute, or sell the report without explicit written permission from the Company.</p>
+          </div>
+
+          <div id="disclaimers" class="legal-section">
+            <h2>Disclaimers and Limitations of Liability</h2>
+            <h3>Service Provided "As Is"</h3>
+            <p>The Service is provided on an "as is" and "as available" basis without warranties of any kind, express or implied. We do not warrant that the Service will be uninterrupted, error-free, or free from harmful components.</p>
+            <h3>No Professional Advice</h3>
+            <p>The Service does not provide professional engineering, financial, legal, or investment advice. For system modifications, upgrades, or troubleshooting, please consult a qualified Sunsynk installer or energy professional.</p>
+            <h3>Limitation of Liability</h3>
+            <p>To the maximum extent permitted by law, the Company shall not be liable for any indirect, incidental, consequential, or punitive damages arising from your use of the Service, including loss of profits, data, or opportunity.</p>
+            <p>Our total liability for any claim arising from this Service shall not exceed the amount you paid for the report in question.</p>
+          </div>
+
+          <div id="indemnification" class="legal-section">
+            <h2>Indemnification</h2>
+            <p>You agree to indemnify, defend, and hold harmless the Company, its officers, directors, employees, and agents from any claims, damages, or costs arising from your use of the Service or violation of these Terms.</p>
+          </div>
+
+          <div id="modifications" class="legal-section">
+            <h2>Modifications to Service</h2>
+            <p>The Company reserves the right to modify, suspend, or discontinue the Service at any time with or without notice. We are not liable if modifications reduce your access to or functionality of the Service.</p>
+          </div>
+
+          <div id="termination" class="legal-section">
+            <h2>Termination</h2>
+            <p>The Company may terminate your access to the Service at any time, with or without cause, and with or without notice. Upon termination, you must cease all use of the Service.</p>
+          </div>
+
+          <div id="governing" class="legal-section">
+            <h2>Governing Law and Jurisdiction</h2>
+            <p>These Terms of Use are governed by and construed in accordance with the laws of England and Wales, without regard to its conflict of law provisions.</p>
+            <p>Any legal action or dispute arising from this Service shall be resolved exclusively in the courts of England and Wales.</p>
+          </div>
+
+          <div id="contact" class="legal-section">
+            <h2>Contact Information</h2>
+            <p>If you have questions about these Terms of Use, please contact us:</p>
+            <div class="legal-callout">
+              <p><strong>SunsynkMobile Support</strong><br />Email: support@sunsynk.com<br />Website: www.sunsynk.com</p>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="legal-footer">
+    <div class="legal-footer-content">
+      <div class="legal-footer-links">
+        <a href="index.html">Back to Platform</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+      </div>
+      <p>&copy; 2026 SunsynkMobile. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <a href="#terms" class="back-to-top" id="backToTop">↑</a>
+
+  <script>
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+    backToTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
