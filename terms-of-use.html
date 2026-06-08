@@ -252,46 +252,94 @@
 
     /* Footer */
     .legal-footer {
-      background: linear-gradient(135deg, var(--slate-900) 0%, #1a3a80 100%);
+      background: linear-gradient(135deg, var(--blue) 0%, #1a3a80 100%);
       color: var(--white);
       padding: 4rem 2rem;
-      margin-top: 5rem;
-      text-align: center;
+      margin-top: 6rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
 
     .legal-footer-content {
-      max-width: 900px;
+      max-width: 1200px;
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .legal-footer-section h3 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.25rem;
+      color: rgba(255,255,255,0.95);
+    }
+
+    .legal-footer-section p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.95);
+      font-weight: 500;
+      margin-bottom: 1rem;
     }
 
     .legal-footer-links {
       display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-      font-size: 0.9rem;
+      flex-direction: column;
+      gap: 0.75rem;
     }
 
     .legal-footer-links a {
-      color: rgba(255,255,255,0.8);
+      color: rgba(255,255,255,0.95);
       text-decoration: none;
-      transition: color 0.3s ease;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+      display: inline-block;
     }
 
     .legal-footer-links a:hover {
-      color: var(--gold);
+      color: var(--white);
+      transform: translateX(4px);
     }
 
-    .legal-footer p {
-      font-size: 0.9rem;
-      opacity: 0.8;
+    .legal-footer-base {
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.9);
+      font-weight: 500;
+    }
+
+    .legal-footer-base p {
+      margin: 0;
+      color: var(--white);
+    }
+
+    @media (max-width: 768px) {
+      .legal-footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .legal-footer-base {
+        flex-direction: column;
+        text-align: center;
+      }
     }
 
     /* Back to Top Button */
     .back-to-top {
       position: fixed;
-      bottom: 2rem;
+      bottom: 4rem;
       right: 2rem;
       width: 48px;
       height: 48px;
@@ -503,12 +551,38 @@
   <!-- Footer -->
   <footer class="legal-footer">
     <div class="legal-footer-content">
-      <div class="legal-footer-links">
-        <a href="index.html">Back to Platform</a>
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="terms-of-use.html">Terms of Use</a>
+      <div class="legal-footer-section">
+        <h3>Terms of Use</h3>
+        <p>Legal terms governing the use of the Sunsynk Report Platform and its services.</p>
       </div>
-      <p>&copy; 2026 SunsynkMobile. All rights reserved.</p>
+      <div class="legal-footer-section">
+        <h3>Platform</h3>
+        <div class="legal-footer-links">
+          <a href="index.html">Back to Platform</a>
+          <a href="index.html#features">Features</a>
+          <a href="index.html#benchmark">Benchmark</a>
+          <a href="index.html#pricing">Pricing</a>
+        </div>
+      </div>
+      <div class="legal-footer-section">
+        <h3>Resources</h3>
+        <div class="legal-footer-links">
+          <a href="index.html#how-it-works">How it works</a>
+          <a href="index.html#sample-insights">Sample report</a>
+          <a href="knowledgebase.html">Knowledge base</a>
+        </div>
+      </div>
+      <div class="legal-footer-section">
+        <h3>Legal</h3>
+        <div class="legal-footer-links">
+          <a href="privacy-policy.html">Privacy policy</a>
+          <a href="terms-of-use.html">Terms of use</a>
+          <a href="index.html#final-cta">Request demo</a>
+        </div>
+      </div>
+    </div>
+    <div class="legal-footer-base">
+      <p>&copy; 2026 Sunsynk Report Platform. All rights reserved.</p>
     </div>
   </footer>
 
