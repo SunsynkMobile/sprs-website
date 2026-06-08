@@ -23,7 +23,10 @@ window.addEventListener('load', hidePageLoader);
 const scrollBar = document.querySelector('.scroll-bar');
 const updateScrollBar = () => {
   const max = document.documentElement.scrollHeight - window.innerHeight;
-  if (scrollBar) scrollBar.style.width = max > 0 ? `${Math.min((window.scrollY / max) * 100, 100)}%` : '0%';
+  const pct = max > 0 ? Math.min((window.scrollY / max) * 100, 100) : 0;
+  if (scrollBar) scrollBar.style.width = `${pct}%`;
+  document.documentElement.style.setProperty('--scroll-pct', `${pct}`);
+  document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}`);
 };
 
 /* ── Sticky nav ── */
@@ -211,9 +214,25 @@ function initTilt() {
       const r = card.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;
       const y = (e.clientY - r.top) / r.height - 0.5;
-      card.style.transform = `perspective(700px) rotateX(${-y * 2.5}deg) rotateY(${x * 2.5}deg) translateY(-3px)`;
+      card.style.transform = `perspective(900px) rotateX(${-y * 1.25}deg) rotateY(${x * 1.25}deg) translateY(-2px)`;
     });
     card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+  });
+}
+
+/* ── Magnetic buttons ── */
+function initMagneticButtons() {
+  if (reducedMotion || !window.matchMedia('(hover: hover)').matches) return;
+  document.querySelectorAll('.magnetic').forEach(btn => {
+    btn.addEventListener('pointermove', e => {
+      const r = btn.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width - 0.5) * 6;
+      const y = ((e.clientY - r.top) / r.height - 0.5) * 6;
+      btn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+    btn.addEventListener('pointerleave', () => {
+      btn.style.transform = '';
+    });
   });
 }
 
@@ -228,4 +247,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initStepsLine();
   initStepLit();
   initTilt();
+  initMagneticButtons();
 });
