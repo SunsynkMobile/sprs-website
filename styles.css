@@ -70,6 +70,16 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offse
 .cookie-manage-link{font-size:.86rem;font-weight:600;color:var(--blue);background:none;border:none;padding:0;text-align:left;cursor:pointer}
 .cookie-manage-link:hover{text-decoration:underline}
 
+.legal-footer-base .cookie-manage-link,
+.kb-footer-base .cookie-manage-link{
+  color:rgba(255,255,255,.95);
+}
+
+.legal-footer-base .cookie-manage-link:hover,
+.kb-footer-base .cookie-manage-link:hover{
+  color:var(--white);
+}
+
 @media(max-width:640px){
   .cookie-banner{left:.75rem;right:.75rem;bottom:.75rem;padding:.9rem .9rem .85rem}
   .cookie-banner__actions{width:100%}

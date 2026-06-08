@@ -18,7 +18,9 @@
   <meta property="twitter:title" content="Cookie Policy | Sunsynk Report Platform" />
   <meta property="twitter:description" content="Read how Sunsynk Report Platform uses cookies and how you can control your cookie preferences." />
   <meta property="twitter:image" content="https://sunsynkreports.com/assets/twitter-image.png" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23ffb800'/><circle cx='50' cy='30' r='8' fill='%231e5eff'/><path d='M50 15 L55 25 L50 28 L45 25 Z' fill='%231e5eff'/><path d='M70 40 L75 50 L68 52 L65 45 Z' fill='%231e5eff'/><path d='M30 40 L35 45 L28 52 L25 50 Z' fill='%231e5eff'/><path d='M50 72 L50 90 M40 80 L60 80' stroke='%231e5eff' stroke-width='3' fill='none' stroke-linecap='round'/></svg>" type="image/svg+xml" />
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="shortcut icon" href="/assets/favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/favicon.png" />
   <link rel="stylesheet" href="/styles.css" />
   <script type="application/ld+json">
   {
@@ -42,7 +44,9 @@
       --slate-900: #0f172a;
       --blue: #1e5eff;
       --blue-dark: #1a3a80;
-      --gold: #ffb800;
+      --cookie-accent: #0f766e;
+      --cookie-accent-light: #14b8a6;
+      --cookie-accent-dark: #115e59;
       --white: #ffffff;
     }
 
@@ -57,7 +61,7 @@
     }
 
     .legal-header-wrap {
-      background: linear-gradient(135deg, var(--gold) 0%, #f59e00 100%);
+      background: linear-gradient(135deg, var(--cookie-accent-light) 0%, var(--cookie-accent) 100%);
       color: var(--white);
       padding: 5rem 2rem;
       text-align: center;
@@ -120,7 +124,7 @@
 
     .legal-nav-brand {
       font-weight: 700;
-      color: #f59e00;
+      color: var(--cookie-accent);
       text-decoration: none;
       font-size: 1rem;
     }
@@ -139,7 +143,13 @@
     }
 
     .legal-nav-links a:hover {
-      color: #f59e00;
+      color: var(--cookie-accent);
+    }
+
+    .legal-nav-links a[aria-current="page"] {
+      color: var(--cookie-accent);
+      font-weight: 700;
+      border-bottom: 2px solid var(--cookie-accent);
     }
 
     .legal-wrapper {
@@ -189,8 +199,8 @@
     }
 
     .legal-toc a:hover {
-      color: #f59e00;
-      border-left-color: #f59e00;
+      color: var(--cookie-accent);
+      border-left-color: var(--cookie-accent);
     }
 
     .legal-content h2 {
@@ -208,7 +218,7 @@
       content: '';
       width: 4px;
       height: 28px;
-      background: linear-gradient(135deg, var(--gold) 0%, #f59e00 100%);
+      background: linear-gradient(135deg, var(--cookie-accent-light) 0%, var(--cookie-accent) 100%);
       border-radius: 2px;
     }
 
@@ -247,8 +257,8 @@
     }
 
     .legal-callout {
-      background: linear-gradient(135deg, rgba(255, 184, 0, 0.08) 0%, rgba(245, 158, 0, 0.08) 100%);
-      border-left: 4px solid var(--gold);
+      background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(15, 118, 110, 0.1) 100%);
+      border-left: 4px solid var(--cookie-accent);
       padding: 1.5rem;
       border-radius: 8px;
       margin: 1.5rem 0;
@@ -261,7 +271,7 @@
     }
 
     .legal-footer {
-      background: linear-gradient(135deg, var(--gold) 0%, #f59e00 100%);
+      background: linear-gradient(135deg, var(--cookie-accent-light) 0%, var(--cookie-accent) 100%);
       color: var(--white);
       padding: 4rem 2rem;
       margin-top: 6rem;
@@ -340,14 +350,14 @@
       right: 2rem;
       width: 48px;
       height: 48px;
-      background: #f59e00;
+      background: var(--cookie-accent);
       color: white;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(245, 158, 0, 0.3);
+      box-shadow: 0 4px 12px rgba(15, 118, 110, 0.3);
       opacity: 0;
       pointer-events: none;
       transition: all 0.3s ease;
@@ -361,9 +371,9 @@
     }
 
     .back-to-top:hover {
-      background: #d97706;
+      background: var(--cookie-accent-dark);
       transform: translateY(-4px);
-      box-shadow: 0 8px 16px rgba(245, 158, 0, 0.4);
+      box-shadow: 0 8px 16px rgba(15, 118, 110, 0.4);
     }
 
     @media (max-width: 1024px) {
@@ -450,8 +460,9 @@
     <div class="legal-nav-content">
       <a href="/" class="legal-nav-brand">← Sunsynk Report Platform</a>
       <div class="legal-nav-links">
-        <a href="#cookies">Cookies</a>
-        <a href="/privacy-policy/">Privacy</a>
+        <a href="/privacy-policy/">Privacy policy</a>
+        <a href="/terms-of-use/">Terms of use</a>
+        <a href="/cookie-policy/" aria-current="page">Cookie policy</a>
       </div>
     </div>
   </div>

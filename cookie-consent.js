@@ -92,7 +92,7 @@
     modal.innerHTML = '' +
       '<div class="cookie-modal__backdrop" data-cookie-close="true"></div>' +
       '<div class="cookie-modal__panel" role="document">' +
-      '  <button type="button" class="cookie-modal__close" aria-label="Close cookie preferences" data-cookie-close="true">×</button>' +
+      '  <button type="button" class="cookie-modal__close" aria-label="Close cookie preferences" data-cookie-close="true">&times;</button>' +
       '  <h2 class="cookie-modal__title" id="cookieModalTitle">Cookie preferences</h2>' +
       '  <p class="cookie-modal__intro">Choose which cookies we can use. Necessary cookies are always enabled to keep the site secure and functional.</p>' +
       '  <div class="cookie-pref-list">' +
