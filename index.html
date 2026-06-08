@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    if (window.location.pathname.endsWith('/index.html')) {
+      const cleanPath = window.location.pathname.replace(/\/index\.html$/, '/') || '/';
+      window.location.replace(cleanPath + window.location.search + window.location.hash);
+    }
+  </script>
   
   <!-- Primary Meta Tags -->
   <title>Sunsynk Report Platform | Performance Intelligence for Solar & Battery Systems</title>
@@ -16,24 +22,24 @@
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sprs.sunsynk.com/" />
+  <meta property="og:url" content="https://sunsynkreports.com/" />
   <meta property="og:title" content="Sunsynk Report Platform | Performance Intelligence" />
   <meta property="og:description" content="Get comprehensive performance reports for your Sunsynk solar and battery system. Scores, benchmarks, and clear actions in one month of data analysis." />
-  <meta property="og:image" content="https://sprs.sunsynk.com/assets/og-image.png" />
+  <meta property="og:image" content="https://sunsynkreports.com/assets/og-image.png" />
   <meta property="og:image:alt" content="Sunsynk Report Platform Dashboard" />
   <meta property="og:site_name" content="Sunsynk Report Platform" />
   <meta property="og:locale" content="en_GB" />
   
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://sprs.sunsynk.com/" />
+  <meta property="twitter:url" content="https://sunsynkreports.com/" />
   <meta property="twitter:title" content="Sunsynk Report Platform | Performance Intelligence" />
   <meta property="twitter:description" content="Analyse your complete Sunsynk system performance. Get scores, benchmarks, and actionable insights." />
-  <meta property="twitter:image" content="https://sprs.sunsynk.com/assets/twitter-image.png" />
+  <meta property="twitter:image" content="https://sunsynkreports.com/assets/twitter-image.png" />
   <meta property="twitter:creator" content="@sunsynkza" />
   
   <!-- Canonical URL -->
-  <meta rel="canonical" href="https://sprs.sunsynk.com/" />
+  <link rel="canonical" href="https://sunsynkreports.com/" />
   
   <!-- Favicon & Apple Touch Icon -->
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -128,7 +134,7 @@
         <a href="#benchmark">Benchmark</a>
         <a href="#pricing">Pricing</a>
         <a href="#how-it-works">How it works</a>
-        <a href="knowledgebase.html">Knowledge base</a>
+        <a href="/knowledgebase/">Knowledge base</a>
       </nav>
       <a class="btn btn-gold btn-sm nav-cta" href="#pricing">Get My Report</a>
     </div>
@@ -657,8 +663,8 @@
         <p>Clear reporting for solar, battery, and grid performance.</p>
       </div>
       <nav aria-label="Platform"><p>Platform</p><a href="#platform">Overview</a><a href="#features">Features</a><a href="#benchmark">Benchmark</a><a href="#pricing">Pricing</a></nav>
-      <nav aria-label="Resources"><p>Resources</p><a href="#sample-insights">Sample report</a><a href="#how-it-works">How it works</a><a href="knowledgebase.html">Knowledge base</a><a href="#testimonials">Reviews</a></nav>
-      <nav aria-label="Company"><p>Company</p><a href="#final-cta">Request demo</a><a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy policy</a><a href="terms-of-use.html" target="_blank" rel="noopener noreferrer">Terms of use</a></nav>
+      <nav aria-label="Resources"><p>Resources</p><a href="#sample-insights">Sample report</a><a href="#how-it-works">How it works</a><a href="/knowledgebase/">Knowledge base</a><a href="#testimonials">Reviews</a></nav>
+      <nav aria-label="Company"><p>Company</p><a href="#final-cta">Request demo</a><a href="/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy policy</a><a href="/terms-of-use/" target="_blank" rel="noopener noreferrer">Terms of use</a></nav>
     </div>
     <div class="container footer-base">
       <p>&copy; 2026 Sunsynk Report Platform.</p>

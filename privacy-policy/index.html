@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | Sunsynk Report Platform</title>
+  <meta name="description" content="Privacy policy for the Sunsynk Report Platform explaining data collection, use, and protection practices." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%2317ba6b'/><circle cx='50' cy='30' r='8' fill='%23ffb800'/><path d='M50 15 L55 25 L50 28 L45 25 Z' fill='%23ffb800'/><path d='M70 40 L75 50 L68 52 L65 45 Z' fill='%23ffb800'/><path d='M30 40 L35 45 L28 52 L25 50 Z' fill='%23ffb800'/><path d='M50 72 L50 90 M40 80 L60 80' stroke='%23ffb800' stroke-width='3' fill='none' stroke-linecap='round'/></svg>" type="image/svg+xml" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    :root {
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-500: #64748b;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+      --blue: #1e5eff;
+      --blue-dark: #1a3a80;
+      --gold: #ffb800;
+      --green: #17ba6b;
+      --white: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, var(--slate-50) 0%, #f0f9ff 100%);
+      color: var(--slate-700);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .legal-header-wrap {
+      background: linear-gradient(135deg, var(--green) 0%, #0f8a4f 100%);
+      color: var(--white);
+      padding: 5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .legal-header-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.1)"/></svg>') no-repeat bottom;
+      background-size: cover;
+      pointer-events: none;
+    }
+
+    .legal-header-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .legal-header-content h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    .legal-header-content p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 500;
+    }
+
+    /* Navigation Bar */
+    .legal-nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--slate-200);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .legal-nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .legal-nav-brand {
+      font-weight: 700;
+      color: var(--green);
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .legal-nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .legal-nav-links a {
+      color: var(--slate-600);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.35rem 0;
+      transition: color 0.3s ease;
+    }
+
+    .legal-nav-links a:hover {
+      color: var(--green);
+    }
+
+    /* Main Container */
+    .legal-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .legal-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 3rem;
+    }
+
+    /* Sidebar TOC */
+    .legal-toc {
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      border: 1px solid var(--slate-200);
+    }
+
+    .legal-toc h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--slate-900);
+      margin-bottom: 1.25rem;
+    }
+
+    .legal-toc ul {
+      list-style: none;
+    }
+
+    .legal-toc li {
+      margin-bottom: 0.75rem;
+    }
+
+    .legal-toc a {
+      color: var(--slate-600);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      display: block;
+      padding: 0.4rem 0;
+      border-left: 2px solid transparent;
+      padding-left: 0.75rem;
+    }
+
+    .legal-toc a:hover {
+      color: var(--green);
+      border-left-color: var(--green);
+    }
+
+    /* Content */
+    .legal-content h2 {
+      font-size: 1.8rem;
+      color: var(--slate-900);
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .legal-content h2::before {
+      content: '';
+      width: 4px;
+      height: 28px;
+      background: linear-gradient(135deg, var(--green) 0%, #0f8a4f 100%);
+      border-radius: 2px;
+    }
+
+    .legal-section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 150px;
+    }
+
+    .legal-section:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .legal-section h3 {
+      font-size: 1.1rem;
+      color: var(--slate-800);
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    .legal-section p {
+      font-size: 0.95rem;
+      color: var(--slate-700);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .legal-section ul {
+      margin-left: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .legal-section li {
+      font-size: 0.95rem;
+      color: var(--slate-700);
+      margin-bottom: 0.65rem;
+      line-height: 1.8;
+    }
+
+    .legal-section li::marker {
+      color: var(--green);
+    }
+
+    /* Callout Boxes */
+    .legal-callout {
+      background: linear-gradient(135deg, rgba(23, 186, 107, 0.08) 0%, rgba(15, 138, 79, 0.08) 100%);
+      border-left: 4px solid var(--green);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .legal-callout p {
+      margin: 0;
+      font-weight: 500;
+      color: var(--slate-800);
+    }
+
+    /* Data Grid */
+    .legal-data-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .legal-data-card {
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: 8px;
+      padding: 1.25rem;
+      transition: all 0.3s ease;
+    }
+
+    .legal-data-card:hover {
+      border-color: var(--green);
+      box-shadow: 0 4px 12px rgba(23, 186, 107, 0.1);
+    }
+
+    .legal-data-card h4 {
+      font-size: 0.95rem;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .legal-data-card p {
+      font-size: 0.9rem;
+      color: var(--slate-600);
+      margin: 0;
+    }
+
+    /* Footer */
+    .legal-footer {
+      background: linear-gradient(135deg, var(--green) 0%, #0f8a4f 100%);
+      color: var(--white);
+      padding: 4rem 2rem;
+      margin-top: 6rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .legal-footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .legal-footer-section h3 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.25rem;
+      color: rgba(255,255,255,0.95);
+    }
+
+    .legal-footer-section p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.95);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .legal-footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .legal-footer-links a {
+      color: rgba(255,255,255,0.95);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+      display: inline-block;
+    }
+
+    .legal-footer-links a:hover {
+      color: var(--white);
+      transform: translateX(4px);
+    }
+
+    .legal-footer-base {
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.9);
+      font-weight: 500;
+    }
+
+    .legal-footer-base p {
+      margin: 0;
+      color: var(--white);
+    }
+
+    @media (max-width: 768px) {
+      .legal-footer {
+        padding: 2.25rem 1rem;
+        margin-top: 3rem;
+      }
+
+      .legal-footer-content {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem 1rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .legal-footer-section h3 {
+        margin-bottom: 0.55rem;
+      }
+
+      .legal-footer-section p {
+        font-size: 0.85rem;
+        margin-bottom: 0.6rem;
+        line-height: 1.45;
+      }
+
+      .legal-footer-links {
+        gap: 0.45rem;
+      }
+
+      .legal-footer-links a {
+        font-size: 0.84rem;
+      }
+
+      .legal-footer-base {
+        padding-top: 1rem;
+        gap: 0.75rem;
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .legal-footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 4rem;
+      right: 2rem;
+      width: 48px;
+      height: 48px;
+      background: var(--green);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(23, 186, 107, 0.3);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .back-to-top:hover {
+      background: #0f8a4f;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(23, 186, 107, 0.4);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .legal-wrapper {
+        padding: 2.25rem 1.25rem;
+      }
+
+      .legal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .legal-toc {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .legal-header-wrap {
+        padding: 4rem 1rem;
+      }
+
+      .legal-nav-content {
+        padding: 0.85rem 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .legal-nav-links {
+        width: 100%;
+        gap: 0.75rem 1rem;
+        flex-wrap: wrap;
+      }
+
+      .legal-nav-links a {
+        padding: 0.5rem 0;
+      }
+
+      .legal-wrapper {
+        padding: 2rem 1rem;
+      }
+
+      .legal-header-content h1 {
+        font-size: 2rem;
+      }
+
+      .legal-content h2 {
+        font-size: 1.45rem;
+        line-height: 1.3;
+        align-items: flex-start;
+        margin-bottom: 1.1rem;
+      }
+
+      .legal-content h3 {
+        margin-top: 1.35rem;
+      }
+
+      .legal-section p,
+      .legal-section ul {
+        margin-bottom: 1.1rem;
+      }
+
+      .legal-section {
+        margin-bottom: 2.45rem;
+      }
+
+      .legal-content h2::before {
+        margin-top: 0.2rem;
+      }
+
+      .back-to-top {
+        width: 44px;
+        height: 44px;
+        right: 1rem;
+        bottom: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .legal-nav-content {
+        gap: 0.65rem;
+      }
+
+      .legal-callout {
+        padding: 1rem;
+        margin: 1.1rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <div class="legal-nav">
+    <div class="legal-nav-content">
+      <a href="/" class="legal-nav-brand">← Sunsynk Report Platform</a>
+      <div class="legal-nav-links">
+        <a href="#privacy">Privacy</a>
+        <a href="/terms-of-use/">Terms</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <div class="legal-header-wrap">
+    <div class="legal-header-content">
+      <h1>Privacy Policy</h1>
+      <p>Last updated: 8 June 2026</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="legal-wrapper">
+    <div class="legal-grid">
+      <!-- Table of Contents -->
+      <aside class="legal-toc">
+        <h3>Contents</h3>
+        <ul>
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#collection">Data Collection</a></li>
+          <li><a href="#usage">Data Usage</a></li>
+          <li><a href="#retention">Data Retention</a></li>
+          <li><a href="#sharing">Data Sharing</a></li>
+          <li><a href="#security">Data Security</a></li>
+          <li><a href="#rights">Your Rights</a></li>
+          <li><a href="#cookies">Cookies</a></li>
+          <li><a href="#transfers">Transfers</a></li>
+          <li><a href="#children">Children</a></li>
+          <li><a href="#changes">Changes</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </aside>
+
+      <!-- Content -->
+      <main class="legal-content">
+        <div id="privacy">
+
+          <div id="introduction" class="legal-section">
+            <h2>Introduction</h2>
+            <p>At SunsynkMobile ("we," "us," "our," "Company"), we respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, store, and protect information when you use the Sunsynk Report Platform ("Service").</p>
+            <p>Please read this policy carefully. If you do not agree with our privacy practices, do not use the Service.</p>
+          </div>
+
+          <div id="collection" class="legal-section">
+            <h2>1. Information We Collect</h2>
+            
+            <h3>1.1 System and Performance Data</h3>
+            <p>To provide performance analysis, we collect:</p>
+            <ul>
+              <li>Device ID and system serial number</li>
+              <li>System readings (solar generation, battery charge/discharge, household consumption, grid export)</li>
+              <li>Time period selected for analysis (typically one month)</li>
+              <li>System configuration details (inverter type, battery capacity)</li>
+            </ul>
+
+            <h3>1.2 Account and Payment Information</h3>
+            <p>To process your purchase, we collect:</p>
+            <ul>
+              <li>Email address</li>
+              <li>Name (optional)</li>
+              <li>Payment method information (processed securely through Stripe; we do not store full credit card details)</li>
+              <li>Purchase history and transaction records</li>
+            </ul>
+
+            <h3>1.3 Usage and Technical Information</h3>
+            <p>When you use the Service, we may automatically collect:</p>
+            <ul>
+              <li>Device type and browser information</li>
+              <li>IP address</li>
+              <li>Pages accessed and time spent on the Service</li>
+              <li>Referral source</li>
+              <li>Error logs and crash reports</li>
+            </ul>
+          </div>
+
+          <div id="usage" class="legal-section">
+            <h2>2. How We Use Your Information</h2>
+            
+            <h3>2.1 Primary Uses</h3>
+            <p>We use the information collected to:</p>
+            <ul>
+              <li>Generate your performance analysis report</li>
+              <li>Process your payment and maintain transaction records</li>
+              <li>Deliver your report via email or download link</li>
+              <li>Provide customer support</li>
+              <li>Send you receipts and transaction confirmations</li>
+            </ul>
+
+            <h3>2.2 Improvement and Analytics</h3>
+            <p>We may use aggregated, anonymised data to:</p>
+            <ul>
+              <li>Improve the accuracy of our analysis methodology</li>
+              <li>Understand how the Service is used</li>
+              <li>Identify patterns and trends in system performance</li>
+              <li>Optimise the Service for better user experience</li>
+            </ul>
+
+            <h3>2.3 Marketing and Communications</h3>
+            <p>With your consent, we may send you promotional information. <strong>You can opt out at any time</strong> by clicking "Unsubscribe" in our emails.</p>
+          </div>
+
+          <div id="retention" class="legal-section">
+            <h2>3. Data Retention</h2>
+            <p>We retain your information according to the following schedule:</p>
+            <div class="legal-data-grid">
+              <div class="legal-data-card">
+                <h4>System Data</h4>
+                <p>Retained for 12 months to allow report regeneration and benchmarking updates.</p>
+              </div>
+              <div class="legal-data-card">
+                <h4>Payment Information</h4>
+                <p>Retained for 7 years for tax and legal compliance requirements.</p>
+              </div>
+              <div class="legal-data-card">
+                <h4>Technical Data</h4>
+                <p>Retained for 12 months for analytics and service improvement purposes.</p>
+              </div>
+              <div class="legal-data-card">
+                <h4>Support Communications</h4>
+                <p>Retained for 2 years to address ongoing support needs and inquiries.</p>
+              </div>
+            </div>
+            <p>Upon request, you may ask us to delete your personal data, subject to legal retention requirements.</p>
+          </div>
+
+          <div id="sharing" class="legal-section">
+            <h2>4. Data Sharing and Third Parties</h2>
+            
+            <h3>4.1 Stripe Payment Processor</h3>
+            <p>Payment information is processed by Stripe, a PCI-DSS compliant payment processor. Stripe handles your payment method securely and in accordance with their privacy practices. We do not store your full credit card details.</p>
+
+            <h3>4.2 Service Providers</h3>
+            <p>We may share information with trusted third-party service providers who assist in operating the Service, including email providers, hosting services, and analytics platforms.</p>
+
+            <div class="legal-callout">
+              <p>🔒 <strong>We do not sell, trade, or rent your personal data to third parties for marketing purposes.</strong></p>
+            </div>
+
+            <h3>4.3 Legal Requirements</h3>
+            <p>We may disclose your information if required by law, court order, or legitimate government request.</p>
+          </div>
+
+          <div id="security" class="legal-section">
+            <h2>5. Data Security</h2>
+            <p>We implement reasonable technical, physical, and administrative safeguards to protect your information:</p>
+            <ul>
+              <li>Encrypted transmission using HTTPS/SSL technology</li>
+              <li>Secure data storage with access controls</li>
+              <li>Regular security audits and penetration testing</li>
+              <li>Employee training on data protection practices</li>
+            </ul>
+            <p>While we employ strong security measures, no system is completely secure. We cannot guarantee absolute security of your data.</p>
+          </div>
+
+          <div id="rights" class="legal-section">
+            <h2>6. Your Rights and Choices</h2>
+            
+            <h3>6.1 Access and Portability</h3>
+            <p>You have the right to request a copy of the personal data we hold about you in a structured, commonly used format.</p>
+
+            <h3>6.2 Correction and Deletion</h3>
+            <p>You have the right to request correction of inaccurate data or deletion of your personal data, subject to legal retention requirements.</p>
+
+            <h3>6.3 Opt-Out of Marketing</h3>
+            <p>You can unsubscribe from promotional emails by clicking the "Unsubscribe" link in any marketing message or contacting us directly.</p>
+
+            <h3>6.4 GDPR and Data Protection Rights</h3>
+            <p>If you are in the European Union, United Kingdom, or other jurisdictions with data protection laws, you have additional rights under the General Data Protection Regulation (GDPR) and equivalent laws.</p>
+
+            <p>To exercise any of these rights, contact us using the information provided at the end of this policy.</p>
+          </div>
+
+          <div id="cookies" class="legal-section">
+            <h2>7. Cookies and Tracking Technologies</h2>
+            <p>We use cookies and similar tracking technologies to:</p>
+            <ul>
+              <li>Remember your preferences and login state</li>
+              <li>Analyse how you interact with the Service</li>
+              <li>Prevent fraud and improve security</li>
+            </ul>
+            <p>Most browsers allow you to control cookie settings. You can disable cookies, but this may affect the functionality of the Service.</p>
+          </div>
+
+          <div id="transfers" class="legal-section">
+            <h2>8. International Data Transfers</h2>
+            <p>Your personal data may be transferred to, stored in, and processed in countries other than your country of residence. When we transfer data internationally, we implement appropriate safeguards, including standard contractual clauses, to ensure your data is protected with standards equivalent to those in the EU.</p>
+          </div>
+
+          <div id="children" class="legal-section">
+            <h2>9. Children's Privacy</h2>
+            <p>The Service is not directed to children under the age of 18. We do not knowingly collect personal data from children. If we become aware that we have collected data from a child, we will delete it immediately.</p>
+          </div>
+
+          <div id="changes" class="legal-section">
+            <h2>10. Changes to This Privacy Policy</h2>
+            <p>We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. We will notify you of significant changes by email or by posting a notice on the Service.</p>
+            <p>Your continued use of the Service following such notification constitutes your acceptance of the updated Privacy Policy.</p>
+          </div>
+
+          <div id="contact" class="legal-section">
+            <h2>11. Contact Us</h2>
+            <p>If you have questions about this Privacy Policy, concerns about your data, or wish to exercise your privacy rights, please contact us:</p>
+            <div class="legal-callout">
+              <p><strong>SunsynkMobile Privacy Team</strong><br />
+              Email: privacy@sunsynk.com<br />
+              Website: www.sunsynk.com<br />
+              <br />
+              We will respond to your enquiry within 30 days.</p>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="legal-footer">
+    <div class="legal-footer-content">
+      <div class="legal-footer-section">
+        <h3>Privacy Policy</h3>
+        <p>Details about how we collect, use, and protect your personal data.</p>
+      </div>
+      <div class="legal-footer-section">
+        <h3>Platform</h3>
+        <div class="legal-footer-links">
+          <a href="/">Back to Platform</a>
+          <a href="/#features">Features</a>
+          <a href="/#benchmark">Benchmark</a>
+          <a href="/#pricing">Pricing</a>
+        </div>
+      </div>
+      <div class="legal-footer-section">
+        <h3>Resources</h3>
+        <div class="legal-footer-links">
+          <a href="/#how-it-works">How it works</a>
+          <a href="/#sample-insights">Sample report</a>
+          <a href="/knowledgebase/">Knowledge base</a>
+        </div>
+      </div>
+      <div class="legal-footer-section">
+        <h3>Legal</h3>
+        <div class="legal-footer-links">
+          <a href="/privacy-policy/">Privacy policy</a>
+          <a href="/terms-of-use/">Terms of use</a>
+          <a href="/#final-cta">Request demo</a>
+        </div>
+      </div>
+    </div>
+    <div class="legal-footer-base">
+      <p>&copy; 2026 Sunsynk Report Platform. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <a href="#privacy" class="back-to-top" id="backToTop">↑</a>
+
+  <script>
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+    backToTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

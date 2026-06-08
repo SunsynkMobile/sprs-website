@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Knowledge Base | Sunsynk Report Platform</title>
+  <meta name="description" content="Technical documentation for the Sunsynk Report Platform. Explore report generation methodology, mathematical formulae, and metric calculations." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23ffb800'/><circle cx='50' cy='30' r='8' fill='%231e5eff'/><path d='M50 15 L55 25 L50 28 L45 25 Z' fill='%231e5eff'/><path d='M70 40 L75 50 L68 52 L65 45 Z' fill='%231e5eff'/><path d='M30 40 L35 45 L28 52 L25 50 Z' fill='%231e5eff'/><path d='M50 72 L50 90 M40 80 L60 80' stroke='%231e5eff' stroke-width='3' fill='none' stroke-linecap='round'/></svg>" type="image/svg+xml" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" />
+  <style>
+    :root {
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-500: #64748b;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+      --blue: #1e5eff;
+      --blue-dark: #1a3a80;
+      --gold: #ffb800;
+      --gold-dark: #f59e00;
+      --green: #17ba6b;
+      --white: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, var(--slate-50) 0%, #f9f5ff 100%);
+      color: var(--slate-700);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .kb-header-wrap {
+      background: linear-gradient(135deg, var(--gold) 0%, #f59e00 100%);
+      color: var(--white);
+      padding: 5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kb-header-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.1)"/></svg>') no-repeat bottom;
+      background-size: cover;
+      pointer-events: none;
+    }
+
+    .kb-header-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .kb-header-content h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    .kb-header-content p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 500;
+    }
+
+    /* Navigation Bar */
+    .kb-nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--slate-200);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .kb-nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .kb-nav-brand {
+      font-weight: 700;
+      color: var(--gold-dark);
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .kb-nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .kb-nav-links a {
+      color: var(--slate-600);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.35rem 0;
+      transition: color 0.3s ease;
+    }
+
+    .kb-nav-links a:hover {
+      color: var(--gold-dark);
+    }
+
+    /* Main Container */
+    .kb-wrapper {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .kb-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 3rem;
+    }
+
+    /* Sidebar TOC */
+    .kb-toc {
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      border: 1px solid var(--slate-200);
+    }
+
+    .kb-toc h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--slate-900);
+      margin-bottom: 1.25rem;
+    }
+
+    .kb-toc ul {
+      list-style: none;
+    }
+
+    .kb-toc li {
+      margin-bottom: 0.5rem;
+    }
+
+    .kb-toc a {
+      color: var(--slate-600);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      display: block;
+      padding: 0.35rem 0;
+      border-left: 2px solid transparent;
+      padding-left: 0.75rem;
+    }
+
+    .kb-toc a:hover {
+      color: var(--gold-dark);
+      border-left-color: var(--gold-dark);
+    }
+
+    .kb-toc ul ul {
+      margin-left: 0.75rem;
+      margin-top: 0.25rem;
+    }
+
+    .kb-toc ul ul li {
+      margin-bottom: 0.35rem;
+    }
+
+    .kb-toc ul ul a {
+      font-size: 0.78rem;
+    }
+
+    /* Content */
+    .kb-content h2 {
+      font-size: 1.8rem;
+      color: var(--slate-900);
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .kb-content h2::before {
+      content: '';
+      width: 4px;
+      height: 28px;
+      background: linear-gradient(135deg, var(--gold) 0%, #f59e00 100%);
+      border-radius: 2px;
+    }
+
+    .kb-content h3 {
+      font-size: 1.2rem;
+      color: var(--slate-800);
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    .kb-content h4 {
+      font-size: 1rem;
+      color: var(--slate-800);
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .kb-section {
+      margin-bottom: 3rem;
+      scroll-margin-top: 150px;
+      min-width: 0;
+    }
+
+    .kb-section:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .kb-content p {
+      font-size: 0.95rem;
+      color: var(--slate-700);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      overflow-wrap: anywhere;
+    }
+
+    .kb-content ul {
+      margin-left: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .kb-content li {
+      font-size: 0.95rem;
+      color: var(--slate-700);
+      margin-bottom: 0.65rem;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    .flow-steps {
+      margin: 1rem 0 1.25rem 1.25rem;
+      padding: 1rem 1rem 0.6rem;
+      border: 1px solid var(--slate-200);
+      border-radius: 10px;
+      background: var(--white);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+
+    .flow-steps li {
+      font-family: 'Courier New', monospace;
+      line-height: 1.45;
+      margin-bottom: 0.55rem;
+      color: var(--slate-800);
+    }
+
+    .kb-content {
+      min-width: 0;
+    }
+
+    /* Math formulas */
+    .formula-block {
+      background: linear-gradient(135deg, rgba(255, 184, 0, 0.08) 0%, rgba(245, 158, 0, 0.08) 100%);
+      border-left: 4px solid var(--gold);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+    }
+
+    .formula-inline {
+      font-family: 'Courier New', monospace;
+      background: rgba(0,0,0,0.02);
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      overflow-wrap: anywhere;
+    }
+
+    .katex-display {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 0.25rem;
+    }
+
+    .katex {
+      text-wrap: nowrap;
+    }
+
+    .kb-mobile-toc {
+      display: none;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      background: var(--white);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+
+    .kb-mobile-toc summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 0.85rem 1rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      background: linear-gradient(135deg, rgba(255, 184, 0, 0.1) 0%, rgba(245, 158, 0, 0.1) 100%);
+    }
+
+    .kb-mobile-toc summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .kb-mobile-toc ul {
+      list-style: none;
+      margin: 0;
+      padding: 0.5rem 0;
+      max-height: 50vh;
+      overflow-y: auto;
+    }
+
+    .kb-mobile-toc li {
+      margin: 0;
+    }
+
+    .kb-mobile-toc a {
+      display: block;
+      padding: 0.6rem 1rem;
+      color: var(--slate-700);
+      text-decoration: none;
+      font-size: 0.9rem;
+      border-left: 3px solid transparent;
+    }
+
+    .kb-mobile-toc a:hover {
+      background: var(--slate-50);
+      border-left-color: var(--gold-dark);
+      color: var(--gold-dark);
+    }
+
+    /* Data Tables */
+    .kb-table-wrap {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+
+    .kb-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+
+    .kb-table thead {
+      background: linear-gradient(135deg, rgba(255, 184, 0, 0.1) 0%, rgba(245, 158, 0, 0.1) 100%);
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .kb-table th {
+      padding: 0.875rem;
+      text-align: left;
+      font-weight: 700;
+      color: var(--slate-900);
+    }
+
+    .kb-table td {
+      padding: 0.75rem 0.875rem;
+      border-bottom: 1px solid var(--slate-200);
+      color: var(--slate-700);
+    }
+
+    .kb-table tbody tr:hover {
+      background: var(--slate-50);
+    }
+
+    .kb-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Code blocks */
+    .kb-code {
+      background: var(--slate-900);
+      color: #e0e0e0;
+      padding: 1.25rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    /* Callout boxes */
+    .kb-callout {
+      background: linear-gradient(135deg, rgba(255, 184, 0, 0.08) 0%, rgba(245, 158, 0, 0.08) 100%);
+      border-left: 4px solid var(--gold);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .kb-callout p {
+      margin: 0;
+      font-weight: 500;
+      color: var(--slate-800);
+    }
+
+    /* Footer */
+    .kb-footer {
+      background: linear-gradient(135deg, var(--gold) 0%, #f59e00 100%);
+      color: var(--white);
+      padding: 4rem 2rem;
+      margin-top: 6rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .kb-footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .kb-footer-section h3 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.25rem;
+      color: rgba(255,255,255,0.95);
+    }
+
+    .kb-footer-section p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.95);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .kb-footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .kb-footer-links a {
+      color: rgba(255,255,255,0.95);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+      display: inline-block;
+    }
+
+    .kb-footer-links a:hover {
+      color: var(--white);
+      transform: translateX(4px);
+    }
+
+    .kb-footer-base {
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.9);
+      font-weight: 500;
+    }
+
+    .kb-footer-base p {
+      margin: 0;
+      color: var(--white);
+    }
+
+    @media (max-width: 768px) {
+      .kb-footer {
+        padding: 2.25rem 1rem;
+        margin-top: 3rem;
+      }
+
+      .kb-footer-content {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem 1rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .kb-footer-section h3 {
+        margin-bottom: 0.55rem;
+      }
+
+      .kb-footer-section p {
+        font-size: 0.85rem;
+        margin-bottom: 0.6rem;
+        line-height: 1.45;
+      }
+
+      .kb-footer-links {
+        gap: 0.45rem;
+      }
+
+      .kb-footer-links a {
+        font-size: 0.84rem;
+      }
+
+      .kb-footer-base {
+        padding-top: 1rem;
+        gap: 0.75rem;
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .kb-footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Back to Top */
+    .back-to-top {
+      position: fixed;
+      bottom: 4rem;
+      right: 2rem;
+      width: 48px;
+      height: 48px;
+      background: var(--gold);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 184, 0, 0.3);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .back-to-top:hover {
+      background: var(--gold-dark);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(255, 184, 0, 0.4);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .kb-wrapper {
+        padding: 2.25rem 1.25rem;
+      }
+
+      .kb-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .kb-toc {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .kb-header-wrap {
+        padding: 4rem 1rem;
+      }
+
+      .kb-nav-content {
+        padding: 0.85rem 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .kb-nav-links {
+        width: 100%;
+        gap: 0.75rem 1rem;
+        flex-wrap: wrap;
+      }
+
+      .kb-nav-links a {
+        padding: 0.5rem 0;
+      }
+
+      .kb-wrapper {
+        padding: 2rem 1rem;
+      }
+
+      .kb-mobile-toc {
+        display: block;
+      }
+
+      .kb-header-content h1 {
+        font-size: 2rem;
+      }
+
+      .kb-content h2 {
+        font-size: 1.45rem;
+        line-height: 1.3;
+        align-items: flex-start;
+        margin-bottom: 1.15rem;
+      }
+
+      .kb-content h3 {
+        margin-top: 1.35rem;
+        margin-bottom: 0.85rem;
+      }
+
+      .kb-content p,
+      .kb-content ul {
+        margin-bottom: 1.1rem;
+      }
+
+      .flow-steps {
+        margin: 0.85rem 0 1.1rem 1rem;
+        padding: 0.8rem 0.8rem 0.5rem;
+      }
+
+      .flow-steps li {
+        font-size: 0.84rem;
+        line-height: 1.4;
+        margin-bottom: 0.45rem;
+      }
+
+      .kb-section {
+        margin-bottom: 2.35rem;
+      }
+
+      .kb-content h2::before {
+        margin-top: 0.2rem;
+      }
+
+      .formula-block {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .kb-table-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        font-size: 0.8rem;
+      }
+
+      .kb-table {
+        min-width: 640px;
+      }
+
+      .kb-table th,
+      .kb-table td {
+        padding: 0.5rem;
+      }
+
+      .back-to-top {
+        width: 44px;
+        height: 44px;
+        right: 1rem;
+        bottom: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .kb-nav-content {
+        gap: 0.65rem;
+      }
+
+      .kb-header-content h1 {
+        font-size: 1.7rem;
+      }
+
+      .kb-header-content p {
+        font-size: 0.95rem;
+      }
+
+      .kb-content h2 {
+        font-size: 1.25rem;
+      }
+
+      .kb-content p,
+      .kb-content li {
+        font-size: 0.9rem;
+      }
+
+      .formula-block,
+      .kb-callout {
+        padding: 1rem;
+        margin: 1.1rem 0;
+      }
+
+      .kb-table {
+        min-width: 560px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <div class="kb-nav">
+    <div class="kb-nav-content">
+      <a href="/" class="kb-nav-brand">← Sunsynk Report Platform</a>
+      <div class="kb-nav-links">
+        <a href="#methodology">Methodology</a>
+        <a href="/">Platform</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <div class="kb-header-wrap">
+    <div class="kb-header-content">
+      <h1>Knowledge Base</h1>
+      <p>Report Generation: Mathematical Formulae and Methodology</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="kb-wrapper">
+    <div class="kb-grid">
+      <!-- Table of Contents -->
+      <aside class="kb-toc">
+        <h3>Contents</h3>
+        <ul>
+          <li><a href="#methodology">Overview</a></li>
+          <li><a href="#section-1">Energy at a Glance</a></li>
+          <li><a href="#section-2">Reconciled Energy Flow</a>
+            <ul>
+              <li><a href="#section-2-1">Interval energy</a></li>
+              <li><a href="#section-2-2">Flow allocation</a></li>
+              <li><a href="#section-2-3">Residuals</a></li>
+              <li><a href="#section-2-4">Coverage</a></li>
+            </ul>
+          </li>
+          <li><a href="#section-3">Solar Utilisation</a></li>
+          <li><a href="#section-4">Inverter Clipping</a></li>
+          <li><a href="#section-5">System Accuracy</a></li>
+          <li><a href="#section-6">Battery Health</a></li>
+          <li><a href="#section-7">Evening Efficiency</a></li>
+          <li><a href="#section-8">Peer Benchmark</a></li>
+          <li><a href="#section-9">Daily Aggregates</a></li>
+          <li><a href="#section-10">Data Gap Handling</a></li>
+          <li><a href="#rounding">Rounding Rules</a></li>
+        </ul>
+      </aside>
+
+      <!-- Content -->
+      <main class="kb-content">
+        <details class="kb-mobile-toc" id="kbMobileToc">
+          <summary>Contents</summary>
+          <ul>
+            <li><a href="#methodology">Overview</a></li>
+            <li><a href="#section-1">Energy at a Glance</a></li>
+            <li><a href="#section-2">Reconciled Energy Flow</a></li>
+            <li><a href="#section-3">Solar Utilisation</a></li>
+            <li><a href="#section-4">Inverter Clipping</a></li>
+            <li><a href="#section-5">System Accuracy</a></li>
+            <li><a href="#section-6">Battery Health</a></li>
+            <li><a href="#section-7">Evening Efficiency</a></li>
+            <li><a href="#section-8">Peer Benchmark</a></li>
+            <li><a href="#section-9">Daily Aggregates</a></li>
+            <li><a href="#section-10">Data Gap Handling</a></li>
+            <li><a href="#rounding">Rounding Rules</a></li>
+          </ul>
+        </details>
+
+        <div id="methodology" class="kb-section">
+          <h2>Report Generation Methodology</h2>
+          <p>The Sunsynk Report Platform generates comprehensive system performance analyses using real-time telemetry data from your inverter. All metrics are calculated using rigorous mathematical methods with clear assumptions and validation rules.</p>
+          <p>This knowledge base documents the exact formulae, data processing steps, and quality assurance thresholds applied to your system data.</p>
+        </div>
+
+        <div id="section-1" class="kb-section">
+          <h2>1. Energy at a Glance (Cumulative Meter Totals)</h2>
+          <p>All six primary energy metrics are computed as delta readings from the inverter's on-device lifetime odometer counters.</p>
+          
+          <div class="kb-table-wrap">
+            <table class="kb-table">
+              <thead>
+                <tr>
+                  <th>Metric</th>
+                  <th>Source Field</th>
+                  <th>Formula</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Solar Generated</td>
+                  <td><code>pvHistory</code></td>
+                  <td><code>max(pvHistory) − min(pvHistory)</code></td>
+                </tr>
+                <tr>
+                  <td>Home Energy Used</td>
+                  <td><code>totalUsed</code></td>
+                  <td><code>max(totalUsed) − min(totalUsed)</code></td>
+                </tr>
+                <tr>
+                  <td>Grid Import</td>
+                  <td><code>etotal_from</code></td>
+                  <td><code>max(etotal_from) − min(etotal_from)</code></td>
+                </tr>
+                <tr>
+                  <td>Grid Export</td>
+                  <td><code>gridSellTotal</code></td>
+                  <td><code>max(gridSellTotal) − min(gridSellTotal)</code></td>
+                </tr>
+                <tr>
+                  <td>Battery Charged</td>
+                  <td><code>batChargeTotal</code></td>
+                  <td><code>max(batChargeTotal) − min(batChargeTotal)</code></td>
+                </tr>
+                <tr>
+                  <td>Battery Discharged</td>
+                  <td><code>batDischargeTotal</code></td>
+                  <td><code>max(batDischargeTotal) − min(batDischargeTotal)</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>All values are expressed in <strong>kWh</strong>. A metric is flagged <code>data-gap</code> when both its start and end readings equal zero.</p>
+        </div>
+
+        <div id="section-2" class="kb-section">
+          <h2>2. Reconciled Energy Flow (Interval Integration)</h2>
+          <p>This section converts instantaneous power readings into cumulative energy using trapezoidal approximation (rectangular integration with forward-fill).</p>
+
+          <div id="section-2-1" class="kb-section">
+            <h3>2.1 Interval Energy from Power</h3>
+            <p>For each telemetry interval <span class="formula-inline">[t<sub>i</sub>, t<sub>i+1</sub>]</span>:</p>
+            <div class="formula-block">
+              $$\Delta t = t_{i+1} - t_i \quad \text{(hours)}$$
+              $$E = \frac{\max(P_W,\ 0) \times \Delta t}{1000} \quad \text{(kWh)}$$
+            </div>
+            <p>An interval is <strong>excluded</strong> from energy integration when:</p>
+            <ul>
+              <li>Any of the four power signals (PV, load, grid, battery) is <code>null</code></li>
+              <li>Δt ≤ 0 or Δt &gt; 20 minutes (contiguous gap threshold)</li>
+            </ul>
+            <p><strong>Sign conventions:</strong></p>
+            <ul>
+              <li><strong>Grid:</strong> positive = import, negative = export → E<sub>import</sub> = max(P<sub>grid</sub>, 0), E<sub>export</sub> = max(−P<sub>grid</sub>, 0)</li>
+              <li><strong>Battery:</strong> positive = discharge, negative = charge → E<sub>dis</sub> = max(P<sub>bat</sub>, 0), E<sub>chg</sub> = max(−P<sub>bat</sub>, 0)</li>
+            </ul>
+          </div>
+
+          <div id="section-2-2" class="kb-section">
+            <h3>2.2 Energy Flow Path Allocation (Per Interval)</h3>
+            <p>Each interval's energy is decomposed into seven flow paths using a greedy priority cascade:</p>
+            <ol class="flow-steps">
+              <li>pvToLoad = min(E<sub>pv</sub>, E<sub>load</sub>)</li>
+              <li>remainLoad = E<sub>load</sub> − pvToLoad</li>
+              <li>batteryToLoad = min(E<sub>dis</sub>, remainLoad)</li>
+              <li>remainLoad = remainLoad − batteryToLoad</li>
+              <li>gridToLoad = min(E<sub>import</sub>, remainLoad)</li>
+              <li>pvToBattery = min(E<sub>chg</sub>, remainPv)</li>
+              <li>gridToBattery = min(E<sub>import</sub>, E<sub>chg</sub>)</li>
+            </ol>
+            <p>Paths are accumulated over all eligible intervals and rounded to 2 decimal places.</p>
+          </div>
+
+          <div id="section-2-3" class="kb-section">
+            <h3>2.3 Residuals (Data Quality Indicator)</h3>
+            <div class="formula-block">
+              $$\text{sourceExcess} = \max\bigl((E_{pv} + E_{import} + E_{dis}) - (E_{load} + E_{chg} + E_{export}),\ 0\bigr)$$
+              $$\text{sinkExcess} = \max\bigl((E_{load} + E_{chg} + E_{export}) - (E_{pv} + E_{import} + E_{dis}),\ 0\bigr)$$
+            </div>
+            <p>Non-zero residuals indicate measurement imbalance (sensor drift or firmware rounding).</p>
+          </div>
+
+          <div id="section-2-4" class="kb-section">
+            <h3>2.4 Coverage</h3>
+            <div class="formula-block">
+              $$\text{coveragePercent} = \frac{\text{eligibleIntervals}}{\text{totalIntervals}} \times 100$$
+            </div>
+          </div>
+        </div>
+
+        <div id="section-3" class="kb-section">
+          <h2>3. Solar Utilisation</h2>
+
+          <h3>3.1 Self-Sufficiency</h3>
+          <div class="formula-block">
+            $$\text{Self-Sufficiency}\ (\%) = \frac{E_{load} - E_{import}}{E_{load}} \times 100$$
+          </div>
+          <p>Equivalently: <span class="formula-inline">1 − (E<sub>import</sub> / E<sub>load</sub>)</span>. Derived from reconciled flow paths:</p>
+          <div class="formula-block">
+            $$= \frac{pvToLoad + batteryToLoad}{E_{load}} \times 100$$
+          </div>
+          <p><strong>Thresholds:</strong> ≥ 70% = High (green), ≥ 40% = Moderate (amber), &lt; 40% = Low (red).</p>
+
+          <h3>3.2 PV / Load Ratio</h3>
+          <div class="formula-block">
+            $$\text{PV/Load Ratio} = \frac{E_{pv}}{E_{load}}$$
+          </div>
+
+          <h3>3.3 Overproduction</h3>
+          <p>A day is <strong>overproducing</strong> when P<sub>pv</sub> &gt; P<sub>load</sub> whilst SOC ≥ 99%.</p>
+          <div class="formula-block">
+            $$\text{ExcessPower}_W = \max(P_{pv} - P_{load},\ 0)$$
+            $$\text{UnusedPotential}_{kWh} = \sum_{\text{intervals}} \frac{\text{ExcessPower}_W \times \Delta t_{\text{seconds}}}{3\,600 \times 1\,000}$$
+            $$\text{OverproductionPct}\ (\%) = \frac{\text{overproductionDays}}{\text{totalDays}} \times 100$$
+          </div>
+        </div>
+
+        <div id="section-4" class="kb-section">
+          <h2>4. Inverter Clipping</h2>
+          <p>Detects when PV output is constrained at the inverter AC rating ceiling.</p>
+
+          <h3>4.1 Clipping Threshold</h3>
+          <div class="formula-block">
+            $$P_{\text{clip}} = P_{\text{rated}} \times 0.98 \quad \text{(kW)}$$
+          </div>
+          <p>A sample is a <strong>candidate clip</strong> when:</p>
+          <ul>
+            <li>P<sub>pv</sub> ≥ P<sub>clip</sub></li>
+            <li>Within the daylight window 05:00–20:00</li>
+            <li>Gap to next reading ≤ 20 minutes</li>
+          </ul>
+
+          <h3>4.2 Event Qualification</h3>
+          <p>Consecutive candidate-clip samples are grouped into events. An event is <strong>qualifying</strong> only if:</p>
+          <ul>
+            <li>intervals ≥ 3 <strong>AND</strong></li>
+            <li>duration ≥ 15 minutes</li>
+          </ul>
+
+          <h3>4.3 Summary Metrics</h3>
+          <div class="formula-block">
+            $$\text{ClippedDurationHours} = \sum_{\text{qualifying events}} \text{event duration (hours)}$$
+            $$\text{ClippingThreshold}_{kW} = \frac{P_{\text{rated}} \times 0.98}{1000}$$
+          </div>
+        </div>
+
+        <div id="section-5" class="kb-section">
+          <h2>5. System Accuracy Check</h2>
+          <p>Validates internal consistency of the inverter's power balance reporting.</p>
+
+          <h3>5.1 Expected Load</h3>
+          <div class="formula-block">
+            $$P_{\text{expected}} = P_{ac} + P_{inv}$$
+          </div>
+
+          <h3>5.2 Inconsistency Flag (Per Sample)</h3>
+          <p>A sample is flagged <strong>inconsistent</strong> when:</p>
+          <div class="formula-block">
+            $$|P_{\text{expected}} - P_{load}| > \max(50\ \text{W},\ P_{load} \times 0.05)$$
+          </div>
+
+          <h3>5.3 Low-Load Exclusion</h3>
+          <p>A sample is marked <strong>low-load</strong> (excluded from the real inconsistency rate) when:</p>
+          <div class="formula-block">
+            $$P_{load} < 50\ \text{W} \quad \text{OR} \quad P_{\text{expected}} < 50\ \text{W}$$
+          </div>
+
+          <h3>5.4 Real Inconsistency Rate (Per Day)</h3>
+          <div class="formula-block">
+            $$\text{RealInconsistencyPct}\ (\%) = \frac{\text{realInconsistentRows}}{\text{eligibleRows}} \times 100$$
+          </div>
+          <p>where <code>eligibleRows</code> = all rows with <code>lowLoadFlag = 0</code>.</p>
+          <p><strong>Thresholds:</strong> warning triggered at ≥ 10% real inconsistency with ≥ 3 inconsistent rows.</p>
+        </div>
+
+        <div id="section-6" class="kb-section">
+          <h2>6. Battery Health</h2>
+
+          <h3>6.1 Daily Derived Metrics</h3>
+          <div class="kb-table-wrap">
+            <table class="kb-table">
+              <thead>
+                <tr>
+                  <th>Metric</th>
+                  <th>Formula</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Cycle Depth</td>
+                  <td>CycleDepth (%) = SOC<sub>max</sub> − SOC<sub>min</sub></td>
+                </tr>
+                <tr>
+                  <td>Charge/Discharge Ratio</td>
+                  <td>r<sub>cd</sub> = ∑P<sub>chg</sub> / ∑P<sub>dis</sub></td>
+                </tr>
+                <tr>
+                  <td>Grid Dependency Ratio</td>
+                  <td>r<sub>grid</sub> = ∑P<sub>grid</sub> / ∑P<sub>load</sub></td>
+                </tr>
+                <tr>
+                  <td>Charge-Grid Ratio</td>
+                  <td>r<sub>cg</sub> = ∑P<sub>chg</sub> / ∑P<sub>grid</sub></td>
+                </tr>
+                <tr>
+                  <td>Temperature Exposure</td>
+                  <td>r<sub>temp</sub> = N<sub>hot</sub> / N<sub>total</sub> where hot = T<sub>bat</sub> &gt; 35°C</td>
+                </tr>
+                <tr>
+                  <td>Total Cycle Count</td>
+                  <td>C<sub>total</sub> = E<sub>dis,cumulative</sub> / E<sub>capacity,kWh</sub></td>
+                </tr>
+                <tr>
+                  <td>Daily Cycle Count</td>
+                  <td>C<sub>day</sub> = C<sub>total</sub>(d) − C<sub>total</sub>(d−1)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>6.2 Flag Conditions</h3>
+          <div class="kb-table-wrap">
+            <table class="kb-table">
+              <thead>
+                <tr>
+                  <th>Flag</th>
+                  <th>Condition</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>UNDERUTILISED_BATTERY</code></td>
+                  <td>r<sub>grid</sub> &gt; 0.7 AND SOC<sub>min</sub> &gt; 70% AND r<sub>cg</sub> &lt; 0.3</td>
+                </tr>
+                <tr>
+                  <td><code>HIGH_TEMP_EXPOSURE</code></td>
+                  <td>r<sub>temp</sub> &gt; 0.3</td>
+                </tr>
+                <tr>
+                  <td><code>HIGH_CYCLING_STRESS</code></td>
+                  <td>CycleDepth &gt; 60%</td>
+                </tr>
+                <tr>
+                  <td><code>HIGH_DISCHARGE_STRESS</code></td>
+                  <td>r<sub>cd</sub> &lt; 0.7</td>
+                </tr>
+                <tr>
+                  <td><code>LOW_UTILIZATION_OR_LOSS</code></td>
+                  <td>r<sub>cd</sub> &gt; 1.3</td>
+                </tr>
+                <tr>
+                  <td><code>BALANCED</code></td>
+                  <td>0.7 ≤ r<sub>cd</sub> ≤ 1.3</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>6.3 Data Confidence</h3>
+          <div class="kb-table-wrap">
+            <table class="kb-table">
+              <thead>
+                <tr>
+                  <th>Level</th>
+                  <th>Condition</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>high</code></td>
+                  <td>≥ 30 days AND ≥ 10,000 samples</td>
+                </tr>
+                <tr>
+                  <td><code>medium</code></td>
+                  <td>≥ 14 days AND ≥ 2,000 samples</td>
+                </tr>
+                <tr>
+                  <td><code>low</code></td>
+                  <td>≥ 7 days AND ≥ 100 samples</td>
+                </tr>
+                <tr>
+                  <td><code>insufficient</code></td>
+                  <td>&lt; 7 days OR &lt; 100 samples</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="section-7" class="kb-section">
+          <h2>7. Night-Time Grid Dependency (Evening Efficiency)</h2>
+          <p>All calculations are scoped to the <strong>night-time window</strong> (configurable; default 18:00–23:00).</p>
+
+          <h3>7.1 Daily Ratios</h3>
+          <div class="kb-table-wrap">
+            <table class="kb-table">
+              <thead>
+                <tr>
+                  <th>Metric</th>
+                  <th>Formula</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Grid Dependency Ratio</td>
+                  <td>r<sub>grid</sub> = ∑P<sub>grid</sub> / ∑P<sub>load</sub></td>
+                </tr>
+                <tr>
+                  <td>Self-Sufficiency Ratio</td>
+                  <td>r<sub>ss</sub> = 1 − r<sub>grid</sub></td>
+                </tr>
+                <tr>
+                  <td>Battery Contribution Ratio</td>
+                  <td>r<sub>bat</sub> = ∑P<sub>dis</sub> / ∑P<sub>load</sub></td>
+                </tr>
+                <tr>
+                  <td>PV Contribution Ratio</td>
+                  <td>r<sub>pv</sub> = ∑P<sub>pv</sub> / ∑P<sub>load</sub></td>
+                </tr>
+                <tr>
+                  <td>Load Spike Factor</td>
+                  <td>r<sub>spike</sub> = P<sub>load,max</sub> / P̄<sub>load</sub></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>7.2 Flag Conditions</h3>
+          <div class="kb-table-wrap">
+            <table class="kb-table">
+              <thead>
+                <tr>
+                  <th>Flag</th>
+                  <th>Condition</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>is_high_grid_dependency</code></td>
+                  <td>r<sub>grid</sub> &gt; 0.4</td>
+                </tr>
+                <tr>
+                  <td><code>is_battery_underutilised</code></td>
+                  <td>SOC̄ &gt; 50% AND r<sub>bat</sub> &lt; 0.2</td>
+                </tr>
+                <tr>
+                  <td><code>is_low_pv</code></td>
+                  <td>P̄<sub>pv</sub> &lt; 50 W</td>
+                </tr>
+                <tr>
+                  <td><code>is_load_spike</code></td>
+                  <td>r<sub>spike</sub> &gt; 3.0</td>
+                </tr>
+                <tr>
+                  <td><code>is_battery_empty_peak</code></td>
+                  <td>count(SOC = 0 AND P<sub>grid</sub> &gt; 0) &gt; 0</td>
+                </tr>
+                <tr>
+                  <td><code>grid_loss_event</code></td>
+                  <td>P<sub>grid</sub> = 0 AND P<sub>ac</sub> = 0 AND P<sub>bat</sub> ≥ 0 AND P<sub>pv</sub> ≤ 0</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>7.3 Daily Efficiency Score</h3>
+          <div class="formula-block">
+            $$\text{EfficiencyScore} = 100 - 30 \cdot \mathbf{1}[\text{highGrid}] - 20 \cdot \mathbf{1}[\text{batUnder}] - 10 \cdot \mathbf{1}[\text{loadSpike}] - 40 \cdot \mathbf{1}[\text{batEmpty}]$$
+          </div>
+          <p><strong>Range:</strong> 0–100. Maximum penalty (all flags) = 0.</p>
+
+          <h3>7.4 Period Average Efficiency Score</h3>
+          <div class="formula-block">
+            $$\overline{\text{EfficiencyScore}} = \frac{1}{N} \sum_{d=1}^{N} \text{EfficiencyScore}_d$$
+          </div>
+          <p>Rounded to 1 decimal place.</p>
+        </div>
+
+        <div id="section-8" class="kb-section">
+          <h2>8. Peer Benchmark</h2>
+
+          <h3>8.1 Haversine Distance (Used to Select Peers)</h3>
+          <div class="formula-block">
+            $$d = 2R \arcsin\!\sqrt{\sin^2\!\frac{\Delta\phi}{2} + \cos\phi_1\cos\phi_2\sin^2\!\frac{\Delta\lambda}{2}}$$
+          </div>
+          <p>where R = 6371 km, φ = latitude, λ = longitude.</p>
+          <p>Peers must be within <strong>50 km</strong>.</p>
+
+          <h3>8.2 Specific Yield</h3>
+          <div class="formula-block">
+            $$Y = \frac{E_{pv,kWh}}{P_{installed,kWp}} \quad \text{(kWh/kWp)}$$
+          </div>
+          <p>Specific yield is used for ranking when ≥ 5 peers have capacity data. Otherwise raw E<sub>pv</sub> is used.</p>
+
+          <h3>8.3 Rank</h3>
+          <div class="formula-block">
+            $$\text{Rank} = N_{\text{peers with better value}} + 1$$
+          </div>
+          <p>For example, Rank 1 = best performer in the local cohort.</p>
+        </div>
+
+        <div id="section-9" class="kb-section">
+          <h2>9. Daily Aggregates (Trend Charts)</h2>
+          <div class="kb-table-wrap">
+            <table class="kb-table">
+              <thead>
+                <tr>
+                  <th>Metric</th>
+                  <th>Formula</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Avg PV Power</td>
+                  <td>P̄<sub>pv</sub> = AVG(P<sub>pv,W</sub>) / 1000 (kW)</td>
+                </tr>
+                <tr>
+                  <td>Peak PV Power</td>
+                  <td>P<sub>pv,max</sub> = MAX(P<sub>pv,W</sub>) / 1000 (kW)</td>
+                </tr>
+                <tr>
+                  <td>Avg Load</td>
+                  <td>P̄<sub>load</sub> = AVG(P<sub>load,W</sub>) / 1000 (kW)</td>
+                </tr>
+                <tr>
+                  <td>Avg Battery Power</td>
+                  <td>P̄<sub>bat</sub> = AVG(P<sub>bat,W</sub>) / 1000 (kW) (positive = discharge)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="section-10" class="kb-section">
+          <h2>10. Forward-Fill (LOCF): Data Gap Handling</h2>
+          <p>All time-series queries use <strong>Last Observation Carried Forward</strong> to fill gaps in 5-minute telemetry. A gap is carried forward only when the next observation is within 20 minutes. Intervals exceeding this gap are excluded from energy integration (Section 2).</p>
+        </div>
+
+        <div id="rounding" class="kb-section">
+          <h2>Rounding Rules</h2>
+          <div class="kb-callout">
+            <p>All energy totals are rounded to <strong>2 decimal places</strong> (<code>round2</code>). Efficiency scores are rounded to <strong>1 decimal place</strong>. Ranked values and distances are rounded to <strong>1 decimal place</strong>.</p>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="kb-footer">
+    <div class="kb-footer-content">
+      <div class="kb-footer-section">
+        <h3>Knowledge Base</h3>
+        <p>Comprehensive technical documentation for report generation methodology, mathematical formulae, and metric calculations.</p>
+      </div>
+      <div class="kb-footer-section">
+        <h3>Platform</h3>
+        <div class="kb-footer-links">
+          <a href="/">Back to Platform</a>
+          <a href="/#features">Features</a>
+          <a href="/#benchmark">Benchmark</a>
+          <a href="/#pricing">Pricing</a>
+        </div>
+      </div>
+      <div class="kb-footer-section">
+        <h3>Resources</h3>
+        <div class="kb-footer-links">
+          <a href="/#how-it-works">How it works</a>
+          <a href="/#sample-insights">Sample report</a>
+          <a href="/#testimonials">Reviews</a>
+        </div>
+      </div>
+      <div class="kb-footer-section">
+        <h3>Legal</h3>
+        <div class="kb-footer-links">
+          <a href="/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy policy</a>
+          <a href="/terms-of-use/" target="_blank" rel="noopener noreferrer">Terms of use</a>
+          <a href="/#final-cta">Request demo</a>
+        </div>
+      </div>
+    </div>
+    <div class="kb-footer-base">
+      <p>&copy; 2026 Sunsynk Report Platform. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <a href="#methodology" class="back-to-top" id="backToTop">↑</a>
+
+  <!-- KaTeX for Math Rendering -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+
+  <script>
+    const backToTop = document.getElementById('backToTop');
+    const kbMobileToc = document.getElementById('kbMobileToc');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+
+    backToTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    if (kbMobileToc) {
+      kbMobileToc.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          if (window.matchMedia('(max-width: 768px)').matches) {
+            kbMobileToc.open = false;
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>
