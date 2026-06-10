@@ -186,6 +186,215 @@ function initDistBars() {
   if (container) io.observe(container);
 }
 
+/* ── Rich chart interactions (tooltips, hover/focus states) ── */
+function initChartInteractions() {
+  const distBars = Array.from(document.querySelectorAll('.dist-bars-row .db'));
+  const distRow = document.querySelector('.dist-bars-row');
+  const distLegend = document.querySelector('.dist-legend');
+  const clipChart = document.querySelector('.clip-chart');
+  const clipBars = Array.from(document.querySelectorAll('.clip-bar'));
+  const ringWrap = document.querySelector('.ring-wrap');
+
+  if (!distBars.length && !clipBars.length && !ringWrap) return;
+
+  const tip = document.createElement('div');
+  tip.className = 'chart-tooltip';
+  tip.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(tip);
+
+  const showTip = (x, y, title, value) => {
+    tip.innerHTML = `<strong>${title}</strong>${value}`;
+    tip.style.left = `${x}px`;
+    tip.style.top = `${y}px`;
+    tip.classList.add('show');
+  };
+  const moveTip = (x, y) => {
+    tip.style.left = `${x}px`;
+    tip.style.top = `${y}px`;
+  };
+  const hideTip = () => tip.classList.remove('show');
+
+  const distLive = document.createElement('p');
+  distLive.className = 'dist-live-legend';
+  distLive.textContent = 'Live: hover or drag across bars to inspect distribution.';
+  if (distLegend?.parentElement) distLegend.parentElement.appendChild(distLive);
+
+  const setActiveDistBar = (activeBar, x, y) => {
+    distBars.forEach(b => b.classList.toggle('is-active', b === activeBar));
+    if (!activeBar) return;
+    const range = activeBar.querySelector('span')?.textContent?.trim() || 'Range';
+    const score = Number(activeBar.dataset.h || 0);
+    const percentile = Math.min(Math.round(score), 100);
+    distLive.textContent = `Live: ${range} -> ${percentile}% comparative density.`;
+    showTip(x, y, range, `${percentile}% comparative density`);
+  };
+
+  distBars.forEach(bar => {
+    bar.tabIndex = 0;
+    bar.addEventListener('pointerenter', e => setActiveDistBar(bar, e.clientX, e.clientY));
+    bar.addEventListener('pointermove', e => moveTip(e.clientX, e.clientY));
+    bar.addEventListener('pointerleave', () => {
+      if (distRow?.classList.contains('is-scrubbing')) return;
+      bar.classList.remove('is-active');
+      distLive.textContent = 'Live: hover or drag across bars to inspect distribution.';
+      hideTip();
+    });
+    bar.addEventListener('focus', () => {
+      const r = bar.getBoundingClientRect();
+      setActiveDistBar(bar, r.left + r.width / 2, r.top);
+    });
+    bar.addEventListener('blur', () => {
+      if (distRow?.classList.contains('is-scrubbing')) return;
+      bar.classList.remove('is-active');
+      distLive.textContent = 'Live: hover or drag across bars to inspect distribution.';
+      hideTip();
+    });
+  });
+
+  if (distRow) {
+    const getNearestDistBar = clientX => {
+      let nearest = null;
+      let nearestDist = Infinity;
+      distBars.forEach(bar => {
+        const r = bar.getBoundingClientRect();
+        const cx = r.left + r.width / 2;
+        const d = Math.abs(cx - clientX);
+        if (d < nearestDist) {
+          nearestDist = d;
+          nearest = bar;
+        }
+      });
+      return nearest;
+    };
+
+    const scrubUpdate = e => {
+      if (!distRow.classList.contains('is-scrubbing')) return;
+      const bar = getNearestDistBar(e.clientX);
+      if (!bar) return;
+      setActiveDistBar(bar, e.clientX, e.clientY);
+    };
+
+    distRow.addEventListener('pointerdown', e => {
+      distRow.classList.add('is-scrubbing');
+      distRow.setPointerCapture(e.pointerId);
+      scrubUpdate(e);
+    });
+    distRow.addEventListener('pointermove', scrubUpdate);
+    const endScrub = () => {
+      distRow.classList.remove('is-scrubbing');
+      hideTip();
+    };
+    distRow.addEventListener('pointerup', endScrub);
+    distRow.addEventListener('pointercancel', endScrub);
+    distRow.addEventListener('pointerleave', () => {
+      if (distRow.classList.contains('is-scrubbing')) return;
+      hideTip();
+      distBars.forEach(b => b.classList.remove('is-active'));
+      distLive.textContent = 'Live: hover or drag across bars to inspect distribution.';
+    });
+  }
+
+  const clipSlots = ['06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00'];
+  const clipIntensity = [42, 58, 86, 88, 83, 66, 47];
+
+  let clipLive = null;
+  if (clipChart?.closest('.feat-card')) {
+    const target = clipChart.closest('.feat-card').querySelector('.feat-body');
+    if (target) {
+      clipLive = document.createElement('p');
+      clipLive.className = 'clip-live-legend';
+      clipLive.textContent = 'Live: hover chart bars to inspect clipping windows.';
+      target.appendChild(clipLive);
+    }
+  }
+
+  let crosshair = null;
+  let yLabel = null;
+  if (clipChart) {
+    crosshair = document.createElement('div');
+    crosshair.className = 'clip-crosshair';
+    yLabel = document.createElement('div');
+    yLabel.className = 'clip-y-label';
+    clipChart.appendChild(crosshair);
+    clipChart.appendChild(yLabel);
+  }
+
+  const setActiveClipBar = (bar, clientX, clientY) => {
+    clipBars.forEach(b => b.classList.toggle('is-active', b === bar));
+    if (!bar) return;
+    const i = clipBars.indexOf(bar);
+    const time = clipSlots[i] || `Slot ${i + 1}`;
+    const intensity = clipIntensity[i] || 50;
+    showTip(clientX, clientY, `Inverter Window ${time}`, `${intensity}% clipping risk`);
+    if (clipLive) clipLive.textContent = `Live: ${time} -> ${intensity}% clipping risk.`;
+
+    if (clipChart && crosshair && yLabel) {
+      const chartRect = clipChart.getBoundingClientRect();
+      const barRect = bar.getBoundingClientRect();
+      const x = barRect.left + barRect.width / 2 - chartRect.left;
+      const y = Math.max(6, barRect.top - chartRect.top - 8);
+      crosshair.style.left = `${x}px`;
+      crosshair.classList.add('show');
+      yLabel.textContent = `${intensity}%`;
+      yLabel.style.left = `${x}px`;
+      yLabel.style.top = `${y}px`;
+      yLabel.classList.add('show');
+    }
+  };
+
+  clipBars.forEach((bar, i) => {
+    bar.style.cursor = 'pointer';
+    bar.addEventListener('pointerenter', e => setActiveClipBar(bar, e.clientX, e.clientY));
+    bar.addEventListener('pointermove', e => moveTip(e.clientX, e.clientY));
+    bar.addEventListener('pointerleave', () => {
+      bar.classList.remove('is-active');
+      hideTip();
+      if (clipLive) clipLive.textContent = 'Live: hover chart bars to inspect clipping windows.';
+      crosshair?.classList.remove('show');
+      yLabel?.classList.remove('show');
+    });
+    bar.setAttribute('aria-label', `Clipping window ${clipSlots[i] || i + 1}`);
+  });
+
+  if (clipChart) {
+    clipChart.addEventListener('pointermove', e => {
+      if (!clipBars.length) return;
+      const chartRect = clipChart.getBoundingClientRect();
+      const localX = e.clientX - chartRect.left;
+      let nearest = clipBars[0];
+      let nearestDist = Infinity;
+      clipBars.forEach(bar => {
+        const r = bar.getBoundingClientRect();
+        const cx = r.left + r.width / 2 - chartRect.left;
+        const d = Math.abs(cx - localX);
+        if (d < nearestDist) {
+          nearestDist = d;
+          nearest = bar;
+        }
+      });
+      setActiveClipBar(nearest, e.clientX, e.clientY);
+    });
+    clipChart.addEventListener('pointerleave', () => {
+      hideTip();
+      clipBars.forEach(b => b.classList.remove('is-active'));
+      if (clipLive) clipLive.textContent = 'Live: hover chart bars to inspect clipping windows.';
+      crosshair?.classList.remove('show');
+      yLabel?.classList.remove('show');
+    });
+  }
+
+  if (ringWrap && !reducedMotion && window.matchMedia('(hover: hover)').matches) {
+    ringWrap.classList.add('interactive');
+    ringWrap.addEventListener('pointermove', e => {
+      const r = ringWrap.getBoundingClientRect();
+      const nx = ((e.clientX - r.left) / r.width - 0.5) * 8;
+      const ny = ((e.clientY - r.top) / r.height - 0.5) * 8;
+      ringWrap.style.transform = `translate(${nx * 0.25}px, ${ny * 0.25}px)`;
+    });
+    ringWrap.addEventListener('pointerleave', () => { ringWrap.style.transform = ''; });
+  }
+}
+
 /* ── Steps line ── */
 function initStepsLine() {
   const fill = document.querySelector('.steps-line-fill');
@@ -250,6 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScoreBars();
   initCountUp();
   initDistBars();
+  initChartInteractions();
   initStepsLine();
   initStepLit();
   initTilt();
