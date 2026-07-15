@@ -350,52 +350,63 @@
       </div>
       <div class="container hero-layout hero-centered">
         <div class="hero-text fade-in">
-          <p class="eyebrow-light hero-brand">Sunsynk Report Platform</p>
+          <p class="hero-brand">Sunsynk Report Platform</p>
+          <a class="hero-announcement" href="#pricing">Credits never expire · No subscription <span aria-hidden="true">→</span></a>
           <h1>Your performance score and installer-ready PDF from one month of data.</h1>
           <p class="hero-sub">Turn Sunsynk readings into a clear System Performance Score, peer benchmarks, and the next action to take.</p>
           <div class="hero-actions">
-            <a class="btn btn-gold magnetic" href="https://app.sunsynkreports.com" target="_blank" rel="noopener noreferrer">Get My Report</a>
-            <a class="btn btn-outline magnetic" href="#sample-insights">View Sample</a>
+            <a class="btn btn-gold magnetic" href="https://app.sunsynkreports.com" target="_blank" rel="noopener noreferrer">Get My Report <span aria-hidden="true">→</span></a>
+            <a class="btn btn-soft magnetic" href="#sample-insights">View Sample</a>
           </div>
-          <p class="hero-trust">Credits never expire · Stripe checkout · No subscription</p>
+          <div class="hero-proof" aria-label="Built for Sunsynk owners and installers">
+            <span>Works with Sunsynk</span>
+            <span>Homeowners</span>
+            <span>Installers</span>
+            <span>Stripe checkout</span>
+            <span>Multi-currency</span>
+          </div>
         </div>
-        <div class="hero-card fade-in" data-delay="180">
-          <div class="score-card">
-            <div class="score-card-top">
-              <div>
-                <p class="score-label">System Performance Score</p>
-                <p class="score-device">Device 2212044417 · May to Jun 2026</p>
+        <div class="hero-preview fade-in" data-delay="180">
+          <div class="hero-card-glow" aria-hidden="true"></div>
+          <p class="hero-float-chip">Peer rank: Bottom 30%</p>
+          <div class="hero-card">
+            <div class="score-card">
+              <div class="score-card-top">
+                <div>
+                  <p class="score-label">System Performance Score</p>
+                  <p class="score-device">Device 2212044417 · May to Jun 2026</p>
+                </div>
+                <span class="badge badge-warn">Needs Attention</span>
               </div>
-              <span class="badge badge-warn">Needs Attention</span>
+              <div class="ring-wrap">
+                <svg class="ring" viewBox="0 0 180 180" role="img" aria-label="Score 52 out of 100">
+                  <defs>
+                    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#1e5eff"/>
+                      <stop offset="100%" stop-color="#e8a800"/>
+                    </linearGradient>
+                    <linearGradient id="miniGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#1e5eff"/>
+                      <stop offset="100%" stop-color="#e8a800"/>
+                    </linearGradient>
+                  </defs>
+                  <circle class="ring-track" cx="90" cy="90" r="74"/>
+                  <circle class="ring-progress" cx="90" cy="90" r="74"
+                    stroke="url(#ringGrad)"
+                    stroke-dasharray="465"
+                    stroke-dashoffset="465"
+                    data-target-offset="223"/>
+                  <text class="ring-num" x="90" y="83" text-anchor="middle">52</text>
+                  <text class="ring-denom" x="90" y="103" text-anchor="middle">/ 100</text>
+                </svg>
+              </div>
+              <div class="score-list">
+                <div class="score-row"><span class="score-name">Self-Sufficiency</span><div class="score-bar"><div class="score-fill" data-val="23" style="--c:var(--orange-fill)"></div></div><span class="score-val score-val-warn">23</span></div>
+                <div class="score-row"><span class="score-name">Battery Health</span><div class="score-bar"><div class="score-fill" data-val="86" style="--c:var(--green-fill)"></div></div><span class="score-val score-val-ok">86</span></div>
+                <div class="score-row"><span class="score-name">Evening Grid</span><div class="score-bar"><div class="score-fill" data-val="82" style="--c:var(--green-fill)"></div></div><span class="score-val score-val-ok">82</span></div>
+              </div>
+              <p class="score-more">Full report includes six reviews and peer benchmarks.</p>
             </div>
-            <div class="ring-wrap">
-              <svg class="ring" viewBox="0 0 180 180" role="img" aria-label="Score 52 out of 100">
-                <defs>
-                  <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#1e5eff"/>
-                    <stop offset="100%" stop-color="#e8a800"/>
-                  </linearGradient>
-                  <linearGradient id="miniGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#1e5eff"/>
-                    <stop offset="100%" stop-color="#e8a800"/>
-                  </linearGradient>
-                </defs>
-                <circle class="ring-track" cx="90" cy="90" r="74"/>
-                <circle class="ring-progress" cx="90" cy="90" r="74"
-                  stroke="url(#ringGrad)"
-                  stroke-dasharray="465"
-                  stroke-dashoffset="465"
-                  data-target-offset="223"/>
-                <text class="ring-num" x="90" y="83" text-anchor="middle">52</text>
-                <text class="ring-denom" x="90" y="103" text-anchor="middle">/ 100</text>
-              </svg>
-            </div>
-            <div class="score-list">
-              <div class="score-row"><span class="score-name">Self-Sufficiency</span><div class="score-bar"><div class="score-fill" data-val="23" style="--c:var(--orange-fill)"></div></div><span class="score-val score-val-warn">23</span></div>
-              <div class="score-row"><span class="score-name">Battery Health</span><div class="score-bar"><div class="score-fill" data-val="86" style="--c:var(--green-fill)"></div></div><span class="score-val score-val-ok">86</span></div>
-              <div class="score-row"><span class="score-name">Evening Grid</span><div class="score-bar"><div class="score-fill" data-val="82" style="--c:var(--green-fill)"></div></div><span class="score-val score-val-ok">82</span></div>
-            </div>
-            <p class="score-more">Full report includes six reviews and peer benchmarks.</p>
           </div>
         </div>
       </div>
