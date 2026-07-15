@@ -112,7 +112,7 @@
       '        <p>Help us understand page usage and improve platform performance.</p>' +
       '      </div>' +
       '      <label class="cookie-switch" for="cookieAnalyticsToggle">' +
-      '        <input type="checkbox" id="cookieAnalyticsToggle" />' +
+      '        <input type="checkbox" id="cookieAnalyticsToggle" aria-label="Analytics cookies" />' +
       '        <span aria-hidden="true"></span>' +
       '      </label>' +
       '    </div>' +
@@ -146,20 +146,73 @@
     }
   }
 
+  var lastFocusBeforeModal = null;
+  var removeFocusTrap = null;
+
+  function getFocusable(container) {
+    if (!container) return [];
+    return Array.prototype.slice.call(container.querySelectorAll(
+      'a[href], button:not([disabled]), textarea, input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter(function (el) {
+      return !el.hasAttribute('hidden') && el.offsetParent !== null;
+    });
+  }
+
+  function trapFocus(modal) {
+    var panel = modal.querySelector('.cookie-modal__panel') || modal;
+    var focusable = getFocusable(panel);
+    if (!focusable.length) return function () {};
+
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    first.focus();
+
+    function onKeyDown(event) {
+      if (event.key !== 'Tab') return;
+      focusable = getFocusable(panel);
+      if (!focusable.length) return;
+      first = focusable[0];
+      last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    modal.addEventListener('keydown', onKeyDown);
+    return function () {
+      modal.removeEventListener('keydown', onKeyDown);
+    };
+  }
+
   function openModal(modal, currentConsent) {
     if (!modal) return;
     var analyticsToggle = modal.querySelector('#cookieAnalyticsToggle');
     if (analyticsToggle) {
       analyticsToggle.checked = !!(currentConsent && currentConsent.categories && currentConsent.categories.analytics);
     }
+    lastFocusBeforeModal = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     modal.removeAttribute('hidden');
     document.body.classList.add('cookie-modal-open');
+    if (removeFocusTrap) removeFocusTrap();
+    removeFocusTrap = trapFocus(modal);
   }
 
   function closeModal(modal) {
     if (!modal) return;
     modal.setAttribute('hidden', 'hidden');
     document.body.classList.remove('cookie-modal-open');
+    if (removeFocusTrap) {
+      removeFocusTrap();
+      removeFocusTrap = null;
+    }
+    if (lastFocusBeforeModal && typeof lastFocusBeforeModal.focus === 'function') {
+      lastFocusBeforeModal.focus();
+    }
+    lastFocusBeforeModal = null;
   }
 
   function applyConsent(consent, banner, modal) {

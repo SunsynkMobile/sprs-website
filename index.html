@@ -377,11 +377,11 @@
                 <defs>
                   <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stop-color="#1e5eff"/>
-                    <stop offset="100%" stop-color="#ffb800"/>
+                    <stop offset="100%" stop-color="#e8a800"/>
                   </linearGradient>
                   <linearGradient id="miniGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stop-color="#1e5eff"/>
-                    <stop offset="100%" stop-color="#ffb800"/>
+                    <stop offset="100%" stop-color="#e8a800"/>
                   </linearGradient>
                 </defs>
                 <circle class="ring-track" cx="90" cy="90" r="74"/>
@@ -395,9 +395,9 @@
               </svg>
             </div>
             <div class="score-list">
-              <div class="score-row"><span class="score-name">Self-Sufficiency</span><div class="score-bar"><div class="score-fill" data-val="23" style="--c:#f97316"></div></div><span class="score-val" style="color:#f97316">23</span></div>
-              <div class="score-row"><span class="score-name">Battery Health</span><div class="score-bar"><div class="score-fill" data-val="86" style="--c:#17ba6b"></div></div><span class="score-val" style="color:#17ba6b">86</span></div>
-              <div class="score-row"><span class="score-name">Evening Grid</span><div class="score-bar"><div class="score-fill" data-val="82" style="--c:#17ba6b"></div></div><span class="score-val" style="color:#17ba6b">82</span></div>
+              <div class="score-row"><span class="score-name">Self-Sufficiency</span><div class="score-bar"><div class="score-fill" data-val="23" style="--c:var(--orange-fill)"></div></div><span class="score-val score-val-warn">23</span></div>
+              <div class="score-row"><span class="score-name">Battery Health</span><div class="score-bar"><div class="score-fill" data-val="86" style="--c:var(--green-fill)"></div></div><span class="score-val score-val-ok">86</span></div>
+              <div class="score-row"><span class="score-name">Evening Grid</span><div class="score-bar"><div class="score-fill" data-val="82" style="--c:var(--green-fill)"></div></div><span class="score-val score-val-ok">82</span></div>
             </div>
             <p class="score-more">Full report includes six reviews and peer benchmarks.</p>
           </div>
@@ -424,7 +424,7 @@
             <p>See how you rank against nearby systems.</p>
           </div>
           <div class="strip-card reveal" data-delay="120">
-            <div class="strip-icon" style="background:rgba(23,186,107,.1);color:var(--green)">
+            <div class="strip-icon" style="background:rgba(15,122,76,.1);color:var(--green)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
             </div>
             <h3>Installer-ready PDF</h3>
@@ -571,9 +571,9 @@
                   <span class="aud-visual-label">Your score</span>
                 </div>
                 <div class="aud-visual-bars">
-                  <i style="--h:28%;--c:#f97316"></i>
-                  <i style="--h:72%;--c:#17ba6b"></i>
-                  <i style="--h:68%;--c:#17ba6b"></i>
+                  <i style="--h:28%;--c:var(--orange-fill)"></i>
+                  <i style="--h:72%;--c:var(--green-fill)"></i>
+                  <i style="--h:68%;--c:var(--green-fill)"></i>
                 </div>
                 <p class="aud-visual-note">Battery depletes 47 min too soon</p>
               </div>

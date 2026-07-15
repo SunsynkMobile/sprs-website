@@ -88,14 +88,14 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-      background: linear-gradient(135deg, var(--slate-50) 0%, #f9f5ff 100%);
+      background: var(--slate-50);
       color: var(--slate-700);
       line-height: 1.6;
       min-height: 100vh;
     }
 
     .legal-header-wrap {
-      background: linear-gradient(135deg, var(--cookie-accent-light) 0%, var(--cookie-accent) 100%);
+      background: var(--cookie-accent);
       color: var(--white);
       padding: 5rem 2rem;
       text-align: center;
@@ -252,7 +252,7 @@
       content: '';
       width: 4px;
       height: 28px;
-      background: linear-gradient(135deg, var(--cookie-accent-light) 0%, var(--cookie-accent) 100%);
+      background: var(--cookie-accent);
       border-radius: 2px;
     }
 
@@ -291,7 +291,7 @@
     }
 
     .legal-callout {
-      background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(15, 118, 110, 0.1) 100%);
+      background: rgba(15, 118, 110, 0.1);
       border-left: 4px solid var(--cookie-accent);
       padding: 1.5rem;
       border-radius: 8px;
@@ -305,7 +305,7 @@
     }
 
     .legal-footer {
-      background: linear-gradient(135deg, var(--cookie-accent-light) 0%, var(--cookie-accent) 100%);
+      background: var(--cookie-accent);
       color: var(--white);
       padding: 4rem 2rem;
       margin-top: 6rem;
@@ -635,7 +635,7 @@
     });
     backToTop.addEventListener('click', (e) => {
       e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     });
   </script>
 </body>
