@@ -12,7 +12,7 @@ Sunsynk Report Platform sells one-off performance reports for Sunsynk solar PV a
 4. How healthy is the system (overall score and category contributions)
 5. Where are the inefficiencies (solar, battery, evening grid; faults listed)
 6. What should I do next (prioritised behavioural, configuration and hardware actions)
-7. Assumptions and limitations (Important Information; detailed methodology in the knowledge base)
+7. Assumptions and limitations (Important Information in each report)
 
 The PDF consolidates those chapters into one shareable document.
 
@@ -78,7 +78,7 @@ Illustrative sample (not a specific customer's live data):
 
 ## Scoring methodology (summary)
 
-Reports cover cumulative meter totals, reconciled energy flow, solar utilisation, inverter clipping, system accuracy checks, battery health, night-time grid dependency, peer benchmark construction, daily aggregates, forward-fill for data gaps, and rounding rules. Detailed methodology is in the knowledge base, not expanded as formulae on the marketing homepage.
+Reports cover cumulative meter totals, reconciled energy flow, solar utilisation, inverter clipping, system accuracy checks, battery health, night-time grid dependency, peer benchmark construction, daily aggregates, forward-fill for data gaps, and rounding rules. Detailed methodology formulae are not expanded on the marketing homepage; each report includes Important Information covering assumptions and limitations.
 
 ## Brand and language
 
@@ -91,7 +91,6 @@ Reports cover cumulative meter totals, reconciled energy flow, solar utilisation
 ## Canonical pages
 
 - https://sunsynkreports.com/
-- https://sunsynkreports.com/knowledgebase/
 - https://sunsynkreports.com/privacy-policy/
 - https://sunsynkreports.com/terms-of-use/
 - https://sunsynkreports.com/cookie-policy/

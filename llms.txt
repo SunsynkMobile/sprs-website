@@ -24,7 +24,6 @@ Preferred citation name: Sunsynk Report Platform. Parent brand: Sunsynk.
 
 ## Optional
 
-- [Knowledge base](https://sunsynkreports.com/knowledgebase/): Report methodology and metric definitions
 - [Privacy policy](https://sunsynkreports.com/privacy-policy/): Personal data collection, use, and protection
 - [Terms of use](https://sunsynkreports.com/terms-of-use/): Legal terms for platform and report use
 - [Cookie policy](https://sunsynkreports.com/cookie-policy/): Cookie types, purpose, duration, and choices
