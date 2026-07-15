@@ -149,6 +149,21 @@ function initScoreBars() {
   io.observe(list);
 }
 
+/* ── Health category bars ── */
+function initHealthBars() {
+  const panel = document.querySelector('.health-panel');
+  const fills = document.querySelectorAll('.health-fill');
+  if (!panel || !fills.length) return;
+  const animate = () => fills.forEach(f => { f.style.width = `${Number(f.dataset.healthVal || 0)}%`; });
+  if (reducedMotion) { animate(); return; }
+  const io = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) return;
+    setTimeout(animate, 180);
+    io.disconnect();
+  }, { threshold: 0.28 });
+  io.observe(panel);
+}
+
 /* ── CountUp ── */
 function countUp(el, target, duration) {
   const start = performance.now();
@@ -431,7 +446,7 @@ function initStepLit() {
 /* ── Subtle card tilt ── */
 function initTilt() {
   if (reducedMotion || !window.matchMedia('(hover: hover)').matches) return;
-  document.querySelectorAll('.insight,.tq,.audience-card').forEach(card => {
+  document.querySelectorAll('.insight,.tq').forEach(card => {
     card.addEventListener('pointermove', e => {
       const r = card.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;
@@ -605,6 +620,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   initRing();
   initScoreBars();
+  initHealthBars();
   initCountUp();
   initDistBars();
   initChartInteractions();

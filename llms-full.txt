@@ -4,21 +4,25 @@
 
 ## What the product is
 
-Sunsynk Report Platform sells one-off performance reports for Sunsynk solar PV and battery systems. Customers select a device and date range covering about one month of readings. The platform returns:
+Sunsynk Report Platform sells one-off performance reports for Sunsynk solar PV and battery systems. Customers select a device and date range covering about one month of readings. The marketing site presents a curated homeowner journey that mirrors the report narrative:
 
-- An overall System Performance Score (0 to 100) with a status such as Needs Attention
-- Six focused performance reviews (for example battery health, self-sufficiency, evening grid use, inverter clipping, system accuracy, overproduction)
-- Neighbourhood or peer percentile benchmarks and a gap versus local median
-- Actionable findings written for homeowners and installers
-- An installer-ready PDF download
+1. What happened (executive summary)
+2. Can the data be trusted (coverage, plant details, accuracy)
+3. How much money was saved (estimated savings)
+4. How healthy is the system (overall score and category contributions)
+5. Where are the inefficiencies (solar, battery, evening grid; faults listed)
+6. What should I do next (prioritised behavioural, configuration and hardware actions)
+7. Assumptions and limitations (Important Information; detailed methodology in the knowledge base)
 
-There is no subscription. Packs are purchased then used when needed. Checkout lives at app.sunsynkreports.com. This website (sunsynkreports.com) is the marketing and methodology presence.
+The PDF consolidates those chapters into one shareable document.
+
+There is no subscription. Packs are purchased then used when needed. Checkout lives at app.sunsynkreports.com. This website (sunsynkreports.com) is the marketing presence.
 
 ## Who it is for
 
-Homeowners: plain-language visibility into solar, battery, home, and grid interaction; prioritised actions; consistent metrics for follow-up reports.
+Primary: homeowners with Sunsynk systems who want a clear performance, savings and action picture.
 
-Installers and consultants: standardised technical documentation, benchmark-backed recommendations, before and after evidence after system changes.
+Secondary: installers may use the PDF when supporting a homeowner.
 
 ## Pricing
 
@@ -45,8 +49,23 @@ Included with every bundle: the matching number of performance reports, credits 
 
 1. Connect your system: choose Sunsynk device and dates
 2. Analyse the month: readings across solar, battery, home, and grid
-3. Score and actions: overall score, six reviews, peer rank, what to fix first
-4. Download PDF: shareable installer-ready document
+3. Review the story: savings, health, inefficiencies and ranked actions
+4. Download PDF: shareable document for the homeowner or installer
+
+## Home page section anchors
+
+- #hero: executive promise and summary preview
+- #trust: data coverage, plant details, accuracy
+- #savings: estimated savings versus grid
+- #health: overall score and category bars
+- #sample-insights: with versus without compare panel
+- #whats-inside: solar, battery, evening cost digests
+- #actions: prioritised behaviour / configuration / hardware
+- #how-it-works: four steps
+- #pricing: credit packs
+- #testimonials: homeowner quotes
+- #faq: contents, subscription, data trust, audience, generation
+- #final-cta: buy credits close
 
 ## Example findings used on the marketing site
 
@@ -55,22 +74,24 @@ Illustrative sample (not a specific customer's live data):
 - Battery depletes about 47 minutes too soon relative to evening demand
 - Self-sufficiency around the 10th percentile versus neighbouring systems, about 65 points below local median
 - Closing the gap could save about 439 kWh of monthly grid import in the sample narrative
+- Illustrative estimated savings figure used in the savings panel (£186 sample month)
 
 ## Scoring methodology (summary)
 
-Reports cover cumulative meter totals, reconciled energy flow, solar utilisation, inverter clipping, system accuracy checks, battery health, night-time grid dependency, peer benchmark construction, daily aggregates, forward-fill for data gaps, and rounding rules. Detailed methodology pages are intentionally not listed on the marketing site.
+Reports cover cumulative meter totals, reconciled energy flow, solar utilisation, inverter clipping, system accuracy checks, battery health, night-time grid dependency, peer benchmark construction, daily aggregates, forward-fill for data gaps, and rounding rules. Detailed methodology is in the knowledge base, not expanded as formulae on the marketing homepage.
 
 ## Brand and language
 
 - Product name: Sunsynk Report Platform
 - Parent: Sunsynk
-- Locale: en-GB (analyse, optimise, utilisation, neighbouring)
+- Locale: en-GB (analyse, optimise, utilisation, neighbouring, prioritised)
 - Primary CTA wording on site: Get My Report
 - Secondary CTA: View Sample
 
 ## Canonical pages
 
 - https://sunsynkreports.com/
+- https://sunsynkreports.com/knowledgebase/
 - https://sunsynkreports.com/privacy-policy/
 - https://sunsynkreports.com/terms-of-use/
 - https://sunsynkreports.com/cookie-policy/
