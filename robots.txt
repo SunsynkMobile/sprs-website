@@ -11,36 +11,70 @@ Disallow: /privacy-policy.html
 Disallow: /terms-of-use.html
 Disallow: /cookie-policy.html
 
-# Explicit allow for common AI and search crawlers
+# Keep knowledge base offline from crawlers (page retained, not publicly listed)
+Disallow: /knowledgebase/
+Disallow: /knowledgebase
+
+# Explicit allow for common AI and search crawlers (KB still disallowed)
 User-agent: GPTBot
 Allow: /
+Disallow: /knowledgebase/
+Disallow: /knowledgebase
+Disallow: /knowledgebase.html
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /knowledgebase/
+Disallow: /knowledgebase
+Disallow: /knowledgebase.html
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /knowledgebase/
+Disallow: /knowledgebase
+Disallow: /knowledgebase.html
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /knowledgebase/
+Disallow: /knowledgebase
+Disallow: /knowledgebase.html
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /knowledgebase/
+Disallow: /knowledgebase
+Disallow: /knowledgebase.html
 
 User-agent: Claude-Web
 Allow: /
+Disallow: /knowledgebase/
+Disallow: /knowledgebase
+Disallow: /knowledgebase.html
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /knowledgebase/
+Disallow: /knowledgebase
+Disallow: /knowledgebase.html
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /knowledgebase/
+Disallow: /knowledgebase
+Disallow: /knowledgebase.html
 
 User-agent: Bytespider
 Allow: /
+Disallow: /knowledgebase/
+Disallow: /knowledgebase
+Disallow: /knowledgebase.html
 
 User-agent: CCBot
 Allow: /
+Disallow: /knowledgebase/
+Disallow: /knowledgebase
+Disallow: /knowledgebase.html
 
 Sitemap: https://sunsynkreports.com/sitemap.xml
 

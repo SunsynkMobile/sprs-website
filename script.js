@@ -60,23 +60,30 @@ updateScrollBar(); updateNav(); updateActiveLinks();
 /* ── Mobile nav ── */
 const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
+
+function setNavOpen(open) {
+  if (!navToggle || !navMenu) return;
+  navMenu.classList.toggle('open', open);
+  navToggle.setAttribute('aria-expanded', String(open));
+  navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  document.body.classList.toggle('nav-open', open);
+}
+
 if (navToggle && navMenu) {
   navToggle.addEventListener('click', () => {
-    const open = navMenu.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', String(open));
-    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    setNavOpen(!navMenu.classList.contains('open'));
   });
   navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    navMenu.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
-    navToggle.setAttribute('aria-label', 'Open menu');
+    setNavOpen(false);
   }));
   document.addEventListener('click', e => {
-    if (!nav.contains(e.target)) {
-      navMenu.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-      navToggle.setAttribute('aria-label', 'Open menu');
-    }
+    if (!nav.contains(e.target)) setNavOpen(false);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') setNavOpen(false);
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) setNavOpen(false);
   });
 }
 
@@ -500,7 +507,7 @@ function detectDefaultCurrency() {
   return 'GBP';
 }
 
-function applyPricingCurrency(code) {
+function applyPricingCurrency(code, animate) {
   const currency = PRICING[code] || PRICING.GBP;
   document.querySelectorAll('[data-plan]').forEach(card => {
     const planKey = card.getAttribute('data-plan');
@@ -516,6 +523,19 @@ function applyPricingCurrency(code) {
     if (unit) unit.textContent = plan.unit;
     if (credits) credits.textContent = plan.credits;
     if (reports) reports.textContent = plan.reports;
+    if (animate && !reducedMotion) {
+      [symbol, amount, unit, credits, reports].forEach((el, idx) => {
+        if (!el) return;
+        el.classList.remove('price-updating');
+        void el.offsetWidth;
+        el.style.animationDelay = `${idx * 30}ms`;
+        el.classList.add('price-updating');
+        el.addEventListener('animationend', () => {
+          el.classList.remove('price-updating');
+          el.style.animationDelay = '';
+        }, { once: true });
+      });
+    }
   });
   document.querySelectorAll('[data-price-currency-label]').forEach(el => {
     el.textContent = currency.label;
@@ -527,11 +547,55 @@ function initPricingCurrency() {
   if (!select) return;
   const initial = detectDefaultCurrency();
   select.value = initial;
-  applyPricingCurrency(initial);
+  applyPricingCurrency(initial, false);
   select.addEventListener('change', () => {
     const code = select.value;
-    applyPricingCurrency(code);
+    applyPricingCurrency(code, true);
+    if (!reducedMotion) {
+      select.classList.remove('is-changing');
+      void select.offsetWidth;
+      select.classList.add('is-changing');
+      select.addEventListener('animationend', () => select.classList.remove('is-changing'), { once: true });
+    }
     try { localStorage.setItem('sprs-currency', code); } catch (_) { /* ignore */ }
+  });
+}
+
+/* ── Button press + ripple feedback ── */
+function initPressFeedback() {
+  document.querySelectorAll('.btn').forEach(btn => {
+    const release = () => btn.classList.remove('is-pressed');
+    btn.addEventListener('pointerdown', e => {
+      btn.classList.add('is-pressed');
+      if (reducedMotion || e.button !== 0) return;
+      const rect = btn.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      ripple.className = 'btn-ripple';
+      ripple.style.left = `${e.clientX - rect.left}px`;
+      ripple.style.top = `${e.clientY - rect.top}px`;
+      btn.appendChild(ripple);
+      ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
+    });
+    btn.addEventListener('pointerup', release);
+    btn.addEventListener('pointerleave', release);
+    btn.addEventListener('pointercancel', release);
+  });
+}
+
+/* ── FAQ open feedback ── */
+function initFaqFeedback() {
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('toggle', () => {
+      if (!item.open || reducedMotion) return;
+      const answer = item.querySelector('.faq-answer > *');
+      if (!answer) return;
+      answer.style.opacity = '0';
+      answer.style.transform = 'translateY(-4px)';
+      requestAnimationFrame(() => {
+        answer.style.opacity = '';
+        answer.style.transform = '';
+      });
+    });
   });
 }
 
@@ -549,4 +613,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initTilt();
   initMagneticButtons();
   initPricingCurrency();
+  initPressFeedback();
+  initFaqFeedback();
 });

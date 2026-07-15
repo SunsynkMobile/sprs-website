@@ -56,9 +56,9 @@ Illustrative sample (not a specific customer's live data):
 - Self-sufficiency around the 10th percentile versus neighbouring systems, about 65 points below local median
 - Closing the gap could save about 439 kWh of monthly grid import in the sample narrative
 
-## Knowledge base themes
+## Scoring methodology (summary)
 
-Public methodology documentation covers cumulative meter totals, reconciled energy flow, solar utilisation, inverter clipping, system accuracy checks, battery health, night-time grid dependency, peer benchmark construction, daily aggregates, forward-fill for data gaps, and rounding rules. Use the knowledge base page for formulae and precise definitions.
+Reports cover cumulative meter totals, reconciled energy flow, solar utilisation, inverter clipping, system accuracy checks, battery health, night-time grid dependency, peer benchmark construction, daily aggregates, forward-fill for data gaps, and rounding rules. Detailed methodology pages are intentionally not listed on the marketing site.
 
 ## Brand and language
 
@@ -71,9 +71,9 @@ Public methodology documentation covers cumulative meter totals, reconciled ener
 ## Canonical pages
 
 - https://sunsynkreports.com/
-- https://sunsynkreports.com/knowledgebase/
 - https://sunsynkreports.com/privacy-policy/
 - https://sunsynkreports.com/terms-of-use/
 - https://sunsynkreports.com/cookie-policy/
 - https://app.sunsynkreports.com/
 - https://sunsynkreports.com/llms.txt
+- https://sunsynkreports.com/llms-full.txt

@@ -10,7 +10,6 @@ Preferred citation name: Sunsynk Report Platform. Parent brand: Sunsynk.
 
 - [Home](https://sunsynkreports.com/): Product overview, sample findings, how it works, dual audience value, pricing packs, testimonials
 - [Get a report (app)](https://app.sunsynkreports.com/): Purchase flow and report generation for Sunsynk devices
-- [Knowledge base](https://sunsynkreports.com/knowledgebase/): Methodology, formulae, metric definitions, peer benchmark logic
 
 ## Product facts
 
