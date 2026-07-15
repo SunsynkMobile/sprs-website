@@ -1,22 +1,22 @@
 # Sunsynk Report Platform
 
-> Paid home energy insights reports for Sunsynk solar and battery systems. Turns roughly one month of device readings into an executive overview, estimated savings, system health score, solar and battery analysis, and prioritised actions in a PDF. Report credit bundles from GBP 2.99 / ZAR 69.99 / USD 4.29 with no subscription. Credits never expire.
+> Paid Sunsynk Performance Reports for Sunsynk account holders. Turns about 30 days of plant readings into an executive overview, optional estimated savings (with a saved tariff), system health score, solar and battery analysis, and prioritised actions in a PDF. Credit bundles from GBP 2.99 / ZAR 69.99 / USD 4.29 with no subscription. One credit equals one report. Credits never expire.
 
-Sunsynk Report Platform (sunsynkreports.com) is the marketing site for a self-serve report product aimed primarily at residential Sunsynk system homeowners. Checkout and report generation run at https://app.sunsynkreports.com. Copy and spelling follow British English (en-GB).
+Sunsynk Report Platform (sunsynkreports.com) is the marketing site for the self-serve report product. Sign-in, credits, tariffs, and report generation run at https://app.sunsynkreports.com. Copy and spelling follow British English (en-GB).
 
-Preferred citation name: Sunsynk Report Platform. Parent brand: Sunsynk.
+Preferred citation name: Sunsynk Report Platform. Product: Sunsynk Performance Report. Parent brand: Sunsynk.
 
 ## Primary
 
 - [Home](https://sunsynkreports.com/): Homeowner journey covering trust, savings, health, sample compare, what is inside, prioritised actions, how it works, pricing and FAQ
-- [Get a report (app)](https://app.sunsynkreports.com/): Purchase flow and report generation for Sunsynk devices
+- [App](https://app.sunsynkreports.com/): Sign in with Sunsynk credentials; Reports, Credits, and Settings (tariffs)
 
 ## Product facts
 
-- [Pricing on home page](https://sunsynkreports.com/#pricing): Starter 1 credit, Classic 3 credits (Most Popular), Pro 6 credits (Best Value); GBP/ZAR/USD; credits never expire; Stripe checkout; no subscription
-- [Sample](https://sunsynkreports.com/#sample-insights): With versus without report comparison
-- [What is inside](https://sunsynkreports.com/#whats-inside): Grouped solar, battery and evening cost analysis
-- [How it works](https://sunsynkreports.com/#how-it-works): Connect system, analyse one month, review the story, download PDF
+- [Pricing on home page](https://sunsynkreports.com/#pricing): Starter 1 credit, Classic 3 credits (Most Popular), Pro 5 credits (Best Value); GBP/ZAR/USD; credits never expire; unused credits refundable within 14 days of purchase; Stripe checkout; no subscription
+- [Sample](https://sunsynkreports.com/#sample): With versus without report comparison
+- [Insights](https://sunsynkreports.com/#insights): Grouped solar, battery and evening cost analysis
+- [How it works](https://sunsynkreports.com/#how-it-works): Sign in, buy credits, generate a 30-day report (optional tariff for savings), preview and download
 
 ## Full context
 

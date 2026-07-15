@@ -4,77 +4,85 @@
 
 ## What the product is
 
-Sunsynk Report Platform sells one-off performance reports for Sunsynk solar PV and battery systems. Customers select a device and date range covering about one month of readings. The marketing site presents a curated homeowner journey that mirrors the report narrative:
+Sunsynk Report Platform sells credit-gated **Sunsynk Performance Reports**: 30-day plant performance PDFs for Sunsynk account holders. Customers sign in with Sunsynk email and password at app.sunsynkreports.com. One credit equals one report. Credits never expire.
+
+Primary app destinations: Reports, Credits, Settings (tariffs). Staff have Console for support tasks (not a customer path).
+
+The marketing site presents a curated homeowner journey that mirrors the report narrative:
 
 1. What happened (executive summary)
 2. Can the data be trusted (coverage, plant details, accuracy)
-3. How much money was saved (estimated savings)
+3. How much money was saved (optional estimated savings when a tariff is saved)
 4. How healthy is the system (overall score and category contributions)
-5. Where are the inefficiencies (solar, battery, evening grid; faults listed)
+5. Where are the inefficiencies (solar, battery, evening grid)
 6. What should I do next (prioritised behavioural, configuration and hardware actions)
 7. Assumptions and limitations (Important Information in each report)
 
-The PDF consolidates those chapters into one shareable document.
-
-There is no subscription. Packs are purchased then used when needed. Checkout lives at app.sunsynkreports.com. This website (sunsynkreports.com) is the marketing presence.
+There is no subscription. Checkout lives at app.sunsynkreports.com. This website (sunsynkreports.com) is the marketing presence.
 
 ## Who it is for
 
-Primary: homeowners with Sunsynk systems who want a clear performance, savings and action picture.
+Primary: Sunsynk account holders who want a clear performance, savings and action picture for an accessible plant (inverter).
 
 Secondary: installers may use the PDF when supporting a homeowner.
 
 ## Pricing
 
-Report credit bundles. Credits never expire. No subscription. Checkout via Stripe at app.sunsynkreports.com.
+Report credit bundles. One credit = one report. Credits never expire. Unused credits from a purchase can be refunded within 14 days via the Credits page. Checkout via Stripe at app.sunsynkreports.com.
 
 British Pound (GBP)
 - Starter: 1 credit, GBP 2.99 (GBP 2.99 per credit)
 - Classic: 3 credits, GBP 7.49 (GBP 2.50 per credit, Most Popular)
-- Pro: 6 credits, GBP 11.49 (GBP 1.92 per credit, Best Value)
+- Pro: 5 credits, GBP 11.49 (GBP 2.30 per credit, Best Value)
 
 South African Rand (ZAR)
 - Starter: 1 credit, ZAR 69.99 (ZAR 69.99 per credit)
 - Classic: 3 credits, ZAR 169.99 (ZAR 56.66 per credit, Most Popular)
-- Pro: 6 credits, ZAR 249.99 (ZAR 41.67 per credit, Best Value)
+- Pro: 5 credits, ZAR 249.99 (ZAR 50.00 per credit, Best Value)
 
 US Dollar (USD)
 - Starter: 1 credit, USD 4.29 (USD 4.29 per credit)
 - Classic: 3 credits, USD 10.99 (USD 3.66 per credit, Most Popular)
-- Pro: 6 credits, USD 15.99 (USD 2.67 per credit, Best Value)
+- Pro: 5 credits, USD 15.99 (USD 3.20 per credit, Best Value)
 
-Included with every bundle: the matching number of performance reports, credits that never expire, and secure Stripe checkout.
+## Customer journey (app)
 
-## How it works
+1. Sign in with Sunsynk credentials; accept Terms and Privacy once if needed
+2. Buy credits on Credits (Starter / Classic / Pro) via Stripe when balance is zero
+3. Optionally save a tariff under Settings for a plant (flat rate or time-of-use) so estimated savings can be included
+4. On Reports, generate a 30-day report for a plant; thin telemetry asks for confirmation first
+5. Preview the PDF when ready, download it, optionally leave feedback
+6. Unused credits within 14 days of purchase can be refunded from Credits history
 
-1. Connect your system: choose Sunsynk device and dates
-2. Analyse the month: readings across solar, battery, home, and grid
-3. Review the story: savings, health, inefficiencies and ranked actions
-4. Download PDF: shareable document for the homeowner or installer
+## How it works (marketing site steps)
+
+1. Sign in: Sunsynk email and password; accept legal once
+2. Buy credits: Starter, Classic, or Pro via Stripe
+3. Generate a report: choose a plant; optionally include estimated savings with a saved tariff
+4. Preview and download: open the PDF, download it, leave feedback from history
 
 ## Home page section anchors
 
 - #hero: executive promise and summary preview
-- #trust: data coverage, plant details, accuracy
-- #savings: estimated savings versus grid
-- #health: overall score and category bars
-- #sample-insights: with versus without compare panel
-- #whats-inside: solar, battery, evening cost digests
-- #actions: prioritised behaviour / configuration / hardware
-- #how-it-works: four steps
-- #pricing: credit packs
-- #testimonials: homeowner quotes
-- #faq: contents, subscription, data trust, audience, generation
-- #final-cta: buy credits close
+- #trust: Trust — coverage, plant details, accuracy
+- #savings: Savings — estimated savings versus grid (optional when tariff saved)
+- #health: Health — overall score and category bars
+- #sample: Sample — with versus without compare panel
+- #insights: Insights — solar, battery, evening cost digests
+- #actions: Actions — prioritised behaviour / configuration / hardware
+- #how-it-works: How it works — four steps aligned to the app journey
+- #pricing: Pricing — credit packs
+- #faq: FAQ — contents, subscription and refunds, data trust, audience, generation
+- #get-started: Get started — buy credits close
 
 ## Example findings used on the marketing site
 
 Illustrative sample (not a specific customer's live data):
 
-- Battery depletes about 47 minutes too soon relative to evening demand
+- Battery evening cover runs short before demand settles
 - Self-sufficiency around the 10th percentile versus neighbouring systems, about 65 points below local median
 - Closing the gap could save about 439 kWh of monthly grid import in the sample narrative
-- Illustrative estimated savings figure used in the savings panel (£186 sample month)
+- Illustrative estimated savings figure used in the savings panel (£186 sample period)
 
 ## Scoring methodology (summary)
 
@@ -82,7 +90,8 @@ Reports cover cumulative meter totals, reconciled energy flow, solar utilisation
 
 ## Brand and language
 
-- Product name: Sunsynk Report Platform
+- Marketing site name: Sunsynk Report Platform
+- Product / PDF name: Sunsynk Performance Report
 - Parent: Sunsynk
 - Locale: en-GB (analyse, optimise, utilisation, neighbouring, prioritised)
 - Primary CTA wording on site: Get My Report

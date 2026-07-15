@@ -19,31 +19,29 @@ if (document.readyState === 'loading') {
 }
 window.addEventListener('load', hidePageLoader);
 
-/* ── Scroll progress ── */
-const scrollBar = document.querySelector('.scroll-bar');
-const updateScrollBar = () => {
-  const max = document.documentElement.scrollHeight - window.innerHeight;
-  const pct = max > 0 ? Math.min((window.scrollY / max) * 100, 100) : 0;
-  if (scrollBar) scrollBar.style.width = `${pct}%`;
-  document.documentElement.style.setProperty('--scroll-pct', `${pct}`);
-  document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}`);
-};
-
 /* ── Sticky nav ── */
 const nav = document.querySelector('.nav');
 const updateNav = () => nav && nav.classList.toggle('scrolled', window.scrollY > 20);
 
 /* ── Active nav links ── */
-const navLinks = Array.from(document.querySelectorAll('.nav-menu a'));
+const navLinks = Array.from(document.querySelectorAll('.nav-menu a[href^="#"]'));
 const sections = navLinks.map(l => {
   const id = l.getAttribute('href');
   return id && id.startsWith('#') ? document.getElementById(id.slice(1)) : null;
 }).filter(Boolean);
 
+function getAnchorOffset() {
+  if (nav) return nav.offsetHeight + 12;
+  const fromCss = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--anchor-offset'));
+  return Number.isFinite(fromCss) ? fromCss : 80;
+}
+
 const updateActiveLinks = () => {
-  const offset = window.scrollY + 110;
+  const marker = getAnchorOffset() + 8;
   let cur = sections[0]?.id;
-  sections.forEach(s => { if (s.offsetTop <= offset) cur = s.id; });
+  sections.forEach(s => {
+    if (s.getBoundingClientRect().top <= marker) cur = s.id;
+  });
   navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${cur}`));
 };
 
@@ -52,10 +50,10 @@ let ticking = false;
 window.addEventListener('scroll', () => {
   if (ticking) return;
   ticking = true;
-  requestAnimationFrame(() => { updateScrollBar(); updateNav(); updateActiveLinks(); ticking = false; });
+  requestAnimationFrame(() => { updateNav(); updateActiveLinks(); ticking = false; });
 }, { passive: true });
 
-updateScrollBar(); updateNav(); updateActiveLinks();
+updateNav(); updateActiveLinks();
 
 /* ── Mobile nav ── */
 const navToggle = document.querySelector('.nav-toggle');
@@ -87,12 +85,47 @@ if (navToggle && navMenu) {
   });
 }
 
-/* ── Scroll to top ── */
-document.querySelectorAll('[href="#top"]').forEach(el => el.addEventListener('click', e => {
-  e.preventDefault();
-  window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
-  history.replaceState(null, '', location.pathname + location.search);
-}));
+/* ── Smooth in-page anchors ── */
+function scrollToHash(hash, updateHistory) {
+  if (!hash || hash === '#') return false;
+  if (hash === '#top') {
+    window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+    if (updateHistory) history.replaceState(null, '', location.pathname + location.search);
+    return true;
+  }
+  const id = decodeURIComponent(hash.startsWith('#') ? hash.slice(1) : hash);
+  if (!id) return false;
+  const target = document.getElementById(id);
+  if (!target) return false;
+
+  const run = () => {
+    const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - getAnchorOffset());
+    window.scrollTo({ top, behavior: reducedMotion ? 'auto' : 'smooth' });
+    if (updateHistory) history.replaceState(null, '', `#${id}`);
+    updateActiveLinks();
+  };
+
+  // Close mobile menu first so overflow/layout do not skew the scroll target
+  if (document.body.classList.contains('nav-open')) {
+    setNavOpen(false);
+    requestAnimationFrame(() => requestAnimationFrame(run));
+  } else {
+    run();
+  }
+  return true;
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(el => {
+  el.addEventListener('click', e => {
+    const hash = el.getAttribute('href');
+    if (!hash || hash === '#' || el.target === '_blank') return;
+    if (scrollToHash(hash, true)) e.preventDefault();
+  });
+});
+
+window.addEventListener('hashchange', () => {
+  if (location.hash) scrollToHash(location.hash, false);
+});
 
 /* ── Hero fade-in ── */
 function initHeroFadeIn() {
@@ -446,12 +479,15 @@ function initStepLit() {
 /* ── Subtle card tilt ── */
 function initTilt() {
   if (reducedMotion || !window.matchMedia('(hover: hover)').matches) return;
-  document.querySelectorAll('.insight,.tq').forEach(card => {
+  const cards = document.querySelectorAll('.insight, .pci, .hero-window, .health-panel, .savings-panel');
+  cards.forEach(card => {
     card.addEventListener('pointermove', e => {
+      if (card.classList.contains('is-pressed')) return;
       const r = card.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;
       const y = (e.clientY - r.top) / r.height - 0.5;
-      card.style.transform = `perspective(900px) rotateX(${-y * 1.25}deg) rotateY(${x * 1.25}deg) translateY(-2px)`;
+      const lift = card.classList.contains('pci') ? -4 : -2;
+      card.style.transform = `perspective(900px) rotateX(${-y * 2.2}deg) rotateY(${x * 2.2}deg) translateY(${lift}px)`;
     });
     card.addEventListener('pointerleave', () => { card.style.transform = ''; });
   });
@@ -460,12 +496,14 @@ function initTilt() {
 /* ── Magnetic buttons ── */
 function initMagneticButtons() {
   if (reducedMotion || !window.matchMedia('(hover: hover)').matches) return;
-  document.querySelectorAll('.magnetic').forEach(btn => {
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.classList.add('magnetic');
     btn.addEventListener('pointermove', e => {
+      if (btn.classList.contains('is-pressed')) return;
       const r = btn.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width - 0.5) * 6;
-      const y = ((e.clientY - r.top) / r.height - 0.5) * 6;
-      btn.style.transform = `translate(${x}px, ${y}px)`;
+      const x = ((e.clientX - r.left) / r.width - 0.5) * 8;
+      const y = ((e.clientY - r.top) / r.height - 0.5) * 8;
+      btn.style.transform = `translate(${x}px, ${y}px) translateY(-2px)`;
     });
     btn.addEventListener('pointerleave', () => {
       btn.style.transform = '';
@@ -481,7 +519,7 @@ const PRICING = {
     plans: {
       starter: { amount: '2.99', unit: '£2.99', credits: '1 report credit', reports: '1 performance report' },
       classic: { amount: '7.49', unit: '£2.50', credits: '3 report credits', reports: '3 performance reports' },
-      pro: { amount: '11.49', unit: '£1.92', credits: '6 report credits', reports: '6 performance reports' }
+      pro: { amount: '11.49', unit: '£2.30', credits: '5 report credits', reports: '5 performance reports' }
     }
   },
   ZAR: {
@@ -490,7 +528,7 @@ const PRICING = {
     plans: {
       starter: { amount: '69.99', unit: 'R\u00A069.99', credits: '1 report credit', reports: '1 performance report' },
       classic: { amount: '169.99', unit: 'R\u00A056.66', credits: '3 report credits', reports: '3 performance reports' },
-      pro: { amount: '249.99', unit: 'R\u00A041.67', credits: '6 report credits', reports: '6 performance reports' }
+      pro: { amount: '249.99', unit: 'R\u00A050.00', credits: '5 report credits', reports: '5 performance reports' }
     }
   },
   USD: {
@@ -499,7 +537,7 @@ const PRICING = {
     plans: {
       starter: { amount: '4.29', unit: '$4.29', credits: '1 report credit', reports: '1 performance report' },
       classic: { amount: '10.99', unit: '$3.66', credits: '3 report credits', reports: '3 performance reports' },
-      pro: { amount: '15.99', unit: '$2.67', credits: '6 report credits', reports: '6 performance reports' }
+      pro: { amount: '15.99', unit: '$3.20', credits: '5 report credits', reports: '5 performance reports' }
     }
   }
 };
@@ -579,9 +617,13 @@ function initPricingCurrency() {
 /* ── Button press + ripple feedback ── */
 function initPressFeedback() {
   document.querySelectorAll('.btn').forEach(btn => {
-    const release = () => btn.classList.remove('is-pressed');
+    const release = () => {
+      btn.classList.remove('is-pressed');
+      if (!btn.matches(':hover')) btn.style.transform = '';
+    };
     btn.addEventListener('pointerdown', e => {
       btn.classList.add('is-pressed');
+      btn.style.transform = 'scale(.97)';
       if (reducedMotion || e.button !== 0) return;
       const rect = btn.getBoundingClientRect();
       const ripple = document.createElement('span');
@@ -595,6 +637,14 @@ function initPressFeedback() {
     btn.addEventListener('pointerleave', release);
     btn.addEventListener('pointercancel', release);
   });
+
+  document.querySelectorAll('.sample-link, .cta-secondary-link, .footer nav a, .cookie-manage-link, .nav-brand').forEach(el => {
+    el.addEventListener('pointerdown', () => el.classList.add('is-pressed'));
+    const clear = () => el.classList.remove('is-pressed');
+    el.addEventListener('pointerup', clear);
+    el.addEventListener('pointerleave', clear);
+    el.addEventListener('pointercancel', clear);
+  });
 }
 
 /* ── FAQ open feedback ── */
@@ -605,12 +655,58 @@ function initFaqFeedback() {
       const answer = item.querySelector('.faq-answer > *');
       if (!answer) return;
       answer.style.opacity = '0';
-      answer.style.transform = 'translateY(-4px)';
+      answer.style.transform = 'translateY(-6px)';
       requestAnimationFrame(() => {
         answer.style.opacity = '';
         answer.style.transform = '';
       });
+      item.animate?.(
+        [{ transform: 'scale(0.995)' }, { transform: 'scale(1)' }],
+        { duration: 220, easing: 'cubic-bezier(.22,.61,.36,1)' }
+      );
     });
+  });
+}
+
+/* ── Reactive health score pulse once counted ── */
+function initHealthHotState() {
+  const num = document.querySelector('.health-score-num');
+  if (!num || reducedMotion) return;
+  const io = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) return;
+    setTimeout(() => num.classList.add('is-hot'), 900);
+    io.disconnect();
+  }, { threshold: 0.6 });
+  io.observe(num);
+}
+
+/* ── Currency select press feedback ── */
+function initSelectFeedback() {
+  const select = document.getElementById('currencySelect');
+  if (!select) return;
+  select.addEventListener('pointerdown', () => select.classList.add('is-pressed'));
+  ['pointerup', 'pointerleave', 'blur', 'change'].forEach(evt => {
+    select.addEventListener(evt, () => select.classList.remove('is-pressed'));
+  });
+}
+
+/* ── Parallax-lite on hero score ring ── */
+function initHeroReact() {
+  const wrap = document.querySelector('.hero-score .ring-wrap');
+  const issue = document.querySelector('.hero-score .exec-issue');
+  if (!wrap || reducedMotion || !window.matchMedia('(hover: hover)').matches) return;
+  const windowEl = document.querySelector('.hero-window');
+  if (!windowEl) return;
+  windowEl.addEventListener('pointermove', e => {
+    const r = windowEl.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    wrap.style.transform = `translate(${x * 8}px, ${y * 6}px)`;
+    if (issue) issue.style.transform = `translate(${x * -4}px, ${y * -3}px)`;
+  });
+  windowEl.addEventListener('pointerleave', () => {
+    wrap.style.transform = '';
+    if (issue) issue.style.transform = '';
   });
 }
 
@@ -631,4 +727,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initPricingCurrency();
   initPressFeedback();
   initFaqFeedback();
+  initHealthHotState();
+  initSelectFeedback();
+  initHeroReact();
+  if (location.hash) {
+    // Defer so sticky nav height and fonts settle before measuring
+    requestAnimationFrame(() => scrollToHash(location.hash, false));
+  }
 });
