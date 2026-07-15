@@ -476,39 +476,145 @@ function initStepLit() {
   steps.forEach(s => io.observe(s));
 }
 
-/* ── Subtle card tilt ── */
-function initTilt() {
-  if (reducedMotion || !window.matchMedia('(hover: hover)').matches) return;
-  const cards = document.querySelectorAll('.insight, .pci, .hero-window, .health-panel, .savings-panel');
-  cards.forEach(card => {
+const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+/* ── Sitewide cursor atmosphere ── */
+function initPointerAtmosphere() {
+  if (reducedMotion || !finePointer) return;
+  document.body.classList.add('ix-pointer');
+  let x = window.innerWidth * 0.5;
+  let y = window.innerHeight * 0.4;
+  let tx = x;
+  let ty = y;
+  let raf = 0;
+  let pointing = false;
+
+  const tick = () => {
+    x += (tx - x) * 0.12;
+    y += (ty - y) * 0.12;
+    document.documentElement.style.setProperty('--pointer-x', `${x}px`);
+    document.documentElement.style.setProperty('--pointer-y', `${y}px`);
+    if (Math.abs(tx - x) > 0.2 || Math.abs(ty - y) > 0.2) {
+      raf = requestAnimationFrame(tick);
+    } else {
+      raf = 0;
+    }
+  };
+
+  window.addEventListener('pointermove', e => {
+    tx = e.clientX;
+    ty = e.clientY;
+    if (!pointing) {
+      pointing = true;
+      document.body.classList.add('is-pointing');
+    }
+    if (!raf) raf = requestAnimationFrame(tick);
+  }, { passive: true });
+
+  window.addEventListener('pointerleave', () => {
+    pointing = false;
+    document.body.classList.remove('is-pointing');
+  });
+}
+
+/* ── Surface tilt + local spotlight ── */
+function initSurfaceMotion() {
+  if (reducedMotion || !finePointer) return;
+  const surfaces = document.querySelectorAll(
+    '.insight, .pci, .hero-window, .health-panel, .savings-panel, .trust-panel, .inside-grid, .actions-board, .sample-panel, .faq-item'
+  );
+
+  surfaces.forEach(card => {
+    card.classList.add('ix-tilt', 'ix-spot');
+    const strength = card.classList.contains('pci') || card.classList.contains('hero-window')
+      ? 2.4
+      : card.classList.contains('faq-item')
+        ? 1.2
+        : 1.8;
+    const lift = card.classList.contains('pci') ? -4 : -2;
+
     card.addEventListener('pointermove', e => {
       if (card.classList.contains('is-pressed')) return;
       const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      const lift = card.classList.contains('pci') ? -4 : -2;
-      card.style.transform = `perspective(900px) rotateX(${-y * 2.2}deg) rotateY(${x * 2.2}deg) translateY(${lift}px)`;
+      const px = ((e.clientX - r.left) / r.width) * 100;
+      const py = ((e.clientY - r.top) / r.height) * 100;
+      const x = px / 100 - 0.5;
+      const y = py / 100 - 0.5;
+      card.style.setProperty('--spot-x', `${px}%`);
+      card.style.setProperty('--spot-y', `${py}%`);
+      card.classList.add('is-lit');
+      card.style.transform = `perspective(1100px) rotateX(${(-y * strength).toFixed(2)}deg) rotateY(${(x * strength).toFixed(2)}deg) translateY(${lift}px)`;
     });
-    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+
+    card.addEventListener('pointerleave', () => {
+      card.style.transform = '';
+      card.classList.remove('is-lit');
+    });
   });
 }
 
 /* ── Magnetic buttons ── */
 function initMagneticButtons() {
-  if (reducedMotion || !window.matchMedia('(hover: hover)').matches) return;
+  if (reducedMotion || !finePointer) return;
   document.querySelectorAll('.btn').forEach(btn => {
     btn.classList.add('magnetic');
+    let raf = 0;
+    let cx = 0;
+    let cy = 0;
+    let tx = 0;
+    let ty = 0;
+    let hovering = false;
+
+    const tick = () => {
+      cx += (tx - cx) * 0.18;
+      cy += (ty - cy) * 0.18;
+      if (!btn.classList.contains('is-pressed')) {
+        btn.style.transform = hovering
+          ? `translate(${cx.toFixed(2)}px, ${cy.toFixed(2)}px) translateY(-2px)`
+          : '';
+      }
+      if (hovering && (Math.abs(tx - cx) > 0.05 || Math.abs(ty - cy) > 0.05)) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        raf = 0;
+        if (!hovering) btn.style.transform = '';
+      }
+    };
+
+    btn.addEventListener('pointerenter', () => { hovering = true; });
     btn.addEventListener('pointermove', e => {
       if (btn.classList.contains('is-pressed')) return;
       const r = btn.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width - 0.5) * 8;
-      const y = ((e.clientY - r.top) / r.height - 0.5) * 8;
-      btn.style.transform = `translate(${x}px, ${y}px) translateY(-2px)`;
+      tx = ((e.clientX - r.left) / r.width - 0.5) * 10;
+      ty = ((e.clientY - r.top) / r.height - 0.5) * 8;
+      if (!raf) raf = requestAnimationFrame(tick);
     });
     btn.addEventListener('pointerleave', () => {
-      btn.style.transform = '';
+      hovering = false;
+      tx = 0;
+      ty = 0;
+      if (!raf) raf = requestAnimationFrame(tick);
     });
   });
+}
+
+/* ── Soft hero scroll drift ── */
+function initScrollDrift() {
+  if (reducedMotion) return;
+  const preview = document.querySelector('.hero-preview');
+  if (!preview) return;
+  let ticking = false;
+  const update = () => {
+    const drift = Math.min(Math.max(window.scrollY, 0), 420) * 0.06;
+    preview.style.setProperty('--drift-y', `${drift.toFixed(1)}px`);
+    ticking = false;
+  };
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }, { passive: true });
+  update();
 }
 
 /* ── Pricing currency switcher ── */
@@ -722,7 +828,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initChartInteractions();
   initStepsLine();
   initStepLit();
-  initTilt();
+  initPointerAtmosphere();
+  initSurfaceMotion();
   initMagneticButtons();
   initPricingCurrency();
   initPressFeedback();
@@ -730,6 +837,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHealthHotState();
   initSelectFeedback();
   initHeroReact();
+  initScrollDrift();
   if (location.hash) {
     // Defer so sticky nav height and fonts settle before measuring
     requestAnimationFrame(() => scrollToHash(location.hash, false));

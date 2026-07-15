@@ -30,6 +30,9 @@
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;font-size:16px;scroll-padding-top:var(--anchor-offset)}
 body{margin:0;font-family:var(--font);color:var(--slate-800);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.ix-pointer{--pointer-x:50vw;--pointer-y:40vh}
+body.ix-pointer::before{content:'';position:fixed;inset:0;z-index:40;pointer-events:none;opacity:0;transition:opacity .45s ease;background:radial-gradient(540px circle at var(--pointer-x) var(--pointer-y),rgba(30,94,255,.05),rgba(232,168,0,.02) 38%,transparent 62%)}
+body.ix-pointer.is-pointing::before{opacity:1}
 h1,h2,h3,h4,h5{margin:0;line-height:1.15;color:var(--slate-900);font-family:var(--font)}
 h1{font-weight:800;letter-spacing:-.03em}
 h2{font-size:var(--fs-h2);font-weight:700;letter-spacing:-.025em}
@@ -198,8 +201,11 @@ body.nav-open{overflow:hidden}
 .btn-soft{background:var(--white);color:var(--slate-800);border:1.5px solid var(--slate-300)}
 .btn-soft:active{background:var(--slate-100)}
 .hero-actions .btn{border-radius:var(--r-f);padding:.8rem 1.55rem;min-height:48px;min-width:10.5rem}
-.hero-preview{position:relative;width:min(520px,100%);margin:0 auto;align-self:center;transition:transform var(--t2) var(--ease)}
-.hero-window{position:relative;z-index:1;width:100%;border-radius:14px;background:var(--white);border:1px solid var(--slate-200);overflow:hidden;transition:transform var(--t2) var(--ease),box-shadow var(--t2) ease,border-color var(--t2) ease}
+.hero-preview{position:relative;width:min(520px,100%);margin:0 auto;align-self:center;transition:transform var(--t2) var(--ease);--drift-y:0px}
+.hero-window{position:relative;z-index:1;width:100%;border-radius:14px;background:var(--white);border:1px solid var(--slate-200);overflow:hidden;transition:transform var(--t2) var(--ease),box-shadow var(--t2) ease,border-color var(--t2) ease;will-change:transform}
+@media(hover:hover) and (pointer:fine){
+  .hero-preview{animation:heroDrift 8.5s ease-in-out infinite}
+}
 @media(hover:hover) and (pointer:fine){
   .hero-window:hover{transform:translateY(-4px);box-shadow:var(--sh-md);border-color:rgba(30,94,255,.22)}
 }
@@ -698,6 +704,19 @@ body.nav-open{overflow:hidden}
 @keyframes navItemIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 @keyframes softPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.015)}}
 @keyframes linkTap{0%{transform:scale(1)}50%{transform:scale(.97)}100%{transform:scale(1)}}
+@keyframes heroDrift{0%,100%{transform:translateY(var(--drift-y,0px))}50%{transform:translateY(calc(var(--drift-y,0px) - 7px))}}
+@keyframes ambientBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.012)}}
+
+/* Mouse-follow surface glow */
+.ix-spot{position:relative;isolation:isolate}
+.ix-spot::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:3;opacity:0;transition:opacity .35s ease;background:radial-gradient(420px circle at var(--spot-x,50%) var(--spot-y,50%),rgba(30,94,255,.08),rgba(232,168,0,.025) 42%,transparent 62%);mix-blend-mode:multiply}
+.ix-spot.is-lit::before{opacity:1}
+.ix-tilt{transform-style:preserve-3d;transition:transform .35s var(--ease),box-shadow var(--t2) ease,border-color var(--t2) ease;will-change:transform}
+@media(hover:hover) and (pointer:fine){
+  .hero-score .ring-wrap{animation:ambientBreathe 5.5s ease-in-out infinite}
+  .section-header.reveal.visible .eyebrow{animation:softPulse 3.8s var(--ease) 1}
+  .trust-panel.ix-tilt:hover,.inside-grid.ix-tilt:hover,.actions-board.ix-tilt:hover,.sample-panel.ix-tilt:hover,.savings-panel.ix-tilt:hover,.health-panel.ix-tilt:hover{box-shadow:var(--sh-sm)}
+}
 
 .pm.price-updating,.pc.price-updating,.pp.price-updating,.pcr.price-updating,[data-price-credits].price-updating,[data-price-reports].price-updating{animation:priceTick .32s var(--ease) both}
 .currency-picker select.is-changing{animation:selectFlash .45s var(--ease);border-color:var(--gold)}
@@ -940,7 +959,7 @@ a.ix-link:active{transform:scale(.98)}
   html{scroll-behavior:auto}
   .fade-in,.reveal,.reveal.visible .ix-stagger > *,.nav-menu.open a{transition:none!important;animation:none!important;opacity:1!important;transform:none!important}
   .flow-pulse{animation:none!important}
-  .flow-node,.hero-window,.hero-orb,.hero-light-beam,.hero-particles span,.signal-track,.health-score-num.is-hot{animation:none!important}
+  .flow-node,.hero-window,.hero-orb,.hero-light-beam,.hero-particles span,.signal-track,.health-score-num.is-hot,.hero-preview,.hero-score .ring-wrap,.section-header.reveal.visible .eyebrow{animation:none!important}
   .loader-ring,.loader-text{animation:none!important}
   .ring-progress{transition:none!important}
   .score-fill,.health-fill{transition:none!important}
@@ -952,5 +971,7 @@ a.ix-link:active{transform:scale(.98)}
   .faq-item .faq-answer,.faq-item .faq-answer > *,.faq-item summary::after{transition:none!important}
   .faq-item .faq-answer{grid-template-rows:1fr}
   .faq-item .faq-answer > *{opacity:1!important;transform:none!important}
-  .btn:hover,.btn-gold:hover,.price-card:hover .pci,.step:hover,.hero-window:hover{transform:none!important;box-shadow:none!important}
+  .btn:hover,.btn-gold:hover,.price-card:hover .pci,.step:hover,.hero-window:hover,.ix-tilt{transform:none!important;box-shadow:none!important}
+  body.ix-pointer::before{display:none!important}
+  .ix-spot::before{display:none!important}
 }
