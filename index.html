@@ -405,7 +405,7 @@
         <div class="trust-panel reveal ix-stagger">
           <div class="trust-item">
             <p class="trust-label">Data coverage</p>
-            <p class="trust-value">98.4%</p>
+            <p class="trust-value"><span class="countup" data-target="98.4" data-decimals="1" data-suffix="%">98.4%</span></p>
             <p class="trust-note">Missing or low-quality periods are flagged so you know what may affect accuracy.</p>
           </div>
           <div class="trust-item">
@@ -430,13 +430,13 @@
           <h2>Estimated savings versus the grid</h2>
           <p class="section-sub">See the financial benefit delivered by solar and battery, broken into grid costs avoided and self-supplied energy. Optional when you save a tariff in the app.</p>
         </div>
-        <div class="savings-panel reveal">
+        <div class="savings-panel reveal ix-stagger">
           <div class="savings-hero-stat">
             <p class="savings-eyebrow">Illustrative sample month</p>
-            <p class="savings-amount">£186</p>
+            <p class="savings-amount"><span class="countup" data-target="186" data-prefix="£">£186</span></p>
             <p class="savings-caption">Estimated savings versus all-grid electricity</p>
           </div>
-          <ul class="savings-breakdown">
+          <ul class="savings-breakdown ix-cascade">
             <li><span>Self-supplied energy</span><strong>612 kWh</strong></li>
             <li><span>Grid cost avoided</span><strong>£168</strong></li>
             <li><span>Solar contribution</span><strong>68%</strong></li>
@@ -457,7 +457,7 @@
         <div class="health-panel reveal">
           <div class="health-score">
             <p class="health-score-label">Overall score</p>
-            <p class="health-score-num" data-count-to="52">52</p>
+            <p class="health-score-num countup" data-target="52">52</p>
             <p class="health-score-note">Weakest: self-sufficiency · Strongest: battery health</p>
           </div>
           <div class="health-bars" aria-label="Category contribution to score">
@@ -497,20 +497,20 @@
         </div>
 
         <div class="sample-panel reveal">
-          <div class="sample-panel-grid">
+          <div class="sample-panel-grid ix-stagger">
             <div class="sample-col sample-col-yes">
               <div class="sample-col-head">
                 <h3>With a Sunsynk Report</h3>
                 <p>Clear answers from about 30 days of readings.</p>
               </div>
               <div class="sample-summary">
-                <div class="sample-gauge" aria-hidden="true"><strong>52</strong></div>
+                <div class="sample-gauge" aria-hidden="true"><strong class="countup" data-target="52">52</strong></div>
                 <div>
                   <p class="sample-gap-title">Working, but 65 pts below the local median</p>
                   <p class="sample-gap-sub">Closing the efficiency gap could avoid about <strong>439 kWh</strong> of grid import per month.</p>
                 </div>
               </div>
-              <ul class="sample-checks">
+              <ul class="sample-checks ix-cascade">
                 <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>Executive overview</strong><p>Score, top issue, savings hint and recommended actions in one place.</p></div></li>
                 <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>Trusted readings</strong><p>Coverage quality and accuracy checks called out clearly.</p></div></li>
                 <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>Solar and battery depth</strong><p>Peers, timing, clipping and battery use explained in homeowner language.</p></div></li>
@@ -523,7 +523,7 @@
                 <h3>Without a report</h3>
                 <p>Raw inverter dashboards, no verdict.</p>
               </div>
-              <ul class="sample-crosses">
+              <ul class="sample-crosses ix-cascade">
                 <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>No executive verdict</strong><p>Hard to tell if the system is truly doing its job.</p></div></li>
                 <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>Unclear data quality</strong><p>Gaps and inconsistencies stay buried in charts.</p></div></li>
                 <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>No savings picture</strong><p>No estimate versus all-grid electricity.</p></div></li>
@@ -715,32 +715,32 @@
           <h2 id="faq-heading">Answers about reports and credits</h2>
           <p class="section-sub">Sign-in, credits, tariffs, and what a report covers.</p>
         </div>
-        <div class="faq-list">
-          <details class="faq-item reveal">
+        <div class="faq-list ix-cascade-root reveal">
+          <details class="faq-item">
             <summary>What is inside a Sunsynk Performance Report?</summary>
             <div class="faq-answer">
               <p>A shareable PDF from about 30 days of plant readings. It moves from an executive overview into data coverage, optional estimated savings, overall health, energy flows, solar and battery analysis, evening grid dependency, accuracy checks, and prioritised recommendations.</p>
             </div>
           </details>
-          <details class="faq-item reveal" data-delay="60">
+          <details class="faq-item">
             <summary>Is there a subscription?</summary>
             <div class="faq-answer">
               <p>No. One credit equals one report. Buy Starter (1), Classic (3), or Pro (5) when you need them. Credits never expire. Unused credits from a purchase can be refunded within 14 days via the Credits page.</p>
             </div>
           </details>
-          <details class="faq-item reveal" data-delay="120">
+          <details class="faq-item">
             <summary>Can I trust the data?</summary>
             <div class="faq-answer">
               <p>Before generation, the app checks about 30 days of telemetry coverage and asks you to confirm if coverage is thin. Each report also includes data coverage, plant details, and a system accuracy check. Assumptions and limitations sit in Important Information in the PDF.</p>
             </div>
           </details>
-          <details class="faq-item reveal" data-delay="180">
+          <details class="faq-item">
             <summary>Who is the report for?</summary>
             <div class="faq-answer">
               <p>Sunsynk account holders. Sign in with your Sunsynk email and password. Installers may also use the PDF when supporting a homeowner aftercare conversation.</p>
             </div>
           </details>
-          <details class="faq-item reveal" data-delay="240">
+          <details class="faq-item">
             <summary>How does report generation work?</summary>
             <div class="faq-answer">
               <p>Sign in at app.sunsynkreports.com, buy credits if your balance is zero, optionally save a tariff under Settings for estimated savings, then generate a report for a plant. You can leave the page while it prepares; when ready, preview and download the PDF. One credit is used per report.</p>
@@ -752,7 +752,7 @@
 
     <!-- FINAL CTA -->
     <section class="section section-cta">
-      <div class="container cta-body reveal" id="get-started">
+      <div class="container cta-body reveal ix-cascade" id="get-started">
         <p class="eyebrow-light">Get started</p>
         <h2 class="h-light">Get a clear view of your system&rsquo;s last 30 days.</h2>
         <p class="section-sub s-muted cta-sub">From £2.99 · R69.99 · $4.29. Credits never expire. Secure Stripe checkout.</p>

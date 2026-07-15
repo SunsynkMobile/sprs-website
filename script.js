@@ -198,14 +198,26 @@ function initHealthBars() {
 }
 
 /* ── CountUp ── */
+function formatCountValue(value, { decimals, prefix, suffix, large }) {
+  const rounded = decimals > 0 ? value.toFixed(decimals) : String(Math.round(value));
+  const body = large && decimals === 0 ? Math.round(value).toLocaleString() : rounded;
+  return `${prefix}${body}${suffix}`;
+}
+
 function countUp(el, target, duration) {
   const start = performance.now();
-  const large = target > 999;
+  const decimals = Number(el.dataset.decimals || 0);
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
+  const large = target > 999 && decimals === 0;
+  const opts = { decimals, prefix, suffix, large };
   const tick = now => {
     const p = Math.min((now - start) / duration, 1);
-    const v = Math.round((1 - Math.pow(1 - p, 3)) * target);
-    el.textContent = large ? v.toLocaleString() : String(v);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const v = target * eased;
+    el.textContent = formatCountValue(v, opts);
     if (p < 1) requestAnimationFrame(tick);
+    else el.textContent = formatCountValue(target, opts);
   };
   requestAnimationFrame(tick);
 }
@@ -213,16 +225,26 @@ function initCountUp() {
   const items = document.querySelectorAll('.countup');
   if (!items.length) return;
   if (reducedMotion) {
-    items.forEach(el => { const t = Number(el.dataset.target || 0); el.textContent = t > 999 ? t.toLocaleString() : String(t); });
+    items.forEach(el => {
+      const t = Number(el.dataset.target || 0);
+      el.textContent = formatCountValue(t, {
+        decimals: Number(el.dataset.decimals || 0),
+        prefix: el.dataset.prefix || '',
+        suffix: el.dataset.suffix || '',
+        large: t > 999
+      });
+    });
     return;
   }
   const io = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      countUp(entry.target, Number(entry.target.dataset.target || 0), 1600);
-      io.unobserve(entry.target);
+      const el = entry.target;
+      el.classList.add('is-counting');
+      countUp(el, Number(el.dataset.target || 0), 1400);
+      io.unobserve(el);
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.45 });
   items.forEach(el => io.observe(el));
 }
 
@@ -598,15 +620,24 @@ function initMagneticButtons() {
   });
 }
 
-/* ── Soft hero scroll drift ── */
+/* ── Soft hero scroll drift + section parallax ── */
 function initScrollDrift() {
   if (reducedMotion) return;
   const preview = document.querySelector('.hero-preview');
-  if (!preview) return;
+  const parallaxNodes = Array.from(document.querySelectorAll('.section-header, .cta-body, .assumptions-note'));
   let ticking = false;
   const update = () => {
-    const drift = Math.min(Math.max(window.scrollY, 0), 420) * 0.06;
-    preview.style.setProperty('--drift-y', `${drift.toFixed(1)}px`);
+    const y = Math.max(window.scrollY, 0);
+    if (preview) {
+      const drift = Math.min(y, 420) * 0.06;
+      preview.style.setProperty('--drift-y', `${drift.toFixed(1)}px`);
+    }
+    parallaxNodes.forEach((node, i) => {
+      const rect = node.getBoundingClientRect();
+      const mid = rect.top + rect.height * 0.5 - window.innerHeight * 0.5;
+      const shift = Math.max(-14, Math.min(14, -mid * 0.03 * (i % 2 === 0 ? 1 : 0.7)));
+      node.style.setProperty('--parallax-y', `${shift.toFixed(2)}px`);
+    });
     ticking = false;
   };
   window.addEventListener('scroll', () => {
@@ -615,6 +646,40 @@ function initScrollDrift() {
     requestAnimationFrame(update);
   }, { passive: true });
   update();
+}
+
+/* ── Magnetic nav links ── */
+function initMagneticNav() {
+  if (reducedMotion || !finePointer) return;
+  document.querySelectorAll('.nav-menu a:not(.btn)').forEach(link => {
+    link.addEventListener('pointermove', e => {
+      const r = link.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width - 0.5) * 4;
+      const y = ((e.clientY - r.top) / r.height - 0.5) * 3;
+      link.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+    });
+    link.addEventListener('pointerleave', () => { link.style.transform = ''; });
+  });
+}
+
+/* ── Image/icon micro-react on steps & tags ── */
+function initHoverLiftExtras() {
+  if (reducedMotion || !finePointer) return;
+  document.querySelectorAll('.trust-item, .inside-col, .actions-group, .step').forEach(el => {
+    el.addEventListener('pointermove', e => {
+      const r = el.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width - 0.5) * 4;
+      const y = ((e.clientY - r.top) / r.height - 0.5) * 3;
+      el.style.setProperty('--lift-x', `${x.toFixed(2)}px`);
+      el.style.setProperty('--lift-y', `${y.toFixed(2)}px`);
+      el.classList.add('is-tracking');
+    });
+    el.addEventListener('pointerleave', () => {
+      el.style.removeProperty('--lift-x');
+      el.style.removeProperty('--lift-y');
+      el.classList.remove('is-tracking');
+    });
+  });
 }
 
 /* ── Pricing currency switcher ── */
@@ -831,6 +896,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initPointerAtmosphere();
   initSurfaceMotion();
   initMagneticButtons();
+  initMagneticNav();
+  initHoverLiftExtras();
   initPricingCurrency();
   initPressFeedback();
   initFaqFeedback();
