@@ -431,7 +431,7 @@ function initStepLit() {
 /* ── Subtle card tilt ── */
 function initTilt() {
   if (reducedMotion || !window.matchMedia('(hover: hover)').matches) return;
-  document.querySelectorAll('.insight,.tq,.audience-card,.sample-side-report').forEach(card => {
+  document.querySelectorAll('.insight,.tq,.audience-card').forEach(card => {
     card.addEventListener('pointermove', e => {
       const r = card.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;

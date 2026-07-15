@@ -448,69 +448,47 @@
           <p class="section-sub">Efficiency suggestions, peer compare and bill impact, not raw inverter charts you have to decode yourself.</p>
         </div>
 
-        <div class="sample-compare reveal">
-          <article class="sample-side sample-side-report">
-            <div class="sample-side-head">
-              <span class="sample-side-label">Sunsynk Report</span>
-              <span class="badge badge-warn">Action needed</span>
-            </div>
-            <div class="sample-score-row">
-              <div class="sample-gauge" aria-hidden="true">
-                <div class="sample-gauge-arc"></div>
-                <div class="sample-gauge-needle"></div>
-                <strong>52</strong>
+        <div class="sample-panel reveal">
+          <div class="sample-panel-grid">
+            <div class="sample-col sample-col-yes">
+              <div class="sample-col-head">
+                <h3>With a Sunsynk Report</h3>
+                <p>Clear answers from one month of readings.</p>
               </div>
-              <div>
-                <p class="sample-gap-title">Working, but 65 pts below the local median</p>
-                <p class="sample-gap-sub">Closing the efficiency gap could avoid about <strong>439 kWh</strong> of grid import per month.</p>
+              <div class="sample-summary">
+                <div class="sample-gauge" aria-hidden="true"><strong>52</strong></div>
+                <div>
+                  <p class="sample-gap-title">Working, but 65 pts below the local median</p>
+                  <p class="sample-gap-sub">Closing the efficiency gap could avoid about <strong>439 kWh</strong> of grid import per month.</p>
+                </div>
               </div>
+              <ul class="sample-checks">
+                <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>Working check</strong><p>Battery depletes 47 minutes too soon against evening peak demand.</p></div></li>
+                <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>Efficiency and suggestions</strong><p>Prioritised next steps, starting with self-sufficiency.</p></div></li>
+                <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>Peer compare</strong><p>Self-sufficiency sits at the 10th percentile against neighbouring systems.</p></div></li>
+                <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>Monetary insight</strong><p>Bill impact estimated from your own grid import gap.</p></div></li>
+                <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>Installer-ready PDF</strong><p>Something clear to share, not a pile of charts.</p></div></li>
+              </ul>
             </div>
-            <ul class="sample-findings">
-              <li>
-                <span class="ins-tag t-warn">Working</span>
-                <strong>Battery depletes 47 minutes too soon</strong>
-                <p>The system is running, but evening settings miss your peak demand.</p>
-              </li>
-              <li>
-                <span class="ins-tag t-danger">Compare</span>
-                <strong>Underperforming vs neighbours</strong>
-                <p>Self-sufficiency sits at the 10th percentile locally.</p>
-              </li>
-              <li>
-                <span class="ins-tag t-blue">Money</span>
-                <strong>439 kWh monthly grid gap</strong>
-                <p>Suggestions show what to change first, with the bill impact estimated.</p>
-              </li>
-            </ul>
-            <a class="btn btn-gold w-full sample-side-cta" href="https://app.sunsynkreports.com" target="_blank" rel="noopener noreferrer">Get My Report</a>
-          </article>
-
-          <article class="sample-side sample-side-raw">
-            <div class="sample-side-head">
-              <span class="sample-side-label muted">Without a report</span>
-            </div>
-            <div class="sample-raw-visual" aria-hidden="true">
-              <div class="sample-raw-line"></div>
-              <div class="sample-raw-line short"></div>
-              <div class="sample-raw-bars">
-                <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            <div class="sample-col sample-col-no">
+              <div class="sample-col-head">
+                <h3>Without a report</h3>
+                <p>Raw inverter dashboards, no verdict.</p>
               </div>
-              <div class="sample-raw-line"></div>
-              <div class="sample-raw-line short"></div>
+              <ul class="sample-crosses">
+                <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>Working status unclear</strong><p>Hard to tell if the system is truly doing its job.</p></div></li>
+                <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>No efficiency verdict</strong><p>No ranked suggestions on what to change first.</p></div></li>
+                <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>No peer context</strong><p>No local benchmark to judge performance against.</p></div></li>
+                <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>No monetary insight</strong><p>No estimate of avoidable grid import.</p></div></li>
+                <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>Nothing to hand over</strong><p>No installer-ready summary to send or print.</p></div></li>
+              </ul>
             </div>
-            <ul class="sample-raw-list">
-              <li>Hard to tell if the system is truly working</li>
-              <li>No efficiency verdict or suggestions</li>
-              <li>No peer compare or monetary insight</li>
-              <li>Nothing clear to send your installer</li>
-            </ul>
-            <p class="sample-raw-note">Raw data without a working check.</p>
-          </article>
+          </div>
         </div>
 
         <div class="sample-actions reveal">
-          <a class="btn btn-outline" href="#sample-findings-detail">Explore sample findings</a>
-          <a class="btn btn-gold" href="https://app.sunsynkreports.com" target="_blank" rel="noopener noreferrer">Get My Report</a>
+          <a class="btn btn-gold" href="https://app.sunsynkreports.com" target="_blank" rel="noopener noreferrer">Get My Report <span aria-hidden="true">→</span></a>
+          <a class="sample-link" href="#sample-findings-detail">Explore findings</a>
         </div>
 
         <div class="insights-grid" id="sample-findings-detail" style="margin-top:2.5rem">
