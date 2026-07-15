@@ -1,5 +1,5 @@
 /* =====================================================
-   SUNSYNK REPORT PLATFORM — script.js
+   SUNSYNK REPORT PLATFORM - script.js
    ===================================================== */
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -424,7 +424,7 @@ function initStepLit() {
 /* ── Subtle card tilt ── */
 function initTilt() {
   if (reducedMotion || !window.matchMedia('(hover: hover)').matches) return;
-  document.querySelectorAll('.feat-card,.insight,.tq,.pci,.audience-card').forEach(card => {
+  document.querySelectorAll('.insight,.tq,.audience-card,.sample-side-report').forEach(card => {
     card.addEventListener('pointermove', e => {
       const r = card.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;
@@ -451,6 +451,90 @@ function initMagneticButtons() {
   });
 }
 
+/* ── Pricing currency switcher ── */
+const PRICING = {
+  GBP: {
+    label: 'British pounds',
+    symbol: '£',
+    plans: {
+      starter: { amount: '2.99', unit: '£2.99', credits: '1 report credit', reports: '1 performance report' },
+      classic: { amount: '7.49', unit: '£2.50', credits: '3 report credits', reports: '3 performance reports' },
+      pro: { amount: '11.49', unit: '£1.92', credits: '6 report credits', reports: '6 performance reports' }
+    }
+  },
+  ZAR: {
+    label: 'South African rand',
+    symbol: 'R\u00A0',
+    plans: {
+      starter: { amount: '69.99', unit: 'R\u00A069.99', credits: '1 report credit', reports: '1 performance report' },
+      classic: { amount: '169.99', unit: 'R\u00A056.66', credits: '3 report credits', reports: '3 performance reports' },
+      pro: { amount: '249.99', unit: 'R\u00A041.67', credits: '6 report credits', reports: '6 performance reports' }
+    }
+  },
+  USD: {
+    label: 'US dollars',
+    symbol: '$',
+    plans: {
+      starter: { amount: '4.29', unit: '$4.29', credits: '1 report credit', reports: '1 performance report' },
+      classic: { amount: '10.99', unit: '$3.66', credits: '3 report credits', reports: '3 performance reports' },
+      pro: { amount: '15.99', unit: '$2.67', credits: '6 report credits', reports: '6 performance reports' }
+    }
+  }
+};
+
+function detectDefaultCurrency() {
+  try {
+    const saved = localStorage.getItem('sprs-currency');
+    if (saved && PRICING[saved]) return saved;
+  } catch (_) { /* ignore */ }
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    if (tz.startsWith('Africa/Johannesburg') || tz.startsWith('Africa/')) return 'ZAR';
+    if (tz.startsWith('America/')) return 'USD';
+  } catch (_) { /* ignore */ }
+  try {
+    const lang = (navigator.language || '').toUpperCase();
+    if (lang.includes('ZA') || lang.endsWith('-ZA')) return 'ZAR';
+    if (lang.includes('US') || lang.endsWith('-US')) return 'USD';
+  } catch (_) { /* ignore */ }
+  return 'GBP';
+}
+
+function applyPricingCurrency(code) {
+  const currency = PRICING[code] || PRICING.GBP;
+  document.querySelectorAll('[data-plan]').forEach(card => {
+    const planKey = card.getAttribute('data-plan');
+    const plan = currency.plans[planKey];
+    if (!plan) return;
+    const symbol = card.querySelector('[data-price-symbol]');
+    const amount = card.querySelector('[data-price-amount]');
+    const unit = card.querySelector('[data-price-unit]');
+    const credits = card.querySelector('[data-price-credits]');
+    const reports = card.querySelector('[data-price-reports]');
+    if (symbol) symbol.textContent = currency.symbol;
+    if (amount) amount.textContent = plan.amount;
+    if (unit) unit.textContent = plan.unit;
+    if (credits) credits.textContent = plan.credits;
+    if (reports) reports.textContent = plan.reports;
+  });
+  document.querySelectorAll('[data-price-currency-label]').forEach(el => {
+    el.textContent = currency.label;
+  });
+}
+
+function initPricingCurrency() {
+  const select = document.getElementById('currencySelect');
+  if (!select) return;
+  const initial = detectDefaultCurrency();
+  select.value = initial;
+  applyPricingCurrency(initial);
+  select.addEventListener('change', () => {
+    const code = select.value;
+    applyPricingCurrency(code);
+    try { localStorage.setItem('sprs-currency', code); } catch (_) { /* ignore */ }
+  });
+}
+
 /* ── Boot ── */
 document.addEventListener('DOMContentLoaded', () => {
   initHeroFadeIn();
@@ -464,4 +548,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initStepLit();
   initTilt();
   initMagneticButtons();
+  initPricingCurrency();
 });

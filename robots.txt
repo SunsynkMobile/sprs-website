@@ -1,4 +1,49 @@
+# Sunsynk Report Platform
+# https://sunsynkreports.com/
+
 User-agent: *
 Allow: /
 
+# Legacy .html stubs redirect to trailing-slash URLs; prefer canonical paths
+Disallow: /index.html
+Disallow: /knowledgebase.html
+Disallow: /privacy-policy.html
+Disallow: /terms-of-use.html
+Disallow: /cookie-policy.html
+
+# Explicit allow for common AI and search crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://sunsynkreports.com/sitemap.xml
+
+# LLM orientation files (see https://llmstxt.org/)
+# https://sunsynkreports.com/llms.txt
+# https://sunsynkreports.com/llms-full.txt

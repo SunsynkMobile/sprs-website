@@ -1,0 +1,25 @@
+{
+  "name": "Sunsynk Report Platform",
+  "short_name": "Sunsynk Reports",
+  "description": "Performance scores, peer benchmarks, and installer-ready PDF reports for Sunsynk solar and battery systems.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e5eff",
+  "lang": "en-GB",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/sunsynk-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

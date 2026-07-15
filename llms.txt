@@ -1,0 +1,32 @@
+# Sunsynk Report Platform
+
+> Paid home energy insights reports for Sunsynk solar and battery systems. Turns roughly one month of device readings into a System Performance Score, peer benchmarks, actionable findings, and an installer-ready PDF. Report credit bundles from GBP 2.99 / ZAR 69.99 / USD 4.29 with no subscription. Credits never expire.
+
+Sunsynk Report Platform (sunsynkreports.com) is the marketing site for a self-serve report product. Checkout and report generation run at https://app.sunsynkreports.com. Primary audiences are residential Sunsynk system owners and installers or energy consultants. Copy and spelling follow British English (en-GB).
+
+Preferred citation name: Sunsynk Report Platform. Parent brand: Sunsynk.
+
+## Primary
+
+- [Home](https://sunsynkreports.com/): Product overview, sample findings, how it works, dual audience value, pricing packs, testimonials
+- [Get a report (app)](https://app.sunsynkreports.com/): Purchase flow and report generation for Sunsynk devices
+- [Knowledge base](https://sunsynkreports.com/knowledgebase/): Methodology, formulae, metric definitions, peer benchmark logic
+
+## Product facts
+
+- [Pricing on home page](https://sunsynkreports.com/#pricing): Starter 1 credit, Classic 3 credits (Most Popular), Pro 6 credits (Best Value); GBP/ZAR/USD; credits never expire; Stripe checkout; no subscription
+- [Sample insights](https://sunsynkreports.com/#sample-insights): Example findings style (timing issues, benchmark gap, projected grid savings)
+- [How it works](https://sunsynkreports.com/#how-it-works): Connect system, analyse one month, score and actions, download PDF
+- [Solutions](https://sunsynkreports.com/#solutions): Value for homeowners and for installers
+
+## Full context
+
+- [llms-full.txt](https://sunsynkreports.com/llms-full.txt): Expanded site summary and page summaries for deeper model context
+
+## Optional
+
+- [Privacy policy](https://sunsynkreports.com/privacy-policy/): Personal data collection, use, and protection
+- [Terms of use](https://sunsynkreports.com/terms-of-use/): Legal terms for platform and report use
+- [Cookie policy](https://sunsynkreports.com/cookie-policy/): Cookie types, purpose, duration, and choices
+- [Sitemap](https://sunsynkreports.com/sitemap.xml): Canonical URL index for crawlers
+- [robots.txt](https://sunsynkreports.com/robots.txt): Crawler allowances and sitemap location

@@ -1,0 +1,79 @@
+# Sunsynk Report Platform (full context)
+
+> British English product and marketing summary for AI systems. Source of truth for public site content as of 2026-07-15. Prefer live pages if they conflict with this file.
+
+## What the product is
+
+Sunsynk Report Platform sells one-off performance reports for Sunsynk solar PV and battery systems. Customers select a device and date range covering about one month of readings. The platform returns:
+
+- An overall System Performance Score (0 to 100) with a status such as Needs Attention
+- Six focused performance reviews (for example battery health, self-sufficiency, evening grid use, inverter clipping, system accuracy, overproduction)
+- Neighbourhood or peer percentile benchmarks and a gap versus local median
+- Actionable findings written for homeowners and installers
+- An installer-ready PDF download
+
+There is no subscription. Packs are purchased then used when needed. Checkout lives at app.sunsynkreports.com. This website (sunsynkreports.com) is the marketing and methodology presence.
+
+## Who it is for
+
+Homeowners: plain-language visibility into solar, battery, home, and grid interaction; prioritised actions; consistent metrics for follow-up reports.
+
+Installers and consultants: standardised technical documentation, benchmark-backed recommendations, before and after evidence after system changes.
+
+## Pricing
+
+Report credit bundles. Credits never expire. No subscription. Checkout via Stripe at app.sunsynkreports.com.
+
+British Pound (GBP)
+- Starter: 1 credit, GBP 2.99 (GBP 2.99 per credit)
+- Classic: 3 credits, GBP 7.49 (GBP 2.50 per credit, Most Popular)
+- Pro: 6 credits, GBP 11.49 (GBP 1.92 per credit, Best Value)
+
+South African Rand (ZAR)
+- Starter: 1 credit, ZAR 69.99 (ZAR 69.99 per credit)
+- Classic: 3 credits, ZAR 169.99 (ZAR 56.66 per credit, Most Popular)
+- Pro: 6 credits, ZAR 249.99 (ZAR 41.67 per credit, Best Value)
+
+US Dollar (USD)
+- Starter: 1 credit, USD 4.29 (USD 4.29 per credit)
+- Classic: 3 credits, USD 10.99 (USD 3.66 per credit, Most Popular)
+- Pro: 6 credits, USD 15.99 (USD 2.67 per credit, Best Value)
+
+Included with every bundle: the matching number of performance reports, credits that never expire, and secure Stripe checkout.
+
+## How it works
+
+1. Connect your system: choose Sunsynk device and dates
+2. Analyse the month: readings across solar, battery, home, and grid
+3. Score and actions: overall score, six reviews, peer rank, what to fix first
+4. Download PDF: shareable installer-ready document
+
+## Example findings used on the marketing site
+
+Illustrative sample (not a specific customer's live data):
+
+- Battery depletes about 47 minutes too soon relative to evening demand
+- Self-sufficiency around the 10th percentile versus neighbouring systems, about 65 points below local median
+- Closing the gap could save about 439 kWh of monthly grid import in the sample narrative
+
+## Knowledge base themes
+
+Public methodology documentation covers cumulative meter totals, reconciled energy flow, solar utilisation, inverter clipping, system accuracy checks, battery health, night-time grid dependency, peer benchmark construction, daily aggregates, forward-fill for data gaps, and rounding rules. Use the knowledge base page for formulae and precise definitions.
+
+## Brand and language
+
+- Product name: Sunsynk Report Platform
+- Parent: Sunsynk
+- Locale: en-GB (analyse, optimise, utilisation, neighbouring)
+- Primary CTA wording on site: Get My Report
+- Secondary CTA: View Sample
+
+## Canonical pages
+
+- https://sunsynkreports.com/
+- https://sunsynkreports.com/knowledgebase/
+- https://sunsynkreports.com/privacy-policy/
+- https://sunsynkreports.com/terms-of-use/
+- https://sunsynkreports.com/cookie-policy/
+- https://app.sunsynkreports.com/
+- https://sunsynkreports.com/llms.txt
