@@ -473,6 +473,19 @@ body.nav-open{overflow:hidden}
 .pricing-note svg{flex:0 0 auto;margin-top:.15rem}
 .pricing-note-text{flex:0 1 auto;text-align:center;line-height:1.55}
 
+/* VALUE */
+.value-panel{max-width:760px;margin-inline:auto;background:var(--white);border:1px solid var(--brand-slate-200);border-radius:var(--r-lg);padding:var(--card-pad);text-align:center}
+.value-compare{display:grid;grid-template-columns:1fr auto 1fr;gap:var(--space-3);align-items:center;margin-bottom:var(--space-4)}
+.value-compare-col{padding:var(--space-3);border:1px solid var(--brand-slate-200);border-radius:var(--r-md);background:var(--brand-slate-50)}
+.value-compare-col-highlight{background:var(--white);border-color:var(--brand-blue-300)}
+.value-compare-label{font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:color-mix(in srgb, var(--brand-ink) 60%, transparent);margin:0 0 .5rem;line-height:1.35}
+.value-compare-price{font-size:var(--fs-h2);font-weight:700;color:var(--brand-ink);margin:0;line-height:var(--line-height-tight);letter-spacing:-.02em}
+.value-compare-col-highlight .value-compare-price{color:var(--brand-blue-300)}
+.value-compare-note{font-size:var(--fs-meta);color:color-mix(in srgb, var(--brand-ink) 60%, transparent);margin:.35rem 0 0}
+.value-compare-vs{font-size:var(--fs-meta);font-weight:700;color:color-mix(in srgb, var(--brand-ink) 45%, transparent);margin:0}
+.value-body{font-size:var(--fs-body);color:color-mix(in srgb, var(--brand-ink) 75%, transparent);line-height:var(--line-height-relaxed);margin:0 0 var(--space-3);max-width:52ch;margin-inline:auto}
+.value-disclaimer{font-size:var(--fs-meta);color:color-mix(in srgb, var(--brand-ink) 60%, transparent);margin:0;font-style:italic;max-width:48ch;margin-inline:auto}
+
 /* OUTCOMES */
 .outcomes-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--grid-gap)}
 .outcome{text-align:center;padding:var(--card-pad) var(--space-3);border-radius:var(--card-radius);border:1px solid var(--slate-200);background:var(--white);transition:background var(--t2) ease,border-color var(--t2) ease,transform var(--t2) ease;-webkit-tap-highlight-color:transparent}
@@ -911,6 +924,8 @@ a.ix-link:active{transform:scale(.98)}
   .sample-actions{align-items:stretch}
   .sample-actions .btn{width:100%}
   .sample-link{justify-content:center}
+  .value-compare{grid-template-columns:1fr;gap:var(--space-2)}
+  .value-compare-vs{display:none}
   .cta-actions{flex-direction:column;align-items:center;max-width:360px;margin-inline:auto}
   .cta-actions .btn{width:100%}
   .cta-actions-single{align-items:stretch}

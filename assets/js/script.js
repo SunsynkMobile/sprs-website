@@ -780,6 +780,19 @@ function applyPricingCurrency(code, animate) {
   document.querySelectorAll('[data-price-currency-label]').forEach(el => {
     el.textContent = currency.label;
   });
+
+  const valuePanel = document.getElementById('value');
+  if (valuePanel) {
+    const starter = currency.plans.starter;
+    if (starter) {
+      valuePanel.querySelectorAll('[data-price-symbol]').forEach(el => { el.textContent = currency.symbol; });
+      valuePanel.querySelectorAll('[data-price-amount]').forEach(el => { el.textContent = starter.amount; });
+      valuePanel.querySelectorAll('[data-price-unit]').forEach(el => { el.textContent = starter.unit; });
+      valuePanel.querySelectorAll('[data-value-per-credit]').forEach(el => { el.textContent = starter.unit; });
+    }
+    const compare = valuePanel.querySelector('[data-value-compare]');
+    if (compare) compare.hidden = code !== 'GBP';
+  }
 }
 
 function initPricingCurrency() {
