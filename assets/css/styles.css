@@ -238,27 +238,7 @@ body.nav-open{overflow:hidden}
 .btn-soft{background:var(--white);color:var(--brand-ink);border:1px solid var(--brand-slate-200)}
 .btn-soft:active{background:var(--brand-slate-50)}
 .hero-actions .btn{border-radius:var(--r-md);padding:.8rem 1.55rem;min-height:2.75rem;min-width:10.5rem}
-.hero-preview{position:relative;width:min(1100px,100%);margin:0 auto;align-self:center;isolation:isolate}
-.hero-preview::before,
-.hero-preview::after{
-  content:'';
-  position:absolute;
-  z-index:0;
-  pointer-events:none;
-  border-radius:50%;
-  filter:blur(48px);
-  opacity:.55;
-}
-.hero-preview::before{
-  inset:18% -8% -18% 28%;
-  background:radial-gradient(circle, color-mix(in srgb, var(--brand-yellow-200) 38%, transparent) 0%, transparent 68%);
-  animation:heroGlowWarm 7.5s ease-in-out infinite;
-}
-.hero-preview::after{
-  inset:-12% 22% 28% -10%;
-  background:radial-gradient(circle, color-mix(in srgb, var(--brand-blue-300) 28%, transparent) 0%, transparent 70%);
-  animation:heroGlowCool 9s ease-in-out infinite;
-}
+.hero-preview{position:relative;width:min(1100px,100%);margin:0 auto;align-self:center}
 .hero-product{
   position:relative;
   z-index:1;
@@ -268,10 +248,7 @@ body.nav-open{overflow:hidden}
   background:var(--white);
   border:1px solid var(--brand-slate-200);
   overflow:hidden;
-  box-shadow:
-    0 1px 0 color-mix(in srgb, var(--brand-white) 70%, transparent) inset,
-    0 18px 48px color-mix(in srgb, var(--brand-blue-300) 10%, transparent),
-    0 6px 18px color-mix(in srgb, var(--brand-ink) 6%, transparent);
+  box-shadow:0 10px 28px color-mix(in srgb, var(--brand-ink) 8%, transparent);
   animation:heroProductFloat 8s ease-in-out infinite;
 }
 .hero-product::after{
@@ -284,7 +261,7 @@ body.nav-open{overflow:hidden}
     115deg,
     transparent 0%,
     transparent 42%,
-    color-mix(in srgb, var(--brand-white) 22%, transparent) 50%,
+    color-mix(in srgb, var(--brand-white) 18%, transparent) 50%,
     transparent 58%,
     transparent 100%
   );
@@ -293,27 +270,17 @@ body.nav-open{overflow:hidden}
 }
 .hero-product-chrome{display:flex;align-items:center;gap:.4rem;padding:.65rem 1rem;background:var(--brand-slate-50);border-bottom:1px solid var(--brand-slate-200);position:relative;z-index:1}
 .hero-product-dot{width:8px;height:8px;border-radius:50%;background:var(--brand-slate-300);flex:0 0 auto}
-.hero-product-dot:nth-child(1){background:#d0d5dc}
-.hero-product-dot:nth-child(2){background:color-mix(in srgb, var(--brand-yellow-200) 55%, var(--brand-slate-300));animation:heroDotPulse 3.2s ease-in-out infinite}
-.hero-product-dot:nth-child(3){background:color-mix(in srgb, var(--brand-blue-300) 35%, var(--brand-slate-300))}
+.hero-product-dot:nth-child(2){animation:heroDotPulse 3.2s ease-in-out infinite}
 .hero-product-url{margin-left:.55rem;font-size:var(--fs-eyebrow);font-weight:600;color:color-mix(in srgb, var(--brand-ink) 55%, transparent);letter-spacing:.02em}
 .hero-product img{display:block;width:100%;height:auto;position:relative;z-index:1}
 
-@keyframes heroGlowWarm{
-  0%,100%{opacity:.42;transform:translate(0,0) scale(1)}
-  50%{opacity:.72;transform:translate(-2%, 3%) scale(1.06)}
-}
-@keyframes heroGlowCool{
-  0%,100%{opacity:.38;transform:translate(0,0) scale(1)}
-  50%{opacity:.64;transform:translate(3%, -2%) scale(1.08)}
-}
 @keyframes heroProductFloat{
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-6px)}
 }
 @keyframes heroSheen{
   0%,62%{transform:translateX(-120%);opacity:0}
-  70%{opacity:.85}
+  70%{opacity:.7}
   78%,100%{transform:translateX(120%);opacity:0}
 }
 @keyframes heroDotPulse{
@@ -1157,7 +1124,7 @@ a.ix-link:active{transform:scale(.98)}
   html{scroll-behavior:auto}
   .fade-in,.hero-text.fade-in > *,.hero-preview.fade-in,.reveal,.reveal.visible .ix-stagger > *,.reveal.visible .ix-cascade > *,.reveal.visible.ix-cascade > *,.reveal.visible.ix-cascade-root > *,.nav-menu.open a{transition:none!important;animation:none!important;opacity:1!important;transform:none!important}
   .flow-pulse{animation:none!important}
-  .flow-node,.hero-window,.hero-orb,.hero-light-beam,.hero-particles span,.signal-track,.health-score-num.is-hot,.hero-preview,.hero-score .ring-wrap,.section-header.reveal.visible .eyebrow,.section-cta::before,.actions-tag,.countup.is-counting,.btn-gold::after,.hero-preview::before,.hero-preview::after,.hero-product,.hero-product::after,.hero-product-dot{animation:none!important}
+  .flow-node,.hero-window,.hero-orb,.hero-light-beam,.hero-particles span,.signal-track,.health-score-num.is-hot,.hero-preview,.hero-score .ring-wrap,.section-header.reveal.visible .eyebrow,.section-cta::before,.actions-tag,.countup.is-counting,.btn-gold::after,.hero-product,.hero-product::after,.hero-product-dot{animation:none!important}
   .loader-ring,.loader-text{animation:none!important}
   .ring-progress{transition:none!important}
   .score-fill,.health-fill{transition:none!important}

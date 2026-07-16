@@ -33,17 +33,17 @@ Report credit bundles. One credit = one report. Credits never expire. Unused cre
 British Pound (GBP)
 - Starter: 1 credit, GBP 2.99 (GBP 2.99 per credit)
 - Classic: 3 credits, GBP 7.49 (GBP 2.50 per credit, Most Popular)
-- Pro: 5 credits, GBP 11.49 (GBP 2.30 per credit, Best Value)
+- Pro: 6 credits, GBP 11.49 (GBP 1.92 per credit, Best Value)
 
 South African Rand (ZAR)
 - Starter: 1 credit, ZAR 69.99 (ZAR 69.99 per credit)
 - Classic: 3 credits, ZAR 169.99 (ZAR 56.66 per credit, Most Popular)
-- Pro: 5 credits, ZAR 249.99 (ZAR 50.00 per credit, Best Value)
+- Pro: 6 credits, ZAR 249.99 (ZAR 41.67 per credit, Best Value)
 
 US Dollar (USD)
 - Starter: 1 credit, USD 4.29 (USD 4.29 per credit)
 - Classic: 3 credits, USD 10.99 (USD 3.66 per credit, Most Popular)
-- Pro: 5 credits, USD 15.99 (USD 3.20 per credit, Best Value)
+- Pro: 6 credits, USD 15.99 (USD 2.67 per credit, Best Value)
 
 ## Customer journey (app)
 
