@@ -11,18 +11,18 @@
   "dir": "ltr",
   "icons": [
     {
-      "src": "/favicon.ico",
+      "src": "/assets/images/favicon.ico",
       "sizes": "48x48",
       "type": "image/x-icon"
     },
     {
-      "src": "/apple-touch-icon.png",
+      "src": "/assets/images/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/sunsynk-logo.png",
+      "src": "/assets/images/sunsynk-logo.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"

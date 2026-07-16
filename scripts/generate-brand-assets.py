@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate og-image.jpg, twitter-image.jpg, and apple-touch-icon.png."""
+"""Generate assets/images/og-image.jpg, twitter-image.jpg, and apple-touch-icon.png."""
 
 from __future__ import annotations
 
@@ -10,6 +10,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
+ASSETS = ROOT / "assets" / "images"
 
 BLUE = "#1e5eff"
 BLUE_DARK = "#0d3a9c"
@@ -109,7 +110,7 @@ def generate_og_image() -> Image.Image:
     draw = ImageDraw.Draw(img)
 
     # Left copy block
-    logo = Image.open(ROOT / "sunsynk-logo.png").convert("RGBA")
+    logo = Image.open(ASSETS / "sunsynk-logo.png").convert("RGBA")
     logo_w = 300
     logo_h = int(logo.height * (logo_w / logo.width))
     logo = logo.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
@@ -219,7 +220,7 @@ def generate_apple_touch_icon() -> Image.Image:
         )
         draw.ellipse((90 - r, 90 - r, 90 + r, 90 + r), fill=color)
 
-    icon = Image.open(ROOT / "favicon.ico").convert("RGBA")
+    icon = Image.open(ASSETS / "favicon.ico").convert("RGBA")
     icon_size = 118
     icon = icon.resize((icon_size, icon_size), Image.Resampling.LANCZOS)
     paste_rgba(img, icon, ((size - icon_size) // 2, (size - icon_size) // 2))
@@ -229,13 +230,13 @@ def generate_apple_touch_icon() -> Image.Image:
 def main() -> None:
     og = generate_og_image()
     og_rgb = og.convert("RGB")
-    og_path = ROOT / "og-image.jpg"
-    twitter_path = ROOT / "twitter-image.jpg"
+    og_path = ASSETS / "og-image.jpg"
+    twitter_path = ASSETS / "twitter-image.jpg"
     og_rgb.save(og_path, "JPEG", quality=90, optimize=True, progressive=True)
     og_rgb.save(twitter_path, "JPEG", quality=90, optimize=True, progressive=True)
 
     apple = generate_apple_touch_icon()
-    apple_path = ROOT / "apple-touch-icon.png"
+    apple_path = ASSETS / "apple-touch-icon.png"
     apple.save(apple_path, "PNG", optimize=True)
 
     print(f"Wrote {og_path} ({og_path.stat().st_size // 1024} KB)")

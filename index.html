@@ -30,14 +30,14 @@
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://sunsynkreports.com/sitemap.xml" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Share preview images: replace /og-image.jpg (Facebook, LinkedIn, WhatsApp, iMessage) and /twitter-image.jpg (X). Use 1200×630 JPEG. Re-scrape after deploy if previews look stale. -->
+  <!-- Share preview images: /assets/images/og-image.jpg and twitter-image.jpg (1200×630 JPEG). -->
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sunsynkreports.com/" />
   <meta property="og:title" content="Sunsynk Report Platform | Clear performance insights for your Sunsynk system" />
   <meta property="og:description" content="Sign in with your Sunsynk account, buy credits, and generate a 30-day plant performance PDF. Optional savings with a saved tariff. No subscription." />
-  <meta property="og:image" content="https://sunsynkreports.com/og-image.jpg" />
-  <meta property="og:image:secure_url" content="https://sunsynkreports.com/og-image.jpg" />
+  <meta property="og:image" content="https://sunsynkreports.com/assets/images/og-image.jpg" />
+  <meta property="og:image:secure_url" content="https://sunsynkreports.com/assets/images/og-image.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -52,13 +52,13 @@
   <meta name="twitter:url" content="https://sunsynkreports.com/" />
   <meta name="twitter:title" content="Sunsynk Report Platform | Clear performance insights for your Sunsynk system" />
   <meta name="twitter:description" content="30-day Sunsynk Performance Reports: overview, optional savings, health, and prioritised actions. Credits never expire. No subscription." />
-  <meta name="twitter:image" content="https://sunsynkreports.com/twitter-image.jpg" />
+  <meta name="twitter:image" content="https://sunsynkreports.com/assets/images/twitter-image.jpg" />
   <meta name="twitter:image:alt" content="Sunsynk Report Platform — 30-day performance reports with executive summary and system score" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
+  <link rel="shortcut icon" href="/assets/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png" sizes="180x180" />
   <meta name="theme-color" content="#1e5eff" />
   <meta name="msapplication-TileColor" content="#1e5eff" />
 
@@ -67,7 +67,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="dns-prefetch" href="https://app.sunsynkreports.com" />
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
 
   <!-- JSON-LD: WebSite -->
   <script type="application/ld+json">
@@ -94,9 +94,9 @@
     "url": "https://sunsynkreports.com/",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://sunsynkreports.com/sunsynk-logo.png"
+      "url": "https://sunsynkreports.com/assets/images/sunsynk-logo.png"
     },
-    "image": "https://sunsynkreports.com/og-image.jpg",
+    "image": "https://sunsynkreports.com/assets/images/og-image.jpg",
     "description": "Report platform for Sunsynk solar and battery system performance analysis.",
     "parentOrganization": {
       "@type": "Organization",
@@ -126,8 +126,8 @@
     "operatingSystem": "Web",
     "inLanguage": "en-GB",
     "isAccessibleForFree": false,
-    "image": "https://sunsynkreports.com/og-image.jpg",
-    "screenshot": "https://sunsynkreports.com/og-image.jpg",
+    "image": "https://sunsynkreports.com/assets/images/og-image.jpg",
+    "screenshot": "https://sunsynkreports.com/assets/images/og-image.jpg",
     "publisher": { "@id": "https://sunsynkreports.com/#organization" },
     "creator": {
       "@type": "Organization",
@@ -296,7 +296,7 @@
     "about": { "@id": "https://sunsynkreports.com/#product" },
     "primaryImageOfPage": {
       "@type": "ImageObject",
-      "url": "https://sunsynkreports.com/og-image.jpg",
+      "url": "https://sunsynkreports.com/assets/images/og-image.jpg",
       "width": 1200,
       "height": 630
     },
@@ -329,7 +329,7 @@
   <header class="nav" id="nav">
     <div class="nav-inner container">
       <a class="nav-brand" href="#top" aria-label="Sunsynk Report Platform">
-        <img src="sunsynk-logo.png" alt="Sunsynk" class="nav-logo" width="910" height="120" decoding="async" fetchpriority="high" />
+        <img src="/assets/images/sunsynk-logo.png" alt="Sunsynk" class="nav-logo" width="910" height="120" decoding="async" fetchpriority="high" />
         <span>Report Platform</span>
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
@@ -770,7 +770,7 @@
     <div class="container footer-grid">
       <div class="footer-brand">
         <a class="nav-brand" href="#top">
-          <img src="sunsynk-logo.png" alt="Sunsynk" class="nav-logo footer-logo" width="910" height="120" loading="lazy" decoding="async" />
+          <img src="/assets/images/sunsynk-logo.png" alt="Sunsynk" class="nav-logo footer-logo" width="910" height="120" loading="lazy" decoding="async" />
           <span>Report Platform</span>
         </a>
         <p>Homeowner reports for Sunsynk systems: savings, health, solar and battery insights, and prioritised actions.</p>
@@ -785,7 +785,7 @@
     </div>
   </footer>
 
-  <script src="cookie-consent.js"></script>
-  <script src="script.js"></script>
+  <script src="/assets/js/cookie-consent.js"></script>
+  <script src="/assets/js/script.js"></script>
 </body>
 </html>

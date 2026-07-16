@@ -1,6 +1,6 @@
 /* =====================================================
    Shared layout for legal, policy, and documentation pages.
-   Requires styles.css (design tokens, nav, footer, typography).
+   Requires /assets/css/styles.css (design tokens, nav, footer, typography).
    ===================================================== */
 
 body.doc-page {
