@@ -1,7 +1,7 @@
 {
   "name": "Sunsynk Report Platform",
   "short_name": "Sunsynk Reports",
-  "description": "Performance scores, peer benchmarks, and installer-ready PDF reports for Sunsynk solar and battery systems.",
+  "description": "30-day Sunsynk Performance Reports for account holders: executive overview, optional savings, system health, solar and battery insights, and prioritised actions. No subscription.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -14,6 +14,12 @@
       "src": "/favicon.ico",
       "sizes": "48x48",
       "type": "image/x-icon"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/sunsynk-logo.png",

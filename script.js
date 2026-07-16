@@ -3,6 +3,7 @@
    ===================================================== */
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
 /* ── Page Loader ── */
 const pageLoader = document.getElementById('pageLoader');
@@ -293,7 +294,8 @@ function initChartInteractions() {
 
   const distLive = document.createElement('p');
   distLive.className = 'dist-live-legend';
-  distLive.textContent = 'Live: hover or drag across bars to inspect distribution.';
+  const chartHint = finePointer ? 'hover or drag' : 'tap or drag';
+  distLive.textContent = `Live: ${chartHint} across bars to inspect distribution.`;
   if (distLegend?.parentElement) distLegend.parentElement.appendChild(distLive);
 
   const setActiveDistBar = (activeBar, x, y) => {
@@ -313,7 +315,7 @@ function initChartInteractions() {
     bar.addEventListener('pointerleave', () => {
       if (distRow?.classList.contains('is-scrubbing')) return;
       bar.classList.remove('is-active');
-      distLive.textContent = 'Live: hover or drag across bars to inspect distribution.';
+      distLive.textContent = `Live: ${chartHint} across bars to inspect distribution.`;
       hideTip();
     });
     bar.addEventListener('focus', () => {
@@ -323,7 +325,7 @@ function initChartInteractions() {
     bar.addEventListener('blur', () => {
       if (distRow?.classList.contains('is-scrubbing')) return;
       bar.classList.remove('is-active');
-      distLive.textContent = 'Live: hover or drag across bars to inspect distribution.';
+      distLive.textContent = `Live: ${chartHint} across bars to inspect distribution.`;
       hideTip();
     });
   });
@@ -367,7 +369,7 @@ function initChartInteractions() {
       if (distRow.classList.contains('is-scrubbing')) return;
       hideTip();
       distBars.forEach(b => b.classList.remove('is-active'));
-      distLive.textContent = 'Live: hover or drag across bars to inspect distribution.';
+      distLive.textContent = `Live: ${chartHint} across bars to inspect distribution.`;
     });
   }
 
@@ -380,7 +382,7 @@ function initChartInteractions() {
     if (target) {
       clipLive = document.createElement('p');
       clipLive.className = 'clip-live-legend';
-      clipLive.textContent = 'Live: hover chart bars to inspect clipping windows.';
+      clipLive.textContent = `Live: ${chartHint} chart bars to inspect clipping windows.`;
       target.appendChild(clipLive);
     }
   }
@@ -426,7 +428,7 @@ function initChartInteractions() {
     bar.addEventListener('pointerleave', () => {
       bar.classList.remove('is-active');
       hideTip();
-      if (clipLive) clipLive.textContent = 'Live: hover chart bars to inspect clipping windows.';
+      if (clipLive) clipLive.textContent = `Live: ${chartHint} chart bars to inspect clipping windows.`;
       crosshair?.classList.remove('show');
       yLabel?.classList.remove('show');
     });
@@ -454,21 +456,36 @@ function initChartInteractions() {
     clipChart.addEventListener('pointerleave', () => {
       hideTip();
       clipBars.forEach(b => b.classList.remove('is-active'));
-      if (clipLive) clipLive.textContent = 'Live: hover chart bars to inspect clipping windows.';
+      if (clipLive) clipLive.textContent = `Live: ${chartHint} chart bars to inspect clipping windows.`;
       crosshair?.classList.remove('show');
       yLabel?.classList.remove('show');
     });
   }
 
-  if (ringWrap && !reducedMotion && window.matchMedia('(hover: hover)').matches) {
+  if (ringWrap && !reducedMotion) {
     ringWrap.classList.add('interactive');
-    ringWrap.addEventListener('pointermove', e => {
-      const r = ringWrap.getBoundingClientRect();
-      const nx = ((e.clientX - r.left) / r.width - 0.5) * 8;
-      const ny = ((e.clientY - r.top) / r.height - 0.5) * 8;
-      ringWrap.style.transform = `translate(${nx * 0.25}px, ${ny * 0.25}px)`;
-    });
-    ringWrap.addEventListener('pointerleave', () => { ringWrap.style.transform = ''; });
+    const canTilt = window.matchMedia('(hover: hover)').matches;
+    if (canTilt) {
+      ringWrap.addEventListener('pointermove', e => {
+        const r = ringWrap.getBoundingClientRect();
+        const nx = ((e.clientX - r.left) / r.width - 0.5) * 8;
+        const ny = ((e.clientY - r.top) / r.height - 0.5) * 8;
+        ringWrap.style.transform = `translate(${nx * 0.25}px, ${ny * 0.25}px)`;
+      });
+      ringWrap.addEventListener('pointerleave', () => { ringWrap.style.transform = ''; });
+    } else {
+      ringWrap.addEventListener('pointerdown', () => {
+        ringWrap.classList.add('is-tapped');
+        ringWrap.style.transform = 'scale(.97)';
+      });
+      const clearTap = () => {
+        ringWrap.classList.remove('is-tapped');
+        ringWrap.style.transform = '';
+      };
+      ringWrap.addEventListener('pointerup', clearTap);
+      ringWrap.addEventListener('pointercancel', clearTap);
+      ringWrap.addEventListener('pointerleave', clearTap);
+    }
   }
 }
 
@@ -498,7 +515,6 @@ function initStepLit() {
   steps.forEach(s => io.observe(s));
 }
 
-const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
 /* ── Sitewide cursor atmosphere ── */
 function initPointerAtmosphere() {
@@ -769,12 +785,23 @@ function applyPricingCurrency(code, animate) {
 function initPricingCurrency() {
   const select = document.getElementById('currencySelect');
   if (!select) return;
+  let live = document.getElementById('currencyLive');
+  if (!live) {
+    live = document.createElement('p');
+    live.id = 'currencyLive';
+    live.className = 'sr-only';
+    live.setAttribute('aria-live', 'polite');
+    live.setAttribute('aria-atomic', 'true');
+    select.closest('.currency-picker')?.appendChild(live);
+  }
   const initial = detectDefaultCurrency();
   select.value = initial;
   applyPricingCurrency(initial, false);
   select.addEventListener('change', () => {
     const code = select.value;
     applyPricingCurrency(code, true);
+    const currency = PRICING[code] || PRICING.GBP;
+    if (live) live.textContent = `Prices updated to ${currency.label}.`;
     if (!reducedMotion) {
       select.classList.remove('is-changing');
       void select.offsetWidth;
@@ -809,7 +836,7 @@ function initPressFeedback() {
     btn.addEventListener('pointercancel', release);
   });
 
-  document.querySelectorAll('.sample-link, .cta-secondary-link, .footer nav a, .cookie-manage-link, .nav-brand').forEach(el => {
+  document.querySelectorAll('.sample-link, .cta-secondary-link, .footer nav a, .cookie-manage-link, .nav-brand, .faq-item summary, .inside-col, .trust-item, .actions-group, .price-card').forEach(el => {
     el.addEventListener('pointerdown', () => el.classList.add('is-pressed'));
     const clear = () => el.classList.remove('is-pressed');
     el.addEventListener('pointerup', clear);
@@ -821,6 +848,14 @@ function initPressFeedback() {
 /* ── FAQ open feedback ── */
 function initFaqFeedback() {
   document.querySelectorAll('.faq-item').forEach(item => {
+    const summary = item.querySelector('summary');
+    if (summary) {
+      summary.addEventListener('pointerdown', () => item.classList.add('is-pressing'));
+      const clearPress = () => item.classList.remove('is-pressing');
+      summary.addEventListener('pointerup', clearPress);
+      summary.addEventListener('pointerleave', clearPress);
+      summary.addEventListener('pointercancel', clearPress);
+    }
     item.addEventListener('toggle', () => {
       if (!item.open || reducedMotion) return;
       const answer = item.querySelector('.faq-answer > *');
