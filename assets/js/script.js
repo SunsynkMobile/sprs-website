@@ -928,18 +928,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initChartInteractions();
   initStepsLine();
   initStepLit();
-  initPointerAtmosphere();
-  initSurfaceMotion();
-  initMagneticButtons();
-  initMagneticNav();
-  initHoverLiftExtras();
   initPricingCurrency();
   initPressFeedback();
   initFaqFeedback();
   initHealthHotState();
   initSelectFeedback();
-  initHeroReact();
-  initScrollDrift();
   if (location.hash) {
     // Defer so sticky nav height and fonts settle before measuring
     requestAnimationFrame(() => scrollToHash(location.hash, false));

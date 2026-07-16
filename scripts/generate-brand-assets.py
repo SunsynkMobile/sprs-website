@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets" / "images"
 
-BLUE = "#1e5eff"
+BLUE = "#24314a"
 BLUE_DARK = "#0d3a9c"
 GOLD = "#e8a800"
 GOLD_DARK = "#c48a00"

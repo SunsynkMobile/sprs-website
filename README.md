@@ -20,7 +20,7 @@ Marketing site for [sunsynkreports.com](https://sunsynkreports.com/). Static HTM
 ├── cookie-policy/index.html
 ├── knowledgebase/index.html
 ├── assets/
-│   ├── css/                   # styles.css, doc-pages.css
+│   ├── css/                   # styles.css, tokens.css, doc-pages.css
 │   ├── js/                    # script.js, cookie-consent.js, doc-pages.js
 │   └── images/                # logos, favicon, OG/social images
 ├── scripts/                   # Build helpers (not served as pages)
