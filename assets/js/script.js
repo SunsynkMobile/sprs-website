@@ -706,7 +706,7 @@ const PRICING = {
     plans: {
       starter: { amount: '2.99', unit: '£2.99', credits: '1 report credit', reports: '1 performance report' },
       classic: { amount: '7.49', unit: '£2.50', credits: '3 report credits', reports: '3 performance reports' },
-      pro: { amount: '11.49', unit: '£2.30', credits: '5 report credits', reports: '5 performance reports' }
+      pro: { amount: '11.49', unit: '£1.92', credits: '6 report credits', reports: '6 performance reports' }
     }
   },
   ZAR: {
@@ -715,7 +715,7 @@ const PRICING = {
     plans: {
       starter: { amount: '69.99', unit: 'R\u00A069.99', credits: '1 report credit', reports: '1 performance report' },
       classic: { amount: '169.99', unit: 'R\u00A056.66', credits: '3 report credits', reports: '3 performance reports' },
-      pro: { amount: '249.99', unit: 'R\u00A050.00', credits: '5 report credits', reports: '5 performance reports' }
+      pro: { amount: '249.99', unit: 'R\u00A041.67', credits: '6 report credits', reports: '6 performance reports' }
     }
   },
   USD: {
@@ -724,7 +724,7 @@ const PRICING = {
     plans: {
       starter: { amount: '4.29', unit: '$4.29', credits: '1 report credit', reports: '1 performance report' },
       classic: { amount: '10.99', unit: '$3.66', credits: '3 report credits', reports: '3 performance reports' },
-      pro: { amount: '15.99', unit: '$3.20', credits: '5 report credits', reports: '5 performance reports' }
+      pro: { amount: '15.99', unit: '$2.67', credits: '6 report credits', reports: '6 performance reports' }
     }
   }
 };
@@ -780,6 +780,19 @@ function applyPricingCurrency(code, animate) {
   document.querySelectorAll('[data-price-currency-label]').forEach(el => {
     el.textContent = currency.label;
   });
+
+  const valuePanel = document.getElementById('value');
+  if (valuePanel) {
+    const starter = currency.plans.starter;
+    if (starter) {
+      valuePanel.querySelectorAll('[data-price-symbol]').forEach(el => { el.textContent = currency.symbol; });
+      valuePanel.querySelectorAll('[data-price-amount]').forEach(el => { el.textContent = starter.amount; });
+      valuePanel.querySelectorAll('[data-price-unit]').forEach(el => { el.textContent = starter.unit; });
+      valuePanel.querySelectorAll('[data-value-per-credit]').forEach(el => { el.textContent = starter.unit; });
+    }
+    const compare = valuePanel.querySelector('[data-value-compare]');
+    if (compare) compare.hidden = code !== 'GBP';
+  }
 }
 
 function initPricingCurrency() {
@@ -928,18 +941,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initChartInteractions();
   initStepsLine();
   initStepLit();
-  initPointerAtmosphere();
-  initSurfaceMotion();
-  initMagneticButtons();
-  initMagneticNav();
-  initHoverLiftExtras();
   initPricingCurrency();
   initPressFeedback();
   initFaqFeedback();
   initHealthHotState();
   initSelectFeedback();
-  initHeroReact();
-  initScrollDrift();
   if (location.hash) {
     // Defer so sticky nav height and fonts settle before measuring
     requestAnimationFrame(() => scrollToHash(location.hash, false));

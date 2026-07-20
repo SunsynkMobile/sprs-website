@@ -4,8 +4,8 @@
    ===================================================== */
 
 body.doc-page {
-  background: var(--white);
-  color: var(--slate-800);
+  background: var(--brand-slate-50);
+  color: var(--brand-ink);
 }
 
 /* ── Doc nav tabs (sits inside .nav-inner) ── */
@@ -34,8 +34,8 @@ body.doc-page {
 }
 
 .doc-nav-tabs a:hover {
-  color: var(--blue);
-  background: rgba(30, 94, 255, 0.06);
+  color: var(--brand-blue-300);
+  background: color-mix(in srgb, var(--brand-blue-300) 6%, transparent);
 }
 
 .doc-nav-tabs a:active {
@@ -43,9 +43,9 @@ body.doc-page {
 }
 
 .doc-nav-tabs a[aria-current="page"] {
-  color: var(--blue-dark);
-  background: rgba(30, 94, 255, 0.08);
-  border-color: rgba(30, 94, 255, 0.22);
+  color: var(--brand-blue-300);
+  background: color-mix(in srgb, var(--brand-blue-300) 8%, transparent);
+  border-color: var(--brand-slate-200);
   font-weight: 700;
 }
 
@@ -63,9 +63,9 @@ body.doc-page {
 
 /* ── Page hero ── */
 .doc-hero {
-  background: linear-gradient(180deg, var(--slate-50) 0%, var(--white) 100%);
+  background: var(--brand-slate-50);
   padding: clamp(2.25rem, 5vw, 3.25rem) 0 clamp(1.25rem, 3vw, 1.75rem);
-  border-bottom: 1px solid var(--slate-100);
+  border-bottom: 1px solid var(--brand-slate-200);
   text-align: center;
 }
 

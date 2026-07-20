@@ -1,0 +1,53 @@
+/* SSPRS brand tokens — keep in sync with app/lib/design/tokens.css */
+
+:root {
+  /* Yellow (accent) */
+  --brand-yellow-50: #fff6e8;
+  --brand-yellow-100: #f68b39;
+  --brand-yellow-200: #fbaa21;
+  --brand-yellow-300: #fdb71a;
+  --brand-yellow: #ffb71b;
+
+  /* Slate (canvas / borders) */
+  --brand-slate-50: #eef2f7;
+  --brand-slate-100: #e7ecf2;
+  --brand-slate-200: #d0d9e4;
+  --brand-slate-300: #b9c5d3;
+  --brand-slate-900: #0f172a;
+
+  /* Navy (primary) */
+  --brand-blue-300: #24314a;
+  --brand-blue-100: #2e3242;
+
+  /* Ink (text) */
+  --brand-ink: #1f2430;
+  --brand-black: #000000;
+  --brand-black-100: #111921;
+
+  /* Semantic */
+  --brand-green-100: #e6f7ef;
+  --brand-green-300: #1f7a46;
+  --brand-red-100: #fef2f2;
+  --brand-red-300: #b91c1c;
+
+  --brand-white: #ffffff;
+
+  /* Spacing ladder */
+  --space-token-1: 0.25rem;
+  --space-token-2: 0.5rem;
+  --space-token-3: 0.75rem;
+  --space-token-4: 1rem;
+  --space-token-6: 1.5rem;
+  --space-token-8: 2rem;
+
+  /* Line heights */
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.35;
+  --line-height-normal: 1.45;
+  --line-height-relaxed: 1.5;
+
+  /* Focus (matches app control-classes.ts) */
+  --focus-ring-color: var(--brand-yellow-200);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+}
