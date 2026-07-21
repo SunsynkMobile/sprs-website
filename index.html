@@ -425,84 +425,89 @@
     </section>
 
     <!-- FEATURE TABS -->
-    <section class="section section-features" id="features">
-      <div class="container">
-        <div class="section-header reveal center">
-          <p class="eyebrow">Report features</p>
-          <h2>See what a 30-day report covers</h2>
-          <p class="section-sub">Scan the chapters that matter, then scroll for the full detail.</p>
-        </div>
-        <div class="feature-tabs reveal" data-feature-tabs>
-          <div class="feature-tablist" role="tablist" aria-label="Report feature areas">
-            <button type="button" class="feature-tab" role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true" tabindex="0">Overview</button>
-            <button type="button" class="feature-tab" role="tab" id="tab-savings" aria-controls="panel-savings" aria-selected="false" tabindex="-1">Savings</button>
-            <button type="button" class="feature-tab" role="tab" id="tab-health" aria-controls="panel-health" aria-selected="false" tabindex="-1">Health</button>
-            <button type="button" class="feature-tab" role="tab" id="tab-actions" aria-controls="panel-actions" aria-selected="false" tabindex="-1">Actions</button>
+    <section class="section section-features section-features-scroll" id="features">
+      <div class="feature-scroll-track" data-feature-scroll>
+        <div class="container feature-sticky">
+          <div class="section-header reveal center">
+            <p class="eyebrow">Report features</p>
+            <h2>See what a 30-day report covers</h2>
+            <p class="section-sub">Scroll to move through each chapter, or tap a tab to jump ahead.</p>
           </div>
-          <div class="feature-panels">
-            <div class="feature-panel is-active ix-interactive" role="tabpanel" id="panel-overview" aria-labelledby="tab-overview">
-              <div class="feature-panel-copy">
-                <h3>Executive overview in one place</h3>
-                <p>Score, top issue, savings hint and recommended actions, so you know what happened and what to do next without decoding raw inverter charts.</p>
-                <ul class="feature-panel-list">
-                  <li>Clear verdict for the last ~30 days</li>
-                  <li>Coverage and accuracy called out up front</li>
-                  <li>Shareable PDF for you or your installer</li>
-                </ul>
+          <div class="feature-tabs reveal" data-feature-tabs>
+            <div class="feature-tablist" role="tablist" aria-label="Report feature areas">
+              <button type="button" class="feature-tab" role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true" tabindex="0">Overview</button>
+              <button type="button" class="feature-tab" role="tab" id="tab-savings" aria-controls="panel-savings" aria-selected="false" tabindex="-1">Savings</button>
+              <button type="button" class="feature-tab" role="tab" id="tab-health" aria-controls="panel-health" aria-selected="false" tabindex="-1">Health</button>
+              <button type="button" class="feature-tab" role="tab" id="tab-actions" aria-controls="panel-actions" aria-selected="false" tabindex="-1">Actions</button>
+            </div>
+            <div class="feature-panels">
+              <div class="feature-panel is-active ix-interactive" role="tabpanel" id="panel-overview" aria-labelledby="tab-overview">
+                <div class="feature-panel-copy">
+                  <h3>Executive overview in one place</h3>
+                  <p>Score, top issue, savings hint and recommended actions, so you know what happened and what to do next without decoding raw inverter charts.</p>
+                  <ul class="feature-panel-list">
+                    <li>Clear verdict for the last ~30 days</li>
+                    <li>Coverage and accuracy called out up front</li>
+                    <li>Shareable PDF for you or your installer</li>
+                  </ul>
+                </div>
+                <div class="feature-panel-stat" aria-hidden="true">
+                  <p class="feature-panel-stat-label">Illustrative score</p>
+                  <p class="feature-panel-stat-value">52</p>
+                  <p class="feature-panel-stat-note">Working, with a clear efficiency gap</p>
+                </div>
               </div>
-              <div class="feature-panel-stat" aria-hidden="true">
-                <p class="feature-panel-stat-label">Illustrative score</p>
-                <p class="feature-panel-stat-value">52</p>
-                <p class="feature-panel-stat-note">Working, with a clear efficiency gap</p>
+              <div class="feature-panel ix-interactive" role="tabpanel" id="panel-savings" aria-labelledby="tab-savings" hidden>
+                <div class="feature-panel-copy">
+                  <h3>Estimated savings versus the grid</h3>
+                  <p>See the financial benefit of solar and battery when you save a tariff: grid costs avoided and self-supplied energy in plain language.</p>
+                  <ul class="feature-panel-list">
+                    <li>Self-supplied energy and grid cost avoided</li>
+                    <li>Solar vs battery contribution</li>
+                    <li>Optional when a tariff is saved in Settings</li>
+                  </ul>
+                </div>
+                <div class="feature-panel-stat" aria-hidden="true">
+                  <p class="feature-panel-stat-label">Sample month</p>
+                  <p class="feature-panel-stat-value">£186</p>
+                  <p class="feature-panel-stat-note">Versus all-grid electricity</p>
+                </div>
+              </div>
+              <div class="feature-panel ix-interactive" role="tabpanel" id="panel-health" aria-labelledby="tab-health" hidden>
+                <div class="feature-panel-copy">
+                  <h3>One clear system performance score</h3>
+                  <p>See which categories lift or drag the overall score, with the strongest and weakest areas called out.</p>
+                  <ul class="feature-panel-list">
+                    <li>Self-sufficiency, solar, battery, evening grid</li>
+                    <li>Strongest and weakest areas highlighted</li>
+                    <li>Energy flows summarised for the month</li>
+                  </ul>
+                </div>
+                <div class="feature-panel-stat" aria-hidden="true">
+                  <p class="feature-panel-stat-label">Strongest category</p>
+                  <p class="feature-panel-stat-value">86</p>
+                  <p class="feature-panel-stat-note">Battery health (illustrative)</p>
+                </div>
+              </div>
+              <div class="feature-panel ix-interactive" role="tabpanel" id="panel-actions" aria-labelledby="tab-actions" hidden>
+                <div class="feature-panel-copy">
+                  <h3>Prioritised next steps</h3>
+                  <p>Findings consolidate into a ranked plan: behavioural changes, configuration improvements and hardware upgrades.</p>
+                  <ul class="feature-panel-list">
+                    <li>Behaviour: shift loads while solar or battery cover</li>
+                    <li>Configuration: reserve and discharge timing</li>
+                    <li>Hardware: only after scheduling is reviewed</li>
+                  </ul>
+                </div>
+                <div class="feature-panel-stat" aria-hidden="true">
+                  <p class="feature-panel-stat-label">Action lanes</p>
+                  <p class="feature-panel-stat-value">3</p>
+                  <p class="feature-panel-stat-note">Behaviour · Config · Hardware</p>
+                </div>
               </div>
             </div>
-            <div class="feature-panel ix-interactive" role="tabpanel" id="panel-savings" aria-labelledby="tab-savings" hidden>
-              <div class="feature-panel-copy">
-                <h3>Estimated savings versus the grid</h3>
-                <p>See the financial benefit of solar and battery when you save a tariff: grid costs avoided and self-supplied energy in plain language.</p>
-                <ul class="feature-panel-list">
-                  <li>Self-supplied energy and grid cost avoided</li>
-                  <li>Solar vs battery contribution</li>
-                  <li>Optional when a tariff is saved in Settings</li>
-                </ul>
-              </div>
-              <div class="feature-panel-stat" aria-hidden="true">
-                <p class="feature-panel-stat-label">Sample month</p>
-                <p class="feature-panel-stat-value">£186</p>
-                <p class="feature-panel-stat-note">Versus all-grid electricity</p>
-              </div>
-            </div>
-            <div class="feature-panel ix-interactive" role="tabpanel" id="panel-health" aria-labelledby="tab-health" hidden>
-              <div class="feature-panel-copy">
-                <h3>One clear system performance score</h3>
-                <p>See which categories lift or drag the overall score, with the strongest and weakest areas called out.</p>
-                <ul class="feature-panel-list">
-                  <li>Self-sufficiency, solar, battery, evening grid</li>
-                  <li>Strongest and weakest areas highlighted</li>
-                  <li>Energy flows summarised for the month</li>
-                </ul>
-              </div>
-              <div class="feature-panel-stat" aria-hidden="true">
-                <p class="feature-panel-stat-label">Strongest category</p>
-                <p class="feature-panel-stat-value">86</p>
-                <p class="feature-panel-stat-note">Battery health (illustrative)</p>
-              </div>
-            </div>
-            <div class="feature-panel ix-interactive" role="tabpanel" id="panel-actions" aria-labelledby="tab-actions" hidden>
-              <div class="feature-panel-copy">
-                <h3>Prioritised next steps</h3>
-                <p>Findings consolidate into a ranked plan: behavioural changes, configuration improvements and hardware upgrades.</p>
-                <ul class="feature-panel-list">
-                  <li>Behaviour: shift loads while solar or battery cover</li>
-                  <li>Configuration: reserve and discharge timing</li>
-                  <li>Hardware: only after scheduling is reviewed</li>
-                </ul>
-              </div>
-              <div class="feature-panel-stat" aria-hidden="true">
-                <p class="feature-panel-stat-label">Action lanes</p>
-                <p class="feature-panel-stat-value">3</p>
-                <p class="feature-panel-stat-note">Behaviour · Config · Hardware</p>
-              </div>
+            <div class="feature-progress" aria-hidden="true">
+              <span class="feature-progress-fill" data-feature-progress></span>
             </div>
           </div>
         </div>

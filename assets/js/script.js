@@ -981,15 +981,26 @@ function initHeroReact() {
   });
 }
 
-/* ── Feature tabs ── */
+/* ── Feature tabs (click + scroll-driven) ── */
 function initFeatureTabs() {
   const root = document.querySelector('[data-feature-tabs]');
+  const track = document.querySelector('[data-feature-scroll]');
   if (!root) return;
   const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
   const panels = Array.from(root.querySelectorAll('[role="tabpanel"]'));
+  const progressFill = document.querySelector('[data-feature-progress]');
   if (!tabs.length || !panels.length) return;
 
-  function activateTab(tab, { focus = false } = {}) {
+  let activeIndex = Math.max(0, tabs.findIndex(t => t.getAttribute('aria-selected') === 'true'));
+  let manualLockUntil = 0;
+  let ticking = false;
+
+  function activateTab(tab, { focus = false, animate = true, syncProgress = true } = {}) {
+    const nextIndex = tabs.indexOf(tab);
+    if (nextIndex < 0) return;
+    const changed = nextIndex !== activeIndex;
+    activeIndex = nextIndex;
+
     tabs.forEach(t => {
       const selected = t === tab;
       t.setAttribute('aria-selected', String(selected));
@@ -1000,7 +1011,7 @@ function initFeatureTabs() {
       panel.classList.toggle('is-active', match);
       if (match) {
         panel.removeAttribute('hidden');
-        if (!reducedMotion) {
+        if (animate && changed && !reducedMotion) {
           panel.classList.remove('is-active');
           void panel.offsetWidth;
           panel.classList.add('is-active');
@@ -1009,11 +1020,50 @@ function initFeatureTabs() {
         panel.setAttribute('hidden', '');
       }
     });
+    if (syncProgress && progressFill) {
+      const pct = ((activeIndex + 1) / tabs.length) * 100;
+      progressFill.style.width = `${pct}%`;
+    }
     if (focus) tab.focus();
   }
 
+  function activateIndex(index, opts) {
+    const clamped = Math.max(0, Math.min(tabs.length - 1, index));
+    activateTab(tabs[clamped], opts);
+  }
+
+  function syncFromScroll() {
+    if (!track || reducedMotion) return;
+    if (Date.now() < manualLockUntil) return;
+
+    const rect = track.getBoundingClientRect();
+    const view = window.innerHeight || 1;
+    const stickyOffset = getAnchorOffset();
+    const travel = Math.max(1, rect.height - view + stickyOffset);
+    const raw = (-rect.top + stickyOffset) / travel;
+    const progress = Math.min(1, Math.max(0, raw));
+    const index = Math.min(tabs.length - 1, Math.floor(progress * tabs.length + 1e-6));
+
+    if (progressFill) {
+      progressFill.style.width = `${Math.min(100, Math.max(0, progress * 100))}%`;
+    }
+    if (index !== activeIndex) activateIndex(index, { animate: true, syncProgress: false });
+  }
+
   tabs.forEach(tab => {
-    tab.addEventListener('click', () => activateTab(tab));
+    tab.addEventListener('click', () => {
+      manualLockUntil = Date.now() + 1200;
+      activateTab(tab);
+      if (track && !reducedMotion) {
+        const rect = track.getBoundingClientRect();
+        const view = window.innerHeight || 1;
+        const stickyOffset = getAnchorOffset();
+        const travel = Math.max(1, rect.height - view + stickyOffset);
+        const targetProgress = (tabs.indexOf(tab) + 0.35) / tabs.length;
+        const top = window.scrollY + rect.top - stickyOffset + travel * targetProgress;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
     tab.addEventListener('keydown', e => {
       const i = tabs.indexOf(tab);
       let next = -1;
@@ -1023,12 +1073,25 @@ function initFeatureTabs() {
       else if (e.key === 'End') next = tabs.length - 1;
       if (next < 0) return;
       e.preventDefault();
+      manualLockUntil = Date.now() + 1200;
       activateTab(tabs[next], { focus: true });
     });
   });
 
-  const initiallySelected = tabs.find(t => t.getAttribute('aria-selected') === 'true') || tabs[0];
-  activateTab(initiallySelected);
+  activateIndex(activeIndex, { animate: false });
+
+  if (track && !reducedMotion) {
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        syncFromScroll();
+        ticking = false;
+      });
+    }, { passive: true });
+    window.addEventListener('resize', syncFromScroll, { passive: true });
+    syncFromScroll();
+  }
 }
 
 /* ── Boot ── */
