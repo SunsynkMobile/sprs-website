@@ -67,8 +67,8 @@ US Dollar (USD)
 - #trust: Trust — coverage, plant details, accuracy
 - #savings: Savings — estimated savings versus grid (optional when tariff saved)
 - #health: Health — overall score and category bars
-- #sample: Sample — with versus without compare panel
-- #insights: Insights — solar, battery, evening cost digests
+- #sample: Sample report — with versus without compare panel
+- #insights: What's in the report — solar, battery, evening cost digests
 - #actions: Actions — prioritised behaviour / configuration / hardware
 - #how-it-works: How it works — four steps aligned to the app journey
 - #pricing: Pricing — credit packs
@@ -83,6 +83,7 @@ Illustrative sample (not a specific customer's live data):
 - Self-sufficiency around the 10th percentile versus neighbouring systems, about 65 points below local median
 - Closing the gap could save about 439 kWh of monthly grid import in the sample narrative
 - Illustrative estimated savings figure used in the savings panel (£186 sample period)
+- Trust and health panels also use illustrative sample figures (explicitly labelled on the page)
 
 ## Scoring methodology (summary)
 
@@ -95,7 +96,8 @@ Reports cover cumulative meter totals, reconciled energy flow, solar utilisation
 - Parent: Sunsynk
 - Locale: en-GB (analyse, optimise, utilisation, neighbouring, prioritised)
 - Primary CTA wording on site: Get My Report
-- Secondary CTA: View Sample
+- Secondary CTA: View sample report
+- Hero H1: Get a clear 30-day performance report for your Sunsynk system
 
 ## Canonical pages
 
