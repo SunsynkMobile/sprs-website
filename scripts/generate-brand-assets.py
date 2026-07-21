@@ -246,7 +246,7 @@ def generate_og_image() -> Image.Image:
         box_width=inner_w,
     )
 
-    # Stats block — always below issue text with clear separation
+    # Stats block - always below issue text with clear separation
     stats_top = issue_bottom + s(22)
     draw.line(
         (card_x + pad, stats_top - s(10), card_x + card_w - pad, stats_top - s(10)),

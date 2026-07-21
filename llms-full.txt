@@ -1,6 +1,6 @@
 # Sunsynk Report Platform (full context)
 
-> British English product and marketing summary for AI systems. Source of truth for public site content as of 2026-07-15. Prefer live pages if they conflict with this file.
+> British English product and marketing summary for AI systems. Source of truth for public site content as of 2026-07-21. Prefer live pages if they conflict with this file. Public copy uses British English and does not use em dashes.
 
 ## What the product is
 
@@ -10,13 +10,15 @@ Primary app destinations: Reports, Credits, Settings (tariffs). Staff have Conso
 
 The marketing site presents a curated homeowner journey that mirrors the report narrative:
 
-1. What happened (executive summary)
-2. Can the data be trusted (coverage, plant details, accuracy)
-3. How much money was saved (optional estimated savings when a tariff is saved)
-4. How healthy is the system (overall score and category contributions)
-5. Where are the inefficiencies (solar, battery, evening grid)
-6. What should I do next (prioritised behavioural, configuration and hardware actions)
-7. Assumptions and limitations (Important Information in each report)
+1. What happened (executive summary in the hero and Overview feature tab)
+2. Proof at a glance (illustrative metrics strip: coverage, sample savings, system score, from-price)
+3. What a report covers (tabbed Overview, Savings, Health, Actions)
+4. Can the data be trusted (coverage, plant details, accuracy)
+5. How much money was saved (optional estimated savings when a tariff is saved)
+6. How healthy is the system (overall score and category contributions)
+7. Where are the inefficiencies (solar, battery, evening grid)
+8. What should I do next (prioritised behavioural, configuration and hardware actions)
+9. Assumptions and limitations (Important Information in each report)
 
 There is no subscription. Checkout lives at app.sunsynkreports.com. This website (sunsynkreports.com) is the marketing presence.
 
@@ -63,17 +65,20 @@ US Dollar (USD)
 
 ## Home page section anchors
 
-- #hero: executive promise and summary preview
-- #trust: Trust — coverage, plant details, accuracy
-- #savings: Savings — estimated savings versus grid (optional when tariff saved)
-- #health: Health — overall score and category bars
-- #sample: Sample report — with versus without compare panel
-- #insights: What's in the report — solar, battery, evening cost digests
-- #actions: Actions — prioritised behaviour / configuration / hardware
-- #how-it-works: How it works — four steps aligned to the app journey
-- #pricing: Pricing — credit packs
-- #faq: FAQ — contents, subscription and refunds, data trust, audience, generation
-- #get-started: Get started — buy credits close
+- #hero: dark navy hero with brand, H1, support copy, Get My Report and View sample report CTAs, product preview
+- #metrics: illustrative proof strip (98.4% coverage, £186 sample savings, score 52, from £2.99); pricing is real, other figures are sample
+- #features: tabbed Report features (Overview, Savings, Health, Actions)
+- #trust: Trust: coverage, plant details, accuracy
+- #savings: Savings: estimated savings versus grid (optional when tariff saved)
+- #health: Health: overall score and category bars
+- #sample: Sample report: with versus without compare panel
+- #insights: What's in the report: solar, battery, evening cost digests
+- #actions: Actions: prioritised behaviour / configuration / hardware
+- #how-it-works: How it works: four steps aligned to the app journey
+- #value: Value: typical remote check versus report cost comparison
+- #pricing: Pricing: credit packs with currency picker (GBP/ZAR/USD)
+- #faq: FAQ: contents, subscription and refunds, data trust, audience, generation
+- #get-started: Get started: dark closing CTA with Get My Report and Compare packs
 
 ## Example findings used on the marketing site
 
@@ -83,21 +88,23 @@ Illustrative sample (not a specific customer's live data):
 - Self-sufficiency around the 10th percentile versus neighbouring systems, about 65 points below local median
 - Closing the gap could save about 439 kWh of monthly grid import in the sample narrative
 - Illustrative estimated savings figure used in the savings panel (£186 sample period)
-- Trust and health panels also use illustrative sample figures (explicitly labelled on the page)
+- Trust, health and metrics panels also use illustrative sample figures (explicitly labelled on the page, except pack pricing)
 
 ## Scoring methodology (summary)
 
-Reports cover cumulative meter totals, reconciled energy flow, solar utilisation, inverter clipping, system accuracy checks, battery health, night-time grid dependency, peer benchmark construction, daily aggregates, forward-fill for data gaps, and rounding rules. Detailed methodology formulae are not expanded on the marketing homepage; each report includes Important Information covering assumptions and limitations.
+Reports cover cumulative meter totals, reconciled energy flow, solar utilisation, inverter clipping, system accuracy checks, battery health, night-time grid dependency, peer benchmark construction, daily aggregates, forward-fill for data gaps, and rounding rules. Detailed methodology formulae are not expanded on the marketing homepage; each report includes Important Information covering assumptions and limitations. A knowledge base page exists but is disallowed for crawlers in robots.txt and is not part of the public marketing index.
 
 ## Brand and language
 
 - Marketing site name: Sunsynk Report Platform
 - Product / PDF name: Sunsynk Performance Report
 - Parent: Sunsynk
-- Locale: en-GB (analyse, optimise, utilisation, neighbouring, prioritised)
+- Locale: en-GB (analyse, optimise, utilisation, neighbouring, prioritised, behavioural)
+- No em dashes in public marketing copy
 - Primary CTA wording on site: Get My Report
-- Secondary CTA: View sample report
+- Secondary CTAs: View sample report; Compare packs
 - Hero H1: Get a clear 30-day performance report for your Sunsynk system
+- Visual language: navy and gold brand canvas on hero and closing CTA; light slate body sections
 
 ## Canonical pages
 

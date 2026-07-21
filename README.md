@@ -1,4 +1,4 @@
-# Sunsynk Report Platform — Website
+# Sunsynk Report Platform - Website
 
 Marketing site for [sunsynkreports.com](https://sunsynkreports.com/). Static HTML on GitHub Pages.
 

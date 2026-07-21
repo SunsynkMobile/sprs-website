@@ -1,7 +1,7 @@
 {
   "name": "Sunsynk Report Platform",
   "short_name": "Sunsynk Reports",
-  "description": "30-day Sunsynk Performance Reports for account holders: executive overview, optional savings, system health, solar and battery insights, and prioritised actions. No subscription.",
+  "description": "Clear 30-day Sunsynk Performance Reports for account holders: executive overview, optional savings, system health, solar and battery insights, and prioritised actions. From £2.99. No subscription.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

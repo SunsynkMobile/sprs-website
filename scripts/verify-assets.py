@@ -49,7 +49,7 @@ def main() -> int:
             print(f"  {file}: {ref}")
         return 1
 
-    print(f"OK — checked {len(html_files)} files, all asset references resolve.")
+    print(f"OK - checked {len(html_files)} files, all asset references resolve.")
     return 0
 
 
