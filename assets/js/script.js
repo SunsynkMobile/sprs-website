@@ -5,6 +5,10 @@
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+document.addEventListener('visibilitychange', () => {
+  document.documentElement.classList.toggle('is-hidden', document.hidden);
+});
+
 /* ── Page Loader ── */
 const pageLoader = document.getElementById('pageLoader');
 const hidePageLoader = () => {
@@ -516,28 +520,77 @@ function initStepLit() {
 }
 
 
-/* ── Sitewide cursor atmosphere ── */
+/* ── Shared motion helpers ── */
+const MOTION_LERP = 0.16; // Apple-like settle (not too sticky, not laggy)
+
+function lerp(a, b, t) {
+  return a + (b - a) * t;
+}
+
+function nearlyEqual(a, b, eps = 0.08) {
+  return Math.abs(a - b) < eps;
+}
+
+/* ── Sitewide cursor glow (single RAF, transform-only) ── */
 function initPointerAtmosphere() {
   if (reducedMotion || !finePointer) return;
+
+  const glow = document.createElement('div');
+  glow.className = 'pointer-glow';
+  glow.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(glow);
   document.body.classList.add('ix-pointer');
+
+  const hero = document.querySelector('.hero');
   let x = window.innerWidth * 0.5;
   let y = window.innerHeight * 0.4;
   let tx = x;
   let ty = y;
+  let scale = 1;
+  let tScale = 1;
   let raf = 0;
   let pointing = false;
+  let heroActive = false;
 
   const tick = () => {
-    x += (tx - x) * 0.08;
-    y += (ty - y) * 0.08;
-    document.documentElement.style.setProperty('--pointer-x', `${x}px`);
-    document.documentElement.style.setProperty('--pointer-y', `${y}px`);
-    if (Math.abs(tx - x) > 0.15 || Math.abs(ty - y) > 0.15) {
+    x = lerp(x, tx, MOTION_LERP);
+    y = lerp(y, ty, MOTION_LERP);
+    scale = lerp(scale, tScale, 0.12);
+    glow.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${scale.toFixed(3)})`;
+
+    if (hero && heroActive) {
+      const hx = ((tx - heroRect.left) / heroRect.width) * 100;
+      const hy = ((ty - heroRect.top) / heroRect.height) * 100;
+      if (Number.isFinite(hx) && Number.isFinite(hy)) {
+        hero.style.setProperty('--hero-spot-x', hx.toFixed(1));
+        hero.style.setProperty('--hero-spot-y', hy.toFixed(1));
+      }
+    }
+
+    const settling = !nearlyEqual(x, tx) || !nearlyEqual(y, ty) || !nearlyEqual(scale, tScale, 0.004);
+    if (settling) {
       raf = requestAnimationFrame(tick);
     } else {
       raf = 0;
+      glow.style.willChange = 'auto';
     }
   };
+
+  const start = () => {
+    glow.style.willChange = 'transform';
+    if (!raf) raf = requestAnimationFrame(tick);
+  };
+
+  let heroRect = { left: 0, top: 0, width: 1, height: 1 };
+  const refreshHeroRect = () => {
+    if (!hero) return;
+    heroRect = hero.getBoundingClientRect();
+  };
+  refreshHeroRect();
+  window.addEventListener('resize', refreshHeroRect, { passive: true });
+  window.addEventListener('scroll', () => {
+    if (heroActive) refreshHeroRect();
+  }, { passive: true });
 
   window.addEventListener('pointermove', e => {
     tx = e.clientX;
@@ -546,32 +599,46 @@ function initPointerAtmosphere() {
       pointing = true;
       document.body.classList.add('is-pointing');
     }
-    if (!raf) raf = requestAnimationFrame(tick);
+    if (hero) {
+      const inside = e.target instanceof Element && (e.target === hero || hero.contains(e.target));
+      if (inside && !heroActive) refreshHeroRect();
+      heroActive = inside;
+    }
+    start();
+  }, { passive: true });
+
+  document.addEventListener('pointerover', e => {
+    const t = e.target;
+    if (!(t instanceof Element)) return;
+    tScale = t.closest('a, button, .btn, summary, [role="button"], .feature-tab, .pci') ? 1.35 : 1;
+    start();
   }, { passive: true });
 
   window.addEventListener('pointerleave', () => {
     pointing = false;
+    heroActive = false;
+    tScale = 1;
     document.body.classList.remove('is-pointing');
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      glow.style.willChange = 'auto';
+    }
   });
 }
 
-/* ── Surface tilt + local spotlight ── */
+/* ── Soft local spotlight (no 3D tilt — GPU-cheap) ── */
 function initSurfaceMotion() {
   if (reducedMotion || !finePointer) return;
   const surfaces = document.querySelectorAll(
-    '.insight, .pci, .hero-window, .health-panel, .savings-panel, .trust-panel, .inside-grid, .actions-board, .sample-panel, .faq-item, .ix-interactive'
+    '.pci, .hero-product, .metrics-item, .feature-panel, .health-panel'
   );
 
   surfaces.forEach(card => {
-    card.classList.add('ix-tilt', 'ix-spot');
-    const strength = card.classList.contains('pci') || card.classList.contains('hero-product')
-      ? 2.4
-      : card.classList.contains('metrics-item')
-        ? 0
-        : card.classList.contains('faq-item')
-          ? 0.9
-          : 1.4;
-    const lift = card.classList.contains('pci') || card.classList.contains('hero-product') ? -3 : -1.5;
+    card.classList.add('ix-spot');
     let sx = 50;
     let sy = 40;
     let tsx = 50;
@@ -580,73 +647,44 @@ function initSurfaceMotion() {
     let hovering = false;
 
     const tick = () => {
-      rx += (tx - rx) * 0.12;
-      ry += (ty - ry) * 0.12;
-      rz += (tz - rz) * 0.12;
-      sx += (tsx - sx) * 0.14;
-      sy += (tsy - sy) * 0.14;
-      card.style.setProperty('--spot-x', `${sx.toFixed(2)}%`);
-      card.style.setProperty('--spot-y', `${sy.toFixed(2)}%`);
-      if (strength > 0) {
-        card.style.transform = `perspective(1200px) rotateX(${rx.toFixed(3)}deg) rotateY(${ry.toFixed(3)}deg) translateY(${rz.toFixed(3)}px)`;
-      }
-      const moving = Math.abs(tx - rx) > 0.02 || Math.abs(ty - ry) > 0.02 || Math.abs(tz - rz) > 0.02 || Math.abs(tsx - sx) > 0.05 || Math.abs(tsy - sy) > 0.05;
-      if (hovering || moving) {
+      sx = lerp(sx, tsx, 0.18);
+      sy = lerp(sy, tsy, 0.18);
+      card.style.setProperty('--spot-x', `${sx.toFixed(1)}%`);
+      card.style.setProperty('--spot-y', `${sy.toFixed(1)}%`);
+      if (hovering || !nearlyEqual(sx, tsx, 0.2) || !nearlyEqual(sy, tsy, 0.2)) {
         raf = requestAnimationFrame(tick);
       } else {
         raf = 0;
-        if (!hovering) card.style.transform = '';
       }
     };
 
-    card.addEventListener('pointermove', e => {
-      if (card.classList.contains('is-pressed')) return;
-      const r = card.getBoundingClientRect();
-      const px = ((e.clientX - r.left) / r.width);
-      const py = ((e.clientY - r.top) / r.height);
-      const x = px - 0.5;
-      const y = py - 0.5;
-      tsx = px * 100;
-      tsy = py * 100;
-      card.classList.add('is-lit', 'is-tracking');
+    card.addEventListener('pointerenter', () => {
       hovering = true;
-      if (strength > 0) {
-        tx = -y * strength;
-        ty = x * strength;
-        tz = lift;
-      }
-      if (!raf) raf = requestAnimationFrame(tick);
+      card.classList.add('is-lit');
     });
+
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      tsx = ((e.clientX - r.left) / r.width) * 100;
+      tsy = ((e.clientY - r.top) / r.height) * 100;
+      if (!raf) raf = requestAnimationFrame(tick);
+    }, { passive: true });
 
     card.addEventListener('pointerleave', () => {
       hovering = false;
-      tx = 0;
-      ty = 0;
-      tz = 0;
-      card.classList.remove('is-lit', 'is-tracking');
+      tsx = 50;
+      tsy = 40;
+      card.classList.remove('is-lit');
       if (!raf) raf = requestAnimationFrame(tick);
     });
   });
 }
 
-/* ── Hero cursor spotlight ── */
-function initHeroCursor() {
-  if (reducedMotion || !finePointer) return;
-  const hero = document.querySelector('.hero');
-  if (!hero) return;
-  hero.addEventListener('pointermove', e => {
-    const r = hero.getBoundingClientRect();
-    const x = ((e.clientX - r.left) / r.width) * 100;
-    const y = ((e.clientY - r.top) / r.height) * 100;
-    hero.style.setProperty('--hero-spot-x', x.toFixed(1));
-    hero.style.setProperty('--hero-spot-y', y.toFixed(1));
-  }, { passive: true });
-}
-
-/* ── Magnetic buttons ── */
+/* ── Magnetic primary CTAs only ── */
 function initMagneticButtons() {
   if (reducedMotion || !finePointer) return;
-  document.querySelectorAll('.btn').forEach(btn => {
+  document.querySelectorAll('.hero-actions .btn, .section-cta .btn, .cta-actions .btn').forEach(btn => {
     btn.classList.add('magnetic');
     let raf = 0;
     let cx = 0;
@@ -656,14 +694,14 @@ function initMagneticButtons() {
     let hovering = false;
 
     const tick = () => {
-      cx += (tx - cx) * 0.12;
-      cy += (ty - cy) * 0.12;
+      cx = lerp(cx, tx, MOTION_LERP);
+      cy = lerp(cy, ty, MOTION_LERP);
       if (!btn.classList.contains('is-pressed')) {
         btn.style.transform = hovering
-          ? `translate(${cx.toFixed(2)}px, ${cy.toFixed(2)}px) translateY(-2px)`
+          ? `translate3d(${cx.toFixed(2)}px, ${cy.toFixed(2)}px, 0)`
           : '';
       }
-      if (hovering && (Math.abs(tx - cx) > 0.04 || Math.abs(ty - cy) > 0.04)) {
+      if (hovering || !nearlyEqual(cx, tx, 0.05) || !nearlyEqual(cy, ty, 0.05)) {
         raf = requestAnimationFrame(tick);
       } else {
         raf = 0;
@@ -675,10 +713,10 @@ function initMagneticButtons() {
     btn.addEventListener('pointermove', e => {
       if (btn.classList.contains('is-pressed')) return;
       const r = btn.getBoundingClientRect();
-      tx = ((e.clientX - r.left) / r.width - 0.5) * 10;
-      ty = ((e.clientY - r.top) / r.height - 0.5) * 8;
+      tx = ((e.clientX - r.left) / r.width - 0.5) * 6;
+      ty = ((e.clientY - r.top) / r.height - 0.5) * 4;
       if (!raf) raf = requestAnimationFrame(tick);
-    });
+    }, { passive: true });
     btn.addEventListener('pointerleave', () => {
       hovering = false;
       tx = 0;
@@ -688,24 +726,17 @@ function initMagneticButtons() {
   });
 }
 
-/* ── Soft hero scroll drift + section parallax ── */
+/* ── Light hero scroll drift (preview only) ── */
 function initScrollDrift() {
   if (reducedMotion) return;
   const preview = document.querySelector('.hero-preview');
-  const parallaxNodes = Array.from(document.querySelectorAll('.section-header, .cta-body, .assumptions-note, .feature-tabs, .metrics-grid'));
+  if (!preview) return;
   let ticking = false;
   const update = () => {
     const y = Math.max(window.scrollY, 0);
-    if (preview) {
-      const drift = Math.min(y, 420) * 0.045;
-      preview.style.setProperty('--drift-y', `${drift.toFixed(1)}px`);
+    if (y < window.innerHeight * 1.2) {
+      preview.style.setProperty('--drift-y', `${(Math.min(y, 360) * 0.04).toFixed(1)}px`);
     }
-    parallaxNodes.forEach((node, i) => {
-      const rect = node.getBoundingClientRect();
-      const mid = rect.top + rect.height * 0.5 - window.innerHeight * 0.5;
-      const shift = Math.max(-10, Math.min(10, -mid * 0.022 * (i % 2 === 0 ? 1 : 0.7)));
-      node.style.setProperty('--parallax-y', `${shift.toFixed(2)}px`);
-    });
     ticking = false;
   };
   window.addEventListener('scroll', () => {
@@ -713,41 +744,6 @@ function initScrollDrift() {
     ticking = true;
     requestAnimationFrame(update);
   }, { passive: true });
-  update();
-}
-
-/* ── Image/icon micro-react on steps & tags ── */
-function initHoverLiftExtras() {
-  if (reducedMotion || !finePointer) return;
-  document.querySelectorAll('.trust-item, .inside-col, .actions-group, .step, .metrics-item').forEach(el => {
-    el.addEventListener('pointermove', e => {
-      const r = el.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width - 0.5) * 4;
-      const y = ((e.clientY - r.top) / r.height - 0.5) * 3;
-      el.style.setProperty('--lift-x', `${x.toFixed(2)}px`);
-      el.style.setProperty('--lift-y', `${y.toFixed(2)}px`);
-      el.classList.add('is-tracking');
-    });
-    el.addEventListener('pointerleave', () => {
-      el.style.removeProperty('--lift-x');
-      el.style.removeProperty('--lift-y');
-      el.classList.remove('is-tracking');
-    });
-  });
-}
-
-/* ── Magnetic nav links ── */
-function initMagneticNav() {
-  if (reducedMotion || !finePointer) return;
-  document.querySelectorAll('.nav-menu a:not(.btn)').forEach(link => {
-    link.addEventListener('pointermove', e => {
-      const r = link.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width - 0.5) * 4;
-      const y = ((e.clientY - r.top) / r.height - 0.5) * 3;
-      link.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
-    });
-    link.addEventListener('pointerleave', () => { link.style.transform = ''; });
-  });
 }
 
 /* ── Pricing currency switcher ── */
@@ -961,26 +957,6 @@ function initSelectFeedback() {
   });
 }
 
-/* ── Parallax-lite on hero score ring ── */
-function initHeroReact() {
-  const wrap = document.querySelector('.hero-score .ring-wrap');
-  const issue = document.querySelector('.hero-score .exec-issue');
-  if (!wrap || reducedMotion || !window.matchMedia('(hover: hover)').matches) return;
-  const windowEl = document.querySelector('.hero-window');
-  if (!windowEl) return;
-  windowEl.addEventListener('pointermove', e => {
-    const r = windowEl.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    wrap.style.transform = `translate(${x * 8}px, ${y * 6}px)`;
-    if (issue) issue.style.transform = `translate(${x * -4}px, ${y * -3}px)`;
-  });
-  windowEl.addEventListener('pointerleave', () => {
-    wrap.style.transform = '';
-    if (issue) issue.style.transform = '';
-  });
-}
-
 /* ── Feature tabs (click + scroll-driven) ── */
 function initFeatureTabs() {
   const root = document.querySelector('[data-feature-tabs]');
@@ -1113,11 +1089,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initHealthHotState();
   initSelectFeedback();
   initPointerAtmosphere();
-  initHeroCursor();
   initSurfaceMotion();
   initMagneticButtons();
-  initMagneticNav();
-  initHoverLiftExtras();
   initScrollDrift();
   if (location.hash) {
     // Defer so sticky nav height and fonts settle before measuring
