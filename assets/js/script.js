@@ -599,6 +599,10 @@ function initPointerAtmosphere() {
       pointing = true;
       document.body.classList.add('is-pointing');
     }
+    const overMedia = e.target instanceof Element && !!e.target.closest(
+      'img, picture, figure, video, .hero-product, .hero-preview'
+    );
+    glow.classList.toggle('is-over-media', overMedia);
     if (hero) {
       const inside = e.target instanceof Element && (e.target === hero || hero.contains(e.target));
       if (inside && !heroActive) refreshHeroRect();
@@ -618,6 +622,7 @@ function initPointerAtmosphere() {
     pointing = false;
     heroActive = false;
     tScale = 1;
+    glow.classList.remove('is-over-media');
     document.body.classList.remove('is-pointing');
   });
 
@@ -634,7 +639,7 @@ function initPointerAtmosphere() {
 function initSurfaceMotion() {
   if (reducedMotion || !finePointer) return;
   const surfaces = document.querySelectorAll(
-    '.pci, .hero-product, .metrics-item, .feature-panel, .health-panel'
+    '.pci, .metrics-item, .feature-panel, .health-panel'
   );
 
   surfaces.forEach(card => {
@@ -1018,7 +1023,16 @@ function initFeatureTabs() {
     const travel = Math.max(1, rect.height - view + stickyOffset);
     const raw = (-rect.top + stickyOffset) / travel;
     const progress = Math.min(1, Math.max(0, raw));
-    const index = Math.min(tabs.length - 1, Math.floor(progress * tabs.length + 1e-6));
+    const count = tabs.length;
+    const ideal = progress * count;
+
+    // Hold each chapter longer; only switch after entering the next/prev segment
+    let index = activeIndex;
+    if (ideal >= activeIndex + 1.18) {
+      index = Math.min(count - 1, Math.floor(ideal));
+    } else if (ideal <= activeIndex - 0.18) {
+      index = Math.max(0, Math.floor(ideal));
+    }
 
     if (progressFill) {
       progressFill.style.width = `${Math.min(100, Math.max(0, progress * 100))}%`;
@@ -1035,7 +1049,7 @@ function initFeatureTabs() {
         const view = window.innerHeight || 1;
         const stickyOffset = getAnchorOffset();
         const travel = Math.max(1, rect.height - view + stickyOffset);
-        const targetProgress = (tabs.indexOf(tab) + 0.35) / tabs.length;
+        const targetProgress = (tabs.indexOf(tab) + 0.55) / tabs.length;
         const top = window.scrollY + rect.top - stickyOffset + travel * targetProgress;
         window.scrollTo({ top, behavior: 'smooth' });
       }

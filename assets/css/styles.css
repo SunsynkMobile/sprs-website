@@ -280,22 +280,6 @@ body.is-pointing .hero-atmosphere::after{opacity:1}
   transition:box-shadow var(--t3) var(--ease),border-color var(--t2) var(--ease);
   contain:layout paint style;
 }
-.hero-product.is-lit{
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--brand-yellow-200) 35%, transparent),
-    0 28px 70px rgba(0,0,0,.42);
-}
-.hero-product::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  z-index:3;
-  pointer-events:none;
-  opacity:0;
-  background:radial-gradient(circle 18rem at var(--spot-x,50%) var(--spot-y,40%), rgba(255,255,255,.22), transparent 55%);
-  transition:opacity .4s var(--ease);
-}
-.hero-product.is-lit::before{opacity:1}
 .hero-product::after{
   content:'';
   position:absolute;
@@ -352,7 +336,7 @@ body.is-pointing .hero-atmosphere::after{opacity:1}
 /* FEATURE TABS */
 .section-features{background:var(--brand-slate-50);padding:0}
 .section-features-scroll{padding:0}
-.feature-scroll-track{position:relative;height:calc(100vh * 2.6);min-height:1800px}
+.feature-scroll-track{position:relative;height:calc(100vh * 3.2);min-height:2200px}
 .feature-sticky{
   position:sticky;
   top:var(--anchor-offset);
@@ -372,7 +356,7 @@ body.is-pointing .hero-atmosphere::after{opacity:1}
 .feature-tab:focus-visible{outline:none;box-shadow:0 0 0 var(--focus-ring-offset) var(--brand-white),0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-ring-color)}
 .feature-panels{position:relative}
 .feature-panel{display:none;grid-template-columns:1.4fr .9fr;gap:clamp(1.25rem,3vw,2rem);align-items:stretch;padding:clamp(1.5rem,3vw,2rem);background:var(--white);border:1px solid var(--brand-slate-200);border-radius:var(--card-radius);position:relative;overflow:hidden;transition:box-shadow var(--t3) var(--ease),border-color var(--t2) var(--ease),transform .5s var(--ease-out)}
-.feature-panel.is-active{display:grid;animation:featurePanelIn .55s var(--ease-out) both}
+.feature-panel.is-active{display:grid;animation:featurePanelIn .85s var(--ease-out) both}
 .feature-panel::before{content:'';position:absolute;inset:0;opacity:0;pointer-events:none;background:radial-gradient(circle 16rem at var(--spot-x,50%) var(--spot-y,40%), color-mix(in srgb, var(--brand-yellow-200) 12%, transparent), transparent 60%);transition:opacity .4s var(--ease);z-index:0}
 .feature-panel.is-lit::before{opacity:1}
 .feature-panel-copy,.feature-panel-stat{position:relative;z-index:1}
@@ -380,10 +364,10 @@ body.is-pointing .hero-atmosphere::after{opacity:1}
 .feature-panel-copy > p{margin:0 0 1rem;line-height:1.6;color:var(--slate-600)}
 .feature-panel-list{display:grid;gap:.55rem;margin:0;padding:0;list-style:none}
 .feature-panel-list li{position:relative;padding-left:1.15rem;font-size:var(--fs-body);color:var(--slate-700);line-height:1.45;transition:transform var(--t2) var(--ease-out)}
-.feature-panel.is-active .feature-panel-list li{opacity:0;animation:fadeUp .55s var(--ease-out) both}
-.feature-panel.is-active .feature-panel-list li:nth-child(1){animation-delay:.1s}
-.feature-panel.is-active .feature-panel-list li:nth-child(2){animation-delay:.18s}
-.feature-panel.is-active .feature-panel-list li:nth-child(3){animation-delay:.26s}
+.feature-panel.is-active .feature-panel-list li{opacity:0;animation:fadeUp .7s var(--ease-out) both}
+.feature-panel.is-active .feature-panel-list li:nth-child(1){animation-delay:.14s}
+.feature-panel.is-active .feature-panel-list li:nth-child(2){animation-delay:.24s}
+.feature-panel.is-active .feature-panel-list li:nth-child(3){animation-delay:.34s}
 .feature-panel-list li::before{content:'';position:absolute;left:0;top:.55em;width:.45rem;height:.45rem;border-radius:50%;background:var(--brand-yellow-200)}
 .feature-panel-stat{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:1.35rem 1.4rem;border-radius:var(--r-lg);background:linear-gradient(160deg, var(--brand-blue-300), var(--brand-black-100));color:var(--white);min-height:11rem;transition:transform var(--t3) var(--ease-out)}
 .feature-panel.is-lit .feature-panel-stat{transform:translateY(-2px)}
@@ -393,8 +377,8 @@ body.is-pointing .hero-atmosphere::after{opacity:1}
 .feature-progress{height:3px;border-radius:999px;background:var(--brand-slate-200);overflow:hidden;margin-top:.15rem}
 .feature-progress-fill{display:block;height:100%;width:0%;border-radius:inherit;background:linear-gradient(90deg, var(--brand-yellow-200), var(--brand-yellow));will-change:width}
 @keyframes featurePanelIn{
-  from{opacity:0;transform:translateY(14px) scale(.988)}
-  to{opacity:1;transform:translateY(0) scale(1)}
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
 }
 @media(prefers-reduced-motion:reduce){
   .feature-scroll-track{height:auto;min-height:0}
@@ -1006,6 +990,7 @@ body.ix-pointer{cursor:default}
   contain:strict;
 }
 body.ix-pointer.is-pointing .pointer-glow{opacity:1}
+body.ix-pointer.is-pointing .pointer-glow.is-over-media{opacity:0}
 .btn.magnetic{transition:background var(--t2) var(--ease),border-color var(--t2) var(--ease),filter var(--t2) var(--ease),box-shadow var(--t2) var(--ease)}
 .btn-ghost .btn-ripple{background:rgba(255,255,255,.35)}
 .btn-gold .btn-ripple{background:rgba(255,255,255,.55)}
@@ -1101,7 +1086,7 @@ a.ix-link:active{transform:scale(.98)}
   .feature-panel-stat{min-height:auto;padding:1.15rem 1.2rem}
   .feature-tablist{justify-content:stretch}
   .feature-tab{flex:1 1 calc(50% - .4rem);font-size:var(--fs-meta);padding:.65rem .85rem}
-  .feature-scroll-track{height:calc(100vh * 3.1);min-height:2200px}
+  .feature-scroll-track{height:calc(100vh * 3.8);min-height:2600px}
   .feature-sticky{min-height:calc(100vh - var(--anchor-offset) - .5rem);justify-content:flex-start;padding-top:1.5rem}
   .hero-particles{display:none}
   .trust-panel,.savings-panel,.health-panel,.inside-grid,.actions-board{grid-template-columns:1fr}
@@ -1317,7 +1302,7 @@ a.ix-link:active{transform:scale(.98)}
   .faq-item .faq-answer{grid-template-rows:1fr}
   .faq-item .faq-answer > *{opacity:1!important;transform:none!important}
   .btn:hover,.btn-gold:hover,.price-card:hover .pci,.step:hover,.hero-window:hover,.ix-tilt,.ix-interactive,.trust-item.is-tracking,.inside-col.is-tracking,.actions-group.is-tracking,.step.is-tracking,.metrics-item.is-lit{transform:none!important;box-shadow:none!important}
-  body.ix-pointer::before,.pointer-glow,.hero-atmosphere::after,.hero-product::before,.metrics-item::before,.feature-panel::before{display:none!important}
+  body.ix-pointer::before,.pointer-glow,.hero-atmosphere::after,.metrics-item::before,.feature-panel::before{display:none!important}
   .ix-spot::before{display:none!important}
   .section-header,.cta-body,.assumptions-note{transform:none!important}
   .feature-panel.is-active{opacity:1!important;transform:none!important}
