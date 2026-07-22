@@ -319,8 +319,8 @@ body.is-pointing .hero-atmosphere::after{opacity:1}
 
 /* METRICS STRIP */
 .metrics-strip{background:var(--brand-slate-50);border-bottom:1px solid var(--brand-slate-200);padding:clamp(2rem,4vw,2.75rem) 0}
-.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--brand-slate-200);border-radius:var(--card-radius);overflow:hidden;background:var(--white)}
-.metrics-item{padding:clamp(1.25rem,3vw,1.75rem) 1.25rem;text-align:center;border-right:1px solid var(--brand-slate-200);position:relative;transition:background var(--t2) var(--ease),transform var(--t2) var(--ease-out);-webkit-tap-highlight-color:transparent}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--brand-slate-200);border-radius:var(--card-radius);overflow:hidden;background:var(--brand-slate-50)}
+.metrics-item{padding:clamp(1.25rem,3vw,1.75rem) 1.25rem;text-align:center;border-right:1px solid var(--brand-slate-200);position:relative;background:var(--white);transition:background var(--t2) var(--ease);-webkit-tap-highlight-color:transparent}
 .metrics-item:last-child{border-right:none}
 .metrics-item::before{content:'';position:absolute;inset:0;opacity:0;pointer-events:none;background:radial-gradient(circle at var(--spot-x,50%) var(--spot-y,50%), color-mix(in srgb, var(--brand-yellow-200) 16%, transparent), transparent 60%);transition:opacity .4s var(--ease)}
 .metrics-item.is-lit::before{opacity:1}
@@ -1052,7 +1052,7 @@ body.ix-pointer.is-pointing .pointer-glow.is-over-media{opacity:0}
   .section-header.reveal.visible .eyebrow{animation:softPulse 4.2s var(--ease) 1}
   .pricing-grid .price-card{transition:none}
   .pricing-grid .price-card:hover{transform:none}
-  .metrics-item.is-lit{transform:translate3d(0,-2px,0)}
+  .metrics-item.is-lit{transform:none}
   .feature-panel.is-lit{border-color:var(--brand-slate-300)}
 }
 
