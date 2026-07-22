@@ -962,11 +962,12 @@ function initSelectFeedback() {
   });
 }
 
-/* ── Feature tabs (click + scroll-driven) ── */
+/* ── Feature tabs (click + adaptive scroll scrub) ── */
 function initFeatureTabs() {
   const root = document.querySelector('[data-feature-tabs]');
   const track = document.querySelector('[data-feature-scroll]');
   if (!root) return;
+  const sticky = track?.querySelector('.feature-sticky');
   const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
   const panels = Array.from(root.querySelectorAll('[role="tabpanel"]'));
   const progressFill = document.querySelector('[data-feature-progress]');
@@ -975,6 +976,50 @@ function initFeatureTabs() {
   let activeIndex = Math.max(0, tabs.findIndex(t => t.getAttribute('aria-selected') === 'true'));
   let manualLockUntil = 0;
   let ticking = false;
+  let scrubEnabled = false;
+
+  function getViewHeight() {
+    return (window.visualViewport && window.visualViewport.height) || window.innerHeight || 1;
+  }
+
+  function measureStickyContentHeight() {
+    if (!sticky) return 0;
+    const styles = getComputedStyle(sticky);
+    const gap = parseFloat(styles.rowGap || styles.gap) || 0;
+    const pad = (parseFloat(styles.paddingTop) || 0) + (parseFloat(styles.paddingBottom) || 0);
+    const header = sticky.querySelector('.section-header');
+    const tabsWrap = sticky.querySelector('.feature-tabs');
+    if (!tabsWrap) return pad + (header?.offsetHeight || 0);
+
+    const tabsStyles = getComputedStyle(tabsWrap);
+    const tabsGap = parseFloat(tabsStyles.rowGap || tabsStyles.gap) || 0;
+    const tablist = tabsWrap.querySelector('.feature-tablist');
+    const activePanel = tabsWrap.querySelector('.feature-panel.is-active');
+
+    // Buffer covers other chapters that may be slightly taller + progress bar
+    const panelH = (activePanel?.offsetHeight || 0) + 48;
+    const progressH = 8;
+    const tabsH = (tablist?.offsetHeight || 0) + panelH + progressH + tabsGap * 2;
+
+    return pad + (header?.offsetHeight || 0) + tabsH + gap;
+  }
+
+  function setScrubMode(enabled) {
+    scrubEnabled = enabled;
+    if (!track) return;
+    track.classList.toggle('is-static', !enabled);
+    track.dataset.featureMode = enabled ? 'scrub' : 'static';
+  }
+
+  function updateFeatureMode() {
+    if (!track || !sticky || reducedMotion) {
+      setScrubMode(false);
+      return;
+    }
+    const contentH = measureStickyContentHeight();
+    const available = getViewHeight() - getAnchorOffset() - 16;
+    setScrubMode(contentH > 0 && contentH <= available);
+  }
 
   function activateTab(tab, { focus = false, animate = true, syncProgress = true } = {}) {
     const nextIndex = tabs.indexOf(tab);
@@ -1014,11 +1059,11 @@ function initFeatureTabs() {
   }
 
   function syncFromScroll() {
-    if (!track || reducedMotion) return;
+    if (!track || !scrubEnabled || reducedMotion) return;
     if (Date.now() < manualLockUntil) return;
 
     const rect = track.getBoundingClientRect();
-    const view = window.innerHeight || 1;
+    const view = getViewHeight();
     const stickyOffset = getAnchorOffset();
     const travel = Math.max(1, rect.height - view + stickyOffset);
     const raw = (-rect.top + stickyOffset) / travel;
@@ -1044,9 +1089,9 @@ function initFeatureTabs() {
     tab.addEventListener('click', () => {
       manualLockUntil = Date.now() + 1200;
       activateTab(tab);
-      if (track && !reducedMotion) {
+      if (track && scrubEnabled && !reducedMotion) {
         const rect = track.getBoundingClientRect();
-        const view = window.innerHeight || 1;
+        const view = getViewHeight();
         const stickyOffset = getAnchorOffset();
         const travel = Math.max(1, rect.height - view + stickyOffset);
         const targetProgress = (tabs.indexOf(tab) + 0.55) / tabs.length;
@@ -1069,9 +1114,11 @@ function initFeatureTabs() {
   });
 
   activateIndex(activeIndex, { animate: false });
+  updateFeatureMode();
 
   if (track && !reducedMotion) {
     window.addEventListener('scroll', () => {
+      if (!scrubEnabled) return;
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
@@ -1079,7 +1126,25 @@ function initFeatureTabs() {
         ticking = false;
       });
     }, { passive: true });
-    window.addEventListener('resize', syncFromScroll, { passive: true });
+
+    let modeTick = 0;
+    const onViewportChange = () => {
+      if (modeTick) return;
+      modeTick = requestAnimationFrame(() => {
+        modeTick = 0;
+        updateFeatureMode();
+        if (scrubEnabled) syncFromScroll();
+      });
+    };
+    window.addEventListener('resize', onViewportChange, { passive: true });
+    window.addEventListener('orientationchange', onViewportChange, { passive: true });
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', onViewportChange, { passive: true });
+    }
+    // Fonts / late layout can change measured height
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(() => updateFeatureMode()).catch(() => {});
+    }
     syncFromScroll();
   }
 }
