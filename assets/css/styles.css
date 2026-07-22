@@ -354,6 +354,46 @@ body.is-pointing .hero-atmosphere::after{opacity:1}
 .feature-hint-static{display:none}
 .feature-scroll-track.is-static .feature-hint-scrub{display:none}
 .feature-scroll-track.is-static .feature-hint-static{display:inline}
+
+/* Cursor “Scroll” cue while locked in feature scrub */
+.feature-scroll-cue{
+  position:fixed;
+  left:0;
+  top:0;
+  z-index:60;
+  pointer-events:none;
+  opacity:0;
+  display:inline-flex;
+  align-items:center;
+  gap:.35rem;
+  font-family:var(--font);
+  font-size:var(--fs-eyebrow);
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--brand-blue-300);
+  transform:translate3d(-40px,-40px,0);
+  transition:opacity .35s var(--ease);
+  will-change:transform;
+  mix-blend-mode:multiply;
+}
+.feature-scroll-cue.is-visible{opacity:.85}
+.feature-scroll-cue.is-scrolling{opacity:1}
+.feature-scroll-cue__arrows{
+  display:inline-flex;
+  flex-direction:column;
+  gap:1px;
+  line-height:1;
+  font-size:.65em;
+  letter-spacing:0;
+  opacity:.7;
+}
+@media(hover:none),(pointer:coarse){
+  .feature-scroll-cue{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .feature-scroll-cue{display:none!important}
+}
 .feature-tabs{display:flex;flex-direction:column;gap:1.5rem;max-width:960px;margin-inline:auto;width:100%}
 .feature-tablist{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;padding:.35rem;background:var(--white);border:1px solid var(--brand-slate-200);border-radius:var(--r-lg)}
 .feature-tab{appearance:none;border:none;background:transparent;color:var(--slate-600);font-family:var(--font);font-size:var(--fs-body);font-weight:600;padding:.7rem 1.15rem;border-radius:var(--r-md);cursor:pointer;min-height:44px;transition:background var(--t2) var(--ease),color var(--t2) var(--ease),transform var(--t2) var(--ease-out),box-shadow var(--t2) var(--ease);-webkit-tap-highlight-color:transparent}
@@ -1317,7 +1357,7 @@ a.ix-link:active{transform:scale(.98)}
   .faq-item .faq-answer{grid-template-rows:1fr}
   .faq-item .faq-answer > *{opacity:1!important;transform:none!important}
   .btn:hover,.btn-gold:hover,.price-card:hover .pci,.step:hover,.hero-window:hover,.ix-tilt,.ix-interactive,.trust-item.is-tracking,.inside-col.is-tracking,.actions-group.is-tracking,.step.is-tracking,.metrics-item.is-lit{transform:none!important;box-shadow:none!important}
-  body.ix-pointer::before,.pointer-glow,.hero-atmosphere::after,.metrics-item::before,.feature-panel::before{display:none!important}
+  body.ix-pointer::before,.pointer-glow,.feature-scroll-cue,.hero-atmosphere::after,.metrics-item::before,.feature-panel::before{display:none!important}
   .ix-spot::before{display:none!important}
   .section-header,.cta-body,.assumptions-note{transform:none!important}
   .feature-panel.is-active{opacity:1!important;transform:none!important}

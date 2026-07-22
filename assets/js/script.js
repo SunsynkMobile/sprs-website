@@ -1146,7 +1146,82 @@ function initFeatureTabs() {
       document.fonts.ready.then(() => updateFeatureMode()).catch(() => {});
     }
     syncFromScroll();
+    initFeatureScrollCue(track, () => scrubEnabled);
   }
+}
+
+/* ── “Scroll” cue beside cursor during feature scrub ── */
+function initFeatureScrollCue(track, isScrubEnabled) {
+  if (!track || reducedMotion || !finePointer) return;
+
+  const cue = document.createElement('div');
+  cue.className = 'feature-scroll-cue';
+  cue.setAttribute('aria-hidden', 'true');
+  cue.innerHTML = '<span class="feature-scroll-cue__arrows" aria-hidden="true">↑<br>↓</span><span>Scroll</span>';
+  document.body.appendChild(cue);
+
+  let x = -100;
+  let y = -100;
+  let tx = x;
+  let ty = y;
+  let raf = 0;
+  let visible = false;
+  let scrollPulse = 0;
+
+  const OFFSET_X = 22;
+  const OFFSET_Y = 18;
+
+  const tick = () => {
+    x = lerp(x, tx, MOTION_LERP);
+    y = lerp(y, ty, MOTION_LERP);
+    cue.style.transform = `translate3d(${(x + OFFSET_X).toFixed(1)}px, ${(y + OFFSET_Y).toFixed(1)}px, 0)`;
+    if (scrollPulse > 0) {
+      scrollPulse -= 1;
+      if (scrollPulse <= 0) cue.classList.remove('is-scrolling');
+    }
+    const settling = !nearlyEqual(x, tx) || !nearlyEqual(y, ty) || scrollPulse > 0;
+    if (settling || visible) {
+      raf = requestAnimationFrame(tick);
+    } else {
+      raf = 0;
+      cue.style.willChange = 'auto';
+    }
+  };
+
+  const start = () => {
+    cue.style.willChange = 'transform';
+    if (!raf) raf = requestAnimationFrame(tick);
+  };
+
+  const setVisible = on => {
+    if (visible === on) return;
+    visible = on;
+    cue.classList.toggle('is-visible', on);
+    if (on) start();
+  };
+
+  const insideTrack = target =>
+    target instanceof Element && (target === track || track.contains(target));
+
+  window.addEventListener('pointermove', e => {
+    tx = e.clientX;
+    ty = e.clientY;
+    const show = isScrubEnabled() && insideTrack(e.target);
+    setVisible(show);
+    if (show) start();
+  }, { passive: true });
+
+  window.addEventListener('scroll', () => {
+    if (!visible || !isScrubEnabled()) return;
+    cue.classList.add('is-scrolling');
+    scrollPulse = 18;
+    start();
+  }, { passive: true });
+
+  window.addEventListener('pointerleave', () => {
+    setVisible(false);
+    cue.classList.remove('is-scrolling');
+  });
 }
 
 /* ── Boot ── */
