@@ -57,6 +57,8 @@
   --nav-h:68px;
   --anchor-gap:12px;
   --anchor-offset:calc(var(--nav-h) + var(--anchor-gap));
+  /* Fine chart grid for dark surfaces (report / data feel) */
+  --surface-grid:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M56 0H0V56' fill='none' stroke='%23ffffff' stroke-opacity='.055' stroke-width='1'/%3E%3Cpath d='M0 28h56M28 0v56' fill='none' stroke='%23ffffff' stroke-opacity='.03' stroke-width='1'/%3E%3C/svg%3E");
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;font-size:16px;scroll-padding-top:var(--anchor-offset)}
@@ -147,11 +149,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible,
 .section-dark{background:var(--brand-slate-100)}
 .section-cta{background:var(--brand-slate-50);position:relative;overflow:hidden}
 .section-cta::before{content:none}
-.section-cta-dark{background:var(--brand-blue-300);background-image:
-  radial-gradient(ellipse 70% 80% at 15% 0%, color-mix(in srgb, var(--brand-yellow-200) 16%, transparent), transparent 55%),
-  radial-gradient(ellipse 70% 80% at 85% 0%, color-mix(in srgb, var(--brand-yellow-200) 16%, transparent), transparent 55%),
-  radial-gradient(ellipse 100% 70% at 50% 100%, color-mix(in srgb, var(--brand-black-100) 50%, transparent), transparent 55%),
-  linear-gradient(180deg, var(--brand-blue-100), var(--brand-blue-300) 45%, var(--brand-black-100))}
+.section-cta-dark{background:var(--brand-blue-300);background-image:var(--surface-grid);background-size:56px 56px}
 .section-cta-dark .eyebrow-light{color:var(--brand-yellow-200)}
 .section-cta-dark .eyebrow-light::after{background:rgba(255,255,255,.25)}
 .section-cta-dark .h-light,.section-cta-dark .cta-body h2{color:var(--white)}
@@ -247,15 +245,8 @@ body.nav-open{overflow:hidden}
 
 /* HERO */
 .hero{min-height:auto;background:var(--brand-blue-300);position:relative;overflow:hidden;display:flex;align-items:flex-start;padding:clamp(3.5rem,7vw,5rem) 0 clamp(2rem,4vw,3rem)}
-.hero-atmosphere{position:absolute;inset:0;pointer-events:none;z-index:0;background:
-  radial-gradient(ellipse 80% 60% at 15% 10%, color-mix(in srgb, var(--brand-yellow-200) 22%, transparent), transparent 55%),
-  radial-gradient(ellipse 80% 60% at 85% 10%, color-mix(in srgb, var(--brand-yellow-200) 22%, transparent), transparent 55%),
-  radial-gradient(ellipse 100% 80% at 50% 100%, color-mix(in srgb, var(--brand-black-100) 55%, transparent), transparent 60%),
-  linear-gradient(180deg, var(--brand-blue-100) 0%, var(--brand-blue-300) 42%, var(--brand-black-100) 100%);
-  transform:translate3d(calc((var(--hero-spot-x,50) - 50) * .08px), calc((var(--hero-spot-y,40) - 40) * .06px), 0) scale(1.04);
-  transition:transform .85s var(--ease-out);
-  contain:paint}
-.hero-atmosphere::after{content:'';position:absolute;inset:0;background:radial-gradient(circle 22rem at calc(var(--hero-spot-x,50) * 1%) calc(var(--hero-spot-y,40) * 1%), color-mix(in srgb, var(--brand-yellow-200) 16%, transparent), transparent 58%);opacity:0;transition:opacity .55s var(--ease);pointer-events:none}
+.hero-atmosphere{position:absolute;inset:0;pointer-events:none;z-index:0;background-image:var(--surface-grid);background-size:56px 56px;background-position:center top;transform:translate3d(calc((var(--hero-spot-x,50) - 50) * .06px), calc((var(--hero-spot-y,40) - 40) * .04px), 0);transition:transform .85s var(--ease-out);contain:paint;box-shadow:inset 0 -80px 100px -60px rgba(0,0,0,.35)}
+.hero-atmosphere::after{content:'';position:absolute;inset:0;background:radial-gradient(circle 20rem at calc(var(--hero-spot-x,50) * 1%) calc(var(--hero-spot-y,40) * 1%), color-mix(in srgb, var(--brand-yellow-200) 12%, transparent), transparent 62%);opacity:0;transition:opacity .55s var(--ease);pointer-events:none}
 body.is-pointing .hero-atmosphere::after{opacity:1}
 .hero-particles{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;contain:paint}
 .hero-particles span{position:absolute;bottom:-1rem;width:3px;height:3px;border-radius:50%;background:color-mix(in srgb, var(--brand-yellow-200) 70%, transparent);animation:particleDrift 18s linear infinite;opacity:0}
@@ -966,7 +957,6 @@ body.is-pointing .hero-atmosphere::after{opacity:1}
 @keyframes heroDrift{0%,100%{transform:translate3d(0,var(--drift-y,0px),0)}50%{transform:translate3d(0,calc(var(--drift-y,0px) - 5px),0)}}
 @keyframes ambientBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.01)}}
 @keyframes sheenSweep{from{transform:translateX(-130%)}to{transform:translateX(130%)}}
-@keyframes ctaGlow{0%,100%{opacity:.55;transform:translate(-50%,-10%) scale(1)}50%{opacity:.95;transform:translate(-50%,-12%) scale(1.06)}}
 @keyframes countPop{0%{transform:scale(.96);opacity:.55}100%{transform:scale(1);opacity:1}}
 @keyframes tagFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
 
@@ -1027,19 +1017,6 @@ body.ix-pointer.is-pointing .pointer-glow{opacity:1}
   .pricing-grid .price-card:hover{transform:none}
   .metrics-item.is-lit{transform:translate3d(0,-2px,0)}
   .feature-panel.is-lit{border-color:var(--brand-slate-300)}
-  .section-cta-dark{position:relative}
-  .section-cta-dark::after{
-    content:'';
-    position:absolute;
-    left:50%;
-    top:0;
-    width:min(42rem,90%);
-    height:12rem;
-    transform:translate(-50%,-40%);
-    pointer-events:none;
-    background:radial-gradient(ellipse, color-mix(in srgb, var(--brand-yellow-200) 22%, transparent), transparent 70%);
-    animation:ctaGlow 9s var(--ease) infinite;
-  }
 }
 
 @media(prefers-reduced-motion:no-preference){
@@ -1052,8 +1029,7 @@ html.is-hidden .hero-particles span,
 html.is-hidden .hero-product-dot,
 html.is-hidden .actions-tag,
 html.is-hidden .signal-track,
-html.is-hidden .flow-pulse,
-html.is-hidden .section-cta-dark::after{animation-play-state:paused!important}
+html.is-hidden .flow-pulse{animation-play-state:paused!important}
 
 .pm.price-updating,.pc.price-updating,.pp.price-updating,.pcr.price-updating,[data-price-credits].price-updating,[data-price-reports].price-updating{animation:priceTick .32s var(--ease) both}
 .currency-picker select.is-changing{animation:selectFlash .45s var(--ease);border-color:var(--gold)}
@@ -1327,7 +1303,7 @@ a.ix-link:active{transform:scale(.98)}
   html{scroll-behavior:auto}
   .fade-in,.hero-text.fade-in > *,.hero-preview.fade-in,.reveal,.reveal.visible .ix-stagger > *,.reveal.visible .ix-cascade > *,.reveal.visible.ix-cascade > *,.reveal.visible.ix-cascade-root > *,.nav-menu.open a{transition:none!important;animation:none!important;opacity:1!important;transform:none!important}
   .flow-pulse{animation:none!important}
-  .flow-node,.hero-window,.hero-orb,.hero-light-beam,.hero-particles span,.signal-track,.health-score-num.is-hot,.hero-preview,.hero-score .ring-wrap,.section-header.reveal.visible .eyebrow,.section-cta::before,.section-cta-dark::after,.actions-tag,.countup.is-counting,.btn-gold::after,.hero-product,.hero-product::after,.hero-product-dot,.hero-atmosphere,.feature-panel.is-active,.feature-panel.is-active .feature-panel-list li{animation:none!important}
+  .flow-node,.hero-window,.hero-orb,.hero-light-beam,.hero-particles span,.signal-track,.health-score-num.is-hot,.hero-preview,.hero-score .ring-wrap,.section-header.reveal.visible .eyebrow,.section-cta::before,.actions-tag,.countup.is-counting,.btn-gold::after,.hero-product,.hero-product::after,.hero-product-dot,.hero-atmosphere,.feature-panel.is-active,.feature-panel.is-active .feature-panel-list li{animation:none!important}
   .loader-ring,.loader-text{animation:none!important}
   .ring-progress{transition:none!important}
   .score-fill,.health-fill{transition:none!important}
