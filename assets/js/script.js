@@ -1150,47 +1150,73 @@ function initFeatureTabs() {
   }
 }
 
-/* ── “Scroll” cue beside cursor during feature scrub ── */
+/* ── “Scroll” ring around cursor during feature scrub ── */
 function initFeatureScrollCue(track, isScrubEnabled) {
   if (!track || reducedMotion || !finePointer) return;
 
   const cue = document.createElement('div');
   cue.className = 'feature-scroll-cue';
   cue.setAttribute('aria-hidden', 'true');
-  cue.innerHTML = '<span class="feature-scroll-cue__arrows" aria-hidden="true">↑<br>↓</span><span>Scroll</span>';
+  cue.innerHTML = `
+    <div class="feature-scroll-cue__spin" aria-hidden="true">
+      <svg viewBox="0 0 100 100" width="88" height="88">
+        <defs>
+          <path id="feature-scroll-cue-path" d="M50,50 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0" fill="none"></path>
+        </defs>
+        <text>
+          <textPath href="#feature-scroll-cue-path" startOffset="0%">Scroll · Scroll · Scroll · </textPath>
+        </text>
+      </svg>
+    </div>
+  `;
   document.body.appendChild(cue);
+  const spin = cue.querySelector('.feature-scroll-cue__spin');
 
   let x = -100;
   let y = -100;
   let tx = x;
   let ty = y;
+  let angle = 0;
+  let dir = 1; // 1 = clockwise (down), -1 = anti-clockwise (up)
+  let lastScrollY = window.scrollY;
+  let lastTs = 0;
   let raf = 0;
   let visible = false;
-  let scrollPulse = 0;
+  const FOLLOW = 0.22;
+  const DEG_PER_MS = 360 / 14000; // idle pace
+  const DEG_PER_MS_ACTIVE = 360 / 7000; // faster while scrolling
+  let boostUntil = 0;
 
-  const OFFSET_X = 22;
-  const OFFSET_Y = 18;
+  const tick = ts => {
+    if (!lastTs) lastTs = ts;
+    const dt = Math.min(33, ts - lastTs);
+    lastTs = ts;
 
-  const tick = () => {
-    x = lerp(x, tx, MOTION_LERP);
-    y = lerp(y, ty, MOTION_LERP);
-    cue.style.transform = `translate3d(${(x + OFFSET_X).toFixed(1)}px, ${(y + OFFSET_Y).toFixed(1)}px, 0)`;
-    if (scrollPulse > 0) {
-      scrollPulse -= 1;
-      if (scrollPulse <= 0) cue.classList.remove('is-scrolling');
+    if (visible) {
+      const speed = ts < boostUntil ? DEG_PER_MS_ACTIVE : DEG_PER_MS;
+      angle += speed * dt * dir;
+      angle = ((angle % 360) + 360) % 360;
+      spin.style.transform = `rotate(${angle.toFixed(2)}deg)`;
     }
-    const settling = !nearlyEqual(x, tx) || !nearlyEqual(y, ty) || scrollPulse > 0;
+
+    x = lerp(x, tx, FOLLOW);
+    y = lerp(y, ty, FOLLOW);
+    cue.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) translate(-50%, -50%)`;
+
+    const settling = !nearlyEqual(x, tx, 0.15) || !nearlyEqual(y, ty, 0.15);
     if (settling || visible) {
       raf = requestAnimationFrame(tick);
     } else {
       raf = 0;
-      cue.style.willChange = 'auto';
+      lastTs = 0;
     }
   };
 
   const start = () => {
-    cue.style.willChange = 'transform';
-    if (!raf) raf = requestAnimationFrame(tick);
+    if (!raf) {
+      lastTs = 0;
+      raf = requestAnimationFrame(tick);
+    }
   };
 
   const setVisible = on => {
@@ -1212,15 +1238,18 @@ function initFeatureScrollCue(track, isScrubEnabled) {
   }, { passive: true });
 
   window.addEventListener('scroll', () => {
-    if (!visible || !isScrubEnabled()) return;
-    cue.classList.add('is-scrolling');
-    scrollPulse = 18;
-    start();
+    const y = window.scrollY;
+    if (y > lastScrollY + 0.5) dir = 1;
+    else if (y < lastScrollY - 0.5) dir = -1;
+    lastScrollY = y;
+    if (visible && isScrubEnabled()) {
+      boostUntil = performance.now() + 280;
+      start();
+    }
   }, { passive: true });
 
   window.addEventListener('pointerleave', () => {
     setVisible(false);
-    cue.classList.remove('is-scrolling');
   });
 }
 
