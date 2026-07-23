@@ -149,11 +149,30 @@ a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible,
 .section-dark{background:var(--brand-slate-100)}
 .section-cta{background:var(--brand-slate-50);position:relative;overflow:hidden}
 .section-cta::before{content:none}
-.section-cta-dark{background:var(--brand-blue-300);background-image:var(--surface-grid);background-size:56px 56px}
+.section-cta-dark{
+  position:relative;
+  isolation:isolate;
+  background-color:var(--brand-blue-300);
+  background-image:url("/assets/images/solarpanel-grid.png");
+  background-size:cover;
+  background-position:center 42%;
+  background-repeat:no-repeat;
+}
+.section-cta-dark::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(13,28,46,.72) 0%, rgba(13,28,46,.55) 45%, rgba(13,28,46,.78) 100%),
+    linear-gradient(90deg, rgba(13,28,46,.35) 0%, transparent 40%, rgba(13,28,46,.45) 100%);
+}
+.section-cta-dark .cta-body{position:relative;z-index:1}
 .section-cta-dark .eyebrow-light{color:var(--brand-yellow-200)}
 .section-cta-dark .eyebrow-light::after{background:rgba(255,255,255,.25)}
 .section-cta-dark .h-light,.section-cta-dark .cta-body h2{color:var(--white)}
-.section-cta-dark .cta-sub,.section-cta-dark .s-muted{color:rgba(255,255,255,.72)}
+.section-cta-dark .cta-sub,.section-cta-dark .s-muted{color:rgba(255,255,255,.82)}
 .section-header[id],.cta-body[id],#hero,#metrics,#features{scroll-margin-top:var(--anchor-offset)}
 .section-header{max-width:680px;margin-bottom:var(--section-header-mb);transform:none;will-change:auto}
 .section-header.center{margin-inline:auto;text-align:center}
@@ -245,7 +264,29 @@ body.nav-open{overflow:hidden}
 
 /* HERO */
 .hero{min-height:auto;background:var(--brand-blue-300);position:relative;overflow:hidden;display:flex;align-items:flex-start;padding:clamp(3.5rem,7vw,5rem) 0 clamp(2rem,4vw,3rem)}
-.hero-atmosphere{position:absolute;inset:0;pointer-events:none;z-index:0;background-image:var(--surface-grid);background-size:56px 56px;background-position:center top;transform:translate3d(calc((var(--hero-spot-x,50) - 50) * .06px), calc((var(--hero-spot-y,40) - 40) * .04px), 0);transition:transform .85s var(--ease-out);contain:paint;box-shadow:inset 0 -80px 100px -60px rgba(0,0,0,.35)}
+.hero-atmosphere{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background-color:var(--brand-blue-300);
+  background-image:url("/assets/images/hero-image-dark.png");
+  background-size:cover;
+  background-position:center 35%;
+  background-repeat:no-repeat;
+  transform:translate3d(calc((var(--hero-spot-x,50) - 50) * .06px), calc((var(--hero-spot-y,40) - 40) * .04px), 0);
+  transition:transform .85s var(--ease-out);
+  contain:paint;
+}
+.hero-atmosphere::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(13,28,46,.55) 0%, rgba(13,28,46,.35) 38%, rgba(13,28,46,.62) 100%),
+    linear-gradient(90deg, rgba(13,28,46,.25) 0%, transparent 45%, rgba(13,28,46,.28) 100%);
+}
 .hero-atmosphere::after{content:'';position:absolute;inset:0;background:radial-gradient(circle 20rem at calc(var(--hero-spot-x,50) * 1%) calc(var(--hero-spot-y,40) * 1%), color-mix(in srgb, var(--brand-yellow-200) 12%, transparent), transparent 62%);opacity:0;transition:opacity .55s var(--ease);pointer-events:none}
 body.is-pointing .hero-atmosphere::after{opacity:1}
 .hero-particles{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;contain:paint}
