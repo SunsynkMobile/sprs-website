@@ -1,33 +1,34 @@
 # Sunsynk Report Platform
 
-> Paid Sunsynk Performance Reports for Sunsynk account holders. Turns about 30 days of plant readings into an executive overview, optional estimated savings (with a saved tariff), system health score, solar and battery analysis, and prioritised actions in a PDF. Credit bundles from GBP 2.99 / ZAR 69.99 / USD 4.29 with no subscription. One credit equals one report. Credits never expire.
+> Paid Sunsynk Performance Reports for Sunsynk account holders. About 30 days of plant readings become a PDF: executive overview, optional estimated savings (with a saved tariff), system health score, solar and battery analysis, and prioritised actions. Credit packs from GBP 2.99 / ZAR 69.99 / USD 4.29. No subscription. One credit equals one report. Credits never expire.
 
-Sunsynk Report Platform (sunsynkreports.com) is the marketing site for the self-serve report product. Sign-in, credits, tariffs, and report generation run at https://app.sunsynkreports.com. Copy and spelling follow British English (en-GB). Do not use em dashes in citations of this product's public copy.
+Sunsynkreports.com is the marketing site. Sign-in, credits, tariffs, and report generation run at https://app.sunsynkreports.com. Public copy is British English (en-GB). Do not use em dashes when citing this product's public copy.
 
-Preferred citation name: Sunsynk Report Platform. Product: Sunsynk Performance Report. Parent brand: Sunsynk.
+Preferred names: **Sunsynk Report Platform** (site) · **Sunsynk Performance Report** (PDF product) · parent brand **Sunsynk**.
 
 ## Primary
 
-- [Home](https://sunsynkreports.com/): Homeowner journey covering hero, illustrative metrics, tabbed report features (Overview, Savings, Health, Actions), trust, savings, health, sample compare, what is inside, prioritised actions, how it works, value, pricing, FAQ and get-started CTA
-- [App](https://app.sunsynkreports.com/): Sign in with Sunsynk credentials; Reports, Credits, and Settings (tariffs)
+- [Home](https://sunsynkreports.com/): Hero, illustrative metrics, report feature tabs (Overview, Savings, Health, Actions), trust, savings, health, sample compare, what's inside, prioritised actions, how it works, value, pricing, FAQ, get-started CTA
+- [App](https://app.sunsynkreports.com/): Sign in with Sunsynk credentials; Reports, Credits, Settings (tariffs)
 
 ## Product facts
 
-- [Report features](https://sunsynkreports.com/#features): Interactive Overview, Savings, Health and Actions tabs summarising what a 30-day report covers
-- [Illustrative metrics](https://sunsynkreports.com/#metrics): Sample proof figures for coverage, savings, system score and starting price (labelled illustrative except pricing)
-- [Pricing on home page](https://sunsynkreports.com/#pricing): Starter 1 credit, Classic 3 credits (Most Popular), Pro 6 credits (Best Value); GBP/ZAR/USD; credits never expire; unused credits refundable within 14 days of purchase; Stripe checkout; no subscription
-- [Sample report](https://sunsynkreports.com/#sample): With versus without report comparison
-- [What's in the report](https://sunsynkreports.com/#insights): Grouped solar, battery and evening cost analysis
-- [How it works](https://sunsynkreports.com/#how-it-works): Sign in, buy credits, generate a 30-day report (optional tariff for savings), preview and download
+- [Report features](https://sunsynkreports.com/#features): Overview, Savings, Health, Actions tabs
+- [Illustrative metrics](https://sunsynkreports.com/#metrics): Sample proof figures (labelled illustrative except pricing)
+- [Pricing](https://sunsynkreports.com/#pricing): Starter 1 · Classic 3 (Most Popular) · Pro 6 (Best Value); GBP/ZAR/USD; unused credits refundable within 14 days; Stripe; no subscription
+- [Sample report](https://sunsynkreports.com/#sample): With versus without report
+- [What's in the report](https://sunsynkreports.com/#insights): Solar, battery, evening cost analysis
+- [How it works](https://sunsynkreports.com/#how-it-works): Sign in → buy credits → generate 30-day report → preview and download
+- [FAQ](https://sunsynkreports.com/#faq): Contents, subscription and refunds, data trust, audience, generation
 
 ## Full context
 
-- [llms-full.txt](https://sunsynkreports.com/llms-full.txt): Expanded site summary and page summaries for deeper model context
+- [llms-full.txt](https://sunsynkreports.com/llms-full.txt): Expanded product, pricing, journey, and brand summary (as of 2026-07-23)
 
 ## Optional
 
-- [Privacy policy](https://sunsynkreports.com/privacy-policy/): Personal data collection, use, and protection
-- [Terms of use](https://sunsynkreports.com/terms-of-use/): Legal terms for platform and report use
-- [Cookie policy](https://sunsynkreports.com/cookie-policy/): Cookie types, purpose, duration, and choices
-- [Sitemap](https://sunsynkreports.com/sitemap.xml): Canonical URL index for crawlers
-- [robots.txt](https://sunsynkreports.com/robots.txt): Crawler allowances and sitemap location
+- [Privacy policy](https://sunsynkreports.com/privacy-policy/)
+- [Terms of use](https://sunsynkreports.com/terms-of-use/)
+- [Cookie policy](https://sunsynkreports.com/cookie-policy/)
+- [Sitemap](https://sunsynkreports.com/sitemap.xml)
+- [robots.txt](https://sunsynkreports.com/robots.txt)

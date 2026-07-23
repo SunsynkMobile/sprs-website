@@ -635,12 +635,23 @@ function initPointerAtmosphere() {
   });
 }
 
-/* ── Soft local spotlight (no 3D tilt — GPU-cheap) ── */
+/* Soft local spotlight (no 3D tilt; GPU-cheap) */
 function initSurfaceMotion() {
   if (reducedMotion || !finePointer) return;
-  const surfaces = document.querySelectorAll(
-    '.pci, .metrics-item, .feature-panel, .health-panel'
-  );
+  const surfaces = document.querySelectorAll([
+    '.pci',
+    '.metrics-item',
+    '.feature-panel',
+    '.health-panel',
+    '.trust-item',
+    '.inside-col',
+    '.actions-group',
+    '.savings-hero-stat',
+    '.sample-col',
+    '.feat-card',
+    '.tq',
+    '.outcome'
+  ].join(', '));
 
   surfaces.forEach(card => {
     card.classList.add('ix-spot');
@@ -663,25 +674,40 @@ function initSurfaceMotion() {
       }
     };
 
-    card.addEventListener('pointerenter', () => {
+    const setSpot = (clientX, clientY, snap = false) => {
+      const r = card.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      tsx = ((clientX - r.left) / r.width) * 100;
+      tsy = ((clientY - r.top) / r.height) * 100;
+      if (snap) {
+        sx = tsx;
+        sy = tsy;
+        card.style.setProperty('--spot-x', `${sx.toFixed(1)}%`);
+        card.style.setProperty('--spot-y', `${sy.toFixed(1)}%`);
+      }
+    };
+
+    card.addEventListener('pointerenter', e => {
       hovering = true;
+      setSpot(e.clientX, e.clientY, true);
       card.classList.add('is-lit');
     });
 
     card.addEventListener('pointermove', e => {
-      const r = card.getBoundingClientRect();
-      if (!r.width || !r.height) return;
-      tsx = ((e.clientX - r.left) / r.width) * 100;
-      tsy = ((e.clientY - r.top) / r.height) * 100;
+      setSpot(e.clientX, e.clientY);
       if (!raf) raf = requestAnimationFrame(tick);
     }, { passive: true });
 
     card.addEventListener('pointerleave', () => {
       hovering = false;
-      tsx = 50;
-      tsy = 40;
+      // Fade out in place; don't lerp the spot back to centre (elastic snap)
       card.classList.remove('is-lit');
-      if (!raf) raf = requestAnimationFrame(tick);
+      if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+      tsx = sx;
+      tsy = sy;
     });
   });
 }
@@ -703,7 +729,7 @@ function initMagneticButtons() {
       cy = lerp(cy, ty, MOTION_LERP);
       if (!btn.classList.contains('is-pressed')) {
         btn.style.transform = hovering
-          ? `translate3d(${cx.toFixed(2)}px, ${cy.toFixed(2)}px, 0)`
+          ? `translate3d(${cx.toFixed(2)}px, ${cy.toFixed(2)}px, 0) scale(1.035)`
           : '';
       }
       if (hovering || !nearlyEqual(cx, tx, 0.05) || !nearlyEqual(cy, ty, 0.05)) {
@@ -714,7 +740,10 @@ function initMagneticButtons() {
       }
     };
 
-    btn.addEventListener('pointerenter', () => { hovering = true; });
+    btn.addEventListener('pointerenter', () => {
+      hovering = true;
+      if (!raf) raf = requestAnimationFrame(tick);
+    });
     btn.addEventListener('pointermove', e => {
       if (btn.classList.contains('is-pressed')) return;
       const r = btn.getBoundingClientRect();
@@ -883,11 +912,11 @@ function initPressFeedback() {
   document.querySelectorAll('.btn').forEach(btn => {
     const release = () => {
       btn.classList.remove('is-pressed');
-      if (!btn.matches(':hover')) btn.style.transform = '';
+      btn.style.transform = '';
     };
     btn.addEventListener('pointerdown', e => {
       btn.classList.add('is-pressed');
-      btn.style.transform = 'scale(.97)';
+      btn.style.transform = 'scale(.98)';
       if (reducedMotion || e.button !== 0) return;
       const rect = btn.getBoundingClientRect();
       const ripple = document.createElement('span');
@@ -968,6 +997,7 @@ function initFeatureTabs() {
   const track = document.querySelector('[data-feature-scroll]');
   if (!root) return;
   const sticky = track?.querySelector('.feature-sticky');
+  const tablist = root.querySelector('.feature-tablist');
   const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
   const panels = Array.from(root.querySelectorAll('[role="tabpanel"]'));
   const progressFill = document.querySelector('[data-feature-progress]');
@@ -977,6 +1007,35 @@ function initFeatureTabs() {
   let manualLockUntil = 0;
   let ticking = false;
   let scrubEnabled = false;
+
+  let pill = tablist?.querySelector('.feature-tab-pill');
+  if (tablist && !pill) {
+    pill = document.createElement('span');
+    pill.className = 'feature-tab-pill';
+    pill.setAttribute('aria-hidden', 'true');
+    tablist.insertBefore(pill, tablist.firstChild);
+  }
+
+  function movePill(tab, { animate = true } = {}) {
+    if (!pill || !tablist || !tab) return;
+    const x = tab.offsetLeft;
+    const y = tab.offsetTop;
+    const w = tab.offsetWidth;
+    const h = tab.offsetHeight;
+    if (!animate || reducedMotion) {
+      const prev = pill.style.transition;
+      pill.style.transition = 'none';
+      pill.style.width = `${w}px`;
+      pill.style.height = `${h}px`;
+      pill.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      void pill.offsetWidth;
+      pill.style.transition = prev;
+      return;
+    }
+    pill.style.width = `${w}px`;
+    pill.style.height = `${h}px`;
+    pill.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+  }
 
   function getViewHeight() {
     return (window.visualViewport && window.visualViewport.height) || window.innerHeight || 1;
@@ -1011,8 +1070,10 @@ function initFeatureTabs() {
     track.dataset.featureMode = enabled ? 'scrub' : 'static';
   }
 
+  const forceStaticMq = window.matchMedia('(max-width: 900px), (hover: none), (pointer: coarse)');
+
   function updateFeatureMode() {
-    if (!track || !sticky || reducedMotion) {
+    if (!track || !sticky || reducedMotion || forceStaticMq.matches) {
       setScrubMode(false);
       return;
     }
@@ -1050,7 +1111,13 @@ function initFeatureTabs() {
       const pct = ((activeIndex + 1) / tabs.length) * 100;
       progressFill.style.width = `${pct}%`;
     }
+    movePill(tab, { animate: animate && !reducedMotion });
     if (focus) tab.focus();
+    // Panel height can change after a tap; remeasure scrub eligibility + pill
+    requestAnimationFrame(() => {
+      updateFeatureMode();
+      movePill(tab, { animate: false });
+    });
   }
 
   function activateIndex(index, opts) {
@@ -1114,6 +1181,7 @@ function initFeatureTabs() {
   });
 
   activateIndex(activeIndex, { animate: false });
+  movePill(tabs[activeIndex], { animate: false });
   updateFeatureMode();
 
   if (track && !reducedMotion) {
@@ -1133,17 +1201,26 @@ function initFeatureTabs() {
       modeTick = requestAnimationFrame(() => {
         modeTick = 0;
         updateFeatureMode();
+        movePill(tabs[activeIndex], { animate: false });
         if (scrubEnabled) syncFromScroll();
       });
     };
     window.addEventListener('resize', onViewportChange, { passive: true });
     window.addEventListener('orientationchange', onViewportChange, { passive: true });
+    if (typeof forceStaticMq.addEventListener === 'function') {
+      forceStaticMq.addEventListener('change', onViewportChange);
+    } else if (typeof forceStaticMq.addListener === 'function') {
+      forceStaticMq.addListener(onViewportChange);
+    }
     if (window.visualViewport) {
       window.visualViewport.addEventListener('resize', onViewportChange, { passive: true });
     }
     // Fonts / late layout can change measured height
     if (document.fonts?.ready) {
-      document.fonts.ready.then(() => updateFeatureMode()).catch(() => {});
+      document.fonts.ready.then(() => {
+        updateFeatureMode();
+        movePill(tabs[activeIndex], { animate: false });
+      }).catch(() => {});
     }
     syncFromScroll();
     initFeatureScrollCue(track, () => scrubEnabled);

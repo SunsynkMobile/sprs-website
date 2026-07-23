@@ -2,7 +2,7 @@
 <html lang="en-GB">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <script>
     if (window.location.pathname.endsWith('/index.html')) {
       const cleanPath = window.location.pathname.replace(/\/index\.html$/, '/') || '/';
@@ -12,7 +12,7 @@
 
   <!-- Primary Meta Tags -->
   <title>Sunsynk Report Platform | Clear 30-day performance reports for your Sunsynk system</title>
-  <meta name="description" content="Get a clear 30-day Sunsynk Performance Report PDF: executive overview, optional tariff savings, system health score, solar and battery insights, and prioritised actions. From £2.99. Credits never expire. No subscription." />
+  <meta name="description" content="30-day Sunsynk Performance Report PDF: executive overview, optional tariff savings, health score, solar and battery insights, and prioritised actions. From £2.99. No subscription." />
   <meta name="author" content="Sunsynk" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -21,13 +21,14 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="geo.region" content="GB" />
   <meta name="color-scheme" content="light" />
-  <meta name="keywords" content="Sunsynk, Sunsynk Report Platform, Sunsynk Performance Report, solar report, battery report, home energy insights, plant performance PDF, solar savings, system health score" />
+  <meta name="keywords" content="Sunsynk Performance Report, Sunsynk Report Platform, solar battery report, plant performance PDF, system health score, solar savings, prioritised actions" />
 
   <!-- Canonical and language -->
   <link rel="canonical" href="https://sunsynkreports.com/" />
   <link rel="alternate" hreflang="en-GB" href="https://sunsynkreports.com/" />
   <link rel="alternate" hreflang="x-default" href="https://sunsynkreports.com/" />
   <link rel="alternate" type="text/plain" title="LLMs.txt" href="https://sunsynkreports.com/llms.txt" />
+  <link rel="alternate" type="text/plain" title="LLMs full context" href="https://sunsynkreports.com/llms-full.txt" />
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://sunsynkreports.com/sitemap.xml" />
   <link rel="manifest" href="/site.webmanifest" />
 
@@ -37,8 +38,8 @@
   <meta property="og:url" content="https://sunsynkreports.com/" />
   <meta property="og:title" content="Sunsynk Report Platform | Clear 30-day performance reports for your Sunsynk system" />
   <meta property="og:description" content="Sign in with your Sunsynk account, buy credits, and generate a 30-day plant performance PDF. Optional savings with a saved tariff. From £2.99. No subscription." />
-  <meta property="og:image" content="https://sunsynkreports.com/assets/images/og-image.jpg?v=20260721" />
-  <meta property="og:image:secure_url" content="https://sunsynkreports.com/assets/images/og-image.jpg?v=20260721" />
+  <meta property="og:image" content="https://sunsynkreports.com/assets/images/og-image.jpg?v=20260723" />
+  <meta property="og:image:secure_url" content="https://sunsynkreports.com/assets/images/og-image.jpg?v=20260723" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -53,7 +54,7 @@
   <meta name="twitter:url" content="https://sunsynkreports.com/" />
   <meta name="twitter:title" content="Sunsynk Report Platform | Clear 30-day performance reports for your Sunsynk system" />
   <meta name="twitter:description" content="30-day Sunsynk Performance Reports: overview, optional savings, health score, and prioritised actions. Credits never expire. From £2.99. No subscription." />
-  <meta name="twitter:image" content="https://sunsynkreports.com/assets/images/og-image.jpg?v=20260721" />
+  <meta name="twitter:image" content="https://sunsynkreports.com/assets/images/og-image.jpg?v=20260723" />
   <meta name="twitter:image:alt" content="Sunsynk Report Platform: 30-day performance reports with executive summary and system score" />
 
   <!-- Favicon -->
@@ -78,9 +79,14 @@
     "@id": "https://sunsynkreports.com/#website",
     "url": "https://sunsynkreports.com/",
     "name": "Sunsynk Report Platform",
-    "description": "Homeowner reports for Sunsynk solar and battery systems covering performance, optional savings, health scoring, solar and battery analysis, and prioritised actions.",
+    "description": "Marketing site for Sunsynk Performance Reports: 30-day plant PDFs covering optional savings, health scoring, solar and battery analysis, and prioritised actions.",
     "inLanguage": "en-GB",
-    "publisher": { "@id": "https://sunsynkreports.com/#organization" }
+    "publisher": { "@id": "https://sunsynkreports.com/#organization" },
+    "potentialAction": {
+      "@type": "ViewAction",
+      "name": "Get My Report",
+      "target": "https://app.sunsynkreports.com/"
+    }
   }
   </script>
 
@@ -99,7 +105,7 @@
       "width": 910,
       "height": 120
     },
-    "image": "https://sunsynkreports.com/assets/images/og-image.jpg?v=20260721",
+    "image": "https://sunsynkreports.com/assets/images/og-image.jpg?v=20260723",
     "description": "Report platform for Sunsynk solar and battery system performance analysis.",
     "parentOrganization": {
       "@type": "Organization",
@@ -110,27 +116,41 @@
       "https://www.facebook.com/sunsynkza",
       "https://twitter.com/sunsynkza",
       "https://www.linkedin.com/company/sunsynk"
+    ],
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "support@sunsynk.com",
+        "availableLanguage": ["en-GB", "en"]
+      },
+      {
+        "@type": "ContactPoint",
+        "contactType": "privacy",
+        "email": "privacy@sunsynk.com",
+        "availableLanguage": ["en-GB", "en"]
+      }
     ]
   }
   </script>
 
-  <!-- JSON-LD: SoftwareApplication + AggregateOffer -->
+  <!-- JSON-LD: SoftwareApplication + AggregateOffer (GBP list prices; ZAR/USD available in app) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "@id": "https://sunsynkreports.com/#product",
     "name": "Sunsynk Report Platform",
-    "alternateName": "Sunsynk Home Energy Insights Report",
-    "description": "Turns about 30 days of Sunsynk plant readings into an executive overview, optional estimated savings, system health score, deeper solar and battery analysis, and prioritised actions in a PDF.",
+    "alternateName": ["Sunsynk Performance Report", "Sunsynk Reports"],
+    "description": "Turns about 30 days of Sunsynk plant readings into an executive overview, optional estimated savings, system health score, deeper solar and battery analysis, and prioritised actions in a PDF. Credits never expire. No subscription. Also sold in ZAR and USD at app.sunsynkreports.com.",
     "url": "https://sunsynkreports.com/",
     "applicationCategory": "BusinessApplication",
     "applicationSubCategory": "Energy monitoring and reporting",
     "operatingSystem": "Web",
     "inLanguage": "en-GB",
     "isAccessibleForFree": false,
-    "image": "https://sunsynkreports.com/assets/images/og-image.jpg?v=20260721",
-    "screenshot": "https://sunsynkreports.com/assets/images/og-image.jpg?v=20260721",
+    "image": "https://sunsynkreports.com/assets/images/og-image.jpg?v=20260723",
+    "screenshot": "https://sunsynkreports.com/assets/images/og-image.jpg?v=20260723",
     "publisher": { "@id": "https://sunsynkreports.com/#organization" },
     "creator": {
       "@type": "Organization",
@@ -143,8 +163,7 @@
       "Estimated savings versus grid electricity",
       "Overall system health scoring",
       "Solar, battery and evening grid analysis",
-      "Prioritised recommended actions PDF",
-      "Interactive report feature overview on the marketing site"
+      "Prioritised recommended actions PDF"
     ],
     "offers": {
       "@type": "AggregateOffer",
@@ -152,7 +171,7 @@
       "priceCurrency": "GBP",
       "lowPrice": "2.99",
       "highPrice": "11.49",
-      "offerCount": 9,
+      "offerCount": 3,
       "availability": "https://schema.org/InStock",
       "offers": [
         {
@@ -181,61 +200,13 @@
           "priceCurrency": "GBP",
           "url": "https://app.sunsynkreports.com/",
           "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Starter (1 credit)",
-          "price": "69.99",
-          "priceCurrency": "ZAR",
-          "url": "https://app.sunsynkreports.com/",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Classic (3 credits)",
-          "price": "169.99",
-          "priceCurrency": "ZAR",
-          "url": "https://app.sunsynkreports.com/",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Pro (6 credits)",
-          "price": "249.99",
-          "priceCurrency": "ZAR",
-          "url": "https://app.sunsynkreports.com/",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Starter (1 credit)",
-          "price": "4.29",
-          "priceCurrency": "USD",
-          "url": "https://app.sunsynkreports.com/",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Classic (3 credits)",
-          "price": "10.99",
-          "priceCurrency": "USD",
-          "url": "https://app.sunsynkreports.com/",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Pro (6 credits)",
-          "price": "15.99",
-          "priceCurrency": "USD",
-          "url": "https://app.sunsynkreports.com/",
-          "availability": "https://schema.org/InStock"
         }
       ]
     }
   }
   </script>
 
-  <!-- JSON-LD: FAQPage -->
+  <!-- JSON-LD: FAQPage (must match visible FAQ copy) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -247,7 +218,7 @@
         "name": "What is inside a Sunsynk Performance Report?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A Sunsynk Performance Report is a shareable PDF from about 30 days of plant readings. It moves from an executive overview into data coverage, optional estimated savings, system health, energy flows, solar and battery analysis, evening grid dependency, accuracy checks, and prioritised recommendations."
+          "text": "A shareable PDF from about 30 days of plant readings. It moves from an executive overview into data coverage, optional estimated savings, overall health, energy flows, solar and battery analysis, evening grid dependency, accuracy checks, and prioritised recommendations."
         }
       },
       {
@@ -255,7 +226,7 @@
         "name": "Is there a subscription?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. One credit equals one report. Buy Starter (1), Classic (3), or Pro (6) when you need them. Credits never expire. Unused credits from a purchase can be refunded within 14 days. Checkout is via Stripe at app.sunsynkreports.com."
+          "text": "No. One credit equals one report. Buy Starter (1), Classic (3), or Pro (6) when you need them. Credits never expire. Unused credits from a purchase can be refunded within 14 days via the Credits page."
         }
       },
       {
@@ -263,7 +234,7 @@
         "name": "Can I trust the data?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Each report includes data coverage and plant details, plus a system accuracy check that verifies energy flows balance within tolerance. Thin or poor-quality telemetry is flagged before and inside the report so you know what may affect accuracy."
+          "text": "Before generation, the app checks about 30 days of telemetry coverage and asks you to confirm if coverage is thin. Each report also includes data coverage, plant details, and a system accuracy check. Assumptions and limitations sit in Important Information in the PDF."
         }
       },
       {
@@ -271,7 +242,7 @@
         "name": "Who is the report for?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Sunsynk account holders who want a clear plant performance PDF. Sign in with your Sunsynk email and password. Installers may also use the PDF when supporting a homeowner."
+          "text": "Sunsynk account holders. Sign in with your Sunsynk email and password. Installers may also use the PDF when supporting a homeowner aftercare conversation."
         }
       },
       {
@@ -279,8 +250,60 @@
         "name": "How does report generation work?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Sign in at app.sunsynkreports.com with your Sunsynk account, buy credits if needed, optionally save a tariff under Settings for estimated savings, then generate a 30-day report for a plant. Preview and download the PDF when it is ready. One credit is used per report."
+          "text": "Sign in at app.sunsynkreports.com, buy credits if your balance is zero, optionally save a tariff under Settings for estimated savings, then generate a report for a plant. You can leave the page while it prepares; when ready, preview and download the PDF. One credit is used per report."
         }
+      }
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD: HowTo -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "@id": "https://sunsynkreports.com/#how-it-works-howto",
+    "name": "How to get a Sunsynk Performance Report",
+    "description": "Sign in with your Sunsynk account, buy credits, generate a 30-day plant report, then preview and download the PDF. No subscription. One credit equals one report.",
+    "inLanguage": "en-GB",
+    "totalTime": "PT10M",
+    "estimatedCost": {
+      "@type": "MonetaryAmount",
+      "currency": "GBP",
+      "value": "2.99"
+    },
+    "tool": {
+      "@type": "HowToTool",
+      "name": "Sunsynk account (email and password)"
+    },
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Sign in",
+        "text": "Use your Sunsynk email and password. Accept Terms and Privacy once.",
+        "url": "https://app.sunsynkreports.com/"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Buy credits",
+        "text": "Choose Starter, Classic, or Pro. Checkout with Stripe when you need a report.",
+        "url": "https://sunsynkreports.com/#pricing"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Generate a report",
+        "text": "Pick a plant. Optionally include estimated savings with a tariff saved in Settings.",
+        "url": "https://app.sunsynkreports.com/"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Preview and download",
+        "text": "Open the PDF when it is ready. Download it, or leave feedback from your report history.",
+        "url": "https://app.sunsynkreports.com/"
       }
     ]
   }
@@ -293,23 +316,35 @@
     "@type": "WebPage",
     "@id": "https://sunsynkreports.com/#webpage",
     "url": "https://sunsynkreports.com/",
-    "name": "Sunsynk Report Platform | Solar and Battery Performance Reports",
-    "description": "Buy a Sunsynk homeowner report covering savings, health, solar and battery insights, and prioritised actions. Explore report features, sample figures, pricing and FAQ. No subscription.",
+    "name": "Sunsynk Report Platform | Clear 30-day performance reports for your Sunsynk system",
+    "description": "30-day Sunsynk Performance Report PDF: executive overview, optional tariff savings, health score, solar and battery insights, and prioritised actions. From £2.99. No subscription.",
     "inLanguage": "en-GB",
     "isPartOf": { "@id": "https://sunsynkreports.com/#website" },
     "about": { "@id": "https://sunsynkreports.com/#product" },
     "primaryImageOfPage": {
       "@type": "ImageObject",
-      "url": "https://sunsynkreports.com/assets/images/og-image.jpg?v=20260721",
+      "url": "https://sunsynkreports.com/assets/images/og-image.jpg?v=20260723",
       "width": 1200,
       "height": 630
+    },
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".hero-text h1", ".hero-sub", "#faq-heading", ".faq-list"]
     },
     "significantLink": [
       "https://sunsynkreports.com/#features",
       "https://sunsynkreports.com/#sample",
+      "https://sunsynkreports.com/#how-it-works",
       "https://sunsynkreports.com/#pricing",
       "https://sunsynkreports.com/#faq",
-      "https://app.sunsynkreports.com/"
+      "https://app.sunsynkreports.com/",
+      "https://sunsynkreports.com/llms.txt"
+    ],
+    "relatedLink": [
+      "https://sunsynkreports.com/llms-full.txt",
+      "https://sunsynkreports.com/privacy-policy/",
+      "https://sunsynkreports.com/terms-of-use/",
+      "https://sunsynkreports.com/cookie-policy/"
     ],
     "breadcrumb": {
       "@type": "BreadcrumbList",
@@ -523,23 +558,23 @@
         <div class="section-header reveal" id="trust">
           <p class="eyebrow">Trust</p>
           <h2>Coverage, plant details and accuracy</h2>
-          <p class="section-sub">Every report shows how complete the telemetry was, what is installed, and whether energy flows balance. Figures below are from an illustrative sample report.</p>
+          <p class="section-sub">Every report shows telemetry coverage, what is installed, and whether energy flows balance. Figures below are illustrative.</p>
         </div>
         <div class="trust-panel reveal ix-stagger">
           <div class="trust-item">
             <p class="trust-label">Data coverage</p>
             <p class="trust-value"><span class="countup" data-target="98.4" data-decimals="1" data-suffix="%">98.4%</span></p>
-            <p class="trust-note">Missing or low-quality periods are flagged so you know what may affect accuracy.</p>
+            <p class="trust-note">Missing or low-quality periods are flagged so accuracy risks are clear.</p>
           </div>
           <div class="trust-item">
             <p class="trust-label">Plant details</p>
-            <p class="trust-value trust-value-sm">5.2 kWp · 5 kW inverter</p>
+            <p class="trust-value">5.2 kWp · 5 kW inverter</p>
             <p class="trust-note">Location, inverter, PV capacity and installed equipment are listed up front.</p>
           </div>
           <div class="trust-item">
             <p class="trust-label">System accuracy</p>
             <p class="trust-value">Within tolerance</p>
-            <p class="trust-note">Inverter measurements are checked so energy flows reconcile within acceptable limits.</p>
+            <p class="trust-note">Inverter readings are checked so energy flows reconcile within limits.</p>
           </div>
         </div>
       </div>
@@ -551,7 +586,7 @@
         <div class="section-header reveal" id="savings">
           <p class="eyebrow">Savings</p>
           <h2>Estimated savings versus the grid</h2>
-          <p class="section-sub">See the financial benefit delivered by solar and battery, broken into grid costs avoided and self-supplied energy. Optional when you save a tariff in the app.</p>
+          <p class="section-sub">See the financial benefit of solar and battery: grid costs avoided and self-supplied energy. Optional when you save a tariff.</p>
         </div>
         <div class="savings-panel reveal ix-stagger">
           <div class="savings-hero-stat">
@@ -575,7 +610,7 @@
         <div class="section-header reveal" id="health">
           <p class="eyebrow">Health</p>
           <h2>One clear system performance score</h2>
-          <p class="section-sub">See which categories lift or drag the overall score, with the strongest and weakest areas called out. Scores below are from an illustrative sample report.</p>
+          <p class="section-sub">See which categories lift or drag the overall score, with strongest and weakest areas called out. Sample scores below.</p>
         </div>
         <div class="health-panel reveal">
           <div class="health-score">
@@ -670,7 +705,7 @@
         <div class="section-header reveal" id="insights">
           <p class="eyebrow">What's in the report</p>
           <h2>Solar, battery and evening analysis</h2>
-          <p class="section-sub">The report groups technical chapters so you can see what is holding performance back without reading sixteen separate titles first.</p>
+          <p class="section-sub">Chapters are grouped so you see what holds performance back, without sixteen separate titles.</p>
         </div>
         <div class="inside-grid reveal ix-stagger">
           <article class="inside-col">
@@ -716,7 +751,7 @@
           <div class="actions-group">
             <p class="actions-tag">Behaviour</p>
             <ul>
-              <li>Shift heavy evening loads earlier while solar or battery cover is available</li>
+              <li>Shift heavy evening loads earlier while solar or battery cover lasts</li>
               <li>Review habit patterns that drive peak grid import</li>
             </ul>
           </div>
@@ -730,12 +765,12 @@
           <div class="actions-group">
             <p class="actions-tag">Hardware</p>
             <ul>
-              <li>Consider storage or PV only after clipping and scheduling are reviewed</li>
+              <li>Review clipping and scheduling before considering storage or PV</li>
               <li>Share the PDF with your installer when an upgrade case is clear</li>
             </ul>
           </div>
         </div>
-        <p class="assumptions-note reveal">Assumptions, measured versus estimated values, analysis scope and disclaimers appear in Important Information at the end of every report.</p>
+        <p class="assumptions-note reveal">Assumptions, estimates, scope and disclaimers appear in Important Information at each report’s end.</p>
       </div>
     </section>
 
@@ -765,7 +800,7 @@
         <div class="section-header reveal center" id="value">
           <p class="eyebrow">Value</p>
           <h2>Professional insight at a fraction of the cost</h2>
-          <p class="section-sub">Compare a typical remote professional solar health check with a data-led performance report from your Sunsynk system.</p>
+          <p class="section-sub">Compare a typical remote solar health check with a data-led Sunsynk performance report.</p>
         </div>
         <div class="value-panel reveal">
           <div class="value-compare" aria-label="Typical remote check versus Sunsynk report cost" data-value-compare>
@@ -780,7 +815,7 @@
               <p class="value-compare-note">per credit · from <span data-price-unit>£2.99</span></p>
             </div>
           </div>
-          <p class="value-body">This report gives performance insight from your system data from <span data-value-per-credit>£2.99</span> per credit, covering battery health, clipping, faults, and savings where available.</p>
+          <p class="value-body">Performance insight from your system data from <span data-value-per-credit>£2.99</span> per credit: battery health, clipping, faults, and savings where available.</p>
           <p class="value-disclaimer">It is not a substitute for an on-site inspection.</p>
         </div>
       </div>

@@ -3,7 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://sunsynkreports.com/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://sunsynkreports.com/" />
@@ -11,7 +11,7 @@
   </url>
   <url>
     <loc>https://sunsynkreports.com/privacy-policy/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://sunsynkreports.com/privacy-policy/" />
@@ -19,7 +19,7 @@
   </url>
   <url>
     <loc>https://sunsynkreports.com/terms-of-use/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://sunsynkreports.com/terms-of-use/" />
@@ -27,7 +27,7 @@
   </url>
   <url>
     <loc>https://sunsynkreports.com/cookie-policy/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://sunsynkreports.com/cookie-policy/" />
@@ -35,14 +35,14 @@
   </url>
   <url>
     <loc>https://sunsynkreports.com/llms.txt</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://sunsynkreports.com/llms-full.txt</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.4</priority>
   </url>
 </urlset>

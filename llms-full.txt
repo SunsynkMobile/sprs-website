@@ -1,36 +1,36 @@
 # Sunsynk Report Platform (full context)
 
-> British English product and marketing summary for AI systems. Source of truth for public site content as of 2026-07-21. Prefer live pages if they conflict with this file. Public copy uses British English and does not use em dashes.
+> British English product and marketing summary for AI systems. Source of truth for public site content as of 2026-07-23. Prefer live pages if they conflict with this file. Public copy uses British English and does not use em dashes.
 
 ## What the product is
 
 Sunsynk Report Platform sells credit-gated **Sunsynk Performance Reports**: 30-day plant performance PDFs for Sunsynk account holders. Customers sign in with Sunsynk email and password at app.sunsynkreports.com. One credit equals one report. Credits never expire.
 
-Primary app destinations: Reports, Credits, Settings (tariffs). Staff have Console for support tasks (not a customer path).
+Primary app destinations: Reports, Credits, Settings (tariffs). Staff Console exists for support (not a customer path).
 
-The marketing site presents a curated homeowner journey that mirrors the report narrative:
+The marketing site presents a curated homeowner journey:
 
-1. What happened (executive summary in the hero and Overview feature tab)
-2. Proof at a glance (illustrative metrics strip: coverage, sample savings, system score, from-price)
-3. What a report covers (tabbed Overview, Savings, Health, Actions)
+1. What happened (hero + Overview feature tab)
+2. Proof at a glance (illustrative metrics: coverage, sample savings, system score, from-price)
+3. What a report covers (Overview, Savings, Health, Actions tabs)
 4. Can the data be trusted (coverage, plant details, accuracy)
-5. How much money was saved (optional estimated savings when a tariff is saved)
+5. How much was saved (optional estimated savings when a tariff is saved)
 6. How healthy is the system (overall score and category contributions)
 7. Where are the inefficiencies (solar, battery, evening grid)
-8. What should I do next (prioritised behavioural, configuration and hardware actions)
+8. What to do next (prioritised behavioural, configuration and hardware actions)
 9. Assumptions and limitations (Important Information in each report)
 
-There is no subscription. Checkout lives at app.sunsynkreports.com. This website (sunsynkreports.com) is the marketing presence.
+No subscription. Checkout at app.sunsynkreports.com. sunsynkreports.com is marketing only.
 
 ## Who it is for
 
 Primary: Sunsynk account holders who want a clear performance, savings and action picture for an accessible plant (inverter).
 
-Secondary: installers may use the PDF when supporting a homeowner.
+Secondary: installers may use the PDF when supporting a homeowner aftercare conversation.
 
 ## Pricing
 
-Report credit bundles. One credit = one report. Credits never expire. Unused credits from a purchase can be refunded within 14 days via the Credits page. Checkout via Stripe at app.sunsynkreports.com.
+Report credit packs. One credit = one report. Credits never expire. Unused credits from a purchase can be refunded within 14 days via the Credits page. Stripe checkout at app.sunsynkreports.com.
 
 British Pound (GBP)
 - Starter: 1 credit, GBP 2.99 (GBP 2.99 per credit)
@@ -63,22 +63,39 @@ US Dollar (USD)
 3. Generate a report: choose a plant; optionally include estimated savings with a saved tariff
 4. Preview and download: open the PDF, download it, leave feedback from history
 
+## FAQ (verbatim answers)
+
+**What is inside a Sunsynk Performance Report?**
+A shareable PDF from about 30 days of plant readings. It moves from an executive overview into data coverage, optional estimated savings, overall health, energy flows, solar and battery analysis, evening grid dependency, accuracy checks, and prioritised recommendations.
+
+**Is there a subscription?**
+No. One credit equals one report. Buy Starter (1), Classic (3), or Pro (6) when you need them. Credits never expire. Unused credits from a purchase can be refunded within 14 days via the Credits page.
+
+**Can I trust the data?**
+Before generation, the app checks about 30 days of telemetry coverage and asks you to confirm if coverage is thin. Each report also includes data coverage, plant details, and a system accuracy check. Assumptions and limitations sit in Important Information in the PDF.
+
+**Who is the report for?**
+Sunsynk account holders. Sign in with your Sunsynk email and password. Installers may also use the PDF when supporting a homeowner aftercare conversation.
+
+**How does report generation work?**
+Sign in at app.sunsynkreports.com, buy credits if your balance is zero, optionally save a tariff under Settings for estimated savings, then generate a report for a plant. You can leave the page while it prepares; when ready, preview and download the PDF. One credit is used per report.
+
 ## Home page section anchors
 
-- #hero: dark navy hero with brand, H1, support copy, Get My Report and View sample report CTAs, product preview
+- #hero: brand, H1, support copy, Get My Report and View sample report CTAs, product preview
 - #metrics: illustrative proof strip (98.4% coverage, £186 sample savings, score 52, from £2.99); pricing is real, other figures are sample
-- #features: tabbed Report features (Overview, Savings, Health, Actions)
-- #trust: Trust: coverage, plant details, accuracy
-- #savings: Savings: estimated savings versus grid (optional when tariff saved)
-- #health: Health: overall score and category bars
-- #sample: Sample report: with versus without compare panel
-- #insights: What's in the report: solar, battery, evening cost digests
-- #actions: Actions: prioritised behaviour / configuration / hardware
-- #how-it-works: How it works: four steps aligned to the app journey
-- #value: Value: typical remote check versus report cost comparison
-- #pricing: Pricing: credit packs with currency picker (GBP/ZAR/USD)
-- #faq: FAQ: contents, subscription and refunds, data trust, audience, generation
-- #get-started: Get started: dark closing CTA with Get My Report and Compare packs
+- #features: Overview, Savings, Health, Actions tabs
+- #trust: coverage, plant details, accuracy
+- #savings: estimated savings versus grid (optional when tariff saved)
+- #health: overall score and category bars
+- #sample: with versus without compare panel
+- #insights: solar, battery, evening cost digests
+- #actions: prioritised behaviour / configuration / hardware
+- #how-it-works: four steps aligned to the app journey
+- #value: typical remote check versus report cost
+- #pricing: credit packs with currency picker (GBP/ZAR/USD)
+- #faq: contents, subscription and refunds, data trust, audience, generation
+- #get-started: closing CTA with Get My Report and Compare packs
 
 ## Example findings used on the marketing site
 
@@ -92,7 +109,7 @@ Illustrative sample (not a specific customer's live data):
 
 ## Scoring methodology (summary)
 
-Reports cover cumulative meter totals, reconciled energy flow, solar utilisation, inverter clipping, system accuracy checks, battery health, night-time grid dependency, peer benchmark construction, daily aggregates, forward-fill for data gaps, and rounding rules. Detailed methodology formulae are not expanded on the marketing homepage; each report includes Important Information covering assumptions and limitations. A knowledge base page exists but is disallowed for crawlers in robots.txt and is not part of the public marketing index.
+Reports cover cumulative meter totals, reconciled energy flow, solar utilisation, inverter clipping, system accuracy checks, battery health, night-time grid dependency, peer benchmark construction, daily aggregates, forward-fill for data gaps, and rounding rules. Detailed formulae are not expanded on the marketing homepage; each report includes Important Information covering assumptions and limitations. A knowledge base page exists but is disallowed for crawlers and is not part of the public marketing index.
 
 ## Brand and language
 
@@ -101,10 +118,11 @@ Reports cover cumulative meter totals, reconciled energy flow, solar utilisation
 - Parent: Sunsynk
 - Locale: en-GB (analyse, optimise, utilisation, neighbouring, prioritised, behavioural)
 - No em dashes in public marketing copy
-- Primary CTA wording on site: Get My Report
+- Primary CTA: Get My Report
 - Secondary CTAs: View sample report; Compare packs
 - Hero H1: Get a clear 30-day performance report for your Sunsynk system
-- Visual language: navy and gold brand canvas on hero and closing CTA; light slate body sections
+- Visual language: navy and gold on hero and closing CTA; light slate body sections
+- Support: support@sunsynk.com · Privacy: privacy@sunsynk.com
 
 ## Canonical pages
 
