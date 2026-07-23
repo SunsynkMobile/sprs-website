@@ -132,28 +132,28 @@ window.addEventListener('hashchange', () => {
   if (location.hash) scrollToHash(location.hash, false);
 });
 
-/* ── Hero fade-in ── */
+/* ── Hero fade-in (opacity cascade only) ── */
 function initHeroFadeIn() {
   const items = document.querySelectorAll('.fade-in');
   if (reducedMotion) { items.forEach(i => i.classList.add('ready')); return; }
   items.forEach((el, idx) => {
-    const delay = Number(el.dataset.delay || 0) + idx * 50;
+    const delay = Number(el.dataset.delay || 0) + idx * 40;
     setTimeout(() => el.classList.add('ready'), delay);
   });
 }
 
-/* ── Reveal on scroll ── */
-function initReveal() {
-  const items = document.querySelectorAll('.reveal');
-  if (reducedMotion) { items.forEach(i => i.classList.add('visible')); return; }
+/* ── Quiet section accents (eyebrow underline only — no content hide) ── */
+function initSectionInview() {
+  const items = document.querySelectorAll('.section-header, .cta-body');
+  if (!items.length) return;
+  if (reducedMotion) { items.forEach(i => i.classList.add('inview')); return; }
   const io = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      const delay = Number(entry.target.dataset.delay || 0);
-      setTimeout(() => entry.target.classList.add('visible'), delay);
+      entry.target.classList.add('inview');
       io.unobserve(entry.target);
     });
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  }, { rootMargin: '0px 0px -6% 0px', threshold: 0.12 });
   items.forEach(i => io.observe(i));
 }
 
@@ -176,11 +176,16 @@ function initRing() {
 function initScoreBars() {
   const fills = document.querySelectorAll('.score-fill');
   if (!fills.length) return;
-  const animate = () => fills.forEach(f => { f.style.width = `${Number(f.dataset.val || 0)}%`; });
-  if (reducedMotion) { animate(); return; }
+  const animate = () => fills.forEach((f, i) => {
+    setTimeout(() => { f.style.width = `${Number(f.dataset.val || 0)}%`; }, i * 50);
+  });
+  if (reducedMotion) {
+    fills.forEach(f => { f.style.width = `${Number(f.dataset.val || 0)}%`; });
+    return;
+  }
   const io = new IntersectionObserver(entries => {
     if (!entries[0].isIntersecting) return;
-    setTimeout(animate, 320);
+    animate();
     io.disconnect();
   }, { threshold: 0.3 });
   const list = document.querySelector('.score-list') || fills[0];
@@ -192,11 +197,16 @@ function initHealthBars() {
   const panel = document.querySelector('.health-panel');
   const fills = document.querySelectorAll('.health-fill');
   if (!panel || !fills.length) return;
-  const animate = () => fills.forEach(f => { f.style.width = `${Number(f.dataset.healthVal || 0)}%`; });
-  if (reducedMotion) { animate(); return; }
+  const animate = () => fills.forEach((f, i) => {
+    setTimeout(() => { f.style.width = `${Number(f.dataset.healthVal || 0)}%`; }, i * 50);
+  });
+  if (reducedMotion) {
+    fills.forEach(f => { f.style.width = `${Number(f.dataset.healthVal || 0)}%`; });
+    return;
+  }
   const io = new IntersectionObserver(entries => {
     if (!entries[0].isIntersecting) return;
-    setTimeout(animate, 180);
+    animate();
     io.disconnect();
   }, { threshold: 0.28 });
   io.observe(panel);
@@ -216,11 +226,14 @@ function countUp(el, target, duration) {
   const suffix = el.dataset.suffix || '';
   const large = target > 999 && decimals === 0;
   const opts = { decimals, prefix, suffix, large };
+  const overshoot = target === 0 ? 1 : 1.035;
   const tick = now => {
     const p = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - p, 4);
-    const v = target * eased;
-    el.textContent = formatCountValue(v, opts);
+    // Ease out, slight overshoot past midpoint, settle to target
+    const rise = 1 - Math.pow(1 - Math.min(p / 0.82, 1), 3);
+    const settle = p < 0.82 ? rise * overshoot : overshoot + (1 - overshoot) * ((p - 0.82) / 0.18);
+    const v = target * Math.min(settle, overshoot);
+    el.textContent = formatCountValue(p >= 1 ? target : v, opts);
     if (p < 1) requestAnimationFrame(tick);
     else el.textContent = formatCountValue(target, opts);
   };
@@ -246,7 +259,7 @@ function initCountUp() {
       if (!entry.isIntersecting) return;
       const el = entry.target;
       el.classList.add('is-counting');
-      countUp(el, Number(el.dataset.target || 0), 1800);
+      countUp(el, Number(el.dataset.target || 0), 1600);
       io.unobserve(el);
     });
   }, { threshold: 0.45 });
@@ -729,26 +742,6 @@ function initMagneticButtons() {
       if (!raf) raf = requestAnimationFrame(tick);
     });
   });
-}
-
-/* ── Light hero scroll drift (preview only) ── */
-function initScrollDrift() {
-  if (reducedMotion) return;
-  const preview = document.querySelector('.hero-preview');
-  if (!preview) return;
-  let ticking = false;
-  const update = () => {
-    const y = Math.max(window.scrollY, 0);
-    if (y < window.innerHeight * 1.2) {
-      preview.style.setProperty('--drift-y', `${(Math.min(y, 360) * 0.04).toFixed(1)}px`);
-    }
-    ticking = false;
-  };
-  window.addEventListener('scroll', () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(update);
-  }, { passive: true });
 }
 
 /* ── Pricing currency switcher ── */
@@ -1256,7 +1249,7 @@ function initFeatureScrollCue(track, isScrubEnabled) {
 /* ── Boot ── */
 document.addEventListener('DOMContentLoaded', () => {
   initHeroFadeIn();
-  initReveal();
+  initSectionInview();
   initRing();
   initScoreBars();
   initHealthBars();
@@ -1274,7 +1267,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initPointerAtmosphere();
   initSurfaceMotion();
   initMagneticButtons();
-  initScrollDrift();
   if (location.hash) {
     // Defer so sticky nav height and fonts settle before measuring
     requestAnimationFrame(() => scrollToHash(location.hash, false));
