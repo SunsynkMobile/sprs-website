@@ -297,8 +297,11 @@ body.doc-page {
 }
 
 .legal-section ul,
+.legal-section ol,
 .kb-section ul,
-.doc-section ul {
+.kb-section ol,
+.doc-section ul,
+.doc-section ol {
   margin: 0 0 var(--space-4) 1.25rem;
   padding: 0;
 }
@@ -316,6 +319,18 @@ body.doc-page {
 .kb-section li::marker,
 .doc-section li::marker {
   color: var(--blue);
+}
+
+.legal-section .cookie-btn {
+  color: var(--slate-800);
+  border-color: var(--slate-400);
+  background: var(--white);
+}
+
+.legal-section .cookie-btn.primary {
+  color: #1a1000;
+  border: none;
+  background: var(--gold);
 }
 
 .legal-section a,

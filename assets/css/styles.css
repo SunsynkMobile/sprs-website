@@ -98,7 +98,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible,
 .cookie-modal{position:fixed;inset:0;z-index:10002;display:grid;place-items:center;padding:1rem}
 .cookie-modal[hidden]{display:none!important}
 .cookie-modal__backdrop{position:absolute;inset:0;background:rgba(13,28,46,.62)}
-.cookie-modal__panel{position:relative;background:var(--white);width:min(640px,100%);border-radius:var(--r-xl);box-shadow:0 26px 70px rgba(13,28,46,.28);padding:1.4rem 1.2rem 1.1rem;border:1px solid var(--slate-200)}
+.cookie-modal__panel{position:relative;background:var(--white);width:min(640px,100%);max-height:min(92vh,820px);overflow:auto;border-radius:var(--r-xl);box-shadow:0 26px 70px rgba(13,28,46,.28);padding:1.4rem 1.2rem 1.1rem;border:1px solid var(--slate-200)}
 .cookie-modal__close{position:absolute;top:.7rem;right:.7rem;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--slate-300);background:var(--white);color:var(--slate-700);font-size:1.2rem;line-height:1}
 .cookie-modal__title{font-size:1.25rem;font-weight:800;color:var(--slate-900);margin-bottom:.45rem}
 .cookie-modal__intro{font-size:var(--fs-body);color:var(--slate-600);line-height:1.6;margin-bottom:1rem}
