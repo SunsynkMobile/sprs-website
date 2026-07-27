@@ -34,12 +34,12 @@ Choose which optional technologies to allow. Strictly necessary cookies are alwa
 
 **Toggles:**
 
-1. **Strictly necessary** — Always on. Authentication, security, consent storage and core functionality.
-2. **Analytics (GA4)** — Usage statistics and product events. May include device or transaction identifiers. Off by default.
-3. **Session replay (Microsoft Clarity)** — Session recordings, heatmaps and interaction data; may capture on-screen content. Off by default.
-4. **Error monitoring (Sentry)** — Diagnostic error reporting when configured. Off by default.
-5. **Product analytics (PostHog)** — Product usage analytics when configured. Off by default.
-6. **Product session replay (PostHog)** — Product session recordings when configured. Off by default.
+1. **Strictly necessary**: Always on. Authentication, security, consent storage and core functionality.
+2. **Analytics (GA4)**: Usage statistics and product events. May include device or transaction identifiers. Off by default.
+3. **Session replay (Microsoft Clarity)**: Session recordings, heatmaps and interaction data; may capture on-screen content. Off by default.
+4. **Error monitoring (Sentry)**: Diagnostic error reporting when configured. Off by default.
+5. **Product analytics (PostHog)**: Product usage analytics when configured. Off by default.
+6. **Product session replay (PostHog)**: Product session recordings when configured. Off by default.
 
 **Actions:**
 

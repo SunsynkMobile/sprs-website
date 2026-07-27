@@ -118,7 +118,7 @@ We may disclose personal data to:
 
 - **Infrastructure and auth providers** (including Firebase / Google Cloud hosting and authentication components): **[TO CONFIRM exact hosting stack]**.
 - **Stripe:** payment processing.
-- **Analytics / monitoring vendors** (if consented): Google (GA4), Microsoft (Clarity), Sentry, PostHog — as configured.
+- **Analytics / monitoring vendors** (if consented): Google (GA4), Microsoft (Clarity), Sentry, PostHog: as configured.
 - **Sunsynk staff administrators / super-administrators** with elevated access for support, refunds, security and operations.
 - **Professional advisers** (legal, accounting) under confidentiality.
 - **Authorities** where required by law or to establish, exercise or defend legal claims.
@@ -208,6 +208,6 @@ We may update this Privacy Policy. Material changes will be notified in-app and/
 
 ## 18. Contact
 
-**Sunsynk Limited — Privacy**  
+**Sunsynk Limited: Privacy**  
 Email: privacy@sunsynk.com  
 Postal: Unit 10 Edison Court, Ellice Way, Wrexham Technology Park, Wrexham, LL13 7YT, United Kingdom

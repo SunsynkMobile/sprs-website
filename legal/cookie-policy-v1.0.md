@@ -36,7 +36,7 @@ Consent must be freely given, specific, informed and unambiguous. Pre-ticked opt
 
 | Category | Examples | Can you refuse? |
 |---|---|---|
-| Strictly necessary | Auth/session/security, load balancing, consent preference storage, core app function | No — required to use the Service |
+| Strictly necessary | Auth/session/security, load balancing, consent preference storage, core app function | No: required to use the Service |
 | Analytics | Google Analytics 4 (GA4) | Yes |
 | Session replay | Microsoft Clarity | Yes |
 | Diagnostics / error monitoring | Sentry (when configured) | Yes |
@@ -108,6 +108,6 @@ If we add categories/vendors or materially change optional technologies, we will
 
 ## 10. Contact
 
-**Sunsynk Limited — Privacy**  
+**Sunsynk Limited: Privacy**  
 Email: privacy@sunsynk.com  
 Postal: Unit 10 Edison Court, Ellice Way, Wrexham Technology Park, Wrexham, LL13 7YT, United Kingdom
