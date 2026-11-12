@@ -1,7 +1,7 @@
 {
-  "name": "Sunsynk Report Platform",
+  "name": "Sunsynk Performance Report",
   "short_name": "Sunsynk Reports",
-  "description": "30-day Sunsynk Performance Reports for account holders: executive overview, optional savings, system health, solar and battery insights, and prioritised actions. No subscription.",
+  "description": "Plain-English 30-day PDF for Sunsynk homeowners: how well your system performed, optional savings, and what to change next. No subscription.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -12,20 +12,9 @@
   "icons": [
     {
       "src": "/assets/images/favicon.ico",
-      "sizes": "48x48",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "/assets/images/apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png",
+      "sizes": "16x16 32x32",
+      "type": "image/x-icon",
       "purpose": "any"
-    },
-    {
-      "src": "/assets/images/apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png",
-      "purpose": "maskable"
     }
   ]
 }

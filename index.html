@@ -2,7 +2,7 @@
 <html lang="en-GB">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <script>
     if (window.location.pathname.endsWith('/index.html')) {
       const cleanPath = window.location.pathname.replace(/\/index\.html$/, '/') || '/';
@@ -11,8 +11,8 @@
   </script>
 
   <!-- Primary Meta Tags -->
-  <title>Sunsynk Report Platform | Clear performance insights for your Sunsynk system</title>
-  <meta name="description" content="30-day Sunsynk Performance Reports: executive overview, optional savings with your tariff, system health, solar and battery insights, and prioritised actions. From £2.99. No subscription." />
+  <title>Sunsynk Performance Report | Understand your solar and battery last month</title>
+  <meta name="description" content="For Sunsynk homeowners: a plain-English PDF that explains the last ~30 days of your solar and battery system: score, optional savings, and what to do next. From £2.99. No subscription." />
   <meta name="author" content="Sunsynk" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -21,12 +21,14 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="geo.region" content="GB" />
   <meta name="color-scheme" content="light" />
+  <meta name="keywords" content="Sunsynk Performance Report, Sunsynk Report Platform, solar battery report, plant performance PDF, system health score, solar savings, prioritised actions" />
 
   <!-- Canonical and language -->
   <link rel="canonical" href="https://sunsynkreports.com/" />
   <link rel="alternate" hreflang="en-GB" href="https://sunsynkreports.com/" />
   <link rel="alternate" hreflang="x-default" href="https://sunsynkreports.com/" />
   <link rel="alternate" type="text/plain" title="LLMs.txt" href="https://sunsynkreports.com/llms.txt" />
+  <link rel="alternate" type="text/plain" title="LLMs full context" href="https://sunsynkreports.com/llms-full.txt" />
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://sunsynkreports.com/sitemap.xml" />
   <link rel="manifest" href="/site.webmanifest" />
 
@@ -34,15 +36,15 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sunsynkreports.com/" />
-  <meta property="og:title" content="Sunsynk Report Platform | Clear performance insights for your Sunsynk system" />
-  <meta property="og:description" content="Sign in with your Sunsynk account, buy credits, and generate a 30-day plant performance PDF. Optional savings with a saved tariff. No subscription." />
-  <meta property="og:image" content="https://sunsynkreports.com/assets/images/og-image.jpg?v=20260716b" />
-  <meta property="og:image:secure_url" content="https://sunsynkreports.com/assets/images/og-image.jpg?v=20260716b" />
+  <meta property="og:title" content="Sunsynk Performance Report | Understand your solar and battery last month" />
+  <meta property="og:description" content="Plain-English 30-day PDF for Sunsynk homeowners: how well your system performed, optional savings, and what to change next. No subscription." />
+  <meta property="og:image" content="https://sunsynkreports.com/assets/images/og-image.jpg?v=20261112" />
+  <meta property="og:image:secure_url" content="https://sunsynkreports.com/assets/images/og-image.jpg?v=20261112" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Sunsynk Report Platform — 30-day performance reports with executive summary and system score" />
-  <meta property="og:site_name" content="Sunsynk Report Platform" />
+  <meta property="og:image:alt" content="Sunsynk Performance Report: plain-English 30-day solar and battery PDF" />
+  <meta property="og:site_name" content="Sunsynk Performance Report" />
   <meta property="og:locale" content="en_GB" />
 
   <!-- Twitter -->
@@ -50,15 +52,15 @@
   <meta name="twitter:site" content="@sunsynkza" />
   <meta name="twitter:creator" content="@sunsynkza" />
   <meta name="twitter:url" content="https://sunsynkreports.com/" />
-  <meta name="twitter:title" content="Sunsynk Report Platform | Clear performance insights for your Sunsynk system" />
-  <meta name="twitter:description" content="30-day Sunsynk Performance Reports: overview, optional savings, health, and prioritised actions. Credits never expire. No subscription." />
-  <meta name="twitter:image" content="https://sunsynkreports.com/assets/images/og-image.jpg?v=20260716b" />
-  <meta name="twitter:image:alt" content="Sunsynk Report Platform — 30-day performance reports with executive summary and system score" />
+  <meta name="twitter:title" content="Sunsynk Performance Report | Understand your solar and battery last month" />
+  <meta name="twitter:description" content="Plain-English 30-day PDF for Sunsynk homeowners: score, optional savings, and next steps. From £2.99. No subscription." />
+  <meta name="twitter:image" content="https://sunsynkreports.com/assets/images/og-image.jpg?v=20261112" />
+  <meta name="twitter:image:alt" content="Sunsynk Performance Report: plain-English 30-day solar and battery PDF" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
   <link rel="shortcut icon" href="/assets/images/favicon.ico" />
-  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png" sizes="180x180" />
+  <link rel="apple-touch-icon" href="/assets/images/favicon.ico" />
   <meta name="theme-color" content="#24314a" />
   <meta name="msapplication-TileColor" content="#24314a" />
 
@@ -76,10 +78,15 @@
     "@type": "WebSite",
     "@id": "https://sunsynkreports.com/#website",
     "url": "https://sunsynkreports.com/",
-    "name": "Sunsynk Report Platform",
-    "description": "Homeowner reports for Sunsynk solar and battery systems covering performance, savings, health and prioritised actions.",
+    "name": "Sunsynk Performance Report",
+    "description": "Plain-English 30-day performance PDFs for Sunsynk solar and battery homeowners covering score, optional savings, and next steps.",
     "inLanguage": "en-GB",
-    "publisher": { "@id": "https://sunsynkreports.com/#organization" }
+    "publisher": { "@id": "https://sunsynkreports.com/#organization" },
+    "potentialAction": {
+      "@type": "ViewAction",
+      "name": "Get My Report",
+      "target": "https://app.sunsynkreports.com/"
+    }
   }
   </script>
 
@@ -98,7 +105,7 @@
       "width": 910,
       "height": 120
     },
-    "image": "https://sunsynkreports.com/assets/images/og-image.jpg?v=20260716b",
+    "image": "https://sunsynkreports.com/assets/images/og-image.jpg?v=20261112",
     "description": "Report platform for Sunsynk solar and battery system performance analysis.",
     "parentOrganization": {
       "@type": "Organization",
@@ -109,11 +116,25 @@
       "https://www.facebook.com/sunsynkza",
       "https://twitter.com/sunsynkza",
       "https://www.linkedin.com/company/sunsynk"
+    ],
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "support@sunsynk.com",
+        "availableLanguage": ["en-GB", "en"]
+      },
+      {
+        "@type": "ContactPoint",
+        "contactType": "privacy",
+        "email": "privacy@sunsynk.com",
+        "availableLanguage": ["en-GB", "en"]
+      }
     ]
   }
   </script>
 
-  <!-- JSON-LD: SoftwareApplication + AggregateOffer -->
+  <!-- JSON-LD: SoftwareApplication + AggregateOffer (GBP list prices; ZAR/USD available in app) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -121,15 +142,15 @@
     "@id": "https://sunsynkreports.com/#product",
     "name": "Sunsynk Report Platform",
     "alternateName": "Sunsynk Home Energy Insights Report",
-    "description": "Turns about 30 days of Sunsynk plant readings into an executive overview, optional estimated savings, system health score, deeper solar and battery analysis, and prioritised actions in a PDF.",
+    "description": "Plain-English PDF for Sunsynk homeowners covering about 30 days of system readings: overall score, optional estimated savings, solar and battery insights, and ranked next steps.",
     "url": "https://sunsynkreports.com/",
     "applicationCategory": "BusinessApplication",
     "applicationSubCategory": "Energy monitoring and reporting",
     "operatingSystem": "Web",
     "inLanguage": "en-GB",
     "isAccessibleForFree": false,
-    "image": "https://sunsynkreports.com/assets/images/og-image.jpg?v=20260716b",
-    "screenshot": "https://sunsynkreports.com/assets/images/og-image.jpg?v=20260716b",
+    "image": "https://sunsynkreports.com/assets/images/og-image.jpg?v=20261112",
+    "screenshot": "https://sunsynkreports.com/assets/images/og-image.jpg?v=20261112",
     "publisher": { "@id": "https://sunsynkreports.com/#organization" },
     "creator": {
       "@type": "Organization",
@@ -137,12 +158,12 @@
       "url": "https://www.sunsynk.com/"
     },
     "featureList": [
-      "Executive performance summary",
+      "Plain-English 30-day performance PDF",
+      "Overall system score with category breakdown",
+      "Optional estimated savings versus grid electricity",
       "Data coverage and accuracy checks",
-      "Estimated savings versus grid electricity",
-      "Overall system health scoring",
-      "Solar, battery and evening grid analysis",
-      "Prioritised recommended actions PDF"
+      "Solar, battery and evening grid insights",
+      "Ranked next steps for habits, settings and hardware"
     ],
     "offers": {
       "@type": "AggregateOffer",
@@ -150,7 +171,7 @@
       "priceCurrency": "GBP",
       "lowPrice": "2.99",
       "highPrice": "11.49",
-      "offerCount": 9,
+      "offerCount": 3,
       "availability": "https://schema.org/InStock",
       "offers": [
         {
@@ -179,61 +200,13 @@
           "priceCurrency": "GBP",
           "url": "https://app.sunsynkreports.com/",
           "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Starter (1 credit)",
-          "price": "69.99",
-          "priceCurrency": "ZAR",
-          "url": "https://app.sunsynkreports.com/",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Classic (3 credits)",
-          "price": "169.99",
-          "priceCurrency": "ZAR",
-          "url": "https://app.sunsynkreports.com/",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Pro (6 credits)",
-          "price": "249.99",
-          "priceCurrency": "ZAR",
-          "url": "https://app.sunsynkreports.com/",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Starter (1 credit)",
-          "price": "4.29",
-          "priceCurrency": "USD",
-          "url": "https://app.sunsynkreports.com/",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Classic (3 credits)",
-          "price": "10.99",
-          "priceCurrency": "USD",
-          "url": "https://app.sunsynkreports.com/",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Pro (6 credits)",
-          "price": "15.99",
-          "priceCurrency": "USD",
-          "url": "https://app.sunsynkreports.com/",
-          "availability": "https://schema.org/InStock"
         }
       ]
     }
   }
   </script>
 
-  <!-- JSON-LD: FAQPage -->
+  <!-- JSON-LD: FAQPage (must match visible FAQ copy) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -242,10 +215,26 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is inside a Sunsynk Performance Report?",
+        "name": "Do I need a Sunsynk account?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A Sunsynk Performance Report is a shareable PDF from about 30 days of plant readings. It moves from an executive overview into data coverage, optional estimated savings, system health, energy flows, solar and battery analysis, evening grid dependency, accuracy checks, and prioritised recommendations."
+          "text": "Yes. Sign in with your existing Sunsynk email and password. The report uses the readings already linked to that account. Installers may also use the PDF when helping a homeowner."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this the official Sunsynk monitoring app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Sunsynk’s own app shows live charts and system status. This service creates a separate plain-English PDF that summarises about 30 days of performance, optional savings, and what to do next."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is inside the PDF?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A readable report with an overall score, data-quality checks, optional estimated savings (if you save your electricity rate), solar and battery insights, evening grid use, and a ranked list of recommended actions."
         }
       },
       {
@@ -253,32 +242,76 @@
         "name": "Is there a subscription?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. One credit equals one report. Buy Starter (1), Classic (3), or Pro (6) when you need them. Credits never expire. Unused credits from a purchase can be refunded within 14 days. Checkout is via Stripe at app.sunsynkreports.com."
+          "text": "No. One credit equals one report. Buy Starter (1), Classic (3), or Pro (6) when you need them. Credits never expire. Unused credits from a purchase can be refunded within 14 days."
         }
       },
       {
         "@type": "Question",
-        "name": "Can I trust the data?",
+        "name": "Can I trust the numbers?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Each report includes data coverage and plant details, plus a system accuracy check that verifies energy flows balance within tolerance. Thin or poor-quality telemetry is flagged before and inside the report so you know what may affect accuracy."
+          "text": "Before generation, the app checks about 30 days of data coverage and warns you if coverage is thin. Each PDF also shows coverage and accuracy checks, plus assumptions in Important Information."
         }
       },
       {
         "@type": "Question",
-        "name": "Who is the report for?",
+        "name": "How do I get a report?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Sunsynk account holders who want a clear plant performance PDF. Sign in with your Sunsynk email and password. Installers may also use the PDF when supporting a homeowner."
+          "text": "Go to app.sunsynkreports.com, sign in with Sunsynk, buy credits if needed, optionally save your electricity rate under Settings, then generate a report for your system. When it is ready, preview and download the PDF. One credit is used per report."
         }
+      }
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD: HowTo -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "@id": "https://sunsynkreports.com/#how-it-works-howto",
+    "name": "How to get a Sunsynk Performance Report",
+    "description": "Sign in with your Sunsynk account, buy credits, generate a report, then download the PDF. No subscription. One credit equals one report.",
+    "inLanguage": "en-GB",
+    "totalTime": "PT10M",
+    "estimatedCost": {
+      "@type": "MonetaryAmount",
+      "currency": "GBP",
+      "value": "2.99"
+    },
+    "tool": {
+      "@type": "HowToTool",
+      "name": "Sunsynk account (email and password)"
+    },
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Sign in",
+        "text": "Sunsynk email and password. Accept Terms and Privacy once.",
+        "url": "https://app.sunsynkreports.com/"
       },
       {
-        "@type": "Question",
-        "name": "How does report generation work?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sign in at app.sunsynkreports.com with your Sunsynk account, buy credits if needed, optionally save a tariff under Settings for estimated savings, then generate a 30-day report for a plant. Preview and download the PDF when it is ready. One credit is used per report."
-        }
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Buy credits",
+        "text": "Starter, Classic, or Pro. Credits never expire.",
+        "url": "https://sunsynkreports.com/#pricing"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Generate",
+        "text": "Pick your system. Add your rate if you want savings estimates.",
+        "url": "https://app.sunsynkreports.com/"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Download",
+        "text": "Preview the PDF, save it, or share it with your installer.",
+        "url": "https://app.sunsynkreports.com/"
       }
     ]
   }
@@ -291,17 +324,37 @@
     "@type": "WebPage",
     "@id": "https://sunsynkreports.com/#webpage",
     "url": "https://sunsynkreports.com/",
-    "name": "Sunsynk Report Platform | Solar and Battery Performance Reports",
-    "description": "Buy a Sunsynk homeowner report covering savings, health, solar and battery insights, and prioritised actions. No subscription.",
+    "name": "Sunsynk Performance Report | Understand your solar and battery last month",
+    "description": "Plain-English 30-day PDF for Sunsynk homeowners: how well your system performed, optional savings, and what to change next. No subscription.",
     "inLanguage": "en-GB",
     "isPartOf": { "@id": "https://sunsynkreports.com/#website" },
     "about": { "@id": "https://sunsynkreports.com/#product" },
     "primaryImageOfPage": {
       "@type": "ImageObject",
-      "url": "https://sunsynkreports.com/assets/images/og-image.jpg?v=20260716b",
+      "url": "https://sunsynkreports.com/assets/images/og-image.jpg?v=20261112",
       "width": 1200,
       "height": 630
     },
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".hero-text h1", ".hero-sub", "#what-this-is h2", "#faq-heading", ".faq-list"]
+    },
+    "significantLink": [
+      "https://sunsynkreports.com/#what-this-is",
+      "https://sunsynkreports.com/#sample",
+      "https://sunsynkreports.com/#insights",
+      "https://sunsynkreports.com/#how-it-works",
+      "https://sunsynkreports.com/#pricing",
+      "https://sunsynkreports.com/#faq",
+      "https://app.sunsynkreports.com/",
+      "https://sunsynkreports.com/llms.txt"
+    ],
+    "relatedLink": [
+      "https://sunsynkreports.com/llms-full.txt",
+      "https://sunsynkreports.com/privacy-policy/",
+      "https://sunsynkreports.com/terms-of-use/",
+      "https://sunsynkreports.com/cookie-policy/"
+    ],
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
@@ -315,17 +368,10 @@
     }
   }
   </script>
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="Zgh8j3XPtPos4y1zqx6iFw" async></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  <!-- Loading Spinner -->
-  <div class="page-loader" id="pageLoader" aria-hidden="true">
-    <div class="loader-content">
-      <div class="loader-ring"></div>
-      <p class="loader-text">Loading...</p>
-    </div>
-  </div>
-  
   <div id="top" aria-hidden="true" style="position:absolute;top:0;height:0;pointer-events:none;"></div>
 
   <header class="nav" id="nav">
@@ -333,14 +379,16 @@
       <a class="nav-brand" href="#top" aria-label="Sunsynk Performance Report">
         <img src="/assets/images/sunsynk-logo.png" alt="Sunsynk" class="nav-logo" width="156" height="21" decoding="async" fetchpriority="high" />
         <span>Performance Report</span>
+        <span class="badge badge-warn">Beta</span>
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
       <div class="nav-end">
         <nav id="nav-menu" class="nav-menu" aria-label="Main navigation">
-          <a href="#sample">Sample report</a>
-          <a href="#insights">What's in the report</a>
+          <a href="#what-this-is">What this is</a>
+          <a href="#sample">Why it helps</a>
+          <a href="#insights">What's inside</a>
           <a href="#how-it-works">How it works</a>
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
@@ -356,16 +404,18 @@
     <!-- HERO -->
     <section class="hero" id="hero">
       <div class="container hero-layout hero-centered">
-        <div class="hero-text fade-in">
-          <p class="hero-brand">Sunsynk Report Platform</p>
-          <h1>Get a clear 30-day performance report for your Sunsynk system</h1>
-          <p class="hero-sub">Sign in with your Sunsynk account, spend one credit, and get a clear plant performance PDF: what happened, optional savings with your tariff, where you can improve, and what to do next.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="https://app.sunsynkreports.com" target="_blank" rel="noopener noreferrer">Get My Report</a>
-            <a class="btn btn-soft" href="#sample">View sample report</a>
+        <div class="hero-pin">
+          <div class="hero-text fade-in">
+            <p class="hero-brand">Sunsynk Performance Report</p>
+            <h1>Finally understand how your Sunsynk <br class="hero-br">system performed last month</h1>
+            <p class="hero-sub">For homeowners with a Sunsynk solar and battery system. Get a plain-English PDF that explains the last ~30 days, not another chart dashboard.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://app.sunsynkreports.com" target="_blank" rel="noopener noreferrer">Get My Report</a>
+              <a class="btn btn-soft" href="#insights">See what's inside</a>
+            </div>
           </div>
         </div>
-        <div class="hero-preview fade-in" data-delay="180">
+        <div class="hero-stage fade-in" data-delay="120">
           <figure class="hero-product">
             <div class="hero-product-chrome" aria-hidden="true">
               <span class="hero-product-dot"></span>
@@ -375,7 +425,7 @@
             </div>
             <img
               src="/assets/images/sunsynk-reports.png"
-              alt="Sunsynk Performance Report workspace: plant filter, report history, and PDF preview"
+              alt="App where you sign in with your Sunsynk account and generate a performance report PDF"
               width="3600"
               height="1870"
               decoding="async"
@@ -386,141 +436,79 @@
       </div>
     </section>
 
-    <!-- TRUST -->
-    <section class="section">
+    <!-- WHAT THIS IS -->
+    <section class="section" id="what-this-is">
       <div class="container">
-        <div class="section-header reveal" id="trust">
-          <p class="eyebrow">Trust</p>
-          <h2>Coverage, plant details and accuracy</h2>
-          <p class="section-sub">Every report shows how complete the telemetry was, what is installed, and whether energy flows balance. Figures below are from an illustrative sample report.</p>
+        <div class="section-header reveal center">
+          <p class="eyebrow">What this is</p>
+          <h2>A clear report for your Sunsynk system</h2>
+          <p class="section-sub">Sunsynk makes solar and battery inverters. This service turns the readings from your system into a homeowner PDF you can read and share.</p>
         </div>
-        <div class="trust-panel reveal ix-stagger">
-          <div class="trust-item">
-            <p class="trust-label">Data coverage</p>
-            <p class="trust-value"><span class="countup" data-target="98.4" data-decimals="1" data-suffix="%">98.4%</span></p>
-            <p class="trust-note">Missing or low-quality periods are flagged so you know what may affect accuracy.</p>
-          </div>
-          <div class="trust-item">
-            <p class="trust-label">Plant details</p>
-            <p class="trust-value trust-value-sm">5.2 kWp · 5 kW inverter</p>
-            <p class="trust-note">Location, inverter, PV capacity and installed equipment are listed up front.</p>
-          </div>
-          <div class="trust-item">
-            <p class="trust-label">System accuracy</p>
-            <p class="trust-value">Within tolerance</p>
-            <p class="trust-note">Inverter measurements are checked so energy flows reconcile within acceptable limits.</p>
-          </div>
+        <div class="orient-grid reveal ix-stagger">
+          <article class="orient-card">
+            <h3>Who it is for</h3>
+            <p>People with a Sunsynk account who want a clear answer about how their system is doing, not just more graphs.</p>
+          </article>
+          <article class="orient-card">
+            <h3>What you get</h3>
+            <p>A downloadable PDF covering roughly the last 30 days: how well it performed, optional savings, and what to improve next.</p>
+          </article>
+          <article class="orient-card">
+            <h3>How you pay</h3>
+            <p>No subscription. Buy a credit when you need a report: one credit equals one report, and credits never expire.</p>
+          </article>
         </div>
+        <p class="orient-note reveal">This is not the official Sunsynk monitoring app. It is a separate report that explains your existing system data in plain English.</p>
       </div>
     </section>
 
-    <!-- SAVINGS -->
-    <section class="section section-slate">
-      <div class="container">
-        <div class="section-header reveal" id="savings">
-          <p class="eyebrow">Savings</p>
-          <h2>Estimated savings versus the grid</h2>
-          <p class="section-sub">See the financial benefit delivered by solar and battery, broken into grid costs avoided and self-supplied energy. Optional when you save a tariff in the app.</p>
-        </div>
-        <div class="savings-panel reveal ix-stagger">
-          <div class="savings-hero-stat">
-            <p class="savings-eyebrow">Illustrative sample month</p>
-            <p class="savings-amount"><span class="countup" data-target="186" data-prefix="£">£186</span></p>
-            <p class="savings-caption">Estimated savings versus all-grid electricity</p>
-          </div>
-          <ul class="savings-breakdown ix-cascade">
-            <li><span>Self-supplied energy</span><strong>612 kWh</strong></li>
-            <li><span>Grid cost avoided</span><strong>£168</strong></li>
-            <li><span>Solar contribution</span><strong>68%</strong></li>
-            <li><span>Battery contribution</span><strong>32%</strong></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- HEALTH -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header reveal" id="health">
-          <p class="eyebrow">Health</p>
-          <h2>One clear system performance score</h2>
-          <p class="section-sub">See which categories lift or drag the overall score, with the strongest and weakest areas called out. Scores below are from an illustrative sample report.</p>
-        </div>
-        <div class="health-panel reveal">
-          <div class="health-score">
-            <p class="health-score-label">Illustrative overall score</p>
-            <p class="health-score-num countup" data-target="52">52</p>
-            <p class="health-score-note">Weakest: self-sufficiency · Strongest: battery health</p>
-          </div>
-          <div class="health-bars" aria-label="Category contribution to score">
-            <div class="health-bar-row">
-              <span>Self-sufficiency</span>
-              <div class="health-track"><div class="health-fill" data-health-val="23" style="--c:var(--orange-fill)"></div></div>
-              <strong class="score-val-warn">23</strong>
-            </div>
-            <div class="health-bar-row">
-              <span>Solar performance</span>
-              <div class="health-track"><div class="health-fill" data-health-val="61" style="--c:var(--gold)"></div></div>
-              <strong>61</strong>
-            </div>
-            <div class="health-bar-row">
-              <span>Battery health</span>
-              <div class="health-track"><div class="health-fill" data-health-val="86" style="--c:var(--green-fill)"></div></div>
-              <strong class="score-val-ok">86</strong>
-            </div>
-            <div class="health-bar-row">
-              <span>Evening grid</span>
-              <div class="health-track"><div class="health-fill" data-health-val="82" style="--c:var(--green-fill)"></div></div>
-              <strong class="score-val-ok">82</strong>
-            </div>
-          </div>
-          <p class="health-energy">Energy summary covers solar generation, site consumption, grid import and export, and battery charge and discharge for the month.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SAMPLE -->
+    <!-- PROBLEM → VALUE -->
     <section class="section section-slate">
       <div class="container">
         <div class="section-header reveal" id="sample">
-          <p class="eyebrow">Sample report</p>
-          <h2>With a report versus without</h2>
-          <p class="section-sub">An executive verdict with savings and next steps, not raw inverter charts you have to decode yourself. Scores and kWh figures below are illustrative.</p>
+          <p class="eyebrow">Why it helps</p>
+          <h2>Charts show activity. A report gives you answers.</h2>
+          <p class="section-sub">Most homeowners already see inverter graphs. What is often missing is a clear verdict: is the system doing its job, and what should you change?</p>
         </div>
 
-        <div class="sample-panel reveal">
+        <div class="sample-compare-toggle reveal" role="group" aria-label="Compare with or without a report">
+          <button type="button" class="sample-toggle is-active" data-sample-view="with" aria-pressed="true">With a report</button>
+          <button type="button" class="sample-toggle" data-sample-view="without" aria-pressed="false">Only charts</button>
+        </div>
+
+        <div class="sample-panel reveal" data-sample-panel>
           <div class="sample-panel-grid ix-stagger">
-            <div class="sample-col sample-col-yes">
+            <div class="sample-col sample-col-yes is-featured" data-sample-col="with">
               <div class="sample-col-head">
                 <h3>With a Sunsynk Report</h3>
-                <p>Clear answers from about 30 days of readings.</p>
+                <p>Plain answers from about 30 days of readings.</p>
               </div>
               <div class="sample-summary">
                 <div class="sample-gauge" aria-hidden="true"><strong class="countup" data-target="52">52</strong></div>
                 <div>
-                  <p class="sample-gap-title">Working, but 65 pts below the local median</p>
-                  <p class="sample-gap-sub">Closing the efficiency gap could avoid about <strong>439 kWh</strong> of grid import per month.</p>
+                  <p class="sample-gap-title">Working, but well below similar local systems</p>
+                  <p class="sample-gap-sub">Closing the gap could avoid about <strong>439 kWh</strong> of grid import per month.</p>
                 </div>
               </div>
               <ul class="sample-checks ix-cascade">
-                <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>Executive overview</strong><p>Score, top issue, savings hint and recommended actions in one place.</p></div></li>
-                <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>Trusted readings</strong><p>Coverage quality and accuracy checks called out clearly.</p></div></li>
-                <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>Solar and battery depth</strong><p>Peers, timing, clipping and battery use explained in homeowner language.</p></div></li>
-                <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>Evening cost focus</strong><p>How well stored energy cuts grid import when rates are often highest.</p></div></li>
-                <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>Prioritised PDF</strong><p>Behaviour, configuration and hardware actions ranked by impact.</p></div></li>
+                <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>A clear overall score</strong><p>See at a glance how the month went, and what dragged the score down.</p></div></li>
+                <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>Confidence in the numbers</strong><p>Know how complete the data was before trusting the conclusions.</p></div></li>
+                <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>Solar and battery explained</strong><p>What went well, what did not, in homeowner language.</p></div></li>
+                <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>Evening cost focus</strong><p>How well stored energy cuts expensive evening grid use.</p></div></li>
+                <li><span class="sample-check" aria-hidden="true">✓</span><div><strong>A ranked to-do list</strong><p>Habits, settings, and hardware ideas ordered by likely impact.</p></div></li>
               </ul>
             </div>
-            <div class="sample-col sample-col-no">
+            <div class="sample-col sample-col-no is-muted" data-sample-col="without">
               <div class="sample-col-head">
-                <h3>Without a report</h3>
-                <p>Raw inverter dashboards, no verdict.</p>
+                <h3>Only the inverter app</h3>
+                <p>Lots of charts. No clear verdict.</p>
               </div>
               <ul class="sample-crosses ix-cascade">
-                <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>No executive verdict</strong><p>Hard to tell if the system is truly doing its job.</p></div></li>
-                <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>Unclear data quality</strong><p>Gaps and inconsistencies stay buried in charts.</p></div></li>
-                <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>No savings picture</strong><p>No estimate versus all-grid electricity.</p></div></li>
-                <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>No ranked inefficiencies</strong><p>Solar, battery and evening issues compete without priority.</p></div></li>
-                <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>Nothing clear to act on</strong><p>No shareable plan for you or your installer.</p></div></li>
+                <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>Hard to know if it is “good”</strong><p>Numbers move, but there is no simple yes/no on performance.</p></div></li>
+                <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>Gaps stay hidden</strong><p>Missing or thin data is easy to overlook in raw graphs.</p></div></li>
+                <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>Savings stay fuzzy</strong><p>No clear estimate versus buying everything from the grid.</p></div></li>
+                <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>Problems compete for attention</strong><p>Solar, battery, and evening issues arrive without priority.</p></div></li>
+                <li><span class="sample-cross" aria-hidden="true">×</span><div><strong>Nothing easy to share</strong><p>No tidy plan for you or your installer.</p></div></li>
               </ul>
             </div>
           </div>
@@ -528,113 +516,154 @@
 
         <div class="sample-actions reveal">
           <a class="btn btn-primary" href="https://app.sunsynkreports.com" target="_blank" rel="noopener noreferrer">Get My Report</a>
-          <a class="sample-link" href="#insights">See what's in the report</a>
+          <a class="sample-link" href="#insights">See what's inside</a>
         </div>
       </div>
     </section>
 
-    <!-- INSIGHTS -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header reveal" id="insights">
-          <p class="eyebrow">What's in the report</p>
-          <h2>Solar, battery and evening analysis</h2>
-          <p class="section-sub">The report groups technical chapters so you can see what is holding performance back without reading sixteen separate titles first.</p>
+    <!-- WHAT'S INSIDE -->
+    <section class="section" id="insights">
+      <div class="container inside-block">
+        <div class="section-header reveal center">
+          <p class="eyebrow">What's inside</p>
+          <h2>Three questions every report answers</h2>
+          <p class="section-sub">Sample figures below show the kind of clarity you get. They are illustrative, not a live customer report.</p>
         </div>
-        <div class="inside-grid reveal ix-stagger">
-          <article class="inside-col">
-            <h3>Solar</h3>
-            <p class="inside-lead">Production benchmarking, use timing, weather-expected performance and inverter clipping.</p>
-            <ul>
-              <li>Specific yield versus nearby Sunsynk systems</li>
-              <li>Self-sufficiency, export and storage opportunity</li>
-              <li>Clipping events before chasing hardware upgrades</li>
-            </ul>
-          </article>
-          <article class="inside-col">
-            <h3>Battery</h3>
-            <p class="inside-lead">Operating indicators plus the detailed evidence behind utilisation, cycling and temperature.</p>
-            <ul>
-              <li>How effectively the battery is being used</li>
-              <li>State of charge patterns and lifespan factors</li>
-              <li>Daily trends that explain each assessment</li>
-            </ul>
-          </article>
-          <article class="inside-col">
-            <h3>Evening cost</h3>
-            <p class="inside-lead">Evening grid dependency when electricity is often most expensive.</p>
-            <ul>
-              <li>How stored energy cuts evening grid import</li>
-              <li>Scheduling and configuration opportunities</li>
-              <li>Where evening demand still leans on the grid</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
 
-    <!-- ACTIONS -->
-    <section class="section section-slate">
-      <div class="container">
-        <div class="section-header reveal" id="actions">
-          <p class="eyebrow">Actions</p>
-          <h2>Prioritised next steps</h2>
-          <p class="section-sub">Findings consolidate into a ranked plan: behavioural changes, configuration improvements and hardware upgrades.</p>
+        <div class="inside-tabs reveal" role="tablist" aria-label="What's inside the report" data-inside-chapters>
+          <button type="button" class="inside-tab is-active" role="tab" id="inside-tab-score" data-inside-target="score" aria-controls="inside-panel-score" aria-selected="true">Is it working well?</button>
+          <button type="button" class="inside-tab" role="tab" id="inside-tab-savings" data-inside-target="savings" aria-controls="inside-panel-savings" aria-selected="false">Am I saving money?</button>
+          <button type="button" class="inside-tab" role="tab" id="inside-tab-actions" data-inside-target="actions" aria-controls="inside-panel-actions" aria-selected="false">What should I change?</button>
         </div>
-        <div class="actions-board reveal ix-stagger">
-          <div class="actions-group">
-            <p class="actions-tag">Behaviour</p>
-            <ul>
-              <li>Shift heavy evening loads earlier while solar or battery cover is available</li>
-              <li>Review habit patterns that drive peak grid import</li>
-            </ul>
+
+        <div class="inside-stage reveal" id="report-preview" data-inside-stage>
+          <div class="inside-panel is-active" role="tabpanel" id="inside-panel-score" data-inside-panel="score" aria-labelledby="inside-tab-score">
+            <div class="inside-answer">
+              <div class="inside-answer-hero" id="health">
+                <p class="inside-answer-kicker">Sample overall score</p>
+                <p class="inside-answer-value health-score-num countup" data-target="52">52</p>
+                <p class="inside-answer-lead">Working, but well below similar local systems. Weakest: self-use. Strongest: battery.</p>
+                <p class="inside-answer-meta" id="trust">Sample data coverage <strong class="countup" data-target="98.4" data-decimals="1" data-suffix="%">98.4%</strong> · thin periods are flagged in the PDF</p>
+              </div>
+              <div class="inside-answer-side health-panel">
+                <p class="inside-answer-kicker">Where the score comes from</p>
+                <div class="health-bars" aria-label="Category contribution to score">
+                  <div class="health-bar-row">
+                    <span>Self-use</span>
+                    <div class="health-track"><div class="health-fill" data-health-val="23" style="--c:var(--orange-fill)"></div></div>
+                    <strong class="score-val-warn">23</strong>
+                  </div>
+                  <div class="health-bar-row">
+                    <span>Solar</span>
+                    <div class="health-track"><div class="health-fill" data-health-val="61" style="--c:var(--gold)"></div></div>
+                    <strong>61</strong>
+                  </div>
+                  <div class="health-bar-row">
+                    <span>Battery</span>
+                    <div class="health-track"><div class="health-fill" data-health-val="86" style="--c:var(--green-fill)"></div></div>
+                    <strong class="score-val-ok">86</strong>
+                  </div>
+                  <div class="health-bar-row">
+                    <span>Evening grid</span>
+                    <div class="health-track"><div class="health-fill" data-health-val="82" style="--c:var(--green-fill)"></div></div>
+                    <strong class="score-val-ok">82</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="actions-group">
-            <p class="actions-tag">Configuration</p>
-            <ul>
-              <li>Adjust battery reserve and discharge timing for evening peaks</li>
-              <li>Tighten export and self-use settings before buying more capacity</li>
-            </ul>
+
+          <div class="inside-panel" role="tabpanel" id="inside-panel-savings" data-inside-panel="savings" aria-labelledby="inside-tab-savings" hidden>
+            <div class="inside-answer inside-answer-savings" id="savings">
+              <div class="inside-answer-hero">
+                <p class="inside-answer-kicker">Sample estimated savings</p>
+                <p class="inside-answer-value"><span class="countup" data-target="186" data-prefix="£">£186</span></p>
+                <p class="inside-answer-lead">Versus buying all electricity from the grid. Shown when you save your electricity rate in Settings.</p>
+              </div>
+              <ul class="inside-stat-list">
+                <li><span>Energy you supplied yourself</span><strong>612 kWh</strong></li>
+                <li><span>Grid cost avoided</span><strong>£168</strong></li>
+              </ul>
+            </div>
           </div>
-          <div class="actions-group">
-            <p class="actions-tag">Hardware</p>
-            <ul>
-              <li>Consider storage or PV only after clipping and scheduling are reviewed</li>
-              <li>Share the PDF with your installer when an upgrade case is clear</li>
-            </ul>
+
+          <div class="inside-panel" role="tabpanel" id="inside-panel-actions" data-inside-panel="actions" aria-labelledby="inside-tab-actions" hidden>
+            <div class="inside-actions" id="actions">
+              <p class="inside-answer-lead inside-actions-intro">A ranked list of next steps: habits first, then settings, then hardware only when it is worth considering.</p>
+              <div class="inside-actions-grid">
+                <div class="inside-actions-col">
+                  <p class="actions-tag">Habits</p>
+                  <ul>
+                    <li>Move heavy evening loads earlier while solar or battery cover is available</li>
+                    <li>Spot habits that quietly drive peak grid import</li>
+                  </ul>
+                </div>
+                <div class="inside-actions-col">
+                  <p class="actions-tag">Settings</p>
+                  <ul>
+                    <li>Adjust battery reserve and discharge timing for evening peaks</li>
+                    <li>Improve self-use settings before buying more capacity</li>
+                  </ul>
+                </div>
+                <div class="inside-actions-col">
+                  <p class="actions-tag">Hardware</p>
+                  <ul>
+                    <li>Consider more storage or panels only after settings and habits are reviewed</li>
+                    <li>Share the PDF with your installer when an upgrade case is clear</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <p class="assumptions-note reveal">Assumptions, measured versus estimated values, analysis scope and disclaimers appear in Important Information at the end of every report.</p>
+        <p class="assumptions-note reveal">Assumptions and limits appear in Important Information at the end of every report.</p>
       </div>
     </section>
 
     <!-- HOW IT WORKS -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header reveal" id="how-it-works">
+    <section class="section section-slate">
+      <div class="container how-block">
+        <div class="section-header reveal center" id="how-it-works">
           <p class="eyebrow">How it works</p>
-          <h2>From sign-in to your PDF</h2>
-          <p class="section-sub">No subscription. One credit equals one 30-day report. Credits never expire.</p>
+          <h2>Four steps to your PDF</h2>
+          <p class="section-sub">Use the Sunsynk account you already have. One credit equals one report.</p>
         </div>
-        <div class="steps-wrap">
-          <div class="steps-line-track" aria-hidden="true"><div class="steps-line-fill"></div></div>
-          <div class="steps-grid">
-            <div class="step reveal"><div class="step-n">01</div><h3>Sign in</h3><p>Use your Sunsynk email and password. Accept Terms and Privacy once.</p></div>
-            <div class="step reveal" data-delay="80"><div class="step-n">02</div><h3>Buy credits</h3><p>Choose Starter, Classic, or Pro. Checkout with Stripe when you need a report.</p></div>
-            <div class="step reveal" data-delay="160"><div class="step-n">03</div><h3>Generate a report</h3><p>Pick a plant. Optionally include estimated savings with a tariff saved in Settings.</p></div>
-            <div class="step reveal" data-delay="240"><div class="step-n">04</div><h3>Preview and download</h3><p>Open the PDF when it is ready. Download it, or leave feedback from your report history.</p></div>
-          </div>
+        <ol class="how-flow reveal ix-stagger" aria-label="Four steps to your PDF">
+          <li class="how-flow-item">
+            <span class="how-flow-n" aria-hidden="true">1</span>
+            <h3>Sign in</h3>
+            <p>Sunsynk email and password. Accept Terms and Privacy once.</p>
+          </li>
+          <li class="how-flow-item">
+            <span class="how-flow-n" aria-hidden="true">2</span>
+            <h3>Buy credits</h3>
+            <p>Starter, Classic, or Pro. Credits never expire.</p>
+          </li>
+          <li class="how-flow-item">
+            <span class="how-flow-n" aria-hidden="true">3</span>
+            <h3>Generate</h3>
+            <p>Pick your system. Add your rate if you want savings estimates.</p>
+          </li>
+          <li class="how-flow-item">
+            <span class="how-flow-n" aria-hidden="true">4</span>
+            <h3>Download</h3>
+            <p>Preview the PDF, save it, or share it with your installer.</p>
+          </li>
+        </ol>
+        <div class="how-foot reveal">
+          <a class="btn btn-primary" href="https://app.sunsynkreports.com" target="_blank" rel="noopener noreferrer">Get My Report</a>
+          <p>No subscription. Pay only when you need a report.</p>
         </div>
       </div>
     </section>
 
     <!-- VALUE -->
-    <section class="section section-slate">
+    <section class="section">
       <div class="container">
         <div class="section-header reveal center" id="value">
           <p class="eyebrow">Value</p>
-          <h2>Professional insight at a fraction of the cost</h2>
-          <p class="section-sub">Compare a typical remote professional solar health check with a data-led performance report from your Sunsynk system.</p>
+          <h2>Clear insight without a site visit</h2>
+          <p class="section-sub">A typical remote professional solar health check can cost far more. This report uses your own system data from a few pounds per credit.</p>
         </div>
         <div class="value-panel reveal">
           <div class="value-compare" aria-label="Typical remote check versus Sunsynk report cost" data-value-compare>
@@ -649,7 +678,7 @@
               <p class="value-compare-note">per credit · from <span data-price-unit>£2.99</span></p>
             </div>
           </div>
-          <p class="value-body">This report gives performance insight from your system data from <span data-value-per-credit>£2.99</span> per credit, covering battery health, clipping, faults, and savings where available.</p>
+          <p class="value-body">From <span data-value-per-credit>£2.99</span> per credit you get a readable performance PDF: score, optional savings, and what to do next.</p>
           <p class="value-disclaimer">It is not a substitute for an on-site inspection.</p>
         </div>
       </div>
@@ -661,12 +690,17 @@
         <div class="pricing-header reveal">
           <div class="section-header" id="pricing">
             <p class="eyebrow">Pricing</p>
-            <h2>Credit packs for every report</h2>
-            <p class="section-sub">One credit equals one report. Credits never expire. <strong>No subscription.</strong> Unused credits can be refunded within 14 days of purchase.</p>
+            <h2>Pay per report. No subscription.</h2>
+            <p class="section-sub">One credit equals one report. Credits never expire. Unused credits can be refunded within 14 days of purchase.</p>
           </div>
           <div class="currency-picker">
-            <label for="currencySelect">Currency</label>
-            <select id="currencySelect" name="currency" aria-label="Select pricing currency">
+            <p class="currency-picker-label" id="currencyLabel">Currency</p>
+            <div class="currency-segments" role="radiogroup" aria-labelledby="currencyLabel" id="currencySegments">
+              <button type="button" class="currency-seg is-active" role="radio" aria-checked="true" data-currency="GBP">GBP (£)</button>
+              <button type="button" class="currency-seg" role="radio" aria-checked="false" data-currency="ZAR">ZAR (R)</button>
+              <button type="button" class="currency-seg" role="radio" aria-checked="false" data-currency="USD">USD ($)</button>
+            </div>
+            <select id="currencySelect" name="currency" class="sr-only" aria-hidden="true" tabindex="-1">
               <option value="GBP" selected>British Pound (£)</option>
               <option value="ZAR">South African Rand (R)</option>
               <option value="USD">US Dollar ($)</option>
@@ -731,38 +765,44 @@
       <div class="container">
         <div class="section-header reveal" id="faq">
           <p class="eyebrow">FAQ</p>
-          <h2 id="faq-heading">Answers about reports and credits</h2>
-          <p class="section-sub">Sign-in, credits, tariffs, and what a report covers.</p>
+          <h2 id="faq-heading">Common questions</h2>
+          <p class="section-sub">Start here if you are new to Sunsynk Reports.</p>
         </div>
         <div class="faq-list ix-cascade-root reveal">
           <details class="faq-item">
-            <summary>What is inside a Sunsynk Performance Report?</summary>
+            <summary>Do I need a Sunsynk account?</summary>
             <div class="faq-answer">
-              <p>A shareable PDF from about 30 days of plant readings. It moves from an executive overview into data coverage, optional estimated savings, overall health, energy flows, solar and battery analysis, evening grid dependency, accuracy checks, and prioritised recommendations.</p>
+              <p>Yes. Sign in with your existing Sunsynk email and password. The report uses the readings already linked to that account. Installers may also use the PDF when helping a homeowner.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Is this the official Sunsynk monitoring app?</summary>
+            <div class="faq-answer">
+              <p>No. Sunsynk’s own app shows live charts and system status. This service creates a separate plain-English PDF that summarises about 30 days of performance, optional savings, and what to do next.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>What is inside the PDF?</summary>
+            <div class="faq-answer">
+              <p>A readable report with an overall score, data-quality checks, optional estimated savings (if you save your electricity rate), solar and battery insights, evening grid use, and a ranked list of recommended actions.</p>
             </div>
           </details>
           <details class="faq-item">
             <summary>Is there a subscription?</summary>
             <div class="faq-answer">
-              <p>No. One credit equals one report. Buy Starter (1), Classic (3), or Pro (6) when you need them. Credits never expire. Unused credits from a purchase can be refunded within 14 days via the Credits page.</p>
+              <p>No. One credit equals one report. Buy Starter (1), Classic (3), or Pro (6) when you need them. Credits never expire. Unused credits from a purchase can be refunded within 14 days.</p>
             </div>
           </details>
           <details class="faq-item">
-            <summary>Can I trust the data?</summary>
+            <summary>Can I trust the numbers?</summary>
             <div class="faq-answer">
-              <p>Before generation, the app checks about 30 days of telemetry coverage and asks you to confirm if coverage is thin. Each report also includes data coverage, plant details, and a system accuracy check. Assumptions and limitations sit in Important Information in the PDF.</p>
+              <p>Before generation, the app checks about 30 days of data coverage and warns you if coverage is thin. Each PDF also shows coverage and accuracy checks, plus assumptions in Important Information.</p>
             </div>
           </details>
           <details class="faq-item">
-            <summary>Who is the report for?</summary>
+            <summary>How do I get a report?</summary>
             <div class="faq-answer">
-              <p>Sunsynk account holders. Sign in with your Sunsynk email and password. Installers may also use the PDF when supporting a homeowner aftercare conversation.</p>
-            </div>
-          </details>
-          <details class="faq-item">
-            <summary>How does report generation work?</summary>
-            <div class="faq-answer">
-              <p>Sign in at app.sunsynkreports.com, buy credits if your balance is zero, optionally save a tariff under Settings for estimated savings, then generate a report for a plant. You can leave the page while it prepares; when ready, preview and download the PDF. One credit is used per report.</p>
+              <p>Go to app.sunsynkreports.com, sign in with Sunsynk, buy credits if needed, optionally save your electricity rate under Settings, then generate a report for your system. When it is ready, preview and download the PDF. One credit is used per report.</p>
             </div>
           </details>
         </div>
@@ -771,13 +811,11 @@
 
     <!-- FINAL CTA -->
     <section class="section section-cta">
-      <div class="container cta-body reveal ix-cascade" id="get-started">
-        <p class="eyebrow-light">Get started</p>
-        <h2 class="h-light">Get a clear view of your system&rsquo;s last 30 days.</h2>
-        <p class="section-sub s-muted cta-sub">From £2.99 · R69.99 · $4.29. Credits never expire. Secure Stripe checkout.</p>
+      <div class="container cta-body reveal" id="get-started">
+        <h2 class="h-light">Ready for a clear view of the last 30 days?</h2>
+        <p class="section-sub s-muted cta-sub">From £2.99 per report · no subscription · Stripe checkout</p>
         <div class="cta-actions cta-actions-single">
           <a class="btn btn-primary" href="https://app.sunsynkreports.com" target="_blank" rel="noopener noreferrer">Get My Report</a>
-          <a class="cta-secondary-link" href="#pricing">Compare packs</a>
         </div>
       </div>
     </section>
@@ -791,11 +829,11 @@
           <img src="/assets/images/sunsynk-logo.png" alt="Sunsynk" class="nav-logo footer-logo" width="133" height="18" loading="lazy" decoding="async" />
           <span>Performance Report</span>
         </a>
-        <p>Homeowner reports for Sunsynk systems: savings, health, solar and battery insights, and prioritised actions.</p>
+        <p>Plain-English performance reports for Sunsynk solar and battery homeowners. No subscription.</p>
       </div>
-      <nav aria-label="Platform"><p>Platform</p><a href="#sample">Sample report</a><a href="#insights">What's in the report</a><a href="#how-it-works">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
-      <nav aria-label="Resources"><p>Resources</p><a href="#trust">Trust</a><a href="#savings">Savings</a><a href="#value">Value</a><a href="#actions">Actions</a></nav>
-      <nav aria-label="Company"><p>Company</p><a href="https://app.sunsynkreports.com" target="_blank" rel="noopener noreferrer">Get My Report</a><a href="/privacy-policy/" target="_blank" rel="noopener noreferrer" aria-label="Privacy policy (opens in new tab)">Privacy policy<span class="sr-only"> (opens in new tab)</span></a><a href="/terms-of-use/" target="_blank" rel="noopener noreferrer" aria-label="Terms of use (opens in new tab)">Terms of use<span class="sr-only"> (opens in new tab)</span></a><a href="/cookie-policy/" target="_blank" rel="noopener noreferrer" aria-label="Cookie policy (opens in new tab)">Cookie policy<span class="sr-only"> (opens in new tab)</span></a></nav>
+      <nav aria-label="Learn"><p>Learn</p><a href="#what-this-is">What this is</a><a href="#sample">Why it helps</a><a href="#insights">What's inside</a><a href="#how-it-works">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+      <nav aria-label="Get started"><p>Get started</p><a href="https://app.sunsynkreports.com" target="_blank" rel="noopener noreferrer">Get My Report</a><a href="#pricing">Compare packs</a><a href="#value">Value</a></nav>
+      <nav aria-label="Legal"><p>Legal</p><a href="/privacy-policy/" target="_blank" rel="noopener noreferrer" aria-label="Privacy policy (opens in new tab)">Privacy policy<span class="sr-only"> (opens in new tab)</span></a><a href="/terms-of-use/" target="_blank" rel="noopener noreferrer" aria-label="Terms of use (opens in new tab)">Terms of use<span class="sr-only"> (opens in new tab)</span></a><a href="/cookie-policy/" target="_blank" rel="noopener noreferrer" aria-label="Cookie policy (opens in new tab)">Cookie policy<span class="sr-only"> (opens in new tab)</span></a></nav>
     </div>
     <div class="container footer-base">
       <p>&copy; 2026 Sunsynk Report Platform.</p>

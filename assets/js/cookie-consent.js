@@ -1,7 +1,19 @@
 (function () {
   var STORAGE_KEY = 'srp_cookie_consent';
   var CLARITY_ID = 'x3rw1l47ri';
-  var CONSENT_VERSION = '1.0';
+  var CONSENT_VERSION = '2.0';
+
+  var DEFAULT_OPTIONAL = {
+    analytics: false,
+    sessionReplay: false,
+    diagnostics: false,
+    productAnalytics: false,
+    productSessionReplay: false
+  };
+
+  function emptyCategories(overrides) {
+    return Object.assign({ necessary: true }, DEFAULT_OPTIONAL, overrides || {});
+  }
 
   function getConsent() {
     try {
@@ -10,19 +22,27 @@
 
       // Backward compatibility with old string values.
       if (raw === 'accept' || raw === 'reject') {
+        var accepted = raw === 'accept';
         return {
           version: CONSENT_VERSION,
           timestamp: new Date().toISOString(),
           source: 'legacy',
-          categories: {
-            necessary: true,
-            analytics: raw === 'accept'
-          }
+          categories: emptyCategories({
+            analytics: accepted,
+            sessionReplay: accepted
+          })
         };
       }
 
       var parsed = JSON.parse(raw);
       if (!parsed || !parsed.categories) return null;
+
+      // Migrate v1 binary "analytics" (which gated Clarity) into sessionReplay.
+      if (parsed.categories.sessionReplay === undefined && parsed.categories.analytics !== undefined) {
+        parsed.categories.sessionReplay = !!parsed.categories.analytics;
+      }
+
+      parsed.categories = emptyCategories(parsed.categories);
       return parsed;
     } catch (e) {
       return null;
@@ -37,16 +57,31 @@
     }
   }
 
-  function buildConsent(analyticsEnabled, source) {
+  function buildConsent(categories, source) {
     return {
       version: CONSENT_VERSION,
       timestamp: new Date().toISOString(),
       source: source || 'banner',
-      categories: {
-        necessary: true,
-        analytics: !!analyticsEnabled
-      }
+      categories: emptyCategories(categories)
     };
+  }
+
+  function acceptAllCategories() {
+    return emptyCategories({
+      analytics: true,
+      sessionReplay: true,
+      diagnostics: true,
+      productAnalytics: true,
+      productSessionReplay: true
+    });
+  }
+
+  function rejectOptionalCategories() {
+    return emptyCategories();
+  }
+
+  function isCurrentVersion(consent) {
+    return !!(consent && consent.version === CONSENT_VERSION);
   }
 
   function hideBanner(banner) {
@@ -69,15 +104,43 @@
 
     banner.innerHTML = '' +
       '<div class="cookie-banner__inner">' +
-      '  <p class="cookie-banner__text">We use cookies to improve site performance and understand usage patterns. You can accept analytics cookies or reject non-essential cookies. Read our <a href="/cookie-policy/">Cookie policy</a>.</p>' +
+      '  <p class="cookie-banner__text">We use strictly necessary cookies to run and secure this site. With your permission, we would also like to use optional analytics and session-replay technologies. These may process identifiers and on-screen content. You can accept all, reject non-essential, or manage preferences. Accepting our Terms or Privacy Policy does not turn on optional cookies. Read our <a href="/cookie-policy/">Cookie Policy</a> and <a href="/privacy-policy/">Privacy Policy</a>.</p>' +
       '  <div class="cookie-banner__actions">' +
-      '    <button type="button" class="cookie-btn" data-consent="customise">Customise</button>' +
       '    <button type="button" class="cookie-btn" data-consent="reject">Reject non-essential</button>' +
+      '    <button type="button" class="cookie-btn" data-consent="customise">Manage preferences</button>' +
       '    <button type="button" class="cookie-btn primary" data-consent="accept">Accept all</button>' +
       '  </div>' +
       '</div>';
 
     return banner;
+  }
+
+  function prefItem(id, title, description, locked) {
+    if (locked) {
+      return '' +
+        '<div class="cookie-pref-item">' +
+        '  <div>' +
+        '    <h3>' + title + '</h3>' +
+        '    <p>' + description + '</p>' +
+        '  </div>' +
+        '  <label class="cookie-switch" aria-label="' + title + ' enabled">' +
+        '    <input type="checkbox" checked disabled />' +
+        '    <span aria-hidden="true"></span>' +
+        '  </label>' +
+        '</div>';
+    }
+
+    return '' +
+      '<div class="cookie-pref-item">' +
+      '  <div>' +
+      '    <h3>' + title + '</h3>' +
+      '    <p>' + description + '</p>' +
+      '  </div>' +
+      '  <label class="cookie-switch" for="' + id + '">' +
+      '    <input type="checkbox" id="' + id + '" aria-label="' + title + '" />' +
+      '    <span aria-hidden="true"></span>' +
+      '  </label>' +
+      '</div>';
   }
 
   function buildModal() {
@@ -94,28 +157,14 @@
       '<div class="cookie-modal__panel" role="document">' +
       '  <button type="button" class="cookie-modal__close" aria-label="Close cookie preferences" data-cookie-close="true">&times;</button>' +
       '  <h2 class="cookie-modal__title" id="cookieModalTitle">Cookie preferences</h2>' +
-      '  <p class="cookie-modal__intro">Choose which cookies we can use. Necessary cookies are always enabled to keep the site secure and functional.</p>' +
+      '  <p class="cookie-modal__intro">Choose which optional technologies to allow. Strictly necessary cookies are always on. Optional categories are off until you enable them. No optional boxes are pre-ticked. Accepting our Terms or Privacy Policy does not enable these options.</p>' +
       '  <div class="cookie-pref-list">' +
-      '    <div class="cookie-pref-item">' +
-      '      <div>' +
-      '        <h3>Necessary cookies</h3>' +
-      '        <p>Required for core site functions such as navigation and security.</p>' +
-      '      </div>' +
-      '      <label class="cookie-switch" aria-label="Necessary cookies enabled">' +
-      '        <input type="checkbox" checked disabled />' +
-      '        <span aria-hidden="true"></span>' +
-      '      </label>' +
-      '    </div>' +
-      '    <div class="cookie-pref-item">' +
-      '      <div>' +
-      '        <h3>Analytics cookies</h3>' +
-      '        <p>Help us understand page usage and improve platform performance.</p>' +
-      '      </div>' +
-      '      <label class="cookie-switch" for="cookieAnalyticsToggle">' +
-      '        <input type="checkbox" id="cookieAnalyticsToggle" aria-label="Analytics cookies" />' +
-      '        <span aria-hidden="true"></span>' +
-      '      </label>' +
-      '    </div>' +
+      prefItem(null, 'Strictly necessary', 'Authentication, security, consent storage and core functionality.', true) +
+      prefItem('cookieAnalyticsToggle', 'Analytics (GA4)', 'Usage statistics and product events. May include device or transaction identifiers. Loads only when configured and consented.', false) +
+      prefItem('cookieSessionReplayToggle', 'Session replay (Microsoft Clarity)', 'Session recordings, heatmaps and interaction data; may capture on-screen content.', false) +
+      prefItem('cookieDiagnosticsToggle', 'Error monitoring (Sentry)', 'Diagnostic error reporting when configured on the Service.', false) +
+      prefItem('cookieProductAnalyticsToggle', 'Product analytics (PostHog)', 'Product usage analytics when configured on the Service.', false) +
+      prefItem('cookieProductReplayToggle', 'Product session replay (PostHog)', 'Product session recordings when configured on the Service.', false) +
       '  </div>' +
       '  <div class="cookie-modal__actions">' +
       '    <button type="button" class="cookie-btn" data-cookie-action="reject">Reject non-essential</button>' +
@@ -188,38 +237,98 @@
     };
   }
 
+  function readToggle(modal, id) {
+    var el = modal.querySelector('#' + id);
+    return !!(el && el.checked);
+  }
+
+  function setToggle(modal, id, value) {
+    var el = modal.querySelector('#' + id);
+    if (el) el.checked = !!value;
+  }
+
+  function syncToggles(modal, consent) {
+    var cats = (consent && consent.categories) || emptyCategories();
+    setToggle(modal, 'cookieAnalyticsToggle', cats.analytics);
+    setToggle(modal, 'cookieSessionReplayToggle', cats.sessionReplay);
+    setToggle(modal, 'cookieDiagnosticsToggle', cats.diagnostics);
+    setToggle(modal, 'cookieProductAnalyticsToggle', cats.productAnalytics);
+    setToggle(modal, 'cookieProductReplayToggle', cats.productSessionReplay);
+  }
+
+  function categoriesFromToggles(modal) {
+    return emptyCategories({
+      analytics: readToggle(modal, 'cookieAnalyticsToggle'),
+      sessionReplay: readToggle(modal, 'cookieSessionReplayToggle'),
+      diagnostics: readToggle(modal, 'cookieDiagnosticsToggle'),
+      productAnalytics: readToggle(modal, 'cookieProductAnalyticsToggle'),
+      productSessionReplay: readToggle(modal, 'cookieProductReplayToggle')
+    });
+  }
+
+  function prefersReducedMotion() {
+    try {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    } catch (e) {
+      return false;
+    }
+  }
+
   function openModal(modal, currentConsent) {
     if (!modal) return;
-    var analyticsToggle = modal.querySelector('#cookieAnalyticsToggle');
-    if (analyticsToggle) {
-      analyticsToggle.checked = !!(currentConsent && currentConsent.categories && currentConsent.categories.analytics);
-    }
+    syncToggles(modal, currentConsent);
     lastFocusBeforeModal = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     modal.removeAttribute('hidden');
     document.body.classList.add('cookie-modal-open');
+    // Force reflow so the enter transition runs from the closed state.
+    void modal.offsetWidth;
+    modal.classList.add('is-open');
     if (removeFocusTrap) removeFocusTrap();
     removeFocusTrap = trapFocus(modal);
   }
 
   function closeModal(modal) {
     if (!modal) return;
-    modal.setAttribute('hidden', 'hidden');
+    modal.classList.remove('is-open');
     document.body.classList.remove('cookie-modal-open');
     if (removeFocusTrap) {
       removeFocusTrap();
       removeFocusTrap = null;
     }
-    if (lastFocusBeforeModal && typeof lastFocusBeforeModal.focus === 'function') {
-      lastFocusBeforeModal.focus();
+
+    var finish = function () {
+      modal.setAttribute('hidden', 'hidden');
+      if (lastFocusBeforeModal && typeof lastFocusBeforeModal.focus === 'function') {
+        lastFocusBeforeModal.focus();
+      }
+      lastFocusBeforeModal = null;
+    };
+
+    if (prefersReducedMotion()) {
+      finish();
+      return;
     }
-    lastFocusBeforeModal = null;
+
+    var panel = modal.querySelector('.cookie-modal__panel');
+    var done = false;
+    var complete = function () {
+      if (done) return;
+      done = true;
+      finish();
+    };
+    if (panel) {
+      panel.addEventListener('transitionend', complete, { once: true });
+    }
+    window.setTimeout(complete, 320);
   }
 
   function applyConsent(consent, banner, modal) {
     setConsent(consent);
-    if (consent.categories.analytics) {
+    if (consent.categories.sessionReplay) {
       loadClarity();
     }
+    // Analytics / Sentry / PostHog loaders belong in the app when those tools are configured.
+    // This marketing site must not load them without dedicated, consent-gated integrations.
     hideBanner(banner);
     closeModal(modal);
   }
@@ -246,9 +355,12 @@
       }
     });
 
-    if (existing && existing.categories && existing.categories.analytics) {
-      loadClarity();
-    } else if (!existing) {
+    if (existing && isCurrentVersion(existing) && existing.categories) {
+      if (existing.categories.sessionReplay) {
+        loadClarity();
+      }
+    } else {
+      // Missing consent or outdated consent version → re-prompt (PECR material change / granularity).
       showBanner(banner);
     }
 
@@ -264,9 +376,9 @@
       }
 
       if (value === 'accept') {
-        applyConsent(buildConsent(true, 'banner'), banner, modal);
+        applyConsent(buildConsent(acceptAllCategories(), 'banner'), banner, modal);
       } else if (value === 'reject') {
-        applyConsent(buildConsent(false, 'banner'), banner, modal);
+        applyConsent(buildConsent(rejectOptionalCategories(), 'banner'), banner, modal);
       }
     });
 
@@ -283,19 +395,17 @@
       if (!action) return;
 
       if (action === 'accept') {
-        applyConsent(buildConsent(true, 'preferences-modal'), banner, modal);
+        applyConsent(buildConsent(acceptAllCategories(), 'preferences-modal'), banner, modal);
         return;
       }
 
       if (action === 'reject') {
-        applyConsent(buildConsent(false, 'preferences-modal'), banner, modal);
+        applyConsent(buildConsent(rejectOptionalCategories(), 'preferences-modal'), banner, modal);
         return;
       }
 
       if (action === 'save') {
-        var analyticsToggle = modal.querySelector('#cookieAnalyticsToggle');
-        var analyticsEnabled = analyticsToggle ? analyticsToggle.checked : false;
-        applyConsent(buildConsent(analyticsEnabled, 'preferences-modal'), banner, modal);
+        applyConsent(buildConsent(categoriesFromToggles(modal), 'preferences-modal'), banner, modal);
       }
     });
 

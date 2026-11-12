@@ -1,21 +1,21 @@
 # Sunsynk Report Platform
 # https://sunsynkreports.com/
 
+# LLM orientation (https://llmstxt.org/)
+# https://sunsynkreports.com/llms.txt
+# https://sunsynkreports.com/llms-full.txt
+
 User-agent: *
 Allow: /
-
-# Legacy .html stubs redirect to trailing-slash URLs; prefer canonical paths
 Disallow: /index.html
 Disallow: /knowledgebase.html
 Disallow: /privacy-policy.html
 Disallow: /terms-of-use.html
 Disallow: /cookie-policy.html
-
-# Keep knowledge base offline from crawlers (page retained, not publicly listed)
 Disallow: /knowledgebase/
 Disallow: /knowledgebase
 
-# Explicit allow for common AI and search crawlers (KB still disallowed)
+# AI / answer-engine crawlers: allow marketing pages; keep knowledge base offline
 User-agent: GPTBot
 Allow: /
 Disallow: /knowledgebase/
@@ -28,7 +28,19 @@ Disallow: /knowledgebase/
 Disallow: /knowledgebase
 Disallow: /knowledgebase.html
 
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /knowledgebase/
+Disallow: /knowledgebase
+Disallow: /knowledgebase.html
+
 User-agent: Google-Extended
+Allow: /
+Disallow: /knowledgebase/
+Disallow: /knowledgebase
+Disallow: /knowledgebase.html
+
+User-agent: GoogleOther
 Allow: /
 Disallow: /knowledgebase/
 Disallow: /knowledgebase
@@ -64,6 +76,12 @@ Disallow: /knowledgebase/
 Disallow: /knowledgebase
 Disallow: /knowledgebase.html
 
+User-agent: Amazonbot
+Allow: /
+Disallow: /knowledgebase/
+Disallow: /knowledgebase
+Disallow: /knowledgebase.html
+
 User-agent: Bytespider
 Allow: /
 Disallow: /knowledgebase/
@@ -76,8 +94,10 @@ Disallow: /knowledgebase/
 Disallow: /knowledgebase
 Disallow: /knowledgebase.html
 
-Sitemap: https://sunsynkreports.com/sitemap.xml
+User-agent: meta-externalagent
+Allow: /
+Disallow: /knowledgebase/
+Disallow: /knowledgebase
+Disallow: /knowledgebase.html
 
-# LLM orientation files (see https://llmstxt.org/)
-# https://sunsynkreports.com/llms.txt
-# https://sunsynkreports.com/llms-full.txt
+Sitemap: https://sunsynkreports.com/sitemap.xml
