@@ -266,28 +266,60 @@
     });
   }
 
+  function prefersReducedMotion() {
+    try {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    } catch (e) {
+      return false;
+    }
+  }
+
   function openModal(modal, currentConsent) {
     if (!modal) return;
     syncToggles(modal, currentConsent);
     lastFocusBeforeModal = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     modal.removeAttribute('hidden');
     document.body.classList.add('cookie-modal-open');
+    // Force reflow so the enter transition runs from the closed state.
+    void modal.offsetWidth;
+    modal.classList.add('is-open');
     if (removeFocusTrap) removeFocusTrap();
     removeFocusTrap = trapFocus(modal);
   }
 
   function closeModal(modal) {
     if (!modal) return;
-    modal.setAttribute('hidden', 'hidden');
+    modal.classList.remove('is-open');
     document.body.classList.remove('cookie-modal-open');
     if (removeFocusTrap) {
       removeFocusTrap();
       removeFocusTrap = null;
     }
-    if (lastFocusBeforeModal && typeof lastFocusBeforeModal.focus === 'function') {
-      lastFocusBeforeModal.focus();
+
+    var finish = function () {
+      modal.setAttribute('hidden', 'hidden');
+      if (lastFocusBeforeModal && typeof lastFocusBeforeModal.focus === 'function') {
+        lastFocusBeforeModal.focus();
+      }
+      lastFocusBeforeModal = null;
+    };
+
+    if (prefersReducedMotion()) {
+      finish();
+      return;
     }
-    lastFocusBeforeModal = null;
+
+    var panel = modal.querySelector('.cookie-modal__panel');
+    var done = false;
+    var complete = function () {
+      if (done) return;
+      done = true;
+      finish();
+    };
+    if (panel) {
+      panel.addEventListener('transitionend', complete, { once: true });
+    }
+    window.setTimeout(complete, 320);
   }
 
   function applyConsent(consent, banner, modal) {

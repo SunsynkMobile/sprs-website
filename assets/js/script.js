@@ -5,25 +5,6 @@
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-document.addEventListener('visibilitychange', () => {
-  document.documentElement.classList.toggle('is-hidden', document.hidden);
-});
-
-/* ── Page Loader ── */
-const pageLoader = document.getElementById('pageLoader');
-const hidePageLoader = () => {
-  if (pageLoader) {
-    pageLoader.classList.add('hidden');
-    setTimeout(() => pageLoader.remove(), 500);
-  }
-};
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', hidePageLoader);
-} else {
-  hidePageLoader();
-}
-window.addEventListener('load', hidePageLoader);
-
 /* ── Sticky nav ── */
 const nav = document.querySelector('.nav');
 const updateNav = () => nav && nav.classList.toggle('scrolled', window.scrollY > 20);
@@ -189,7 +170,7 @@ function initScoreBars() {
 
 /* ── Health category bars ── */
 function initHealthBars() {
-  const panel = document.querySelector('.health-panel');
+  const panel = document.querySelector('.report-tile-bars') || document.querySelector('.health-panel');
   const fills = document.querySelectorAll('.health-fill');
   if (!panel || !fills.length) return;
   const animate = () => fills.forEach(f => { f.style.width = `${Number(f.dataset.healthVal || 0)}%`; });
@@ -493,30 +474,36 @@ function initChartInteractions() {
   }
 }
 
-/* ── Steps line ── */
-function initStepsLine() {
-  const fill = document.querySelector('.steps-line-fill');
-  if (!fill) return;
-  if (reducedMotion) { fill.style.width = '100%'; return; }
-  const io = new IntersectionObserver(entries => {
-    if (!entries[0].isIntersecting) return;
-    fill.style.width = '100%';
-    io.disconnect();
-  }, { threshold: 0.3 });
-  const steps = document.querySelector('.steps-wrap');
-  if (steps) io.observe(steps);
+/* ── How it works step ↔ stage ── */
+function initHowItWorks() {
+  /* Static numbered flow; no tab/stage interaction. */
 }
 
-/* ── Lit step numbers ── */
-function initStepLit() {
-  const steps = document.querySelectorAll('.step');
-  if (reducedMotion) { steps.forEach(s => s.classList.add('lit')); return; }
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('lit');
+/* ── Sample with/without toggle ── */
+function initSampleCompare() {
+  const toggles = Array.from(document.querySelectorAll('[data-sample-view]'));
+  const panel = document.querySelector('[data-sample-panel]');
+  if (!toggles.length || !panel) return;
+
+  const setView = (view) => {
+    toggles.forEach(btn => {
+      const active = btn.getAttribute('data-sample-view') === view;
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-pressed', String(active));
     });
-  }, { threshold: 0.5 });
-  steps.forEach(s => io.observe(s));
+    panel.setAttribute('data-active-view', view);
+    const yes = panel.querySelector('[data-sample-col="with"]');
+    const no = panel.querySelector('[data-sample-col="without"]');
+    yes?.classList.toggle('is-featured', view === 'with');
+    yes?.classList.toggle('is-muted', view === 'without');
+    no?.classList.toggle('is-muted', view === 'with');
+    no?.classList.toggle('is-featured', view === 'without');
+  };
+
+  toggles.forEach(btn => {
+    btn.addEventListener('click', () => setView(btn.getAttribute('data-sample-view') || 'with'));
+  });
+  setView('with');
 }
 
 
@@ -531,253 +518,89 @@ function nearlyEqual(a, b, eps = 0.08) {
   return Math.abs(a - b) < eps;
 }
 
-/* ── Sitewide cursor glow (single RAF, transform-only) ── */
-function initPointerAtmosphere() {
-  if (reducedMotion || !finePointer) return;
 
-  const glow = document.createElement('div');
-  glow.className = 'pointer-glow';
-  glow.setAttribute('aria-hidden', 'true');
-  document.body.appendChild(glow);
-  document.body.classList.add('ix-pointer');
+/* ── GitHub-style sticky hero fade as product rises ── */
+function initHeroScrollStory() {
+  const hero = document.querySelector('#hero');
+  const text = document.querySelector('.hero-text');
+  const stage = document.querySelector('.hero-stage');
+  if (!hero || !text || !stage) return;
 
-  const hero = document.querySelector('.hero');
-  let x = window.innerWidth * 0.5;
-  let y = window.innerHeight * 0.4;
-  let tx = x;
-  let ty = y;
-  let scale = 1;
-  let tScale = 1;
-  let raf = 0;
-  let pointing = false;
-  let heroActive = false;
+  if (reducedMotion) {
+    text.style.opacity = '';
+    text.style.transform = '';
+    stage.style.transform = '';
+    return;
+  }
 
-  const tick = () => {
-    x = lerp(x, tx, MOTION_LERP);
-    y = lerp(y, ty, MOTION_LERP);
-    scale = lerp(scale, tScale, 0.12);
-    glow.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${scale.toFixed(3)})`;
-
-    if (hero && heroActive) {
-      const hx = ((tx - heroRect.left) / heroRect.width) * 100;
-      const hy = ((ty - heroRect.top) / heroRect.height) * 100;
-      if (Number.isFinite(hx) && Number.isFinite(hy)) {
-        hero.style.setProperty('--hero-spot-x', hx.toFixed(1));
-        hero.style.setProperty('--hero-spot-y', hy.toFixed(1));
-      }
-    }
-
-    const settling = !nearlyEqual(x, tx) || !nearlyEqual(y, ty) || !nearlyEqual(scale, tScale, 0.004);
-    if (settling) {
-      raf = requestAnimationFrame(tick);
-    } else {
-      raf = 0;
-      glow.style.willChange = 'auto';
-    }
-  };
-
-  const start = () => {
-    glow.style.willChange = 'transform';
-    if (!raf) raf = requestAnimationFrame(tick);
-  };
-
-  let heroRect = { left: 0, top: 0, width: 1, height: 1 };
-  const refreshHeroRect = () => {
-    if (!hero) return;
-    heroRect = hero.getBoundingClientRect();
-  };
-  refreshHeroRect();
-  window.addEventListener('resize', refreshHeroRect, { passive: true });
-  window.addEventListener('scroll', () => {
-    if (heroActive) refreshHeroRect();
-  }, { passive: true });
-
-  window.addEventListener('pointermove', e => {
-    tx = e.clientX;
-    ty = e.clientY;
-    if (!pointing) {
-      pointing = true;
-      document.body.classList.add('is-pointing');
-    }
-    const overMedia = e.target instanceof Element && !!e.target.closest(
-      'img, picture, figure, video, .hero-product, .hero-preview'
-    );
-    glow.classList.toggle('is-over-media', overMedia);
-    if (hero) {
-      const inside = e.target instanceof Element && (e.target === hero || hero.contains(e.target));
-      if (inside && !heroActive) refreshHeroRect();
-      heroActive = inside;
-    }
-    start();
-  }, { passive: true });
-
-  document.addEventListener('pointerover', e => {
-    const t = e.target;
-    if (!(t instanceof Element)) return;
-    tScale = t.closest('a, button, .btn, summary, [role="button"], .feature-tab, .pci') ? 1.35 : 1;
-    start();
-  }, { passive: true });
-
-  window.addEventListener('pointerleave', () => {
-    pointing = false;
-    heroActive = false;
-    tScale = 1;
-    glow.classList.remove('is-over-media');
-    document.body.classList.remove('is-pointing');
-  });
-
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      if (raf) cancelAnimationFrame(raf);
-      raf = 0;
-      glow.style.willChange = 'auto';
-    }
-  });
-}
-
-/* Soft local spotlight (no 3D tilt; GPU-cheap) */
-function initSurfaceMotion() {
-  if (reducedMotion || !finePointer) return;
-  const surfaces = document.querySelectorAll([
-    '.pci',
-    '.metrics-item',
-    '.feature-panel',
-    '.health-panel',
-    '.trust-item',
-    '.inside-col',
-    '.actions-group',
-    '.savings-hero-stat',
-    '.sample-col',
-    '.feat-card',
-    '.tq',
-    '.outcome'
-  ].join(', '));
-
-  surfaces.forEach(card => {
-    card.classList.add('ix-spot');
-    let sx = 50;
-    let sy = 40;
-    let tsx = 50;
-    let tsy = 40;
-    let raf = 0;
-    let hovering = false;
-
-    const tick = () => {
-      sx = lerp(sx, tsx, 0.18);
-      sy = lerp(sy, tsy, 0.18);
-      card.style.setProperty('--spot-x', `${sx.toFixed(1)}%`);
-      card.style.setProperty('--spot-y', `${sy.toFixed(1)}%`);
-      if (hovering || !nearlyEqual(sx, tsx, 0.2) || !nearlyEqual(sy, tsy, 0.2)) {
-        raf = requestAnimationFrame(tick);
-      } else {
-        raf = 0;
-      }
-    };
-
-    const setSpot = (clientX, clientY, snap = false) => {
-      const r = card.getBoundingClientRect();
-      if (!r.width || !r.height) return;
-      tsx = ((clientX - r.left) / r.width) * 100;
-      tsy = ((clientY - r.top) / r.height) * 100;
-      if (snap) {
-        sx = tsx;
-        sy = tsy;
-        card.style.setProperty('--spot-x', `${sx.toFixed(1)}%`);
-        card.style.setProperty('--spot-y', `${sy.toFixed(1)}%`);
-      }
-    };
-
-    card.addEventListener('pointerenter', e => {
-      hovering = true;
-      setSpot(e.clientX, e.clientY, true);
-      card.classList.add('is-lit');
-    });
-
-    card.addEventListener('pointermove', e => {
-      setSpot(e.clientX, e.clientY);
-      if (!raf) raf = requestAnimationFrame(tick);
-    }, { passive: true });
-
-    card.addEventListener('pointerleave', () => {
-      hovering = false;
-      // Fade out in place; don't lerp the spot back to centre (elastic snap)
-      card.classList.remove('is-lit');
-      if (raf) {
-        cancelAnimationFrame(raf);
-        raf = 0;
-      }
-      tsx = sx;
-      tsy = sy;
-    });
-  });
-}
-
-/* ── Magnetic primary CTAs only ── */
-function initMagneticButtons() {
-  if (reducedMotion || !finePointer) return;
-  document.querySelectorAll('.hero-actions .btn, .section-cta .btn, .cta-actions .btn').forEach(btn => {
-    btn.classList.add('magnetic');
-    let raf = 0;
-    let cx = 0;
-    let cy = 0;
-    let tx = 0;
-    let ty = 0;
-    let hovering = false;
-
-    const tick = () => {
-      cx = lerp(cx, tx, MOTION_LERP);
-      cy = lerp(cy, ty, MOTION_LERP);
-      if (!btn.classList.contains('is-pressed')) {
-        btn.style.transform = hovering
-          ? `translate3d(${cx.toFixed(2)}px, ${cy.toFixed(2)}px, 0) scale(1.035)`
-          : '';
-      }
-      if (hovering || !nearlyEqual(cx, tx, 0.05) || !nearlyEqual(cy, ty, 0.05)) {
-        raf = requestAnimationFrame(tick);
-      } else {
-        raf = 0;
-        if (!hovering) btn.style.transform = '';
-      }
-    };
-
-    btn.addEventListener('pointerenter', () => {
-      hovering = true;
-      if (!raf) raf = requestAnimationFrame(tick);
-    });
-    btn.addEventListener('pointermove', e => {
-      if (btn.classList.contains('is-pressed')) return;
-      const r = btn.getBoundingClientRect();
-      tx = ((e.clientX - r.left) / r.width - 0.5) * 6;
-      ty = ((e.clientY - r.top) / r.height - 0.5) * 4;
-      if (!raf) raf = requestAnimationFrame(tick);
-    }, { passive: true });
-    btn.addEventListener('pointerleave', () => {
-      hovering = false;
-      tx = 0;
-      ty = 0;
-      if (!raf) raf = requestAnimationFrame(tick);
-    });
-  });
-}
-
-/* ── Light hero scroll drift (preview only) ── */
-function initScrollDrift() {
-  if (reducedMotion) return;
-  const preview = document.querySelector('.hero-preview');
-  if (!preview) return;
   let ticking = false;
   const update = () => {
-    const y = Math.max(window.scrollY, 0);
-    if (y < window.innerHeight * 1.2) {
-      preview.style.setProperty('--drift-y', `${(Math.min(y, 360) * 0.04).toFixed(1)}px`);
-    }
+    const rect = hero.getBoundingClientRect();
+    const run = Math.max(rect.height * 0.55, 1);
+    const progress = Math.min(Math.max((-rect.top) / run, 0), 1);
+    const opacity = 1 - progress * 0.88;
+    const scale = 1 - progress * 0.1;
+    const textY = progress * -28;
+    const stageY = progress * -56;
+    text.style.opacity = opacity.toFixed(3);
+    text.style.transform = `translate3d(0, ${textY.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
+    stage.style.transform = `translate3d(0, ${stageY.toFixed(1)}px, 0)`;
     ticking = false;
   };
+
   window.addEventListener('scroll', () => {
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(update);
   }, { passive: true });
+  window.addEventListener('resize', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }, { passive: true });
+  update();
+}
+
+/* ── What's inside tabs ── */
+function initInsideChapters() {
+  const buttons = Array.from(document.querySelectorAll('[data-inside-target]'));
+  const panels = Array.from(document.querySelectorAll('[data-inside-panel]'));
+  if (!buttons.length || !panels.length) return;
+
+  const setChapter = (id) => {
+    buttons.forEach(btn => {
+      const active = btn.getAttribute('data-inside-target') === id;
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-selected', String(active));
+      btn.tabIndex = active ? 0 : -1;
+    });
+    panels.forEach(panel => {
+      const match = panel.getAttribute('data-inside-panel') === id;
+      panel.classList.toggle('is-active', match);
+      if (match) panel.removeAttribute('hidden');
+      else panel.setAttribute('hidden', '');
+    });
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      setChapter(btn.getAttribute('data-inside-target') || 'score');
+    });
+    btn.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft' && e.key !== 'Home' && e.key !== 'End') return;
+      e.preventDefault();
+      const idx = buttons.indexOf(btn);
+      let next = idx;
+      if (e.key === 'ArrowRight') next = (idx + 1) % buttons.length;
+      if (e.key === 'ArrowLeft') next = (idx - 1 + buttons.length) % buttons.length;
+      if (e.key === 'Home') next = 0;
+      if (e.key === 'End') next = buttons.length - 1;
+      buttons[next].focus();
+      setChapter(buttons[next].getAttribute('data-inside-target') || 'score');
+    });
+  });
+
+  setChapter(buttons[0].getAttribute('data-inside-target') || 'score');
 }
 
 /* ── Pricing currency switcher ── */
@@ -863,23 +686,35 @@ function applyPricingCurrency(code, animate) {
     el.textContent = currency.label;
   });
 
-  const valuePanel = document.getElementById('value');
-  if (valuePanel) {
+  const valueAnchor = document.getElementById('value');
+  const valueScope = valueAnchor?.closest('.container') || valueAnchor?.closest('section') || valueAnchor;
+  if (valueScope) {
     const starter = currency.plans.starter;
     if (starter) {
-      valuePanel.querySelectorAll('[data-price-symbol]').forEach(el => { el.textContent = currency.symbol; });
-      valuePanel.querySelectorAll('[data-price-amount]').forEach(el => { el.textContent = starter.amount; });
-      valuePanel.querySelectorAll('[data-price-unit]').forEach(el => { el.textContent = starter.unit; });
-      valuePanel.querySelectorAll('[data-value-per-credit]').forEach(el => { el.textContent = starter.unit; });
+      valueScope.querySelectorAll('[data-price-symbol]').forEach(el => { el.textContent = currency.symbol; });
+      valueScope.querySelectorAll('[data-price-amount]').forEach(el => { el.textContent = starter.amount; });
+      valueScope.querySelectorAll('[data-price-unit]').forEach(el => { el.textContent = starter.unit; });
+      valueScope.querySelectorAll('[data-value-per-credit]').forEach(el => { el.textContent = starter.unit; });
     }
-    const compare = valuePanel.querySelector('[data-value-compare]');
+    const compare = valueScope.querySelector('[data-value-compare]');
     if (compare) compare.hidden = code !== 'GBP';
   }
 }
 
+function syncCurrencyUI(code) {
+  const select = document.getElementById('currencySelect');
+  if (select) select.value = code;
+  document.querySelectorAll('[data-currency]').forEach(btn => {
+    const active = btn.getAttribute('data-currency') === code;
+    btn.classList.toggle('is-active', active);
+    btn.setAttribute('aria-checked', String(active));
+  });
+}
+
 function initPricingCurrency() {
   const select = document.getElementById('currencySelect');
-  if (!select) return;
+  const segments = document.getElementById('currencySegments');
+  if (!select && !segments) return;
   let live = document.getElementById('currencyLive');
   if (!live) {
     live = document.createElement('p');
@@ -887,24 +722,26 @@ function initPricingCurrency() {
     live.className = 'sr-only';
     live.setAttribute('aria-live', 'polite');
     live.setAttribute('aria-atomic', 'true');
-    select.closest('.currency-picker')?.appendChild(live);
+    (segments || select)?.closest('.currency-picker')?.appendChild(live);
   }
-  const initial = detectDefaultCurrency();
-  select.value = initial;
-  applyPricingCurrency(initial, false);
-  select.addEventListener('change', () => {
-    const code = select.value;
-    applyPricingCurrency(code, true);
-    const currency = PRICING[code] || PRICING.GBP;
+
+  const setCurrency = (code, animate) => {
+    const next = PRICING[code] ? code : 'GBP';
+    syncCurrencyUI(next);
+    applyPricingCurrency(next, animate);
+    const currency = PRICING[next] || PRICING.GBP;
     if (live) live.textContent = `Prices updated to ${currency.label}.`;
-    if (!reducedMotion) {
-      select.classList.remove('is-changing');
-      void select.offsetWidth;
-      select.classList.add('is-changing');
-      select.addEventListener('animationend', () => select.classList.remove('is-changing'), { once: true });
-    }
-    try { localStorage.setItem('sprs-currency', code); } catch (_) { /* ignore */ }
+    try { localStorage.setItem('sprs-currency', next); } catch (_) { /* ignore */ }
+  };
+
+  const initial = detectDefaultCurrency();
+  setCurrency(initial, false);
+
+  segments?.querySelectorAll('[data-currency]').forEach(btn => {
+    btn.addEventListener('click', () => setCurrency(btn.getAttribute('data-currency') || 'GBP', true));
   });
+
+  select?.addEventListener('change', () => setCurrency(select.value, true));
 }
 
 /* ── Button press + ripple feedback ── */
@@ -931,7 +768,7 @@ function initPressFeedback() {
     btn.addEventListener('pointercancel', release);
   });
 
-  document.querySelectorAll('.sample-link, .cta-secondary-link, .footer nav a, .cookie-manage-link, .nav-brand, .faq-item summary, .inside-col, .trust-item, .actions-group, .price-card').forEach(el => {
+  document.querySelectorAll('.sample-link, .cta-secondary-link, .footer nav a, .cookie-manage-link, .nav-brand, .faq-item summary, .inside-col, .orient-card, .inside-tab, .price-card, .how-flow-item, .sample-toggle, .currency-seg, .cookie-btn').forEach(el => {
     el.addEventListener('pointerdown', () => el.classList.add('is-pressed'));
     const clear = () => el.classList.remove('is-pressed');
     el.addEventListener('pointerup', clear);
@@ -952,18 +789,12 @@ function initFaqFeedback() {
       summary.addEventListener('pointercancel', clearPress);
     }
     item.addEventListener('toggle', () => {
-      if (!item.open || reducedMotion) return;
-      const answer = item.querySelector('.faq-answer > *');
-      if (!answer) return;
-      answer.style.opacity = '0';
-      answer.style.transform = 'translateY(-6px)';
-      requestAnimationFrame(() => {
-        answer.style.opacity = '';
-        answer.style.transform = '';
-      });
+      if (reducedMotion) return;
       item.animate?.(
-        [{ transform: 'scale(0.995)' }, { transform: 'scale(1)' }],
-        { duration: 320, easing: 'cubic-bezier(.25,.8,.25,1)' }
+        item.open
+          ? [{ transform: 'scale(0.992)' }, { transform: 'scale(1)' }]
+          : [{ transform: 'scale(1)' }, { transform: 'scale(0.997)' }, { transform: 'scale(1)' }],
+        { duration: item.open ? 280 : 180, easing: 'cubic-bezier(.22,1,.36,1)' }
       );
     });
   });
@@ -981,13 +812,13 @@ function initHealthHotState() {
   io.observe(num);
 }
 
-/* ── Currency select press feedback ── */
+/* ── Currency control press feedback ── */
 function initSelectFeedback() {
-  const select = document.getElementById('currencySelect');
-  if (!select) return;
-  select.addEventListener('pointerdown', () => select.classList.add('is-pressed'));
-  ['pointerup', 'pointerleave', 'blur', 'change'].forEach(evt => {
-    select.addEventListener(evt, () => select.classList.remove('is-pressed'));
+  document.querySelectorAll('.currency-seg').forEach(btn => {
+    btn.addEventListener('pointerdown', () => btn.classList.add('is-pressed'));
+    ['pointerup', 'pointerleave', 'pointercancel', 'blur'].forEach(evt => {
+      btn.addEventListener(evt, () => btn.classList.remove('is-pressed'));
+    });
   });
 }
 
@@ -1223,111 +1054,7 @@ function initFeatureTabs() {
       }).catch(() => {});
     }
     syncFromScroll();
-    initFeatureScrollCue(track, () => scrubEnabled);
   }
-}
-
-/* ── “Scroll” ring around cursor during feature scrub ── */
-function initFeatureScrollCue(track, isScrubEnabled) {
-  if (!track || reducedMotion || !finePointer) return;
-
-  const cue = document.createElement('div');
-  cue.className = 'feature-scroll-cue';
-  cue.setAttribute('aria-hidden', 'true');
-  cue.innerHTML = `
-    <div class="feature-scroll-cue__spin" aria-hidden="true">
-      <svg viewBox="0 0 100 100" width="88" height="88">
-        <defs>
-          <path id="feature-scroll-cue-path" d="M50,50 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0" fill="none"></path>
-        </defs>
-        <text>
-          <textPath href="#feature-scroll-cue-path" startOffset="0%">Scroll · Scroll · Scroll · </textPath>
-        </text>
-      </svg>
-    </div>
-  `;
-  document.body.appendChild(cue);
-  const spin = cue.querySelector('.feature-scroll-cue__spin');
-
-  let x = -100;
-  let y = -100;
-  let tx = x;
-  let ty = y;
-  let angle = 0;
-  let dir = 1; // 1 = clockwise (down), -1 = anti-clockwise (up)
-  let lastScrollY = window.scrollY;
-  let lastTs = 0;
-  let raf = 0;
-  let visible = false;
-  const FOLLOW = 0.22;
-  const DEG_PER_MS = 360 / 14000; // idle pace
-  const DEG_PER_MS_ACTIVE = 360 / 7000; // faster while scrolling
-  let boostUntil = 0;
-
-  const tick = ts => {
-    if (!lastTs) lastTs = ts;
-    const dt = Math.min(33, ts - lastTs);
-    lastTs = ts;
-
-    if (visible) {
-      const speed = ts < boostUntil ? DEG_PER_MS_ACTIVE : DEG_PER_MS;
-      angle += speed * dt * dir;
-      angle = ((angle % 360) + 360) % 360;
-      spin.style.transform = `rotate(${angle.toFixed(2)}deg)`;
-    }
-
-    x = lerp(x, tx, FOLLOW);
-    y = lerp(y, ty, FOLLOW);
-    cue.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) translate(-50%, -50%)`;
-
-    const settling = !nearlyEqual(x, tx, 0.15) || !nearlyEqual(y, ty, 0.15);
-    if (settling || visible) {
-      raf = requestAnimationFrame(tick);
-    } else {
-      raf = 0;
-      lastTs = 0;
-    }
-  };
-
-  const start = () => {
-    if (!raf) {
-      lastTs = 0;
-      raf = requestAnimationFrame(tick);
-    }
-  };
-
-  const setVisible = on => {
-    if (visible === on) return;
-    visible = on;
-    cue.classList.toggle('is-visible', on);
-    if (on) start();
-  };
-
-  const insideTrack = target =>
-    target instanceof Element && (target === track || track.contains(target));
-
-  window.addEventListener('pointermove', e => {
-    tx = e.clientX;
-    ty = e.clientY;
-    const show = isScrubEnabled() && insideTrack(e.target);
-    setVisible(show);
-    if (show) start();
-  }, { passive: true });
-
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    if (y > lastScrollY + 0.5) dir = 1;
-    else if (y < lastScrollY - 0.5) dir = -1;
-    lastScrollY = y;
-    if (visible && isScrubEnabled()) {
-      boostUntil = performance.now() + 280;
-      start();
-    }
-  }, { passive: true });
-
-  window.addEventListener('pointerleave', () => {
-    setVisible(false);
-  });
 }
 
 /* ── Boot ── */
@@ -1341,17 +1068,15 @@ document.addEventListener('DOMContentLoaded', () => {
   initFeatureTabs();
   initDistBars();
   initChartInteractions();
-  initStepsLine();
-  initStepLit();
+  initHowItWorks();
+  initSampleCompare();
+  initInsideChapters();
   initPricingCurrency();
   initPressFeedback();
   initFaqFeedback();
   initHealthHotState();
   initSelectFeedback();
-  initPointerAtmosphere();
-  initSurfaceMotion();
-  initMagneticButtons();
-  initScrollDrift();
+  initHeroScrollStory();
   if (location.hash) {
     // Defer so sticky nav height and fonts settle before measuring
     requestAnimationFrame(() => scrollToHash(location.hash, false));

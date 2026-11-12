@@ -261,7 +261,7 @@ body.doc-page {
   width: 4px;
   height: 1.35em;
   max-height: 1.75rem;
-  background: linear-gradient(180deg, var(--blue), var(--gold));
+  background: var(--brand-blue-300);
   border-radius: var(--r-sm);
 }
 

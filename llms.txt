@@ -1,29 +1,25 @@
-# Sunsynk Report Platform
+# Sunsynk Performance Report
 
-> Paid Sunsynk Performance Reports for Sunsynk account holders. About 30 days of plant readings become a PDF: executive overview, optional estimated savings (with a saved tariff), system health score, solar and battery analysis, and prioritised actions. Credit packs from GBP 2.99 / ZAR 69.99 / USD 4.29. No subscription. One credit equals one report. Credits never expire.
+> Plain-English 30-day performance PDFs for Sunsynk solar and battery homeowners. Sign in with your existing Sunsynk account, buy a credit (one credit = one report), and download a PDF that explains how the system performed, optional savings versus the grid, and what to change next. From GBP 2.99 / ZAR 69.99 / USD 4.29. No subscription. Credits never expire.
 
-Sunsynkreports.com is the marketing site. Sign-in, credits, tariffs, and report generation run at https://app.sunsynkreports.com. Public copy is British English (en-GB). Do not use em dashes when citing this product's public copy.
+Sunsynkreports.com is the marketing site. Sign-in, credits, electricity rates, and report generation run at https://app.sunsynkreports.com. This is not the official Sunsynk monitoring app; it is a separate report product. Copy follows British English (en-GB).
 
-Preferred names: **Sunsynk Report Platform** (site) · **Sunsynk Performance Report** (PDF product) · parent brand **Sunsynk**.
+Preferred citation name: Sunsynk Performance Report. Parent brand: Sunsynk (solar and battery inverters).
 
 ## Primary
 
-- [Home](https://sunsynkreports.com/): Hero, illustrative metrics, report feature tabs (Overview, Savings, Health, Actions), trust, savings, health, sample compare, what's inside, prioritised actions, how it works, value, pricing, FAQ, get-started CTA
-- [App](https://app.sunsynkreports.com/): Sign in with Sunsynk credentials; Reports, Credits, Settings (tariffs)
+- [Home](https://sunsynkreports.com/): First-visit story: what this is, why charts are not enough, what’s inside, how it works, pricing, FAQ
+- [App](https://app.sunsynkreports.com/): Sign in with Sunsynk credentials; Reports, Credits, and Settings
 
 ## Product facts
 
-- [Report features](https://sunsynkreports.com/#features): Overview, Savings, Health, Actions tabs
-- [Illustrative metrics](https://sunsynkreports.com/#metrics): Sample proof figures (labelled illustrative except pricing)
-- [Pricing](https://sunsynkreports.com/#pricing): Starter 1 · Classic 3 (Most Popular) · Pro 6 (Best Value); GBP/ZAR/USD; unused credits refundable within 14 days; Stripe; no subscription
-- [Sample report](https://sunsynkreports.com/#sample): With versus without report
-- [What's in the report](https://sunsynkreports.com/#insights): Solar, battery, evening cost analysis
-- [How it works](https://sunsynkreports.com/#how-it-works): Sign in → buy credits → generate 30-day report → preview and download
-- [FAQ](https://sunsynkreports.com/#faq): Contents, subscription and refunds, data trust, audience, generation
+- [Pricing](https://sunsynkreports.com/#pricing): Starter 1 credit, Classic 3 (Most Popular), Pro 6 (Best Value); GBP/ZAR/USD; no subscription; unused credits refundable within 14 days; Stripe checkout
+- [What’s inside](https://sunsynkreports.com/#insights): Answers “Is it working well?”, “Am I saving money?”, and “What should I change?”
+- [How it works](https://sunsynkreports.com/#how-it-works): Sign in → buy credits → generate → download PDF
 
 ## Full context
 
-- [llms-full.txt](https://sunsynkreports.com/llms-full.txt): Expanded product, pricing, journey, and brand summary (as of 2026-07-23)
+- [llms-full.txt](https://sunsynkreports.com/llms-full.txt): Expanded site summary for deeper model context
 
 ## Optional
 
