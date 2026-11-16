@@ -487,7 +487,7 @@
                 <div class="sample-gauge" aria-hidden="true"><strong class="countup" data-target="52">52</strong></div>
                 <div>
                   <p class="sample-gap-title">Working, but well below similar local systems</p>
-                  <p class="sample-gap-sub">Closing the gap could avoid about <strong>439 kWh</strong> of grid import per month.</p>
+                  <p class="sample-gap-sub">Closing the gap could avoid about <strong>180 kWh</strong> of grid import per month.</p>
                 </div>
               </div>
               <ul class="sample-checks ix-cascade">
@@ -514,9 +514,49 @@
           </div>
         </div>
 
+        <div class="sample-report-preview reveal" id="sample-report">
+          <p class="sample-report-label">Sample report pages · illustrative only</p>
+          <div class="sample-report-strip">
+            <button type="button" class="sample-report-thumb" data-open-sample-report data-sample-page="0" aria-label="Preview sample page 1: At a glance">
+              <span class="sample-report-thumb-page" aria-hidden="true">
+                <span class="srp-bar"></span>
+                <span class="srp-title">At a Glance</span>
+                <span class="srp-score">52</span>
+                <span class="srp-lines"><span></span><span></span><span class="short"></span></span>
+              </span>
+              <span class="sample-report-thumb-cap">1 · At a glance</span>
+            </button>
+            <button type="button" class="sample-report-thumb" data-open-sample-report data-sample-page="1" aria-label="Preview sample page 2: System health">
+              <span class="sample-report-thumb-page" aria-hidden="true">
+                <span class="srp-bar"></span>
+                <span class="srp-title">System Health</span>
+                <span class="srp-bars"><span style="--w:23%"></span><span style="--w:61%"></span><span style="--w:86%"></span><span style="--w:82%"></span></span>
+              </span>
+              <span class="sample-report-thumb-cap">2 · System health</span>
+            </button>
+            <button type="button" class="sample-report-thumb" data-open-sample-report data-sample-page="2" aria-label="Preview sample page 3: Estimated savings">
+              <span class="sample-report-thumb-page" aria-hidden="true">
+                <span class="srp-bar"></span>
+                <span class="srp-title">Savings</span>
+                <span class="srp-money">£186</span>
+                <span class="srp-lines"><span></span><span class="short"></span><span></span></span>
+              </span>
+              <span class="sample-report-thumb-cap">3 · Estimated savings</span>
+            </button>
+            <button type="button" class="sample-report-thumb" data-open-sample-report data-sample-page="3" aria-label="Preview sample page 4: Recommended actions">
+              <span class="sample-report-thumb-page" aria-hidden="true">
+                <span class="srp-bar"></span>
+                <span class="srp-title">Actions</span>
+                <span class="srp-checks"><span></span><span></span><span></span></span>
+              </span>
+              <span class="sample-report-thumb-cap">4 · Recommended actions</span>
+            </button>
+          </div>
+        </div>
+
         <div class="sample-actions reveal">
           <a class="btn btn-primary" href="https://app.sunsynkreports.com" target="_blank" rel="noopener noreferrer">Get My Report</a>
-          <a class="sample-link" href="#insights">See what's inside</a>
+          <button type="button" class="sample-link" data-open-sample-report data-sample-page="0">Preview a sample report</button>
         </div>
       </div>
     </section>
@@ -542,7 +582,7 @@
               <div class="inside-answer-hero" id="health">
                 <p class="inside-answer-kicker">Sample overall score</p>
                 <p class="inside-answer-value health-score-num countup" data-target="52">52</p>
-                <p class="inside-answer-lead">Working, but well below similar local systems. Weakest: self-use. Strongest: battery.</p>
+                <p class="inside-answer-lead">Working, but needs attention. Weakest: self-use (23). Strongest: battery (86).</p>
                 <p class="inside-answer-meta" id="trust">Sample data coverage <strong class="countup" data-target="98.4" data-decimals="1" data-suffix="%">98.4%</strong> · thin periods are flagged in the PDF</p>
               </div>
               <div class="inside-answer-side health-panel">
@@ -821,6 +861,145 @@
     </section>
 
   </main>
+
+  <!-- Sample report lightbox (fictional Example Home dataset; not a live customer report) -->
+  <div class="sample-report-modal" id="sample-report-modal" hidden aria-hidden="true">
+    <div class="sample-report-modal__backdrop" data-close-sample-report tabindex="-1"></div>
+    <div class="sample-report-modal__panel" role="dialog" aria-modal="true" aria-labelledby="sample-report-modal-title" tabindex="-1">
+      <div class="sample-report-modal__chrome">
+        <p class="sample-report-modal__title" id="sample-report-modal-title">Sample report preview</p>
+        <p class="sample-report-modal__note">Illustrative only · Example Home · not a live customer report</p>
+        <button type="button" class="sample-report-modal__close" data-close-sample-report aria-label="Close sample report preview">&times;</button>
+      </div>
+      <div class="sample-report-modal__body">
+        <button type="button" class="sample-report-nav sample-report-nav--prev" data-sample-nav="-1" aria-label="Previous sample page">‹</button>
+        <div class="sample-report-stage" data-sample-stage>
+          <article class="sample-pdf-page is-active" data-sample-page-panel="0" aria-label="Sample page 1 of 4: At a glance">
+            <div class="sample-pdf-mark" aria-hidden="true">SAMPLE</div>
+            <header class="sample-pdf-head">
+              <p class="sample-pdf-plant">Example Home</p>
+              <p class="sample-pdf-window">1 Sep 2025 to 30 Sep 2025</p>
+              <p class="sample-pdf-disclaimer">Indicative analysis for decision support only. Sample · illustrative only. Page 1 of 4</p>
+            </header>
+            <div class="sample-pdf-accent" aria-hidden="true"></div>
+            <h3 class="sample-pdf-h">System Performance Report</h3>
+            <p class="sample-pdf-lead">System performance summary based on your telemetry data.</p>
+            <dl class="sample-pdf-meta">
+              <div><dt>Generated</dt><dd>1 Oct 2025</dd></div>
+              <div><dt>Device ID</dt><dd>0000000001</dd></div>
+              <div><dt>Analysis window</dt><dd>1 Sep 2025 to 30 Sep 2025</dd></div>
+              <div><dt>Coverage span</dt><dd>30 day(s)</dd></div>
+              <div><dt>PV capacity</dt><dd>5.0 kWp</dd></div>
+            </dl>
+            <h4 class="sample-pdf-h4">At a Glance</h4>
+            <div class="sample-pdf-glance">
+              <div><span>Estimated Savings</span><strong>£186</strong></div>
+              <div><span>Additional Opportunity</span><strong>£48</strong></div>
+              <div><span>System Score</span><strong>52/100</strong></div>
+            </div>
+            <p class="sample-pdf-body">Your system reduced electricity costs by an estimated £186 during the analysis period. Self-use is the lowest-scoring indicator. Closing the gap could avoid about 180 kWh of grid import per month.</p>
+            <p class="sample-pdf-coverage"><strong>Data coverage</strong> Mature data · Sample coverage 98.4% with no significant gaps.</p>
+          </article>
+
+          <article class="sample-pdf-page" data-sample-page-panel="1" hidden aria-label="Sample page 2 of 4: Overall system health">
+            <div class="sample-pdf-mark" aria-hidden="true">SAMPLE</div>
+            <header class="sample-pdf-head">
+              <p class="sample-pdf-plant">Example Home</p>
+              <p class="sample-pdf-window">1 Sep 2025 to 30 Sep 2025</p>
+              <p class="sample-pdf-disclaimer">Indicative analysis for decision support only. Sample · illustrative only. Page 2 of 4</p>
+            </header>
+            <div class="sample-pdf-accent" aria-hidden="true"></div>
+            <h3 class="sample-pdf-h">Overall System Health</h3>
+            <div class="sample-pdf-score-row">
+              <p class="sample-pdf-score-big">52 <span>/ 100</span></p>
+              <p class="sample-pdf-status">Needs Attention</p>
+            </div>
+            <p class="sample-pdf-body">This score of 52 combines measured areas using fixed weights. Self-use had the largest negative impact, while battery health was strongest.</p>
+            <h4 class="sample-pdf-h4">Score breakdown</h4>
+            <ul class="sample-pdf-bars">
+              <li><span>Self-use</span><div class="sample-pdf-track"><i style="width:23%;background:var(--orange-fill)"></i></div><strong>23</strong></li>
+              <li><span>Solar</span><div class="sample-pdf-track"><i style="width:61%;background:var(--gold)"></i></div><strong>61</strong></li>
+              <li><span>Battery</span><div class="sample-pdf-track"><i style="width:86%;background:var(--green-fill)"></i></div><strong>86</strong></li>
+              <li><span>Evening grid</span><div class="sample-pdf-track"><i style="width:82%;background:var(--green-fill)"></i></div><strong>82</strong></li>
+            </ul>
+            <p class="sample-pdf-body sample-pdf-muted">Excellent 85–100 · Watch 60–84 · Needs Attention below 60</p>
+          </article>
+
+          <article class="sample-pdf-page" data-sample-page-panel="2" hidden aria-label="Sample page 3 of 4: Estimated savings">
+            <div class="sample-pdf-mark" aria-hidden="true">SAMPLE</div>
+            <header class="sample-pdf-head">
+              <p class="sample-pdf-plant">Example Home</p>
+              <p class="sample-pdf-window">1 Sep 2025 to 30 Sep 2025</p>
+              <p class="sample-pdf-disclaimer">Indicative analysis for decision support only. Sample · illustrative only. Page 3 of 4</p>
+            </header>
+            <div class="sample-pdf-accent" aria-hidden="true"></div>
+            <h3 class="sample-pdf-h">Estimated Savings Summary</h3>
+            <dl class="sample-pdf-savings">
+              <div><dt>Import tariff type</dt><dd>Flat-rate import tariff</dd></div>
+              <div><dt>Tariff details</dt><dd>Flat-rate: £0.28/kWh</dd></div>
+              <div><dt>Site electricity use</dt><dd>720 kWh</dd></div>
+              <div><dt>Estimated cost without solar and battery</dt><dd>£220</dd></div>
+              <div><dt>Estimated cost with your system</dt><dd>£34</dd></div>
+              <div class="is-highlight"><dt>Estimated savings</dt><dd>£186 (85%)</dd></div>
+            </dl>
+            <ul class="sample-pdf-stat-list">
+              <li><span>Energy you supplied yourself</span><strong>612 kWh</strong></li>
+              <li><span>Grid cost avoided</span><strong>£168</strong></li>
+              <li><span>Additional opportunity</span><strong>£48</strong></li>
+            </ul>
+            <p class="sample-pdf-body sample-pdf-muted">Standing charges, VAT, and export payments are excluded. Shown when you save your electricity rate in Settings.</p>
+          </article>
+
+          <article class="sample-pdf-page" data-sample-page-panel="3" hidden aria-label="Sample page 4 of 4: Key insights and recommended actions">
+            <div class="sample-pdf-mark" aria-hidden="true">SAMPLE</div>
+            <header class="sample-pdf-head">
+              <p class="sample-pdf-plant">Example Home</p>
+              <p class="sample-pdf-window">1 Sep 2025 to 30 Sep 2025</p>
+              <p class="sample-pdf-disclaimer">Indicative analysis for decision support only. Sample · illustrative only. Page 4 of 4</p>
+            </header>
+            <div class="sample-pdf-accent" aria-hidden="true"></div>
+            <h3 class="sample-pdf-h">Key Insights and Recommended Actions</h3>
+            <p class="sample-pdf-body">A ranked list of next steps: habits first, then settings, then hardware only when it is worth considering.</p>
+            <div class="sample-pdf-actions">
+              <div>
+                <p class="sample-pdf-tag">Habits</p>
+                <ul>
+                  <li>Move heavy evening loads earlier while solar or battery cover is available</li>
+                  <li>Spot habits that quietly drive peak grid import</li>
+                </ul>
+              </div>
+              <div>
+                <p class="sample-pdf-tag">Settings</p>
+                <ul>
+                  <li>Adjust battery reserve and discharge timing for evening peaks</li>
+                  <li>Improve self-use settings before buying more capacity</li>
+                </ul>
+              </div>
+              <div>
+                <p class="sample-pdf-tag">Hardware</p>
+                <ul>
+                  <li>Consider more storage or panels only after settings and habits are reviewed</li>
+                  <li>Share the PDF with your installer when an upgrade case is clear</li>
+                </ul>
+              </div>
+            </div>
+            <p class="sample-pdf-body sample-pdf-muted">Assumptions and limits appear in Important Information at the end of every report.</p>
+          </article>
+        </div>
+        <button type="button" class="sample-report-nav sample-report-nav--next" data-sample-nav="1" aria-label="Next sample page">›</button>
+      </div>
+      <div class="sample-report-modal__footer">
+        <p class="sample-report-modal__pager" data-sample-pager>Page 1 of 4</p>
+        <div class="sample-report-modal__dots" role="tablist" aria-label="Sample pages">
+          <button type="button" class="sample-report-dot is-active" role="tab" aria-selected="true" data-sample-page="0" aria-label="Page 1"></button>
+          <button type="button" class="sample-report-dot" role="tab" aria-selected="false" data-sample-page="1" aria-label="Page 2"></button>
+          <button type="button" class="sample-report-dot" role="tab" aria-selected="false" data-sample-page="2" aria-label="Page 3"></button>
+          <button type="button" class="sample-report-dot" role="tab" aria-selected="false" data-sample-page="3" aria-label="Page 4"></button>
+        </div>
+        <a class="btn btn-primary btn-sm" href="https://app.sunsynkreports.com" target="_blank" rel="noopener noreferrer">Get My Report</a>
+      </div>
+    </div>
+  </div>
 
   <footer class="footer">
     <div class="container footer-grid">

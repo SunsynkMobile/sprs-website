@@ -98,11 +98,11 @@ Go to app.sunsynkreports.com, sign in with Sunsynk, buy credits if needed, optio
 
 ## Example findings used on the marketing site
 
-Illustrative sample (not a specific customer's live data):
+Illustrative sample (not a specific customer's live data). Fictional plant: Example Home (United Kingdom), device 0000000001, 5.0 kWp, window 1–30 Sep 2025. Preview lives at #sample-report (HTML mock pages, not a customer PDF).
 
-- Sample overall score 52; weakest self-use; strongest battery
-- Closing the gap could avoid about 439 kWh of grid import per month in the sample narrative
-- Illustrative estimated savings figure used in the savings panel (£186 sample period)
+- Sample overall score 52; weakest self-use (23); strongest battery (86); evening grid 82; solar 61
+- Closing the gap could avoid about 180 kWh of grid import per month in the sample narrative
+- Illustrative estimated savings £186; additional opportunity £48; self-supplied 612 kWh; grid cost avoided £168
 - Sample data coverage about 98.4%; thin periods are flagged in the PDF
 - Trust, health and metrics panels use illustrative sample figures (explicitly labelled on the page, except pack pricing)
 

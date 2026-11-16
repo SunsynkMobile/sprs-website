@@ -506,6 +506,117 @@ function initSampleCompare() {
   setView('with');
 }
 
+/* ── Sample report lightbox (fictional Example Home pages) ── */
+function initSampleReportPreview() {
+  const modal = document.getElementById('sample-report-modal');
+  if (!modal) return;
+
+  const panel = modal.querySelector('.sample-report-modal__panel');
+  const pages = Array.from(modal.querySelectorAll('[data-sample-page-panel]'));
+  const dots = Array.from(modal.querySelectorAll('.sample-report-dot'));
+  const pager = modal.querySelector('[data-sample-pager]');
+  const prevBtn = modal.querySelector('[data-sample-nav="-1"]');
+  const nextBtn = modal.querySelector('[data-sample-nav="1"]');
+  const openers = Array.from(document.querySelectorAll('[data-open-sample-report]'));
+  const closers = Array.from(modal.querySelectorAll('[data-close-sample-report]'));
+  const total = pages.length;
+  let index = 0;
+  let lastFocus = null;
+
+  const focusables = () => Array.from(panel.querySelectorAll(
+    'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+  )).filter(el => !el.hasAttribute('hidden') && el.offsetParent !== null);
+
+  const setPage = (next) => {
+    index = Math.max(0, Math.min(total - 1, next));
+    pages.forEach((page, i) => {
+      const active = i === index;
+      page.classList.toggle('is-active', active);
+      if (active) page.removeAttribute('hidden');
+      else page.setAttribute('hidden', '');
+    });
+    dots.forEach((dot, i) => {
+      const active = i === index;
+      dot.classList.toggle('is-active', active);
+      dot.setAttribute('aria-selected', String(active));
+    });
+    if (pager) pager.textContent = `Page ${index + 1} of ${total}`;
+    if (prevBtn) prevBtn.disabled = index === 0;
+    if (nextBtn) nextBtn.disabled = index === total - 1;
+  };
+
+  const open = (start = 0) => {
+    lastFocus = document.activeElement;
+    setPage(Number(start) || 0);
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('sample-report-modal-open');
+    requestAnimationFrame(() => {
+      modal.classList.add('is-open');
+      panel?.focus({ preventScroll: true });
+    });
+  };
+
+  const close = () => {
+    modal.classList.remove('is-open');
+    document.body.classList.remove('sample-report-modal-open');
+    modal.setAttribute('aria-hidden', 'true');
+    const finish = () => {
+      modal.hidden = true;
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus({ preventScroll: true });
+    };
+    if (reducedMotion) finish();
+    else setTimeout(finish, 280);
+  };
+
+  openers.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const page = Number(btn.getAttribute('data-sample-page') || '0');
+      open(page);
+    });
+  });
+  closers.forEach(btn => btn.addEventListener('click', close));
+  prevBtn?.addEventListener('click', () => setPage(index - 1));
+  nextBtn?.addEventListener('click', () => setPage(index + 1));
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => setPage(Number(dot.getAttribute('data-sample-page') || '0')));
+  });
+
+  document.addEventListener('keydown', e => {
+    if (modal.hidden || !modal.classList.contains('is-open')) return;
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      close();
+      return;
+    }
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      setPage(index - 1);
+      return;
+    }
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      setPage(index + 1);
+      return;
+    }
+    if (e.key === 'Tab' && panel) {
+      const items = focusables();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  setPage(0);
+}
+
 
 /* ── Shared motion helpers ── */
 const MOTION_LERP = 0.16; // Apple-like settle (not too sticky, not laggy)
@@ -768,7 +879,7 @@ function initPressFeedback() {
     btn.addEventListener('pointercancel', release);
   });
 
-  document.querySelectorAll('.sample-link, .cta-secondary-link, .footer nav a, .cookie-manage-link, .nav-brand, .faq-item summary, .inside-col, .orient-card, .inside-tab, .price-card, .how-flow-item, .sample-toggle, .currency-seg, .cookie-btn').forEach(el => {
+  document.querySelectorAll('.sample-link, .sample-report-thumb, .cta-secondary-link, .footer nav a, .cookie-manage-link, .nav-brand, .faq-item summary, .inside-col, .orient-card, .inside-tab, .price-card, .how-flow-item, .sample-toggle, .currency-seg, .cookie-btn').forEach(el => {
     el.addEventListener('pointerdown', () => el.classList.add('is-pressed'));
     const clear = () => el.classList.remove('is-pressed');
     el.addEventListener('pointerup', clear);
@@ -1070,6 +1181,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initChartInteractions();
   initHowItWorks();
   initSampleCompare();
+  initSampleReportPreview();
   initInsideChapters();
   initPricingCurrency();
   initPressFeedback();
