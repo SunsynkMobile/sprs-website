@@ -15,6 +15,7 @@ Preferred citation name: Sunsynk Performance Report. Parent brand: Sunsynk (sola
 
 - [Pricing](https://sunsynkreports.com/#pricing): Starter 1 credit, Classic 3 (Most Popular), Pro 6 (Best Value); GBP/ZAR/USD; no subscription; unused credits refundable within 14 days; Stripe checkout
 - [What’s inside](https://sunsynkreports.com/#insights): Answers “Is it working well?”, “Am I saving money?”, and “What should I change?”
+- [Sample report](https://sunsynkreports.com/#sample-report): Illustrative multi-page preview (not a live customer PDF)
 - [How it works](https://sunsynkreports.com/#how-it-works): Sign in → buy credits → generate → download PDF
 
 ## Full context

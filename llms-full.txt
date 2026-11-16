@@ -85,6 +85,7 @@ Go to app.sunsynkreports.com, sign in with Sunsynk, buy credits if needed, optio
 - #hero: H1 promise, short sub, primary CTA
 - #what-this-is: Who it is for, what you get, how you pay
 - #sample: Why it helps; with-a-report versus only-charts compare
+- #sample-report: Illustrative multi-page sample report preview modal
 - #insights: Three questions every report answers (tabbed sample answers)
 - #report-preview: Sample answer stage for the selected question
 - #health / #trust: Sample score, coverage, and category bars
@@ -118,7 +119,7 @@ Reports cover cumulative meter totals, reconciled energy flow, solar utilisation
 - Locale: en-GB (analyse, optimise, utilisation, neighbouring, prioritised, behavioural)
 - No em dashes in public marketing copy
 - Primary CTA: Get My Report
-- Secondary CTAs: See what's inside; Compare packs
+- Secondary CTAs: See what's inside; Preview a sample report; Compare packs
 - Hero H1: Finally understand how your Sunsynk system performed last month
 - Visual language: navy brand ink on light slate sections; white product surfaces; peach Beta accent
 - Support: support@sunsynk.com · Privacy: privacy@sunsynk.com
